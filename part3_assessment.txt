@@ -1,0 +1,8 @@
+1. The submitted program must perform route planning and correctly schedule the service of bins;
+2. After all simulation events have been output, your application must produce correct summary statistics, following the given output format specification;
+3. Experiments should function as described. You should disable detailed output for experimentation;
+4. A test suite with some sample area descriptions, which are non-trivially different from each other, must be submitted;
+5. Your code must have reasonable run times and there should be evidence of optimisation;
+6. Your code should have appropriate indentation and spacing, and must not have unused variables or dead code;
+7. There should be evidence of appropriate use of source control with your submission;
+8. You should document in a written report the architecture of your simulator, your design choices, and testing efforts. You should also discuss the experiments performed, results obtained, and insights gained.
