@@ -1,0 +1,11 @@
+At this stage you are not required to submit any source code. 
+Instead, you should submit a *proposal document* that explains 
+how you plan to implement:
+1. Handling command line arguments;
+2. Parsing and validation of input scripts;
+3. Generation, scheduling, and execution of events;
+4. Graph manipulation/route planning algorithms;
+5. Statistics collection;
+6. Experimentation support and results visualisation;
+7. Code testing.
+
