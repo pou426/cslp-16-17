@@ -147,26 +147,27 @@ public class Simulator {
 							System.out.println("Warning: Multiple inputs for noAreas variable. Previously stored area information will be overwritten.");
 						} else if (!(tokens[1].equals("experiment"))) {
 							throw new InvalidInputFileException("Invalid format: missing keyword \"experiment\" in this line: " + line);
-						}
-						
-						int j = 2;
-						while (!(tokens[j].equals("noAreas"))) {
-							float serviceFreq = Float.parseFloat(tokens[j]);
-							serviceFreqExp.add(serviceFreq);
-							j++;
-						}
-						if (j <= 2) { 
+						} else if (tokensLen < 3) {
 							throw new InvalidInputFileException("Insufficient inputs for the serviceFreq experiment parameters in this line: "+line);
 						} else {
-							isExperiment = true;
-							
-							noAreas = Short.parseShort(tokens[++j]);
-							noAreasFound = true;
-							
-							if (j != (tokensLen-1)) {
-								System.out.println("Warning: too many inputs for noAreas parameter");
+							for (int i = 2; i < tokensLen; i++) {
+								float serviceFreq = Float.parseFloat(tokens[i]);
+								serviceFreqExp.add(serviceFreq);
 							}
-														
+							isExperiment = true;
+							while ((!noAreasFound) && ((line = br.readLine()) != null)) {
+								if (!(line.startsWith("#") || line.isEmpty())) {
+									String[] noAreasTokens = line.split("\\s+");
+									if (!(noAreasTokens[0].equals("noAreas"))) {
+										throw new InvalidInputFileException("Invalid format: noAreas should follow serviceFreq experiment line.");
+									} else {
+										if (noAreasTokens.length > 2) 	System.out.println("Warning: too many inputs for noAreas.");
+										noAreas = Short.parseShort(noAreasTokens[1]);
+										noAreasFound = true;
+									}
+								}
+							}
+							
 							while ((!serviceAreasFound) && (line = br.readLine()) != null) {
 								if (!(line.startsWith("#") || line.isEmpty())) {
 									String[] areaTokens = line.split("\\s+");
