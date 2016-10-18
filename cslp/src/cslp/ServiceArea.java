@@ -6,11 +6,11 @@ public class ServiceArea {
 	public short areaIdx; // unit8_t
 	public float serviceFreq;
 	public float thresholdVal;
-	public short noBins; // unit16_t
+	public int noBins; // unit16_t
 	public short[][] roadsLayout; // int8_t
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
-			float thresholdVal, short noBins, short[][] roadsLayout) {
+			float thresholdVal, int noBins, short[][] roadsLayout) {
 		this.areaIdx = areaIdx;
 		this.serviceFreq = serviceFreq;
 		this.thresholdVal = thresholdVal;
