@@ -386,6 +386,7 @@ public class Simulator {
 			br.close();;
 			
 			// check that all inputs are present and valid:
+			// identifying missing parameters and wrong order;
 			if (!lorryVolumeFound || !lorryMaxLoadFound || !binServiceTimeFound || !binVolumeFound || 
 					!disposalDistrRateFound || !disposalDistrShapeFound || !bagVolumeFound || !bagWeightMinFound || 
 					!bagWeightMaxFound || !noAreasFound || !serviceAreasFound || !stopTimeFound || 
@@ -405,10 +406,33 @@ public class Simulator {
 		} 
 	}
 	
+	
 	// run the simulator
 	public static void runSimulator() {
-		
+		if (isExperiment) {
+			// run experiments
+		} else {
+			int time = 0; // in seconds
+			int max_time = Math.round(stopTime);
+			while (time <= max_time) {
+				// determine the set of events that may occur after the current state
+				/*
+				 * possible events:
+				 * (i) a rubbish bag was disposed of in a bin
+				 * (ii) the occupancy threshold of a bin was exceeded
+				 * (iii)  bin overflowed
+				 * (iv) a bin was emptied
+				 * (v) a lorry was emptied
+				 * (vi) a lorry arrived/departed from a location (bin or depot)
+				 */
+				// delay = choose a delay base on the nearest event
+				int delay = 0;
+				time += delay;
+				// modify the state of the system based on the current event.
+			}
+		}
 	}
+	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		
 		// II.4. The program displays usage information if no input files are given;
@@ -420,7 +444,6 @@ public class Simulator {
 		String file_path = args[0];
 		
 		parseInputs(file_path);
-		
 		
 		// for checking (without experiment keyword..)
 		System.out.println(lorryVolume);
