@@ -10,7 +10,306 @@ import java.util.ArrayList;
 
 public class Simulator {
 	
-	public static void main(String[] args) throws InvalidInputFileException, FileNotFoundException {
+	private static short lorryVolume;
+	private static short lorryMaxLoad;
+	private static float binServiceTime;
+	private static float binVolume;
+	private static float disposalDistrRate;
+	private static short disposalDistrShape;
+	private static float bagVolume;
+	private static float bagWeightMin;
+	private static float bagWeightMax;
+	private static short noAreas;
+	private static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>();
+	private static float stopTime;
+	private static float warmUpTime;
+	
+	// for storing experiment
+	private static ArrayList<Float> disposalDistrRateExp = new ArrayList<Float>(); // experiment
+	private static ArrayList<Short> disposalDistrShapeExp = new ArrayList<Short>(); // experiment
+	private static ArrayList<Float> serviceFreqExp = new ArrayList<Float>(); // experiment
+	
+	private static boolean isExperiment = false;
+	
+	private static boolean lorryVolumeFound = false;
+	private static boolean lorryMaxLoadFound = false;
+	private static boolean binServiceTimeFound = false;
+	private static boolean binVolumeFound = false;
+	private static boolean disposalDistrRateFound = false;
+	private static boolean disposalDistrShapeFound = false;
+	private static boolean bagVolumeFound = false;
+	private static boolean bagWeightMinFound = false;
+	private static boolean bagWeightMaxFound = false;
+	private static boolean noAreasFound = false;
+	private static boolean serviceAreasFound = false;
+	private static boolean stopTimeFound = false;
+	private static boolean warmUpTimeFound = false;
+
+	
+	// read input file and set parameters
+	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
+		
+		try {
+			File file = new File(file_path);
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			
+			while ((line = br.readLine())!=null) {
+				if (!(line.startsWith("#") || line.isEmpty())) {
+					String[] tokens = line.split("\\s+");
+					int tokensLen = tokens.length;
+					
+					switch (tokens[0]) {
+					
+					case "noAreas":
+						if (noAreasFound) {
+							System.out.println("Warning: Multiple inputs for noAreas variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							noAreas = Short.parseShort(tokens[1]);
+							if (!noAreasFound)		noAreasFound = true;
+							
+							while ((serviceAreas.size() < noAreas) && (line = br.readLine()) != null) {
+								if (!(line.startsWith("#") || line.isEmpty())) {
+									String[] areaTokens = line.split("\\s+");
+									if (!areaTokens[0].equals("areaIdx")) {
+										throw new InvalidInputFileException("Invalid format after noAreas line");
+									} else if (!((areaTokens.length == 8) && (areaTokens[2].equals("serviceFreq")) &&
+	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
+										throw new InvalidInputFileException("Invalid format for service area description line: " + line);
+									} else {
+										short areaIdx = Short.parseShort(areaTokens[1]);
+	                                    float serviceFreq = Float.parseFloat(areaTokens[3]);
+	                                    float thresholdVal = Float.parseFloat(areaTokens[5]);
+	                                    short noBins = Short.parseShort(areaTokens[7]);
+	                                    short m = noBins; 
+	                                    m++; // size of roadLayout matrix
+	                                    short[][] roadLayout = new short[m][m];
+	                                    boolean areaFound = false;
+	                                    
+	                                    while ((!areaFound) && (line = br.readLine()) != null) {
+	                                    	if (!(line.startsWith("#") || line.isEmpty())) {
+	                                    		String[] layoutTokens = line.split("\\s+");
+	                                    		if (!(layoutTokens[0].equals("roadsLayout"))) {
+	                                    			throw new InvalidInputFileException("Incorrect format: roadsLayout keyword not in the next line of the areaIdx line for areaIdx = " + areaIdx + ".");
+	                                    		} 
+	                                    		int count = 0;
+	                                    		while ((count < m) && ((line=br.readLine()) != null)) {
+	                                    			String[] matrixTokens = line.trim().split("\\s+");
+	                                    			if (!((matrixTokens[0].equals("#")) || line.isEmpty())) {
+	                                    				if (matrixTokens.length != m) {
+		                                                    throw new InvalidInputFileException("Incorrect number of row elements in roadlayout for areaIdx = " + areaIdx);
+	                                    				} else {
+	                                    					int index = 0;
+		                                                    for (int col = 0; col < m; col++) {
+		                                                        roadLayout[count][col] = Short.parseShort(matrixTokens[index]);                                                 
+		                                                        index++;
+		                                                    }
+		                                                    count++;
+		                                                }
+	                                    			}
+	                                    		}
+	                                            // check the matrix is diagonally zeros
+	                                            for (int d = 0; d < m; d++) {
+	                                                if (roadLayout[d][d] != 0) {
+	                                                    throw new InvalidInputFileException("Invalid format for the roadLayout matrix for areaIdx = " + areaIdx + ".");
+	                                                }
+	                                            }
+	                                            // check that sufficient area information has been obtained 
+	                                            if (count == m) {
+	                                                areaFound = true;
+	                                            } else {
+	                                                throw new InvalidInputFileException("Incorrect no. of columns for the roadLayout matrix for areaIdx = " + areaIdx + ".");
+	                                            }
+	                                    	}
+	                                    }
+	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadLayout);
+	                                    serviceAreas.add(curr_sa);
+									}
+								}
+							}
+						}
+						break;
+						
+					case "ServiceFreq":
+						
+					case "lorryVolume":
+						if (lorryVolumeFound) {
+							System.out.println("Warning: Multiple inputs for lorryVolume variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							lorryVolume = Short.parseShort(tokens[1]);
+							if (!lorryVolumeFound)		lorryVolumeFound = true;
+						}  
+						break;
+					
+					case "lorryMaxLoad":
+						if (lorryMaxLoadFound) {
+							System.out.println("Warning: Multiple inputs for lorryMaxLoad variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							lorryMaxLoad = Short.parseShort(tokens[1]);
+							if (!lorryMaxLoadFound)		lorryMaxLoadFound = true;
+						}
+						break;
+					
+					case "binServiceTime":
+						if (binServiceTimeFound) {
+							System.out.println("Warning: Multiple inputs for binServiceTime variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							binServiceTime = Float.parseFloat(tokens[1]);
+							if (!binServiceTimeFound)		binServiceTimeFound = true;
+						}
+						break;
+	
+					case "binVolume":
+						if (binVolumeFound) {
+							System.out.println("Warning: Multiple inputs for binVolume variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							binVolume = Float.parseFloat(tokens[1]);
+							if (!binVolumeFound)		binVolumeFound = true;	
+						}				
+						break;
+					
+					case "disposalDistrRate":
+						if (disposalDistrRateFound) {
+							System.out.println("Warning: Multiple inputs for disposalDistrRate variable. Disregarding this input.");
+						} else if (tokensLen >= 2) {
+							if (tokens[1].equals("experiment")) {
+								if (tokensLen <= 3)		throw new InvalidInputFileException("Invalid input format in this line: " + line);
+								for (int i = 2; i < tokensLen; i++) {
+									float ddr = Float.parseFloat(tokens[i]);
+									disposalDistrRateExp.add(ddr);
+									if (!disposalDistrRateFound)		disposalDistrRateFound = true;
+									if (!isExperiment)		isExperiment = true;
+								}
+							} else {
+								if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+								disposalDistrRate = Float.parseFloat(tokens[1]);
+								if (!disposalDistrRateFound)		disposalDistrRateFound = true;
+							}
+						}  else throw new InvalidInputFileException("Invalid input format in this line: " + line);
+					break;
+					
+					case "disposalDistrShape":
+						if (disposalDistrShapeFound) {
+							System.out.println("Warning: Multiple inputs for disposalDistrShape variable. Disregarding this input.");
+						} else if (tokensLen >= 2) {
+							if (tokens[1].equals("experiment")) {
+								if (tokensLen <= 3)		throw new InvalidInputFileException("Invalid input format in this line: " + line);
+								for (int i = 2; i < tokensLen; i++) {
+									short dds = Short.parseShort(tokens[i]);
+									disposalDistrShapeExp.add(dds);
+									if (!disposalDistrShapeFound)		disposalDistrShapeFound = true;
+									if (!isExperiment)		isExperiment = true;
+								}
+							} else {
+								if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+								disposalDistrShape = Short.parseShort(tokens[1]);
+								if (!disposalDistrShapeFound)		disposalDistrShapeFound = true;
+							}
+						}  else throw new InvalidInputFileException("Invalid input format in this line: " + line);
+					break;
+					
+					case "bagVolume":
+						if (bagVolumeFound) {
+							System.out.println("Warning: Multiple inputs for bagVolume variable. Disregarding this input.");
+						}  else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							bagVolume = Float.parseFloat(tokens[1]);
+							if (!bagVolumeFound)		bagVolumeFound = true;
+						}  
+						break;
+					
+					case "bagWeightMin":
+						if (bagWeightMinFound) {
+							System.out.println("Warning: Multiple inputs for bagWeightMin variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							bagWeightMin = Float.parseFloat(tokens[1]);
+							if (!bagWeightMinFound)		bagWeightMinFound = true;
+						}  
+						break;
+					
+					case "bagWeightMax":
+						if (bagWeightMaxFound) {
+							System.out.println("Warning: Multiple inputs for bagWeightMax variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							bagWeightMax = Float.parseFloat(tokens[1]);
+							if (!bagWeightMaxFound)		bagWeightMaxFound = true;
+						}  
+						break;
+					
+					case "stopTime":
+						if (stopTimeFound) {
+							System.out.println("Warning: Multiple inputs for stopTime variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							stopTime = Float.parseFloat(tokens[1]);
+							if (!stopTimeFound)		stopTimeFound = true;
+						}  
+						break;
+					
+					case "warmUpTime":
+						if (warmUpTimeFound) {
+							System.out.println("Warning: Multiple inputs for warmUpTime variable. Disregarding this input.");
+						} else if (tokensLen < 2) {
+							throw new InvalidInputFileException("Invalid input format in this line: " + line);
+						} else {
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
+							warmUpTime = Float.parseFloat(tokens[1]);
+							if (!warmUpTimeFound)		warmUpTimeFound = true;
+						}
+						break;
+						
+					default: throw new InvalidInputFileException("Invalid input parameter in this line: " + line);
+
+					}
+					
+										
+				}
+			}
+		
+			br.close();;
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		/*
+		SimSpec[] result = new SimSpec[simulators.size()];
+		result = simulators.toArray(result);
+		return result;
+		*/
+	}
+	
+	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		
 		// II.4. The program displays usage information if no input files are given;
 		if ((args.length == 0) || (args[0].length() <= 4)) {
@@ -18,43 +317,28 @@ public class Simulator {
 					+ "\nRun code using \"./simulate.sh <input_file_name> [OPTIONS]\"");
 		} 
 		
-		/*
-		else if (!args[0].endsWith(".txt")) {
-			throw new IllegalArgumentException("\nFound missing input arguments. "
-					+ "\nRun code using \"./simulate.sh <input_file_name> [OPTIONS]\""
-					+ "\nInput file should be a text file.");
-		}
-		*/
-		
 		String file_path = args[0];
 		
-		int lorryVolume = 0; // add upper and lower bounds?
-		boolean lorryVolumeFound = false;
-		int lorryMaxLoad = 0;
-		boolean lorryMaxLoadFound = false;
-		double binServiceTime = 0.0;
-		boolean binServiceTimeFound = false;
-		double binVolume = 0.0;
-		boolean binVolumeFound = false;
-		double disposalDistrRate = 0.0;
-		boolean disposalDistrRateFound = false;
-		int disposalDistrShape = 0;
-		boolean disposalDistrShapeFound = false;
-		double bagVolume = 0.0;
-		boolean bagVolumeFound = false;
-		double bagWeightMin = 0.0;
-		boolean bagWeightMinFound = false;
-		double bagWeightMax = 0.0;
-		boolean bagWeightMaxFound = false;
-		int noAreas = 0;
-		boolean noAreasFound = false;
-		ArrayList<ServiceArea> serviceAreaList = new ArrayList<ServiceArea>();
-		double stopTime = 0.0;
-		boolean stopTimeFound = false;
-		double warmUpTime = 0.0;
-		boolean warmUpTimeFound = false;
-
+		parseInputs(file_path);
 		
+		/*
+		// for checking (without experiment keyword..)
+		System.out.println(lorryVolume);
+		System.out.println(lorryMaxLoad);
+		System.out.println(binServiceTime);
+		System.out.println(binVolume);
+		System.out.println(disposalDistrRate);
+		System.out.println(disposalDistrShape);
+		System.out.println(bagVolume);
+		System.out.println(bagWeightMin);
+		System.out.println(bagWeightMax);
+		System.out.println(noAreas);
+		for (ServiceArea sa : serviceAreas) sa.print();
+		System.out.println(stopTime);
+		System.out.println(warmUpTime);
+		*/
+		
+		/*
 		try {
 			File file = new File(file_path);
 			FileReader fileReader = new FileReader(file);
@@ -310,9 +594,9 @@ public class Simulator {
 		} finally {
 			//System.out.println("Program will be terminated.\n"); 
 			//System.exit(1);
-		}
+		}*/
 		
-    }
+    } // end of main method
 	
 	
 	
