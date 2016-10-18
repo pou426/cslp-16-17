@@ -46,6 +46,8 @@ public class Simulator {
 	private static boolean warmUpTimeFound = false;
 
 	// read input file and set parameters
+	// check that all inputs are there << implement better
+	// check that the parameters are reasonable << implement
 	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
 		/**
 		 * reads a file and parses all the inputs and store them into variables
@@ -406,7 +408,6 @@ public class Simulator {
 		} 
 	}
 	
-	
 	// run the simulator
 	public static void runSimulator() {
 		if (isExperiment) {
@@ -433,18 +434,8 @@ public class Simulator {
 		}
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
-		
-		// II.4. The program displays usage information if no input files are given;
-		if ((args.length == 0) || (args[0].length() <= 4)) {
-			throw new IllegalArgumentException("\nFound missing or invalid input arguments. "
-					+ "\nRun code using \"./simulate.sh <input_file_name> [OPTIONS]\"");
-		} 
-		
-		String file_path = args[0];
-		
-		parseInputs(file_path);
-		
+	// for sanity check
+	public static void myCheck() {
 		// for checking (without experiment keyword..)
 		System.out.println(lorryVolume);
 		System.out.println(lorryMaxLoad);
@@ -464,9 +455,24 @@ public class Simulator {
 		for (Float sa : disposalDistrRateExp) System.out.println("disposalDistrRateExp: " + sa);
 		for (Short sa : disposalDistrShapeExp) System.out.println("disposalDistrShapeExp: " + sa);
 		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
-		
-    } // end of main method
+	}
 	
+	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
+		
+		// II.4. The program displays usage information if no input files are given;
+		if ((args.length == 0) || (args[0].length() <= 4)) {
+			throw new IllegalArgumentException("\nFound missing or invalid input arguments. "
+					+ "\nRun code using \"./simulate.sh <input_file_name> [OPTIONS]\"");
+		} 
+		
+		String file_path = args[0];
+		
+		parseInputs(file_path);
+		
+		// for sanity check
+		myCheck();
+		
+    } 
 	
 	
 }
