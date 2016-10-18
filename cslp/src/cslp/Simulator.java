@@ -47,6 +47,10 @@ public class Simulator {
 
 	// read input file and set parameters
 	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
+		/**
+		 * reads a file and parses all the inputs and store them into variables
+		 * also checks whether any input is missing
+		 */
 		
 		try {
 			File file = new File(file_path);
@@ -83,9 +87,11 @@ public class Simulator {
 										short areaIdx = Short.parseShort(areaTokens[1]);
 	                                    float serviceFreq = Float.parseFloat(areaTokens[3]);
 	                                    float thresholdVal = Float.parseFloat(areaTokens[5]);
-	                                    short noBins = Short.parseShort(areaTokens[7]);
-	                                    short m = noBins; 
-	                                    m++; // size of roadLayout matrix
+	                                    int noBins = Integer.parseInt(areaTokens[7]);
+	                                    if (noBins > 65535) {
+	                                    	throw new InvalidInputFileException("noBins exceeds maximum 65,535 in line: "+line);
+	                                    }
+	                                    int m = noBins + 1; 
 	                                    short[][] roadLayout = new short[m][m];
 	                                    boolean areaFound = false;
 	                                    
@@ -135,6 +141,7 @@ public class Simulator {
 						break;
 						
 					case "ServiceFreq":
+						
 						
 					case "lorryVolume":
 						if (lorryVolumeFound) {
@@ -286,11 +293,9 @@ public class Simulator {
 						
 					default: throw new InvalidInputFileException("Invalid input parameter in this line: " + line);
 					}
-					
-										
 				}
 			}
-		
+
 			br.close();;
 			
 			// check that all inputs are present and valid:
@@ -311,14 +316,12 @@ public class Simulator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
-		/*
-		SimSpec[] result = new SimSpec[simulators.size()];
-		result = simulators.toArray(result);
-		return result;
-		*/
 	}
 	
+	// run the simulator
+	public static void runSimulator() {
+		
+	}
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		
 		// II.4. The program displays usage information if no input files are given;
@@ -330,6 +333,7 @@ public class Simulator {
 		String file_path = args[0];
 		
 		parseInputs(file_path);
+		
 		
 		// for checking (without experiment keyword..)
 		System.out.println(lorryVolume);
@@ -345,265 +349,6 @@ public class Simulator {
 		for (ServiceArea sa : serviceAreas) sa.print();
 		System.out.println(stopTime);
 		System.out.println(warmUpTime);
-		
-		
-		/*
-		try {
-			File file = new File(file_path);
-			FileReader fileReader = new FileReader(file);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			String line;
-			
-			while ((line = bufferedReader.readLine()) != null) {
-				//System.out.println(line);
-				String[] tokens = line.split("\\s+");
-				
-				// why if else instead of switch case
-				if ((tokens[0].equals("#")) || line.isEmpty()) {
-					// do nothing
-				} 
-				
-				else if (tokens[0].equals("noAreas")) {
-					if (tokens.length != 2) {
-						// improve the sentence!
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else {
-						
-						noAreas = Integer.parseInt(tokens[1]);
-						noAreasFound = true;
-						// check that the no. of areas is at least 1?? 
-						int noAreas_extracted = 0;
-
-						while ((noAreas_extracted < noAreas) && (line = bufferedReader.readLine()) != null) {
-							String[] areaTokens = line.split("\\s+");
-							
-							if ((areaTokens[0].equals("#")) || line.isEmpty()) {
-								// do nothing
-							} 
-							
-							else if (areaTokens[0].equals("areaIdx")) {
-								if ((areaTokens.length == 8) && (areaTokens[2].equals("serviceFreq")) &&
-										(areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins"))) {
-									
-									int areaIdx = Integer.parseInt(areaTokens[1]);
-									double serviceFreq = Double.parseDouble(areaTokens[3]);
-									double thresholdVal = Double.parseDouble(areaTokens[5]);
-									int noBins = Integer.parseInt(areaTokens[7]);
-									int m = noBins + 1; // size of roadLayout matrix
-									int[][] roadLayout = new int[m][m];
-									boolean areaFound = false;
-									
-									while ((!areaFound) && (line = bufferedReader.readLine()) != null) {
-										String[] layoutTokens = line.split("\\s+");
-										
-										if ((layoutTokens[0].equals("#")) || line.isEmpty()) {
-											// do nothing
-										} 
-										
-										else if ((layoutTokens.length == 1) && layoutTokens[0].equals("roadsLayout")) {
-											int count = 0;
-											while ((count < m) && ((line=bufferedReader.readLine()) != null)) {
-												
-												String[] matrixTokens = line.trim().split("\\s+");
-												if ((matrixTokens[0].equals("#")) || line.isEmpty()) {
-													// do nothing
-												} 
-												
-												else if (matrixTokens.length != m) {
-													throw new InvalidInputFileException("Incorrect number of row elements in roadlayout for areaIdx = " + areaIdx);
-												}
-												
-												else {
-													int index = 0;
-													for (int col = 0; col < m; col++) {
-														roadLayout[count][col] = Integer.parseInt(matrixTokens[index]);													
-														index++;
-													}
-													count++;
-												}
-											}
-											
-											// check the matrix is diagonally zeros
-											for (int d = 0; d < m; d++) {
-												if (roadLayout[d][d] != 0) {
-													throw new InvalidInputFileException("Invalid format for the roadLayout matrix for areaIdx = " + areaIdx + ".");
-												}
-											}
-											
-											// check that sufficient area information has been obtained 
-											if (count == m) {
-												noAreas_extracted++;
-												areaFound = true;
-											} else {
-												throw new InvalidInputFileException("Incorrect no. of columns for the roadLayout matrix for areaIdx = " + areaIdx + ".");
-											}
-										}
-										
-										else {
-											throw new InvalidInputFileException("Incorrect format: roadsLayout keyword not in the next line of the areaIdx line for areaIdx = " + areaIdx + ".");
-										}
-									}
-								} 
-								
-								else {
-									throw new InvalidInputFileException("Invalid format for the area description line: " + line);
-								}
-							}
-							
-							else {
-								throw new InvalidInputFileException("Insufficient service area information.");
-							}
-						}
-						
-						// check there is equivalent amount of area information
-						if (noAreas_extracted != noAreas) {
-							throw new InvalidInputFileException("Insufficient area information. Only " + noAreas_extracted + "out of " + noAreas + " areas have been found.");
-						} else {
-							// do nothing
-						}
-					}
-				} 
-				
-				else if (tokens[0].equals("lorryVolume")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else {
-						lorryVolume = Integer.parseInt(tokens[1]);
-						lorryVolumeFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("lorryMaxLoad")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else {
-						lorryMaxLoad = Integer.parseInt(tokens[1]);
-						lorryMaxLoadFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("binServiceTime")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						binServiceTime = Double.parseDouble(tokens[1]);
-						binServiceTimeFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("binVolume")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						binVolume = Double.parseDouble(tokens[1]);
-						binVolumeFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("disposalDistrRate")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						disposalDistrRate = Double.parseDouble(tokens[1]);
-						disposalDistrRateFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("disposalDistrShape")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else {
-						disposalDistrShape = Integer.parseInt(tokens[1]);
-						disposalDistrShapeFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("bagVolume")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						bagVolume = Double.parseDouble(tokens[1]);
-						bagVolumeFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("bagWeightMin")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						bagWeightMin = Double.parseDouble(tokens[1]);
-						bagWeightMinFound = true;
-						
-					}
-				} 
-				
-				else if (tokens[0].equals("bagWeightMax")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						bagWeightMax = Double.parseDouble(tokens[1]);
-						bagWeightMaxFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("stopTime")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						stopTime = Double.parseDouble(tokens[1]);
-						stopTimeFound = true;
-					}
-				} 
-				
-				else if (tokens[0].equals("warmUpTime")) {
-					if (tokens.length != 2) {
-						throw new InvalidInputFileException("Invalid format in input text file in this line: " + line);
-					} else { 
-						warmUpTime = Double.parseDouble(tokens[1]);
-						warmUpTimeFound = true;
-					}
-				} 
-				
-				else {
-					throw new InvalidInputFileException("Invalid line: " + line);
-				}
-			}
-			
-			System.out.println("lorryVolume" + lorryVolume);
-			System.out.println("lorryMaxLoad" + lorryMaxLoad);
-			System.out.println("binServiceTime" + binServiceTime);
-			System.out.println("binVolume" + binVolume);
-			System.out.println("disposalDistrRate" + disposalDistrRate);
-			System.out.println("disposalDistrShape"+ disposalDistrShape);
-			System.out.println("bagVolume" + bagVolume);
-			System.out.println("bagWeightMin" + bagWeightMin);
-			System.out.println("bagWeightMax" + bagWeightMax);
-			System.out.println("noAreas" + noAreas);
-			System.out.println("stopTime" + stopTime);
-			System.out.println("warmUpTime" + warmUpTime);
-			
-			// II.5(c) identifying missing parameters
-			if (!lorryVolumeFound || !lorryMaxLoadFound || !binServiceTimeFound || !binVolumeFound ||
-					!disposalDistrRateFound || !disposalDistrShapeFound || !bagVolumeFound || 
-					!bagWeightMinFound || !bagWeightMaxFound || !noAreasFound || !stopTimeFound || 
-					!warmUpTimeFound) {
-				throw new InvalidInputFileException("Missing parameters.");
-				// print out all missing parameters?
-				// create an arraylist of missing parameters, 
-				// or create an array for identfying missing parameters... 0 for missing and 1 for found
-				// or use key-map?? hash map? really cba doing this part
-			}
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			//System.out.println("Program will be terminated.\n"); 
-			//System.exit(1);
-		}*/
 		
     } // end of main method
 	
