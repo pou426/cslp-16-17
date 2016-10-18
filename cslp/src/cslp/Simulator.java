@@ -25,12 +25,12 @@ public class Simulator {
 	private static float warmUpTime;
 	
 	// for storing experiment
+	private static boolean isExperiment = false;
 	private static ArrayList<Float> disposalDistrRateExp = new ArrayList<Float>(); // experiment
 	private static ArrayList<Short> disposalDistrShapeExp = new ArrayList<Short>(); // experiment
 	private static ArrayList<Float> serviceFreqExp = new ArrayList<Float>(); // experiment
 	
-	private static boolean isExperiment = false;
-	
+	// to check that all inputs represent
 	private static boolean lorryVolumeFound = false;
 	private static boolean lorryMaxLoadFound = false;
 	private static boolean binServiceTimeFound = false;
@@ -45,7 +45,6 @@ public class Simulator {
 	private static boolean stopTimeFound = false;
 	private static boolean warmUpTimeFound = false;
 
-	
 	// read input file and set parameters
 	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
 		
@@ -72,11 +71,11 @@ public class Simulator {
 							noAreas = Short.parseShort(tokens[1]);
 							if (!noAreasFound)		noAreasFound = true;
 							
-							while ((serviceAreas.size() < noAreas) && (line = br.readLine()) != null) {
+							while ((!serviceAreasFound) && (line = br.readLine()) != null) {
 								if (!(line.startsWith("#") || line.isEmpty())) {
 									String[] areaTokens = line.split("\\s+");
 									if (!areaTokens[0].equals("areaIdx")) {
-										throw new InvalidInputFileException("Invalid format after noAreas line");
+										throw new InvalidInputFileException("Invalid format after noAreas line or insufficient service area specifications");
 									} else if (!((areaTokens.length == 8) && (areaTokens[2].equals("serviceFreq")) &&
 	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
 										throw new InvalidInputFileException("Invalid format for service area description line: " + line);
@@ -128,6 +127,7 @@ public class Simulator {
 	                                    }
 	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadLayout);
 	                                    serviceAreas.add(curr_sa);
+	                                    if (serviceAreas.size() == noAreas)		serviceAreasFound = true;
 									}
 								}
 							}
@@ -285,7 +285,6 @@ public class Simulator {
 						break;
 						
 					default: throw new InvalidInputFileException("Invalid input parameter in this line: " + line);
-
 					}
 					
 										
@@ -293,6 +292,17 @@ public class Simulator {
 			}
 		
 			br.close();;
+			
+			// check that all inputs are present and valid:
+			if (!lorryVolumeFound || !lorryMaxLoadFound || !binServiceTimeFound || !binVolumeFound || 
+					!disposalDistrRateFound || !disposalDistrShapeFound || !bagVolumeFound || !bagWeightMinFound || 
+					!bagWeightMaxFound || !noAreasFound || !serviceAreasFound || !stopTimeFound || 
+					!warmUpTimeFound) {
+				throw new InvalidInputFileException("Missing inputs.");
+				// create an array to store all booleans
+				// use switch case to throw error 
+				// do I need the serviceAreasFound tho?? already throw error in loop
+			}
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -321,7 +331,6 @@ public class Simulator {
 		
 		parseInputs(file_path);
 		
-		/*
 		// for checking (without experiment keyword..)
 		System.out.println(lorryVolume);
 		System.out.println(lorryMaxLoad);
@@ -336,7 +345,7 @@ public class Simulator {
 		for (ServiceArea sa : serviceAreas) sa.print();
 		System.out.println(stopTime);
 		System.out.println(warmUpTime);
-		*/
+		
 		
 		/*
 		try {
