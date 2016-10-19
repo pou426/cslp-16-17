@@ -1,11 +1,24 @@
 package cslp;
 
 public class Clock {
-	private double stopTime; // private?
-	private double warmUpTime; // or public?
 	
-	public Clock(double stopTime, double warmUpTime) {
-		this.stopTime = stopTime;
-		this.warmUpTime = warmUpTime;
+	private static int currTime;
+	
+	public Clock() {
+		this.currTime = 0;
 	}
+	
+	// output time in the required format
+	public String toString() {
+		return "s";
+	}
+	
+	public void setTime(int delay) {
+		this.currTime += delay;
+	}
+	
+	public int getTime() {
+		return currTime;
+	}
+	
 }
