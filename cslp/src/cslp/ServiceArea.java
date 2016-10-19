@@ -9,7 +9,7 @@ public class ServiceArea {
 	private int noBins; // unit16_t
 	private short[][] roadsLayout; // int8_t
 	private Bin[] bins = new Bin[65535];
-	private Lorry lorry;
+	private Lorry lorry = null;
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
 			float thresholdVal, int noBins, short[][] roadsLayout) {

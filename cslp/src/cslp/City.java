@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class City {
 	
-		private static short noAreas;
-		private static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>();
+		protected static short noAreas;
+		protected static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>();
 		
 }

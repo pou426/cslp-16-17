@@ -1,29 +1,32 @@
 package cslp;
 
 public class Lorry {
-	/**
-	 * Lorries are scheduled periodically at fixed intervals and their 
-	 * daily frequency is given as input. Lorries have fixed capacity 
-	 * both in terms of volume and weight and these values are input 
-	 * parameters. On the other hand, upon service a lorry compresses 
-	 * the contents of a bin to half its original volume. We will 
-	 * consider a bin is serviced (emptied) in constant time (expressed 
-	 * in seconds), irrespective of the load of a particular bin being 
-	 * emptied. When at depot we will consider the time required to 
-	 * empty a lorry is also fixed and this is five times as long as 
-	 * the bin service time.
-	 */
 	
-	// total waste volume a lorry can accommodate (cubic metres)
-	public short lorryVolume; // unit8_t
-	// Maximum lorry load (kg)
-	public int lorryMaxLoad; // unit16_t
-	// time required to empty a bin (in seconds)
-	public float binServiceTime;
+	// put a boolean so that the static parameters can only be set once?
+	protected static short lorryVolume; 
+	protected static int lorryMaxLoad; 
+	protected static float binServiceTime;
 	
-	public Lorry(short lorryVolume, int lorryMaxLoad, float binServiceTime) {
+	/*
+	// getters and setters
+	public static short getLorryVolume() {
+		return lorryVolume;
+	}
+	public static int getLorryMaxLoad() {
+		return lorryMaxLoad;
+	}	
+	public static float getBinServiceTime() {
+		return binServiceTime;
+	}
+	public static void setLorryVolume(short lorryVolume) {
 		Lorry.lorryVolume = lorryVolume;
+	}	
+	public static void setLorryMaxLoad(int lorryMaxLoad) {
 		Lorry.lorryMaxLoad = lorryMaxLoad;
+	}
+	public static void setBinServiceTime(float binServiceTime) {
 		Lorry.binServiceTime = binServiceTime;
 	}
+	*/
+	
 }

@@ -402,15 +402,15 @@ public class Simulator {
 			
 			
 			// assign a lorry to each service area instance
-			Lorry lorry = new Lorry(lorryVolume, lorryMaxLoad, binServiceTime);
+			//Lorry lorry = new Lorry(lorryVolume, lorryMaxLoad, binServiceTime);
 			// create all the bins in each service area instance
-			Bin bin = new Bin(binVolume, disposalDistrRate, disposalDistrShape);
-
+			//Bin bin = new Bin(binVolume, disposalDistrRate, disposalDistrShape);
+			/**
 			for (ServiceArea sa : serviceAreas) {
 				sa.assignLorry(lorry);
 				sa.createBins(bin);
 			}
-			
+			**/
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -486,10 +486,26 @@ public class Simulator {
 		
 		String file_path = args[0];
 		
-		parseInputs(file_path);
+		// parseInputs(file_path);
 		
 		// for sanity check
-		myCheck();
+		//myCheck();
+		
+		// initialise all class variables
+		Bag.bagWeightMax = bagWeightMax;
+		Bag.bagWeightMin = bagWeightMin;
+		Bag.bagVolume = bagVolume;
+		Bin.binVolume = binVolume;
+		Bin.disposalDistrRate = disposalDistrRate;
+		Bin.disposalDistrShape =disposalDistrShape;
+		City.noAreas = noAreas;
+		City.serviceAreas = serviceAreas;
+		Clock.stopTime = stopTime;
+		Clock.warmUpTime = warmUpTime;
+		Lorry.binServiceTime = binServiceTime;
+		Lorry.lorryMaxLoad = lorryMaxLoad;
+		Lorry.lorryVolume = lorryVolume;
+		
     } 
 	
 	
