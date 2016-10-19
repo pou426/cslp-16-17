@@ -425,6 +425,8 @@ public class Simulator {
 	public static void runSimulator() {
 		if (isExperiment) {
 			// run experiments
+			System.out.println("This is an experiment and will be run differently.");
+			System.out.println("no support for experimentation yet.");
 		} else {
 			int time = 0; // in seconds
 			int max_time = Math.round(stopTime);
