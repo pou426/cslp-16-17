@@ -25,13 +25,22 @@ public class Bin {
 		this.wasteVolume = 0;
 	}
 	
-	public void dispose(){
-		System.out.println("User disposes a waste bag");
-		// create a Bag instance
-		Bag b = new Bag();
-		
+	// when initialised, use a static block... a while loop???
+	// getTimeInterval, and when the clock is the right time, send that event out
+	// and getTimeInterval again...
+	public void getTimeInterval(){
+		float erlangk = 0;
+		for (int i = 0; i < disposalDistrShape; i++) {
+			erlangk += (-1/disposalDistrRate)*(Math.log(Math.random()));
+		}
 	}
 
+	public void disposeBag() {
+		Bag b = new Bag();
+		float bagWeight = b.getWeight();
+		wasteVolume += Bag.bagVolume;
+	}
+	
 	public boolean isOverflow() {
 		return (wasteVolume >= binVolume);
 	}
