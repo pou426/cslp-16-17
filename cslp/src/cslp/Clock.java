@@ -2,7 +2,7 @@ package cslp;
 
 public class Clock {
 	
-	private static int currTime;
+	private int currTime;
 	
 	public Clock() {
 		this.currTime = 0;

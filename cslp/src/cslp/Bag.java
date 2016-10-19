@@ -8,9 +8,9 @@ public class Bag {
 	 */
 	
 	// Bag volume (cubic meters)
-	public static double volume;
+	public double volume;
 	// Bag weight (kg), 3 d.p.
-	public static double weight;
+	public double weight;
 	
 	public Bag(double volume, double weightMin, double weightMax) {
 		Bag.volume = volume;
