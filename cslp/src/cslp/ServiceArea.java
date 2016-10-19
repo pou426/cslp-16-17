@@ -3,13 +3,13 @@ package cslp;
 import java.util.Arrays;
 
 public class ServiceArea {
-	private static short areaIdx; // unit8_t
-	private static float serviceFreq;
-	private static float thresholdVal;
-	private static int noBins; // unit16_t
-	private static short[][] roadsLayout; // int8_t
-	private static Bin[] bins = new Bin[65535];
-	private static Lorry lorry;
+	private short areaIdx; // unit8_t
+	private float serviceFreq;
+	private float thresholdVal;
+	private int noBins; // unit16_t
+	private short[][] roadsLayout; // int8_t
+	private Bin[] bins = new Bin[65535];
+	private Lorry lorry;
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
 			float thresholdVal, int noBins, short[][] roadsLayout) {
