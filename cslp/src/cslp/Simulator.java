@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Simulator {
 	
 	private static short lorryVolume;
-	private static short lorryMaxLoad;
+	private static int lorryMaxLoad;
 	private static float binServiceTime;
 	private static float binVolume;
 	private static float disposalDistrRate;
@@ -45,7 +45,7 @@ public class Simulator {
 	private static boolean stopTimeFound = false;
 	private static boolean warmUpTimeFound = false;
 
-	// read input file and set parameters
+	// read input file and create all objects/parameters
 	// check that all inputs are there << implement better
 	// check that the parameters are reasonable << implement
 	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
@@ -252,7 +252,7 @@ public class Simulator {
 							throw new InvalidInputFileException("Invalid input format in this line: " + line);
 						} else {
 							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
-							lorryMaxLoad = Short.parseShort(tokens[1]);
+							lorryMaxLoad = Integer.parseInt(tokens[1]);
 							lorryMaxLoadFound = true;
 						}
 						break;
@@ -400,6 +400,18 @@ public class Simulator {
 				// do I need the serviceAreasFound tho?? already throw error in loop
 			}
 			
+			
+			// assign a lorry to each service area instance
+			Lorry lorry = new Lorry(lorryVolume, lorryMaxLoad, binServiceTime);
+			// create all the bins in each service area instance
+			Bin bin = new Bin(binVolume, disposalDistrRate, disposalDistrShape);
+
+			for (ServiceArea sa : serviceAreas) {
+				sa.assignLorry(lorry);
+				sa.createBins(bin);
+			}
+			
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -416,7 +428,11 @@ public class Simulator {
 		} else {
 			int time = 0; // in seconds
 			int max_time = Math.round(stopTime);
-			while (time <= max_time) {
+			
+			// set up a city
+			// set up a clock object to count time..
+			
+			//while (time <= max_time) {
 				// determine the set of events that may occur after the current state
 				/*
 				 * possible events:
@@ -428,10 +444,10 @@ public class Simulator {
 				 * (vi) a lorry arrived/departed from a location (bin or depot)
 				 */
 				// delay = choose a delay base on the nearest event
-				int delay = 0;
-				time += delay;
+				//int delay = 0;
+				//time += delay;
 				// modify the state of the system based on the current event.
-			}
+			//}
 		}
 	}
 	
@@ -472,7 +488,6 @@ public class Simulator {
 		
 		// for sanity check
 		myCheck();
-		
     } 
 	
 	
