@@ -15,13 +15,13 @@ public class Lorry {
 	 */
 	
 	// total waste volume a lorry can accommodate (cubic metres)
-	public static int lorryVolume; // unit8_t
+	public static short lorryVolume; // unit8_t
 	// Maximum lorry load (kg)
 	public static int lorryMaxLoad; // unit16_t
 	// time required to empty a bin (in seconds)
-	public static double binServiceTime;
+	public static float binServiceTime;
 	
-	public Lorry(int lorryVolume, int lorryMaxLoad, double binServiceTime) {
+	public Lorry(short lorryVolume, int lorryMaxLoad, float binServiceTime) {
 		Lorry.lorryVolume = lorryVolume;
 		Lorry.lorryMaxLoad = lorryMaxLoad;
 		Lorry.binServiceTime = binServiceTime;
