@@ -149,6 +149,7 @@ public class Simulator {
 						} else if (!(tokens[1].equals("experiment"))) {
 							throw new InvalidInputFileException("Invalid format: missing keyword \"experiment\" in this line: " + line);
 						} else if (tokensLen < 3) {
+							// or just throw a warning?????
 							throw new InvalidInputFileException("Insufficient inputs for the serviceFreq experiment parameters in this line: "+line);
 						} else {
 							for (int i = 2; i < tokensLen; i++) {
@@ -287,6 +288,7 @@ public class Simulator {
 							System.out.println("Warning: Multiple inputs for disposalDistrRate variable. Disregarding this input.");
 						} else if (tokensLen >= 2) {
 							if (tokens[1].equals("experiment")) {
+								// or just throw a warning?????
 								if (tokensLen <= 3)		throw new InvalidInputFileException("Invalid input format in this line: " + line);
 								for (int i = 2; i < tokensLen; i++) {
 									float ddr = Float.parseFloat(tokens[i]);
@@ -307,6 +309,7 @@ public class Simulator {
 							System.out.println("Warning: Multiple inputs for disposalDistrShape variable. Disregarding this input.");
 						} else if (tokensLen >= 2) {
 							if (tokens[1].equals("experiment")) {
+								// or just throw a warning?????
 								if (tokensLen <= 3)		throw new InvalidInputFileException("Invalid input format in this line: " + line);
 								for (int i = 2; i < tokensLen; i++) {
 									short dds = Short.parseShort(tokens[i]);
@@ -422,6 +425,45 @@ public class Simulator {
 		} 
 	}
 	
+	// for sanity check
+	public static void validation() throws InvalidInputFileException {
+		System.out.println("Validating input paramters");
+		if (!lorryVolumeFound)		throw new InvalidInputFileException("Missing input: lorryVolume");
+		if (!lorryMaxLoadFound)		throw new InvalidInputFileException("Missing input: lorryMaxLoad");
+		if (!binServiceTimeFound)		throw new InvalidInputFileException("Missing input: binServiceTime");
+		if (!binVolumeFound)		throw new InvalidInputFileException("Missing input: binVolume");
+		if (!disposalDistrRateFound)		throw new InvalidInputFileException("Missing input: disposalDistrRate");
+		if (!disposalDistrShapeFound)		throw new InvalidInputFileException("Missing input: disposalDistrShape");
+		if (!bagVolumeFound)		throw new InvalidInputFileException("Missing input: bagVolume");
+		if (!bagWeightMinFound)		throw new InvalidInputFileException("Missing input: bagWeightMin");
+		if (!bagWeightMaxFound)		throw new InvalidInputFileException("Missing input: bagWeightMax");
+		// do I need to check area info??????????? >>> yes!!! 
+		if (!noAreasFound)		throw new InvalidInputFileException("Missing input: noAreas");
+		if (!serviceAreasFound)		throw new InvalidInputFileException("Missing input: serviceAreas");
+		if (!stopTimeFound)		throw new InvalidInputFileException("Missing input: stopTime");
+		if (!warmUpTimeFound)		throw new InvalidInputFileException("Missing input: warmUpTime");
+		
+		// print all inputs.
+		System.out.println(lorryVolume);
+		System.out.println(lorryMaxLoad);
+		System.out.println(binServiceTime);
+		System.out.println(binVolume);
+		System.out.println(disposalDistrRate);
+		System.out.println(disposalDistrShape);
+		System.out.println(bagVolume);
+		System.out.println(bagWeightMin);
+		System.out.println(bagWeightMax);
+		System.out.println(noAreas);
+		for (ServiceArea sa : serviceAreas) sa.print();
+		System.out.println(stopTime);
+		System.out.println(warmUpTime);
+		// check whether it is an experimentation input file
+		System.out.println(isExperiment);
+		for (Float sa : disposalDistrRateExp) System.out.println("disposalDistrRateExp: " + sa);
+		for (Short sa : disposalDistrShapeExp) System.out.println("disposalDistrShapeExp: " + sa);
+		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
+	}
+	
 	// run the simulator
 	public static void runSimulator() {
 		if (isExperiment) {
@@ -429,7 +471,9 @@ public class Simulator {
 			System.out.println("This is an experiment and will be run differently.");
 			System.out.println("no support for experimentation yet.");
 		} else {
+			System.out.println();
 			int time = 0; // in seconds
+			// change max_time to int.
 			int max_time = Math.round(stopTime);
 			
 			// set up a city
@@ -454,28 +498,7 @@ public class Simulator {
 		}
 	}
 	
-	// for sanity check
-	public static void myCheck() {
-		// for checking (without experiment keyword..)
-		System.out.println(lorryVolume);
-		System.out.println(lorryMaxLoad);
-		System.out.println(binServiceTime);
-		System.out.println(binVolume);
-		System.out.println(disposalDistrRate);
-		System.out.println(disposalDistrShape);
-		System.out.println(bagVolume);
-		System.out.println(bagWeightMin);
-		System.out.println(bagWeightMax);
-		System.out.println(noAreas);
-		for (ServiceArea sa : serviceAreas) sa.print();
-		System.out.println(stopTime);
-		System.out.println(warmUpTime);
-		
-		System.out.println(isExperiment);
-		for (Float sa : disposalDistrRateExp) System.out.println("disposalDistrRateExp: " + sa);
-		for (Short sa : disposalDistrShapeExp) System.out.println("disposalDistrShapeExp: " + sa);
-		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
-	}
+	
 	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		
@@ -489,7 +512,7 @@ public class Simulator {
 		
 		// parseInputs(file_path);
 		
-		// for sanity check
+		// check all inputs
 		//myCheck();
 		
 		// initialise all class variables
