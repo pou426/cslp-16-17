@@ -48,6 +48,7 @@ public class Simulator {
 	// read input file and create all objects/parameters
 	// check that all inputs are there << implement better
 	// check that the parameters are reasonable << implement
+	// check the max and min values ... according to the page
 	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
 		/**
 		 * reads a file and parses all the inputs and store them into variables
@@ -381,7 +382,7 @@ public class Simulator {
 						}
 						break;
 						
-					default: throw new InvalidInputFileException("Invalid input parameter in this line: " + line);
+					default: System.out.println("Warning: Unrecognised input parameter: " + tokens[0] + ". This line will be ignored.");
 					}
 				}
 			}
