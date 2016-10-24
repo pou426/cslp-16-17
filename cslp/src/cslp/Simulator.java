@@ -244,6 +244,7 @@ public class Simulator {
 							if (tokensLen > 2)		System.out.println("Warning: too many inputs in this line: " + line);
 							lorryVolume = Short.parseShort(tokens[1]);
 							lorryVolumeFound = true;
+							// System.out.println(lorryVolume);
 						}  
 						break;
 					
@@ -427,22 +428,7 @@ public class Simulator {
 	
 	// for sanity check
 	public static void validation() throws InvalidInputFileException {
-		System.out.println("Validating input paramters");
-		if (!lorryVolumeFound)		throw new InvalidInputFileException("Missing input: lorryVolume");
-		if (!lorryMaxLoadFound)		throw new InvalidInputFileException("Missing input: lorryMaxLoad");
-		if (!binServiceTimeFound)		throw new InvalidInputFileException("Missing input: binServiceTime");
-		if (!binVolumeFound)		throw new InvalidInputFileException("Missing input: binVolume");
-		if (!disposalDistrRateFound)		throw new InvalidInputFileException("Missing input: disposalDistrRate");
-		if (!disposalDistrShapeFound)		throw new InvalidInputFileException("Missing input: disposalDistrShape");
-		if (!bagVolumeFound)		throw new InvalidInputFileException("Missing input: bagVolume");
-		if (!bagWeightMinFound)		throw new InvalidInputFileException("Missing input: bagWeightMin");
-		if (!bagWeightMaxFound)		throw new InvalidInputFileException("Missing input: bagWeightMax");
-		// do I need to check area info??????????? >>> yes!!! 
-		if (!noAreasFound)		throw new InvalidInputFileException("Missing input: noAreas");
-		if (!serviceAreasFound)		throw new InvalidInputFileException("Missing input: serviceAreas");
-		if (!stopTimeFound)		throw new InvalidInputFileException("Missing input: stopTime");
-		if (!warmUpTimeFound)		throw new InvalidInputFileException("Missing input: warmUpTime");
-		
+		/*
 		// print all inputs.
 		System.out.println(lorryVolume);
 		System.out.println(lorryMaxLoad);
@@ -462,6 +448,25 @@ public class Simulator {
 		for (Float sa : disposalDistrRateExp) System.out.println("disposalDistrRateExp: " + sa);
 		for (Short sa : disposalDistrShapeExp) System.out.println("disposalDistrShapeExp: " + sa);
 		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
+		*/
+		
+		System.out.println("Validating input paramters");
+		if (!lorryVolumeFound)		throw new InvalidInputFileException("Missing input: lorryVolume");
+		if (!lorryMaxLoadFound)		throw new InvalidInputFileException("Missing input: lorryMaxLoad");
+		if (!binServiceTimeFound)		throw new InvalidInputFileException("Missing input: binServiceTime");
+		if (!binVolumeFound)		throw new InvalidInputFileException("Missing input: binVolume");
+		if (!disposalDistrRateFound)		throw new InvalidInputFileException("Missing input: disposalDistrRate");
+		if (!disposalDistrShapeFound)		throw new InvalidInputFileException("Missing input: disposalDistrShape");
+		if (!bagVolumeFound)		throw new InvalidInputFileException("Missing input: bagVolume");
+		if (!bagWeightMinFound)		throw new InvalidInputFileException("Missing input: bagWeightMin");
+		if (!bagWeightMaxFound)		throw new InvalidInputFileException("Missing input: bagWeightMax");
+		// do I need to check area info??????????? >>> yes!!! 
+		if (!noAreasFound)		throw new InvalidInputFileException("Missing input: noAreas");
+		if (!serviceAreasFound)		throw new InvalidInputFileException("Missing input: serviceAreas");
+		if (!stopTimeFound)		throw new InvalidInputFileException("Missing input: stopTime");
+		if (!warmUpTimeFound)		throw new InvalidInputFileException("Missing input: warmUpTime");
+		
+		
 	}
 	
 	// run the simulator
@@ -478,6 +483,7 @@ public class Simulator {
 			
 			// set up a city
 			// set up a clock object to count time..
+			City city = new City();
 			
 			//while (time <= max_time) {
 				// determine the set of events that may occur after the current state
@@ -502,18 +508,12 @@ public class Simulator {
 	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		
-		// II.4. The program displays usage information if no input files are given;
-		if ((args.length == 0) || (args[0].length() <= 4)) {
-			throw new IllegalArgumentException("\nFound missing or invalid input arguments. "
-					+ "\nRun code using \"./simulate.sh <input_file_name> [OPTIONS]\"");
-		} 
-		
 		String file_path = args[0];
 		
-		// parseInputs(file_path);
+		parseInputs(file_path);
 		
 		// check all inputs
-		//myCheck();
+		validation();
 		
 		// initialise all class variables
 		Bag.bagWeightMax = bagWeightMax;
@@ -524,12 +524,13 @@ public class Simulator {
 		Bin.disposalDistrShape =disposalDistrShape;
 		City.noAreas = noAreas;
 		City.serviceAreas = serviceAreas;
-		Clock.stopTime = stopTime;
-		Clock.warmUpTime = warmUpTime;
+		City.stopTime = stopTime;
+		City.warmUpTime = warmUpTime;
 		Lorry.binServiceTime = binServiceTime;
 		Lorry.lorryMaxLoad = lorryMaxLoad;
 		Lorry.lorryVolume = lorryVolume;
 		
+		// runSimulator();
     } 
 	
 	
