@@ -6,7 +6,14 @@ if [[ -e $1 ]] ; then
 
 	cd cslp/bin
 	java cslp/Simulator $abs_path
+	echo $abs_path
+
 else
-	echo '"$1" does not exist; exiting.'
+	#echo '"$1" does not exist; exiting.'
+	# display usage information
+	echo "Usage information: "
+	echo "Found missing or invalid input arguments."
+	echo "Run code using ./simulate.sh <input_file_name> [OPTIONS]"
+
 	exit 1
 fi
