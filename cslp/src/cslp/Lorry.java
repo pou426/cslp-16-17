@@ -7,6 +7,15 @@ public class Lorry {
 	protected static int lorryMaxLoad; 
 	protected static float binServiceTime;
 	
+	protected float currentTrashVolume;
+	
+	public Lorry() {
+		this.currentTrashVolume = 0;
+	}
+	
+	public void emptyBin() {
+		this.currentTrashVolume += Bin.binVolume;
+	}
 	/*
 	// getters and setters
 	public static short getLorryVolume() {

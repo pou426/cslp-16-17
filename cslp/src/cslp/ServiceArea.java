@@ -3,12 +3,12 @@ package cslp;
 import java.util.Arrays;
 
 public class ServiceArea {
-	private short areaIdx; // unit8_t
+	private short areaIdx; 
 	private float serviceFreq;
 	private float thresholdVal;
-	private int noBins; // unit16_t
-	private short[][] roadsLayout; // int8_t
-	private Bin[] bins = new Bin[65535];
+	private int noBins;
+	private short[][] roadsLayout = null; 
+	private Bin[] bins = new Bin[65535]; // change to smaller number or arraylist
 	private Lorry lorry = null;
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
