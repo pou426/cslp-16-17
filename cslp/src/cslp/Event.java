@@ -3,19 +3,20 @@ package cslp;
 public class Event implements Comparable{
 	
 	private int duration;
+	private String eventName;
 	
-	public Event(int duration) {
+	public Event(int duration, String eventName) {
 		this.duration = duration;
+		this.eventName = eventName;
 	}
 		
 	public int getDuration() {
 		return duration;
 	}
 	
-	public String toString() {
+	public String getEventName() {
 		// output event to a human readable format
-		String s = "event output format.";
-		return s;
+		return eventName;
 	}
 
 	// Events with shorter duration should have higher priority!! 
