@@ -1,24 +1,29 @@
 package cslp;
 
+// this is a disposal event event class....
 public class Event implements Comparable{
 	
 	private int duration;
-	private String eventName;
+	private float bagWeight;
+	private short areaIdx;
+	private int binIdx;
 	
-	public Event(int duration, String eventName) {
+	public Event(int duration, float bagWeight, int binIdx, short areaIdx) {
 		this.duration = duration;
-		this.eventName = eventName;
+		this.bagWeight = bagWeight;
+		this.binIdx = binIdx;
+		this.areaIdx = areaIdx;
 	}
 		
 	public int getDuration() {
 		return duration;
 	}
 	
-	public String getEventName() {
-		// output event to a human readable format
-		return eventName;
+	public String disposalEventToString() {
+		String s = "Bag weighting " + bagWeight + "kg disposed of at bin " + areaIdx + "." + binIdx;
+		return s;
 	}
-
+	
 	// Events with shorter duration should have higher priority!! 
 	// Events with shorter duration should go to the front of the queue
 	@Override

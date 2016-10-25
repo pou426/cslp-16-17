@@ -3,12 +3,13 @@ package cslp;
 import java.util.Arrays;
 
 public class ServiceArea {
+	
 	private short areaIdx; 
 	private float serviceFreq;
 	private float thresholdVal;
 	private int noBins;
 	private short[][] roadsLayout = null; 
-	private Bin[] bins = new Bin[65535]; // change to smaller number or arraylist
+	private Bin[] bins = new Bin[250]; // change to smaller number or arraylist
 	private Lorry lorry = null;
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
@@ -21,12 +22,13 @@ public class ServiceArea {
 	}
 	
 	public void assignLorry(Lorry lorry) {
-		this.lorry = lorry;
+		lorry = lorry;
 	}
 	
-	public void createBins(Bin bin) {
+	public void createBins(int stopTime) {
 		for (int i = 0; i < noBins; i++) {
-			bins[i] = bin;
+			bins[i] = new Bin(areaIdx, i);
+			bins[i].createDisposalEventList(stopTime);
 		}
 	}
 	
@@ -38,9 +40,14 @@ public class ServiceArea {
 		System.out.println(Arrays.deepToString(roadsLayout));
 	}
 	
-	/*
 	public Bin[] getBins() {
-		return bins;
-	}*/
-	
+		Bin[] availableBins = new Bin[noBins];
+		for (int i = 0; i < noBins; i++) {
+			availableBins[i] = bins[i];
+		}
+		return availableBins;
+	}
+	public short getAreaIdx() {
+		return areaIdx;
+	}
 }

@@ -1,5 +1,6 @@
 package cslp;
 
+// redundant!!!!!!
 public class Clock {
 	// does this have to be singleton?
 	// does this require a static block?

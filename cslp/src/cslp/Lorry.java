@@ -14,7 +14,7 @@ public class Lorry {
 	}
 	
 	public void emptyBin() {
-		this.currentTrashVolume += Bin.binVolume;
+		this.currentTrashVolume += Bin.getBinVolume();
 	}
 	/*
 	// getters and setters
