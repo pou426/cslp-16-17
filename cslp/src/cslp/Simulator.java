@@ -460,7 +460,6 @@ public class Simulator {
 			}
 			br.close();;
 
-			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -550,19 +549,17 @@ public class Simulator {
 	}
 	
 	// run the simulator
-	public static void runSimulator() {
+	public static void execute() {
 		if (isExperiment) {
 			// run experiments
 			System.out.println("This is an experiment and will be run differently.");
 			System.out.println("no support for experimentation yet.");
 		} else {
-			//System.out.println();
+			System.out.println("Simulation starts:");
 			int time = 0; // in seconds
-			// change max_time to int.
 			int max_time = Math.round(stopTime);
 			
 			// set up a city
-			// set up a clock object to count time..
 			City city = new City();
 			
 			//while (time <= max_time) {
@@ -584,34 +581,63 @@ public class Simulator {
 		}
 	}
 	
-	
-	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
-		
+		System.out.println("ok");
 		String file_path = args[0];
 		
 		parseInputs(file_path);
-		
+		System.out.println("ya");
 		// check all inputs
 		validation();
-		
+		System.out.println("checked");
 		// initialise all class variables
 		// put this in runSimulator method?
 		Bag.bagWeightMax = bagWeightMax;
 		Bag.bagWeightMin = bagWeightMin;
 		Bag.bagVolume = bagVolume;
+		
 		Bin.binVolume = binVolume;
 		Bin.disposalDistrRate = disposalDistrRate;
-		Bin.disposalDistrShape =disposalDistrShape;
+		Bin.disposalDistrShape = disposalDistrShape;
+		//Bin.disposalDistrRateInSec = disposalDistrRate*60;
+		
 		City.noAreas = noAreas;
 		City.serviceAreas = serviceAreas;
 		City.stopTime = stopTime;
 		City.warmUpTime = warmUpTime;
+		
 		Lorry.binServiceTime = binServiceTime;
 		Lorry.lorryMaxLoad = lorryMaxLoad;
 		Lorry.lorryVolume = lorryVolume;
 		
-		runSimulator();
+		// assign a lorry to each service areas
+		// create bin in each service areas and create a list of disposal events for each bin
+		System.out.println("service area size = " +serviceAreas.size() );
+		for (ServiceArea sa : serviceAreas) {
+			sa.assignLorry(new Lorry());
+			sa.createBins();
+			//Bin[] bb = sa.getBins();
+			// checking
+			//ArrayList<Event> e1 = bb[0].getDisposalEventList();
+			//System.out.println("even list size = "+e1.size());
+			//ArrayList<Event> e2 = bb[1].getDisposalEventList();
+			//System.out.println("even list size = "+e2.size());
+			//for (Event e : e1) {
+			//	String s = e.toString();
+			//	System.out.println(s);
+			//}
+		}
+		System.out.println("stil ok??");
+		/*
+		System.out.println("do this");
+		ServiceArea currSA = serviceAreas.get(0);
+		Bin[] currBins = currSA.getBins();
+		ArrayList<Event> eventList = currBins[0].getDisposalEventList();
+		for (Event e : eventList) {
+			System.out.println(e.toString());
+		}
+		System.out.println(eventList.size());*/
+		//Simulator.execute();
     } 
 	
 	
