@@ -541,8 +541,7 @@ public class Simulator {
 		}
 		
 		if (isMissing) {
-			//throw new InvalidInputFileException("Missing one or more parameters.");
-			System.out.println(isMissing);
+			throw new InvalidInputFileException("Missing one or more parameters.");
 		} else {
 			System.out.println("All parameters found. Simulation proceeds.");
 		}
@@ -609,9 +608,9 @@ public class Simulator {
 		Lorry.lorryVolume = lorryVolume;
 		
 		// assign a lorry to each service areas
-		// create bin in each service areas and create a list of disposal events for each bin
+		// create bin in each service areas
 		City.initialiseCity();
-		City.addDisposalEventsToPQueue();
+		//City.addDisposalEventsToPQueue();
 		
 		//System.out.println(City.getPQueue().size());
 		
