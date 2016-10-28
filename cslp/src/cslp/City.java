@@ -22,30 +22,7 @@ public class City {
 		City.currTime += delay;
 	}
 	
-	/*
-	// add all disposal events to PQUEUE
-	// at time = 0
-	public static void addDisposalEventsToPQueue() {
-		for (ServiceArea sa : serviceAreas) {
-			for (Bin b: sa.getBins()) {
-				ArrayList<Event> eList = b.getDisposalEventList();
-				//System.out.println(eList.size());
-				for (Event e : eList) {
-					City.pqueue.add(e);
-				}
-			}
-		}
-	}
-	
-	// generating disposal events for each bin
-	public static void generateDisposalEvents(float stopTime) {
-		for (ServiceArea sa : serviceAreas) {
-			sa.createBins((int) Math.round(stopTime));
-		}
-	} */
-	
-	
-	// assign lorry and create list of disposal events for each bin
+	// assign lorry to each service area
 	public static void initialiseCity() {
 		for (ServiceArea sa : serviceAreas) {
 			sa.assignLorry(new Lorry());
