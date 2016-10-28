@@ -9,7 +9,7 @@ public class ServiceArea {
 	private float thresholdVal;
 	private int noBins;
 	private short[][] roadsLayout = null; 
-	private Bin[] bins = new Bin[250]; // change to smaller number or arraylist
+	private Bin[] bins = new Bin[200]; // change to smaller number or arraylist
 	private Lorry lorry = null;
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
@@ -25,10 +25,9 @@ public class ServiceArea {
 		lorry = lorry;
 	}
 	
-	public void createBins(int stopTime) {
+	public void createBins() {
 		for (int i = 0; i < noBins; i++) {
 			bins[i] = new Bin(areaIdx, i);
-			bins[i].createDisposalEventList(stopTime);
 		}
 	}
 	
