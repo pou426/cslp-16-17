@@ -16,7 +16,7 @@ public class Lorry {
 	public void emptyBin() {
 		this.currentTrashVolume += Bin.getBinVolume();
 	}
-	/*
+	
 	// getters and setters
 	public static short getLorryVolume() {
 		return lorryVolume;
@@ -36,6 +36,6 @@ public class Lorry {
 	public static void setBinServiceTime(float binServiceTime) {
 		Lorry.binServiceTime = binServiceTime;
 	}
-	*/
+	
 	
 }
