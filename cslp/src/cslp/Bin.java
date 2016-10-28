@@ -13,7 +13,7 @@ public class Bin {
 	private short areaIdx;
 	private int binIdx;
 	
-	private ArrayList<Event> disposalEventList = new ArrayList<Event>();
+	// private ArrayList<Event> disposalEventList = new ArrayList<Event>();
 	
 	public Bin(short areaIdx, int binIdx) {
 		this.wasteVolume = 0;
@@ -44,7 +44,7 @@ public class Bin {
 		return e;
 	}
 
-	public void createDisposalEventList(float stopTime){
+	/*public void createDisposalEventList(float stopTime){
 		int currTime = 0;
 		int duration = 0;
 		int stopTimeInt = (int) Math.round(stopTime);
@@ -57,9 +57,7 @@ public class Bin {
 		}
 	}
 	
-	public ArrayList<Event> getDisposalEventList() {
-		return disposalEventList;
-	}
+	*/
 	
 	public boolean isOverflow() {
 		return (wasteVolume >= binVolume);
@@ -89,4 +87,7 @@ public class Bin {
 	public static void setDisposalDistrShape(short disposalDistrShape) {
 		Bin.disposalDistrShape = disposalDistrShape;
 	}
+	/*public ArrayList<Event> getDisposalEventList() {
+		return disposalEventList;
+	}*/
 }
