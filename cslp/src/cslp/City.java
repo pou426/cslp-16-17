@@ -13,7 +13,7 @@ public class City {
 	
 	private static PriorityQueue<Event> pqueue = new PriorityQueue<Event>();
 	
-	// keep track of time
+	// keeping track of time
 	private static int currTime;
 	private static float stopTime; // short or int or float?
 	private static float warmUpTime; // short or int or float?
@@ -22,6 +22,7 @@ public class City {
 		City.currTime += delay;
 	}
 	
+	/*
 	// add all disposal events to PQUEUE
 	// at time = 0
 	public static void addDisposalEventsToPQueue() {
@@ -35,11 +36,20 @@ public class City {
 			}
 		}
 	}
+	
+	// generating disposal events for each bin
+	public static void generateDisposalEvents(float stopTime) {
+		for (ServiceArea sa : serviceAreas) {
+			sa.createBins((int) Math.round(stopTime));
+		}
+	} */
+	
+	
 	// assign lorry and create list of disposal events for each bin
 	public static void initialiseCity() {
 		for (ServiceArea sa : serviceAreas) {
 			sa.assignLorry(new Lorry());
-			sa.createBins((int)Math.round(stopTime));
+			sa.createBins();
 		}
 	}
 	public static PriorityQueue<Event> getPQueue() {
@@ -66,4 +76,5 @@ public class City {
 	public static float getWarmUpTime() {
 		return warmUpTime;
 	}
+
 }
