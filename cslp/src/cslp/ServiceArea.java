@@ -27,7 +27,7 @@ public class ServiceArea {
 	
 	public void createBins() {
 		for (int i = 0; i < noBins; i++) {
-			bins[i] = new Bin(areaIdx, i);
+			bins[i] = new Bin(areaIdx, i, thresholdVal);
 		}
 	}
 	
