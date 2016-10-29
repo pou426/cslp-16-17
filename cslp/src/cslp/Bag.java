@@ -9,7 +9,7 @@ public class Bag {
 	private float weight; // instance variable
 	
 	public Bag() {
-		this.weight = (float) (Math.random() * (bagWeightMin - bagWeightMax) + bagWeightMin);
+		this.weight = (float) (Math.random() * (bagWeightMax - bagWeightMin) + bagWeightMin);
 	}
 	
 	public float getWeight() {
