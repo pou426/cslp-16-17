@@ -20,26 +20,12 @@ public class Bin {
 		this.areaIdx = areaIdx;
 		this.binIdx = binIdx;
 	}
-	
-	private int getTimeInterval(){
-		double erlangk = 0;
-		for (int i = 0; i < disposalDistrShape; i++) {
-			double rand = Math.random();
-			double rate = -1/disposalDistrRate;
-			double logged = Math.log10(rand);
-			double result = rate*logged;
-			erlangk += result;
-		}
-		double convertToSec = erlangk*60*60;
-		int finalresult = (int) Math.round(convertToSec);
-		return finalresult;
-	}
-	
+		
 	private Event disposeBag() {
 		Bag b = new Bag();
 		float bagWeight = b.getWeight();
 		wasteVolume += Bag.getBagVolume();
-		int timeInterval = Math.round(this.getTimeInterval());
+		int timeInterval = Random.erlangk(disposalDistrRate, disposalDistrShape);
 		Event e = new Event(timeInterval, bagWeight, binIdx, areaIdx);
 		return e;
 	}
