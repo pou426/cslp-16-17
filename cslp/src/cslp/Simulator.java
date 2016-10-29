@@ -1,15 +1,16 @@
 package cslp;
 
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Simulator {
 	
+	// input params
 	private static short lorryVolume;
 	private static int lorryMaxLoad;
 	private static float binServiceTime;
@@ -48,7 +49,7 @@ public class Simulator {
 	// read input file and create all objects/parameters
 	// check that the parameters are reasonable << implement
 	// check the max and min values ... according to the page???
-	public static void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
+	public void parseInputs(String file_path) throws FileNotFoundException, InvalidInputFileException {
 		/**
 		 * reads a file and parses all the inputs and store them into variables
 		 * also checks whether any input is missing
@@ -469,8 +470,7 @@ public class Simulator {
 		} 
 	}
 	
-	// validation of input
-	public static void validation() throws InvalidInputFileException {
+	public void validation() throws InvalidInputFileException {
 		
 		/*
 		// print all inputs.
@@ -547,8 +547,35 @@ public class Simulator {
 		}
 	}
 	
-	// run the simulator
-	public static void execute() {
+	// Simulator implementation
+	PriorityQueue<Event> events = new PriorityQueue<Event>();
+	int time;
+	int now() {
+		return time;
+	}
+	public void doAllEvents() {
+        Event e;
+        while ((e = (Event) events.poll()) != null) {
+            time = e.getTime();
+            e.execute(this);
+        }
+    }
+	public void insert(Event e) {
+		this.events.add(e);
+	}
+	
+	public void initialiseCity() {
+		/** 
+		 * assign a lorry to each service areas
+		 * create bins in each service areas
+		 */
+		for (ServiceArea sa : serviceAreas) {
+			sa.assignLorry(new Lorry());
+			sa.createBins();
+		}
+	}
+
+	public void start() {
 		if (isExperiment) {
 			// run experiments
 			System.out.println("This is an experiment and will be run differently.");
@@ -556,37 +583,25 @@ public class Simulator {
 			// still run something maybe with the first input!!!
 		} else {
 			System.out.println("Simulation starts:");
-			int time = 0; // in seconds
-			int max_time = Math.round(stopTime);
-			
-			// set up a city
-			City city = new City();
-			
-			//while (time <= max_time) {
-				// determine the set of events that may occur after the current state
-				/*
-				 * possible events:
-				 * (i) a rubbish bag was disposed of in a bin
-				 * (ii) the occupancy threshold of a bin was exceeded
-				 * (iii)  bin overflowed
-				 * (iv) a bin was emptied
-				 * (v) a lorry was emptied
-				 * (vi) a lorry arrived/departed from a location (bin or depot)
-				 */
-				// delay = choose a delay base on the nearest event
-				//int delay = 0;
-				//time += delay;
-				// modify the state of the system based on the current event.
-			//}
+
+			// generate disposal events
+			for (ServiceArea sa : serviceAreas) {
+				for (Bin bin : sa.getBins()) {
+					Event disposalEventGenerator = new Event(0, bin);
+					this.events.add(disposalEventGenerator);
+				}
+			}
+			doAllEvents();
 		}
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		String file_path = args[0];
+		Simulator citySimulator = new Simulator();
 		
-		parseInputs(file_path);
+		citySimulator.parseInputs(file_path);
 		
-		validation();
+		citySimulator.validation();
 
 		// initialise all variables
 		Bag.setBagVolume(bagVolume);
@@ -594,30 +609,20 @@ public class Simulator {
 		Bag.setBagWeightMin(bagWeightMin);
 		
 		Bin.setBinVolume(binVolume); 
-		Bin.setDisposalDistrRate(disposalDistrRate);
-		Bin.setDisposalDistrShape(disposalDistrShape);
 		
-		City.setNoAreas(noAreas);
-		City.setServiceAreas(serviceAreas);
-		City.setServiceAreas(serviceAreas);
-		City.setStopTime(stopTime);
-		City.setWarmUpTime(warmUpTime);
-		
+		Random.setDisposalDistrRate(disposalDistrRate);
+		Random.setDisposalDistrShape(disposalDistrShape);
+				
 		Lorry.binServiceTime = binServiceTime;
 		Lorry.lorryMaxLoad = lorryMaxLoad;
 		Lorry.lorryVolume = lorryVolume;
 		
-		// assign a lorry to each service areas
-		// create bin in each service areas
-		City.initialiseCity();
-		//City.addDisposalEventsToPQueue();
+		Event.setStopTime(stopTime);
 		
-		//System.out.println(City.getPQueue().size());
+		citySimulator.initialiseCity();
 		
-		for (Event e : City.getPQueue()) {
-			System.out.println(e.toString());
-		}
-		System.out.println("End");
+		citySimulator.start();
+		
     } 
 	
 	
