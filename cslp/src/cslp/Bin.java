@@ -1,77 +1,63 @@
 package cslp;
 
-import java.util.ArrayList;
-
-// send events?
-// should be an observer
 public class Bin {
 	
 	private static float binVolume;
-	private static float disposalDistrRate; // expressed per hour
-	private static short disposalDistrShape;
 	private float wasteVolume;
+	private float wasteWeight;
 	private short areaIdx;
 	private int binIdx;
-	
-	private ArrayList<Event> disposalEventList = new ArrayList<Event>();
-	
+	private boolean isOverflow;
+		
 	public Bin(short areaIdx, int binIdx) {
 		this.wasteVolume = 0;
+		this.wasteWeight = 0;
 		this.areaIdx = areaIdx;
 		this.binIdx = binIdx;
+		this.isOverflow = false;
 	}
-		
-	private Event disposeBag() {
-		Bag b = new Bag();
-		float bagWeight = b.getWeight();
-		wasteVolume += Bag.getBagVolume();
-		int timeInterval = Random.erlangk(disposalDistrRate, disposalDistrShape);
-		Event e = new Event(timeInterval, bagWeight, binIdx, areaIdx);
-		return e;
-	}
-
-	public void createDisposalEventList(float stopTime){
-		int currTime = 0;
-		int duration = 0;
-		int stopTimeInt = (int) Math.round(stopTime);
-		// TODO check if currTIme <= stopTime or just < ????
-		while (currTime <= stopTimeInt) {
-			Event e = this.disposeBag();
-			disposalEventList.add(e);
-			duration += e.getDuration();
-			currTime += duration;
+	
+	// output event
+	public void disposeBag(Event e) {
+		// do something with simulator like add an event???
+		Bag bag = new Bag();
+		int currTime = e.getTime();
+		float bagWeight = bag.getWeight();
+		if (this.isOverflow()) {
+			System.out.println("bin overflowed so no event generated anymore");
+		} else {
+			this.wasteVolume += Bag.getBagVolume();
+			this.wasteWeight += bagWeight;
+			String s = e.timeToString() + " -> " + "bag weighing "+bagWeight+" disposed of at bin "+areaIdx+"."+binIdx;
+			System.out.println(s);
 		}
 	}
 	
 	public boolean isOverflow() {
-		return (wasteVolume >= binVolume);
+		this.isOverflow = this.wasteVolume >= binVolume;
+		return isOverflow;
 	}
 	
-	// check decimal places or data type 
+	// TODO check decimal places or data type 
 	public double currentOccupancy() {
-		return wasteVolume/binVolume;
+		return this.wasteVolume/binVolume;
 	}
 	
-	// getters and setters FOR THE INSTANCES...
+	public double currentWeight() {
+		return this.wasteWeight;
+	}
+	
+	public short getAreaIdx() {
+		return this.areaIdx;
+	}
+	public int getBinIdx() {
+		return this.binIdx;
+	}
+	
 	public static float getBinVolume() {
 		return binVolume;
 	}
-	public static float getDisposalDistrRate() {
-		return disposalDistrRate;
-	}
-	public static short getDisposalDistrShape() {
-		return disposalDistrShape;
-	}
 	public static void setBinVolume(float binVolume) {
 		Bin.binVolume = binVolume;
-	}
-	public static void setDisposalDistrRate(float disposalDistrRate) {
-		Bin.disposalDistrRate = disposalDistrRate;
-	}
-	public static void setDisposalDistrShape(short disposalDistrShape) {
-		Bin.disposalDistrShape = disposalDistrShape;
-	}
-	public ArrayList<Event> getDisposalEventList() {
-		return disposalEventList;
 	}
 }
