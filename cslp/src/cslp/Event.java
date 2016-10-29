@@ -1,41 +1,73 @@
 package cslp;
 
-// this is a disposal event event class....
-public class Event implements Comparable{
-	
-	private int duration;
-	private float bagWeight;
-	private short areaIdx;
-	private int binIdx;
-	
-	public Event(int duration, float bagWeight, int binIdx, short areaIdx) {
-		this.duration = duration;
-		this.bagWeight = bagWeight;
-		this.binIdx = binIdx;
-		this.areaIdx = areaIdx;
+import org.junit.Test;
+
+public class Event implements Comparable {
+
+	private static float stopTime;
+	public static void setStopTime(float stopTime) {
+		Event.stopTime = stopTime;
 	}
-		
-	public int getDuration() {
-		return duration;
+
+	private int time;
+	public int getTime() {
+		return time;
+	}
+	public String timeToString() {
+		int secCount = time;
+		int minCount = 0;
+		int hrCount = 0;
+		int dayCount = 0;
+		while (secCount >= 60) {
+			secCount -= 60;
+			minCount += 1;
+		}
+		while (minCount >= 60) {
+			minCount -= 60;
+			hrCount += 1;
+		}
+		while (hrCount >= 24) {
+			hrCount -= 24;
+			dayCount += 1;
+		}
+		String sec = String.format("%02d", secCount);
+		String min = String.format("%02d", minCount);
+		String hr = String.format("%02d", hrCount);
+		String day = String.format("%02d", dayCount);
+		String result = day+":"+hr+":"+min+":"+sec;
+		return result;
+	}
+	public Event(int time) {
+		this.time = time;
 	}
 	
-	public String disposalEventToString() {
-		String s = "Bag weighting " + bagWeight + "kg disposed of at bin " + areaIdx + "." + binIdx;
-		return s;
-	}
 	
-	// Events with shorter duration should have higher priority!! 
-	// Events with shorter duration should go to the front of the queue
+	
+	
+	// disposal event
+	private Bin bin;
+	public Event(int time, Bin bin) {
+		this.time = time;
+		this.bin = bin;
+	}
+	public void execute(Simulator simulator) {
+    	this.bin.disposeBag(this); 
+    	this.time += Random.erlangk();
+    	if (this.time < stopTime) {
+    		simulator.insert(this);
+    	}
+    }
+
 	@Override
 	public int compareTo(Object anotherEvent) {
 		// TODO Auto-generated method stub
 		if (!(anotherEvent instanceof Event)) {
 			throw new ClassCastException("An Event object expected.");
 		}
-		int anotherEventDuration = ((Event) anotherEvent).getDuration();
-		if (this.duration == anotherEventDuration)		return 0;
-		else if (this.duration < anotherEventDuration)	return 1;
+		int anotherEventTime = ((Event) anotherEvent).getTime();
+		if (this.time == anotherEventTime)		return 0;
+		else if (this.time > anotherEventTime)	return 1;
 		else return -1;
 	}
-	
+
 }
