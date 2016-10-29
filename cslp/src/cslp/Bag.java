@@ -13,7 +13,7 @@ public class Bag {
 	}
 	
 	public float getWeight() {
-		return weight;
+		return this.weight;
 	}
 	
 	public static float getBagVolume() {
