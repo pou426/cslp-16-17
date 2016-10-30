@@ -23,37 +23,35 @@ public class Bin {
 	}
 	
 	// output event
-	public void disposeBag(Event e) {
+	public void disposeBag(DisposalEvent e) {
 		// do something with simulator like add an event???
-		Bag bag = new Bag();
-		float bagWeight = bag.getWeight();
 		if (isOverflow) {
-			//System.out.println("bin overflowed so no event generated anymore");
+			System.out.println("disposal event occurs but bin has overflowed. bin content unchanged. time = "+e.timeToString());
 		} else {
+			Bag bag = new Bag();
+			float bagWeight = bag.getWeight();
 			this.wasteVolume += Bag.getBagVolume();
 			this.wasteWeight += bagWeight;
 			String disposalString = e.timeToString() + " -> bag weighing "+bagWeight+" disposed of at bin "+areaIdx+"."+binIdx;
 			System.out.println(disposalString);
 			String binStatusString = e.timeToString() + " -> load of bin "+areaIdx+"."+binIdx+" became "+wasteWeight+" and contents volume "+wasteVolume+" m^3";
 			System.out.println(binStatusString);
-			double currentOccupancy = wasteVolume/binVolume;
-			if (currentOccupancy > thresholdVal) {
+			if (currentOccupancy() > thresholdVal) {
 				isExceedThreshold = true;
 				String exceedThresholdString = e.timeToString() + " -> occupancy threshold of bin "+areaIdx+"."+binIdx+" exceeded";
 				System.out.println(exceedThresholdString);
 			}
-			if (wasteVolume >= binVolume) {
+			if (currentOccupancy() >= 1) {
 				isOverflow = true;
 				String overflowString = e.timeToString() + " -> "+ "bin "+areaIdx+"."+binIdx+" overflowed";
 				System.out.println(overflowString);
 			}
 		}
 	}
-	/*
+	
 	public boolean isOverflow() {
-		this.isOverflow = this.wasteVolume >= binVolume;
 		return isOverflow;
-	}*/
+	}
 	
 	// TODO check decimal places or data type 
 	public double currentOccupancy() {
@@ -77,4 +75,5 @@ public class Bin {
 	public static void setBinVolume(float binVolume) {
 		Bin.binVolume = binVolume;
 	}
+	
 }

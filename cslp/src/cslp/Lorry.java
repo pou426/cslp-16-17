@@ -5,7 +5,7 @@ public class Lorry {
 	// put a boolean so that the static parameters can only be set once?
 	protected static short lorryVolume; 
 	protected static int lorryMaxLoad; 
-	protected static float binServiceTime;
+	protected static int binServiceTime;
 	
 	protected float currentTrashVolume;
 	
@@ -24,7 +24,7 @@ public class Lorry {
 	public static int getLorryMaxLoad() {
 		return lorryMaxLoad;
 	}	
-	public static float getBinServiceTime() {
+	public static int getBinServiceTime() {
 		return binServiceTime;
 	}
 	public static void setLorryVolume(short lorryVolume) {
@@ -33,7 +33,7 @@ public class Lorry {
 	public static void setLorryMaxLoad(int lorryMaxLoad) {
 		Lorry.lorryMaxLoad = lorryMaxLoad;
 	}
-	public static void setBinServiceTime(float binServiceTime) {
+	public static void setBinServiceTime(int binServiceTime) {
 		Lorry.binServiceTime = binServiceTime;
 	}
 	
