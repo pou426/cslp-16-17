@@ -21,24 +21,14 @@ public class ServiceArea {
 		this.roadsLayout = roadsLayout;
 	}
 	
-	public void assignLorry(Lorry lorry) {
-		lorry = lorry;
+	public void setLorry(Lorry lorry) {
+		this.lorry = lorry;
 	}
-	
-	public void createBins() {
+	public void setBins() {
 		for (int i = 0; i < noBins; i++) {
-			bins[i] = new Bin(areaIdx, i, thresholdVal);
+			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
 		}
 	}
-	
-	public void print() {
-		String s = "areaIdx= "+String.valueOf(areaIdx)+" serviceFreq= "+String.valueOf(serviceFreq)+
-				" thresholdVal= "+String.valueOf(thresholdVal)+" noBins= "+String.valueOf(noBins);
-		System.out.println(s);
-		System.out.println("roadsLayout");
-		System.out.println(Arrays.deepToString(roadsLayout));
-	}
-	
 	public Bin[] getBins() {
 		Bin[] availableBins = new Bin[noBins];
 		for (int i = 0; i < noBins; i++) {
@@ -49,4 +39,13 @@ public class ServiceArea {
 	public short getAreaIdx() {
 		return areaIdx;
 	}
+
+	public String toString() {
+		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq = "+String.valueOf(serviceFreq)
+				+" thresholdVal = "+String.valueOf(thresholdVal)+" noBins = "+String.valueOf(noBins);
+		String b = "\nroadsLayout = "+Arrays.deepToString(roadsLayout);
+		String result = a+b;
+		return result;
+	}
+	
 }
