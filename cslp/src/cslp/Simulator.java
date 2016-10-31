@@ -71,7 +71,6 @@ public class Simulator {
 	      }  
 	}
 
-
 	// read input file and create all objects/parameters
 	// check that the parameters are reasonable << implement
 	// check the max and min values ... according to the page???
@@ -700,6 +699,7 @@ public class Simulator {
 				}
 			}
 			doAllEvents();
+			
 		}
 	}
 	
@@ -712,6 +712,7 @@ public class Simulator {
 		citySimulator.validation();
 
 		citySimulator.printAllInputs();
+		
 		// initialise all variables
 		Bag.setBagVolume(bagVolume);
 		Bag.setBagWeightMax(bagWeightMax);
