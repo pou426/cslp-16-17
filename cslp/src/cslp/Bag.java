@@ -2,7 +2,7 @@ package cslp;
 
 public class Bag {
 
-	private static float bagVolume;
+	private static float bagVolume; // cm^3
 	private static float bagWeightMin;
 	private static float bagWeightMax;
 	

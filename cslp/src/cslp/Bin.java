@@ -1,8 +1,14 @@
 package cslp;
 
 public class Bin {
-	
-	private static float binVolume;
+	/*
+	 * Overflow events can be tracked at most once between
+	 * two bin service instances. 
+	 * Occupancy of a bin may exceed capacity, when it becomes
+	 * full after the disposal of one bag. For any bag this
+	 * can happen at most once between two servcie instances
+	 */
+	private static float binVolume; 
 	private float wasteVolume;
 	private float wasteWeight;
 	private short areaIdx;
@@ -75,5 +81,7 @@ public class Bin {
 	public static void setBinVolume(float binVolume) {
 		Bin.binVolume = binVolume;
 	}
-	
+	public float getWasteWeight() {
+		return this.wasteWeight;
+	}
 }
