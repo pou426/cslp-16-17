@@ -13,6 +13,7 @@ public class DisposalEvent extends AbstractEvent {
     	this.bin.disposeBag(this); 
     	int currTime = getTime();
     	int newTime = currTime + Random.erlangk();
+    	System.out.println(newTime);
     	setTime(newTime);
     	if (getTime() < getStopTime()) {
     		simulator.insert(this);
