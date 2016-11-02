@@ -12,8 +12,14 @@ else
 	#echo '"$1" does not exist; exiting.'
 	# display usage information
 	echo "Usage information: "
-	echo "Found missing or invalid input arguments."
-	echo "Run code using ./simulate.sh <input_file_name> [OPTIONS]"
+	echo "./simulate.sh <input_filename>"
+	#echo "Run code using ./simulate.sh <input_file_name> [OPTIONS]"
 
 	exit 1
 fi
+
+
+# usage information:
+#$ ./simulate.sh
+#Usage: ./simulate.sh <input_filename> [debug=on|off]
+#Default option: debug=off </input_filename>
