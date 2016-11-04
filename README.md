@@ -3,7 +3,7 @@ README.md
 ------------------------------------------------------------------------------
 
 Synopsis
-
+------------------------------------------------------------------------------
 
 This is a command-line application for Computer Science Large Practical. The purpose of which is to execute stochastic
 simulations of the bin collection process in a "smart" city. This simulator is developed in JAVA.
@@ -11,7 +11,7 @@ simulations of the bin collection process in a "smart" city. This simulator is d
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-Code Explanation
+Class Explanation
 ------------------------------------------------------------------------------
 
 Abstract Classes:
@@ -27,22 +27,11 @@ Classes:
 - ServiceArea
 - Simulator <- main() method
 
-Class descriptions:
-- AbstractEvent:
-.......??????????
-?????????
-?????????
-?????????
-????????
-- Bag:
-- Bin:
-- DisposalEvent:
-- InvalidInputFileException:
-- Lorry:
-- Random:
-- ServiceArea:
-- Simulator:
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
+Code Structure
+------------------------------------------------------------------------------
 
 Code Structure - Reading Inputs:
 - compile.sh compiles the java files from the command line
@@ -77,16 +66,6 @@ Code Structure - Outputs:
 	4. bin overflowed
 	5. lorry arrived at/left location
 	6. lorry load/contents volume changed
-<!-- - Output Specification:
-	<time> -> bag weighing <float> kg disposed of at bin <uint8_t>.<uint16_t>
-	<time> -> load of bin <uint8_t>.<uint16_t> became <float> kg and contents volume <float> m^3
-	<time> -> occupancy threshold of bin <uint8_t>.<uint16_t> exceeded
-	<time> -> bin <uint8_t>.<uint16_t> overflowed
-	<time> -> lorry <uint8_t> arrived at location <uint8_t>.<uint16_t>
-	<time> -> load of lorry <uint8_t> became <float> kg and contents volume <float> m^3
-	<time> -> lorry <uint8_t> left location <uint8_t>.<uint16_t>
-	note: lorries are indexed according to their service area and bin x.y refers to bin y in area x.
- -->
 
 Code Structure - Statistical Analysis:
 - Average Trip Duration
@@ -110,7 +89,7 @@ The movativation of this practical is to study a smart city scnerario, in which 
 Execution of Simulator
 ------------------------------------------------------------------------------
 
-in command line, type:
+On command line, type:
 $ chmod +x compile.sh
 $ chmod +x simulate.sh
 $ ./compile.sh
@@ -118,6 +97,7 @@ $ ./simulate.sh <input_file_name> [OPTIONS]
 
 or 
 $ ./simulate.sh
+
 which will display usage information
 
 ------------------------------------------------------------------------------
