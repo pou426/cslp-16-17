@@ -33,6 +33,12 @@ public class Lorry {
 		this.location = 0; // lorry stations at the depot in the initial state
 	}
 	
+	/**
+	 * Empties the waste inside a bin. 
+	 * Compress the waste volume to half its original volume
+	 * 
+	 * @param bin
+	 */
 	public void emptyBin(Bin bin) {
 		this.currentTrashVolume += (Bin.getBinVolume())/2;
 		this.currentTrashWeight += bin.getWasteWeight();

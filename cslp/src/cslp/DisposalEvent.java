@@ -6,7 +6,6 @@ package cslp;
  * When initialized, the time parameter is the current time of simulation,
  * and the bin parameter is the bin in which this disposal event occurs.
  * 
- * @author home
  *
  */
 public class DisposalEvent extends AbstractEvent {
@@ -30,6 +29,8 @@ public class DisposalEvent extends AbstractEvent {
 	 * If maximum time of simulation not exceeded, the time is incremented according
 	 * to the Erlang k distribution and is passed as a new DisposalEvent object to 
 	 * the list of events (stored in a Priority Queue in the class Simulator).
+	 * 
+	 * @param simulator
 	 */
 	public void execute(Simulator simulator) {
     	this.bin.disposeBag(this); 

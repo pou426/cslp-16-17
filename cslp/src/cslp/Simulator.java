@@ -15,8 +15,6 @@ import java.util.PriorityQueue;
  * 3. initialize all parameters and create a Simulator instance
  * 4. run simulator
  * 5. collect statistics and run analysis 
- * 
- * @author home
  *
  */
 public class Simulator {
@@ -26,13 +24,13 @@ public class Simulator {
 	private static int lorryMaxLoad;
 	private static int binServiceTime;
 	private static float binVolume;
-	private static float disposalDistrRate;
+	private static float disposalDistrRate; // expressed as avg. no. of disposal events per hour
 	private static short disposalDistrShape;
 	private static float bagVolume;
 	private static float bagWeightMin;
 	private static float bagWeightMax;
 	private static short noAreas;
-	private static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>();
+	private static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>(); // serviceFreq experessed as x trips per hour
 	private static float stopTime;
 	private static float warmUpTime;
 	
@@ -634,6 +632,7 @@ public class Simulator {
 			for (ServiceArea sa : serviceAreas) {
 				float serviceFreq = sa.getServiceFreq();
 				short areaIdx = sa.getAreaIdx();
+				// TODO convert disposalDistrRate from hour to second!!!!
 				if (disposalDistrRate > serviceFreq) {
 					System.out.println("Warning: 'disposalDistrRate' parameter bigger than 'serviceFreq' parameter for service area with areaIdx = "+areaIdx);
 				}

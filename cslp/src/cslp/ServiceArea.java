@@ -4,18 +4,17 @@ import java.util.Arrays;
 
 /**
  * ServiceArea class stores information for a service area
- * @author home
  *
  */
 public class ServiceArea {
 	
 	private short areaIdx; 
-	private float serviceFreq;
+	private float serviceFreq; // eg. serviceFreq 0.0625 means 0.0625 trips per hour
 	private float thresholdVal;
 	private int noBins;
 	private short[][] roadsLayout = null; 
 	private Bin[] bins = new Bin[250]; // in reality the number of bins should be < 250
-	private Lorry lorry = null; // each service area has its own lorry
+	private Lorry lorry; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
 			float thresholdVal, int noBins, short[][] roadsLayout) {
@@ -24,6 +23,7 @@ public class ServiceArea {
 		this.thresholdVal = thresholdVal;
 		this.noBins = noBins;
 		this.roadsLayout = roadsLayout;
+		this.lorry = null;
 	}
 	
 	public void setLorry(Lorry lorry) {
@@ -34,6 +34,11 @@ public class ServiceArea {
 			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
 		}
 	}
+	
+	/**
+	 * return a list of bins in this service area
+	 * @return an array of bins
+	 */
 	public Bin[] getBins() {
 		Bin[] availableBins = new Bin[noBins];
 		for (int i = 0; i < noBins; i++) {
@@ -48,6 +53,7 @@ public class ServiceArea {
 		return this.serviceFreq;
 	}
 
+	/*
 	// print service area information for checking
 	public String toString() {
 		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq = "+String.valueOf(serviceFreq)
@@ -55,6 +61,6 @@ public class ServiceArea {
 		String b = "\nroadsLayout = "+Arrays.deepToString(roadsLayout);
 		String result = a+b;
 		return result;
-	}
+	}*/
 	
 }

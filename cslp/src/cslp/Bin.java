@@ -2,8 +2,6 @@ package cslp;
 
 /**
  * Bin Class
- * 
- * @author home
  *
  */
 public class Bin {
@@ -37,7 +35,7 @@ public class Bin {
 	 * When a disposal event is executed, the contents and status of the bin are modified accordingly.
 	 * This method outputs the event in a readable format, keeps track of and updates current status of the bin.
 	 * 
-	 * @param e
+	 * @param a disposal event e 
 	 */
 	public void disposeBag(DisposalEvent e) {
 		if (isOverflow) {
@@ -75,7 +73,7 @@ public class Bin {
 	
 	/**
 	 * Method to calculate the current ratio of waste volume to the bin volume
-	 * @return
+	 * @return the current occupancy of the bin given as waste volume divided by the bin volume
 	 */
 	public double currentOccupancy() {
 		return wasteVolume/binVolume;

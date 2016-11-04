@@ -12,7 +12,7 @@ public class Random {
 
 	/**
 	 * Method to create Erlang K values for disposal event
-	 * @return
+	 * @return time for the next disposal event to happen
 	 */
 	public static int erlangk() {
 		double erlangk = 0;

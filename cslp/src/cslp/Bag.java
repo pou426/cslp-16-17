@@ -2,8 +2,6 @@ package cslp;
 
 /**
  * Bag Class
- * 
- * @author home
  *
  */
 public class Bag {

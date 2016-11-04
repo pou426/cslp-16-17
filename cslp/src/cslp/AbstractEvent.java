@@ -4,8 +4,6 @@ package cslp;
  * Abstract class AbstractEvent for all possible events that occur during the simulation.
  * Implements the Comparable interface to compare the times of occurrence of two events.
  * 
- * @author home
- * 
  */
 public abstract class AbstractEvent implements Comparable {	
 	// all events belong to an array list for storing output????????
