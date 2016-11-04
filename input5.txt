@@ -7,9 +7,9 @@ binServiceTime 130
 # Bin volume (cubic metres)
 binVolume 2
 # Rate of the Erlang distribution of the disposal events (avg. no. per hour)
-disposalDistrRate 2.0
+disposalDistrRate experiment 2.0 2.0
 # Shape of the Erlang distribution
-disposalDistrShape 2
+disposalDistrShape experiment 4 4 6
 # Bag volume (cubic metres)
 bagVolume 0.05
 # Minimum expected weight of a waste bag disposed
@@ -17,6 +17,7 @@ bagWeightMin 2
 # Maximum expected weight
 bagWeightMax 8
 # Number of service areas
+serviceFreq experiment 1.0 0.3 4.0
 noAreas 1
 # For area 0, service performed once every 16 hours (i.e. 0.0625 trips per hour)
 # Bins serviced if occupancy is more or equal 75% and there are 5 bins in this area
@@ -30,6 +31,9 @@ roadsLayout
 -1  1 -1 -1  0 -1
  4 -1 -1  2  4  0
 # Simulation duration (hours)
-stopTime 3600.0
+stopTime 36.0
 # Warm-up time (hours) allowed before collecting statistics
 warmUpTime 12.0
+
+hello this is an invalid input line!! 
+

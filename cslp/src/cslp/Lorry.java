@@ -1,5 +1,12 @@
 package cslp;
 
+/**
+ * Lorry class
+ * Keeps track of the trash volume and weight within itself.
+ * 
+ * @author home
+ *
+ */
 public class Lorry {
 	/*
 	 * Lorries are scheduled periodically at fixed intervals and 
@@ -17,7 +24,7 @@ public class Lorry {
 	private static int lorryMaxLoad; 
 	private static int binServiceTime;
 	
-	private int location;
+	private int location; // keeps track of lorry's location in the service area
 	private float currentTrashVolume;
 	private float currentTrashWeight;
 	
@@ -31,7 +38,6 @@ public class Lorry {
 		this.currentTrashWeight += bin.getWasteWeight();
 	}
 	
-	// getters and setters
 	public static short getLorryVolume() {
 		return lorryVolume;
 	}
@@ -50,6 +56,11 @@ public class Lorry {
 	public static void setBinServiceTime(int binServiceTime) {
 		Lorry.binServiceTime = binServiceTime;
 	}
-	
+	public int getLorryLocation() {
+		return this.location;
+	}
+	public void setLorryLocation(int location) {
+		this.location = location;
+	}
 	
 }

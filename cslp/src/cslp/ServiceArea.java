@@ -2,6 +2,11 @@ package cslp;
 
 import java.util.Arrays;
 
+/**
+ * ServiceArea class stores information for a service area
+ * @author home
+ *
+ */
 public class ServiceArea {
 	
 	private short areaIdx; 
@@ -9,8 +14,8 @@ public class ServiceArea {
 	private float thresholdVal;
 	private int noBins;
 	private short[][] roadsLayout = null; 
-	private Bin[] bins = new Bin[100]; // change to smaller number or arraylist
-	private Lorry lorry = null;
+	private Bin[] bins = new Bin[250]; // in reality the number of bins should be < 250
+	private Lorry lorry = null; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
 			float thresholdVal, int noBins, short[][] roadsLayout) {
@@ -39,7 +44,11 @@ public class ServiceArea {
 	public short getAreaIdx() {
 		return areaIdx;
 	}
+	public float getServiceFreq() {
+		return this.serviceFreq;
+	}
 
+	// print service area information for checking
 	public String toString() {
 		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq = "+String.valueOf(serviceFreq)
 				+" thresholdVal = "+String.valueOf(thresholdVal)+" noBins = "+String.valueOf(noBins);

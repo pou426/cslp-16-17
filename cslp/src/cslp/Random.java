@@ -1,20 +1,29 @@
 package cslp;
 
+/**
+ * Random class
+ * 
+ * @author home
+ *
+ */
 public class Random {
 	private static float disposalDistrRate; // expressed per hour
 	private static short disposalDistrShape;
 
-	// this class computes the erlangk distributino
+	/**
+	 * Method to create Erlang K values for disposal event
+	 * @return
+	 */
 	public static int erlangk() {
 		double erlangk = 0;
 		for (int i = 0; i < disposalDistrShape; i++) {
 			double rand = Math.random();
 			double rate = -1/disposalDistrRate;
-			double logged = Math.log(rand); // log e instead becuase ln in lecture slides!!!!
+			double logged = Math.log(rand);
 			double result = rate*logged;
 			erlangk += result;
 		}
-		double convertToSec = erlangk*60*60;
+		double convertToSec = erlangk*60*60; // conversion from hour to second
 		int finalresult = (int) Math.round(convertToSec);
 		return finalresult;
 	}

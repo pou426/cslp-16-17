@@ -1,15 +1,23 @@
 package cslp;
 
+/**
+ * Bag Class
+ * 
+ * @author home
+ *
+ */
 public class Bag {
 
-	private static float bagVolume; // cm^3
+	private static float bagVolume;
 	private static float bagWeightMin;
 	private static float bagWeightMax;
 	
 	private float weight; // instance variable
 	
 	public Bag() {
-		this.weight = (float) (Math.random() * (bagWeightMax - bagWeightMin) + bagWeightMin);
+		float w =  (float) (Math.random() * (bagWeightMax - bagWeightMin) + bagWeightMin);
+		this.weight = w;
+		//this.weight = (float) (Math.round(w*100.0)/100.0);
 	}
 	
 	public float getWeight() {
