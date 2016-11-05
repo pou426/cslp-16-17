@@ -135,5 +135,6 @@ The aspects tested by the input script is specified on the top of the file.
 	input6.txt 		| 		identify experiment keywords
 	input7.txt 		|		checks number of experiment inputs
 	input8.txt 		|		checks the max. number of bins
+	input9.txt 		| 		checks if input exceeds maximum values
 
 
