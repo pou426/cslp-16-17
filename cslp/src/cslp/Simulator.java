@@ -664,6 +664,9 @@ public class Simulator {
 		}
 	}
 	
+	/**
+	 * method to print all parameter values in human readable format
+	 */
 	public void printAllInputs() {
 		System.out.println("lorryVolume = "+lorryVolume);
 		System.out.println("lorryMaxLoad = "+lorryMaxLoad);
@@ -728,16 +731,15 @@ public class Simulator {
 			// at the moment, only one set of parameters will be run
 			// because no implementation for experiments yet
 			// run experiments
-			System.out.println("This input script contains experiment keyword and will be run differently.");
-			System.out.println("No support for experimentation yet.");
-			System.out.println("Run program with only one input per parameter.");
+			// System.out.println("This input script contains experiment keyword and will be run differently.");
+			// System.out.println("No support for experimentation yet.");
+			// System.out.println("Run program with only one input per parameter.");
 			if (disposalDistrRateExp.size() > 0) {
 				disposalDistrRate = disposalDistrRateExp.get(0);
 			}
 			if (disposalDistrShapeExp.size() > 0) {
 				disposalDistrShape = disposalDistrShapeExp.get(0);
 			}
-			//System.out.println("Simulation starts:");
 
 			// set attributes again for experiments
 			Random.setDisposalDistrRate(disposalDistrRate);
@@ -751,7 +753,6 @@ public class Simulator {
 			}
 			doAllEvents();	// execute all events from priority queue
 		} else {
-			// System.out.println("Simulation starts:");
 			for (ServiceArea sa : serviceAreas) {	// generate an initial disposal event for each bin
 				for (Bin bin : sa.getBins()) {
 					DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
@@ -767,7 +768,7 @@ public class Simulator {
 	 */
 	public void statsAnalysis() {
 		//System.out.println("Simulation finishes. Statisitic Analysis starts:");
-		System.out.println("Warning: No implementation yet for statistical analysis.");
+		// System.out.println("Warning: No implementation yet for statistical analysis.");
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
@@ -776,7 +777,7 @@ public class Simulator {
 		
 		citySimulator.parseInputs(file_path);	// parse inputs
 		
-		citySimulator.printAllInputs();
+		// citySimulator.printAllInputs();
 
 		citySimulator.validation();		// check that all inputs exist
 
