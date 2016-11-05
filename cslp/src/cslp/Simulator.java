@@ -66,7 +66,7 @@ public class Simulator {
 	         return true;  
 	      } catch (NumberFormatException e) {  
 	         return false;  
-	      }  
+	      } 
 	}
 	private boolean tryParseShort(String value) {  
 	     try {  
@@ -437,7 +437,7 @@ public class Simulator {
 										isExperiment = true;
 									}
 									disposalDistrRateFound = true;
-									if (disposalDistrRateExp.size()==1) 	System.out.println("Only one experimentation input for 'disposalDistrRate'.");	// continue as experiment
+									if (disposalDistrRateExp.size()==1) 	System.out.println("Warning: Only one experimentation input for 'disposalDistrRate'.");	// continue as experiment
 								}
 							} else {	// not experimentation
 								if (tokensLen > 2)				System.out.println("Warning: too many inputs for 'disposalDistrRate' parameter");
@@ -471,7 +471,7 @@ public class Simulator {
 										isExperiment = true;
 									}
 									disposalDistrShapeFound = true;
-									if (disposalDistrShapeExp.size()==1) 	System.out.println("Only one experimentation input for 'disposalDistrShape'.");	// continue as experiment
+									if (disposalDistrShapeExp.size()==1) 	System.out.println("Warning: Only one experimentation input for 'disposalDistrShape'.");	// continue as experiment
 								}
 							} else {	// not experimentation
 								if (tokensLen > 2)				System.out.println("Warning: too many inputs for 'disposalDistrShape' parameter");
@@ -633,7 +633,7 @@ public class Simulator {
 		if (!warmUpTimeFound) {
 			System.out.println("Error: Missing parameter 'warmUpTime'."); isMissing = true;
 		}
-		if (isMissing) { // terminates program by throwing an exception
+		if (isMissing) { 	// terminates program by throwing an exception
 			throw new InvalidInputFileException("Error: Missing one or more parameters.");
 		} else {	// check if parameters make sense
 			if (stopTime < warmUpTime) {
@@ -688,9 +688,8 @@ public class Simulator {
 		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
 	}
 	
-	
 	// Simulator implementation
-	PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // for storing upcoming events
+	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // for storing upcoming events
 	int time;	// current simulation time
 	int now() {
 		return time;
@@ -698,16 +697,6 @@ public class Simulator {
 	public void insert(AbstractEvent e) {	// insert event into queue
 		this.events.add(e);
 	}
-	/**
-	 * extracts all events from 'events' priority queue and execute them
-	 */
-	public void doAllEvents() {		// extracts all events from 'events' queue and execute them
-		AbstractEvent e;
-        while ((e = (AbstractEvent) events.poll()) != null) {
-            time = e.getTime();
-            e.execute(this);
-        }
-    }
 	/** 
 	 * assign a lorry to each service areas
 	 * create bins in each service areas
@@ -719,6 +708,16 @@ public class Simulator {
 		}
 	}
 	
+	/**
+	 * extracts all events from 'events' priority queue and execute them
+	 */
+	public void doAllEvents() {		// extracts all events from 'events' queue and execute them
+		AbstractEvent e;
+        while ((e = (AbstractEvent) events.poll()) != null) {
+            time = e.getTime();
+            e.execute(this);
+        }
+    }	
 	
 	/**
 	 * Starts simulator
