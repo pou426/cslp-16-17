@@ -12,12 +12,12 @@ public class ServiceArea {
 	private float serviceFreq; // eg. serviceFreq 0.0625 means 0.0625 trips per hour
 	private float thresholdVal;
 	private int noBins;
-	private short[][] roadsLayout = null; 
+	private byte[][] roadsLayout = null; 
 	private Bin[] bins = new Bin[250]; // in reality the number of bins should be < 250
 	private Lorry lorry; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
-			float thresholdVal, int noBins, short[][] roadsLayout) {
+			float thresholdVal, int noBins, byte[][] roadsLayout) {
 		this.areaIdx = areaIdx;
 		this.serviceFreq = serviceFreq;
 		this.thresholdVal = thresholdVal;
