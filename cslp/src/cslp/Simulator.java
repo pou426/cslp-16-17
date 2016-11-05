@@ -60,7 +60,21 @@ public class Simulator {
 	 * Returns boolean for the program to handle
 	 * methods are called whenever the input parameter is supposed to be an int or short or float
 	 */
-	private boolean tryParseInt(String value) {		// optimize this
+	private boolean tryParseByte(String value) {
+		try {
+			Byte.parseByte(value);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	private boolean tryParseInt(String value) {		
+		// optimize this into one for all int/float/short
+		// and check for maximum value and non negative and zero value
+		// pass int/float/short and the name of parameter as value?! 
+		// print error message and exit program?! 
+		// pass a boolean for can be negative values??? like roadsLayout matrix?!
+		// use uint8 uint16 int8..????? 
 	     try {  
 	         Integer.parseInt(value);  
 	         return true;  
@@ -121,6 +135,7 @@ public class Simulator {
 								System.out.println("Warning: Input for 'noAreas' parameter is 0.");
 								serviceAreasFound = true;
 							}
+							if (noAreas > 255)		throw new InvalidInputFileException("Error: 'noAreas' input exceeds maximum value 255.");
 							noAreasFound = true;
 							
 							while ((!serviceAreasFound) && (line = br.readLine()) != null) {	// this block looks for service area specifications
@@ -140,6 +155,7 @@ public class Simulator {
 										if (!canParse)			throw new InvalidInputFileException("Error: 'areaIdx' input type mismatch at line = "+line);
 										short areaIdx = Short.parseShort(areaTokens[1]);
 										if (areaIdx < 0)	throw new InvalidInputFileException("Error: 'areaIdx' cannot be negative.");
+	                                    if (areaIdx > 255)	throw new InvalidInputFileException("Error: 'areaIdx' input exceeds maximum value 255.");
 	                                    
 										canParse = tryParseFloat(areaTokens[3]);	// serviceFreq
 										if (!canParse)			throw new InvalidInputFileException("Error: 'serviceFreq' input type mismatch at line = "+line);
@@ -158,11 +174,11 @@ public class Simulator {
 	                                    if (!canParse)			throw new InvalidInputFileException("Error: 'noBins' input type mismatch at line = "+line);
 	                                    int noBins = Integer.parseInt(areaTokens[7]);
 	                                    if (noBins < 0)			throw new InvalidInputFileException("Error: 'noBins' cannot be negative.");
-	                                    if (noBins > 65535) 	throw new InvalidInputFileException("Error: 'noBins' exceeds maximum 65,535.");
+	                                    if (noBins > 65535) 	throw new InvalidInputFileException("Error: 'noBins' exceeds maximum value 65,535.");
 	                                    if (noBins == 0)		System.out.println("Warning: Input for 'noBins' parameter is 0 for areaIdx = "+areaIdx);
 	                                    
 	                                    int m = noBins + 1; 
-	                                    short[][] roadsLayout = new short[m][m];
+	                                    byte[][] roadsLayout = new byte[m][m];
 	                                    boolean areaFound = false;
 	                                    
 	                                    while ((!areaFound) && (line = br.readLine()) != null) {	// this block looks for roadsLayout matrix
@@ -183,9 +199,10 @@ public class Simulator {
 	                                    				} else {
 	                                    					int index = 0;
 		                                                    for (int col = 0; col < m; col++) {
-		                                                    	canParse = tryParseShort(matrixTokens[index]);
+		                                                    	canParse = tryParseByte(matrixTokens[index]);
 		                                                    	if (!canParse)		throw new InvalidInputFileException("Error: Element type mismatch in roadsLayout matrix for areaIdx = "+areaIdx);
-		                                                        roadsLayout[count][col] = Short.parseShort(matrixTokens[index]);
+		                                                        byte element = Byte.parseByte(matrixTokens[index]);
+		                                                    	roadsLayout[count][col] = element;
 		                                                        index++;
 		                                                    }
 		                                                    count++;
@@ -254,6 +271,7 @@ public class Simulator {
 											System.out.println("Warning: Input for 'noAreas' parameter is 0.");
 											serviceAreasFound = true;
 										}
+										if (noAreas > 255)	throw new InvalidInputFileException("Error: 'noAreas' input exceeds maximum value 255.");
 										noAreasFound = true;
 									}
 								}
@@ -276,6 +294,7 @@ public class Simulator {
 										if (!canParse)		throw new InvalidInputFileException("Error: 'areaIdx' input type mismatch at line = "+line);
 										short areaIdx = Short.parseShort(areaTokens[1]);
 										if (areaIdx < 0)	throw new InvalidInputFileException("Error: 'areaIdx' cannot be negative.");
+										if (areaIdx > 255) 	throw new InvalidInputFileException("Error: 'areaIdx' input exceeds maximum value 255.");
 										
 										canParse = tryParseFloat(areaTokens[3]);	// serviceFreq
 										if (!canParse)			throw new InvalidInputFileException("Error: 'serviceFreq' input type mismatch at line = "+line);
@@ -294,11 +313,11 @@ public class Simulator {
 										if (!canParse)			throw new InvalidInputFileException("Error: noBins input type mismatch at line = "+line);
 	                                    int noBins = Integer.parseInt(areaTokens[7]);
 	                                    if (noBins < 0)			throw new InvalidInputFileException("Error: noBins cannot be negative.");
-	                                    if (noBins > 65535) 	throw new InvalidInputFileException("Error: noBins exceeds maximum 65,535.");
+	                                    if (noBins > 65535) 	throw new InvalidInputFileException("Error: noBins exceeds maximum value 65,535.");
 	                                    if (noBins == 0) 		System.out.println("Warning: 'noBins' is 0 for areaIdx = "+areaIdx);
 	                                    
 	                                    int m = noBins + 1; 
-	                                    short[][] roadsLayout = new short[m][m];
+	                                    byte[][] roadsLayout = new byte[m][m];
 	                                    boolean areaFound = false;
 
 	                                    while ((!areaFound) && (line = br.readLine()) != null) {
@@ -319,9 +338,9 @@ public class Simulator {
 	                                    				} else {
 	                                    					int index = 0;
 		                                                    for (int col = 0; col < m; col++) {
-		                                                    	canParse = tryParseShort(matrixTokens[index]);
+		                                                    	canParse = tryParseByte(matrixTokens[index]);
 		                                                    	if (!canParse)		throw new InvalidInputFileException("Element type mismatch in roadsLayout matrix for areaIdx = "+ areaIdx);
-		                                                        roadsLayout[count][col] = Short.parseShort(matrixTokens[index]);                                                 
+		                                                        roadsLayout[count][col] = Byte.parseByte(matrixTokens[index]);                                                 
 		                                                        index++;
 		                                                    }
 		                                                    count++;
@@ -365,6 +384,7 @@ public class Simulator {
 							lorryVolume = Short.parseShort(tokens[1]);
 							if (lorryVolume < 0)	throw new InvalidInputFileException("Error: 'lorryVolume' parameter cannot be negative.");
 							if (lorryVolume == 0)	System.out.println("Warning: 'lorryVolume' parameter is zero.");
+							if (lorryVolume > 255)	throw new InvalidInputFileException("Error: 'lorryVolume' input exceeds maximum value 255 at line = "+line);
 							lorryVolumeFound = true;
 						}  
 						break;
@@ -375,12 +395,13 @@ public class Simulator {
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for 'lorryMaxLoad' parameter.");
+							if (tokensLen > 2)			System.out.println("Warning: too many inputs for 'lorryMaxLoad' parameter.");
 							canParse = tryParseInt(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: 'lorryMaxLoad' input type mismatch at line = "+line);
+							if (!canParse)				throw new InvalidInputFileException("Error: 'lorryMaxLoad' input type mismatch at line = "+line);
 							lorryMaxLoad = Integer.parseInt(tokens[1]);
-							if (lorryMaxLoad < 0)	throw new InvalidInputFileException("Error: 'lorryMaxLoad' cannot be negative.");
-							if (lorryMaxLoad == 0)	System.out.println("Warning: 'lorryMaxLoad' parameter is zero.");
+							if (lorryMaxLoad < 0)		throw new InvalidInputFileException("Error: 'lorryMaxLoad' cannot be negative.");
+							if (lorryMaxLoad == 0)		System.out.println("Warning: 'lorryMaxLoad' parameter is zero.");
+							if (lorryVolume > 65535)	throw new InvalidInputFileException("Error: 'lorryMaxLoad' input exceeds maximum value 65,535 at line = "+line);
 							lorryMaxLoadFound = true;
 						}
 						break;
@@ -397,6 +418,7 @@ public class Simulator {
 							binServiceTime = Integer.parseInt(tokens[1]);
 							if (binServiceTime < 0)		throw new InvalidInputFileException("Error: 'binServiceTime' parameter cannot be negative.");
 							if (binServiceTime == 0)	System.out.println("Warning: 'binServiceTime' parameter is zero.");
+							if (binServiceTime > 65535)	throw new InvalidInputFileException("Error: 'binServiceTime' input exceeds maximum value 65,535 at line = "+line);
 							binServiceTimeFound = true;
 						}
 						break;
@@ -467,6 +489,7 @@ public class Simulator {
 										short dds = Short.parseShort(tokens[i]);
 										if (dds < 0)			throw new InvalidInputFileException("Error: 'disposalDistrShape' parameter cannot be negative.");
 										if (dds == 0)			System.out.println("Warning: The 'disposalDistrShape' parameter is zero.");
+										if (dds > 255)	throw new InvalidInputFileException("Error: 'disposalDistrShape' input exceeds maximum value 255 at line = "+line);
 										disposalDistrShapeExp.add(dds);
 										isExperiment = true;
 									}
@@ -480,6 +503,7 @@ public class Simulator {
 								disposalDistrShape = Short.parseShort(tokens[1]);
 								if (disposalDistrShape < 0)		throw new InvalidInputFileException("Error: 'disposalDistrShape' parameter cannot be negative.");
 								if (disposalDistrShape == 0)	System.out.println("Warning: 'disposalDistrShape' parameter is zero.");
+								if (disposalDistrShape > 255)	throw new InvalidInputFileException("Error: 'disposalDistrShape' input exceeds maximum value 255 at line = "+line);
 								disposalDistrShapeFound = true;
 							}
 						}  
@@ -640,7 +664,7 @@ public class Simulator {
 				System.out.println("Warning: 'stopTime' parameter smaller than 'warmUpTime'. The simulation will continue.");
 			}
 			if (bagWeightMin > bagWeightMax) {
-				System.out.println("Warning: 'bagWeightMax' parameter smaller than 'bagWeightMin'. The simulation will continue.");
+				throw new InvalidInputFileException("Error: 'bagWeightMin' parameter greater than 'bagWeightMax'.");
 			}
 			if (bagWeightMin == bagWeightMax) {
 				System.out.println("Warning: 'bagWeightMax' parameter equals to 'bagWeightMin'. The simulation will continue.");
@@ -657,8 +681,8 @@ public class Simulator {
 			for (ServiceArea sa : serviceAreas) {
 				float serviceFreq = sa.getServiceFreq();
 				short areaIdx = sa.getAreaIdx();
-				if (disposalDistrRate > serviceFreq) {	// TODO: check piazza.. is this correct?
-					System.out.println("Warning: 'disposalDistrRate' parameter greater than 'serviceFreq' for service area with areaIdx = "+areaIdx);
+				if (disposalDistrRate < serviceFreq) {	// TODO: check piazza.. is this correct?
+					System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx);
 				}
 			}
 		}
@@ -776,7 +800,6 @@ public class Simulator {
 		Simulator citySimulator = new Simulator();
 		
 		citySimulator.parseInputs(file_path);	// parse inputs
-		
 		// citySimulator.printAllInputs();
 
 		citySimulator.validation();		// check that all inputs exist
