@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 
 /**
  * Simulator class performs the following:
- * 1. input parsing
+ * 1. input parsing (identify experiment keywords)
  * 2. input validation
  * 3. initialize all parameters and create a Simulator instance
  * 4. run simulator
@@ -18,7 +18,7 @@ import java.util.PriorityQueue;
  *
  */
 public class Simulator {
-	
+		
 	// input parameters
 	private static short lorryVolume;
 	private static int lorryMaxLoad;
@@ -55,12 +55,12 @@ public class Simulator {
 	private static boolean stopTimeFound = false;
 	private static boolean warmUpTimeFound = false;
 
-	/* 
+	/** 
 	 * methods to catch exceptions when parsing int/short/float strings from file
 	 * Returns boolean for the program to handle
 	 * methods are called whenever the input parameter is supposed to be an int or short or float
 	 */
-	private boolean tryParseInt(String value) {  
+	private boolean tryParseInt(String value) {		// optimize this
 	     try {  
 	         Integer.parseInt(value);  
 	         return true;  
@@ -105,17 +105,22 @@ public class Simulator {
 					boolean canParse;		// boolean for int/short/float inputs
 					switch (tokens[0]) {	// check the first word in each line for input parameter
 					case "noAreas":
-						if (noAreasFound) {
-							System.out.println("Warning: noAreas variable has already been found. Overwriting the previous input.");
-						} else if (tokensLen < 2) {
+						if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: Too many inputs for noAreas variable.");
+							if (noAreasFound)		System.out.println("Warning: 'noAreas' parameter has already been found. Overwritting the previous input.");
+							noAreasFound = false;	// reset relevant parameters
+							serviceAreasFound = false;
+							serviceAreas.clear();
+							if (tokensLen > 2)		System.out.println("Warning: Too many inputs for 'noAreas' parameter.");
 							canParse = tryParseShort(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: noAreas input type mismatch at line = "+line);
+							if (!canParse)			throw new InvalidInputFileException("Error: 'noAreas' input type mismatch at line = "+line);
 							noAreas = Short.parseShort(tokens[1]);
-							if (noAreas < 0)		throw new InvalidInputFileException("Error: noAreas cannot be negative.");
-							if (noAreas == 0)		System.out.println("Warning: The noAreas variable is zero.");
+							if (noAreas < 0)		throw new InvalidInputFileException("Error: 'noAreas' cannot be negative.");
+							if (noAreas == 0) {
+								System.out.println("Warning: Input for 'noAreas' parameter is 0.");
+								serviceAreasFound = true;
+							}
 							noAreasFound = true;
 							
 							while ((!serviceAreasFound) && (line = br.readLine()) != null) {	// this block looks for service area specifications
@@ -123,39 +128,44 @@ public class Simulator {
 									String[] areaTokens = line.split("\\s+");
 									if (!areaTokens[0].equals("areaIdx")) {
 										throw new InvalidInputFileException("\nError: Invalid format."
-												+ "\nThe line following noAreas variable should be in the format:"
+												+ "\nThe line following noAreas parameter should be in the format:"
 												+ "\nareaIdx <uint8_t> serviceFreq <float> thresholdVal <float> noBins <uint16_t>");
-									} else if (!((areaTokens.length == 8) && (areaTokens[2].equals("serviceFreq")) &&
+									} else if (!((areaTokens.length >= 8) && (areaTokens[2].equals("serviceFreq")) &&
 	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
 										throw new InvalidInputFileException("Error: Invalid format for service area description line: " + line);
 									} else {
-										canParse = tryParseShort(areaTokens[1]);
-										if (!canParse)			throw new InvalidInputFileException("Error: areaIdx input type mismatch at line = "+line);
+										if (areaTokens.length > 8)		System.out.println("Warning: too many inputs in this line: " + line);
+										
+										canParse = tryParseShort(areaTokens[1]);	// areaIdx
+										if (!canParse)			throw new InvalidInputFileException("Error: 'areaIdx' input type mismatch at line = "+line);
 										short areaIdx = Short.parseShort(areaTokens[1]);
-										if (areaIdx < 0)	throw new InvalidInputFileException("Error: areaIdx cannot be negative.");
+										if (areaIdx < 0)	throw new InvalidInputFileException("Error: 'areaIdx' cannot be negative.");
 	                                    
-										canParse = tryParseFloat(areaTokens[3]);
-										if (!canParse)			throw new InvalidInputFileException("Error: serviceFreq input type mismatch at line = "+line);
+										canParse = tryParseFloat(areaTokens[3]);	// serviceFreq
+										if (!canParse)			throw new InvalidInputFileException("Error: 'serviceFreq' input type mismatch at line = "+line);
 										float serviceFreq = Float.parseFloat(areaTokens[3]);
-	                                    if (serviceFreq < 0)	throw new InvalidInputFileException("Error: serviceFreq cannot be negative.");
+	                                    if (serviceFreq < 0)	throw new InvalidInputFileException("Error: 'serviceFreq' cannot be negative.");
+	                                    if (serviceFreq == 0)	System.out.println("Warning: Input for 'serviceFreq' is 0 for areaIdx = "+areaIdx);
 	                                    
-	                                    canParse = tryParseFloat(areaTokens[5]);
-	                                    if (!canParse)			throw new InvalidInputFileException("Error: thresholdVal input type mismatch at line = "+line);
+	                                    canParse = tryParseFloat(areaTokens[5]);	// thresholdVal
+	                                    if (!canParse)			throw new InvalidInputFileException("Error: 'thresholdVal' input type mismatch at line = "+line);
 	                                    float thresholdVal = Float.parseFloat(areaTokens[5]);
-	                                    if (thresholdVal < 0)	throw new InvalidInputFileException("Error: thresholdVal cannot be negative.");
+	                                    if (thresholdVal < 0)	throw new InvalidInputFileException("Error: 'thresholdVal' cannot be negative.");
+	                                    if (thresholdVal == 0)	System.out.println("Warning: Input for 'thresholdVal' is 0 for areaIdx = "+areaIdx);
+	                                    if (thresholdVal >= 1)	System.out.println("Warning: 'thresholdVal' is greater than or equal to 1 for areaIdx = "+areaIdx);
 	                                    
-	                                    canParse = tryParseInt(areaTokens[7]);
-	                                    if (!canParse)			throw new InvalidInputFileException("Error: noBins input type mismatch at line = "+line);
+	                                    canParse = tryParseInt(areaTokens[7]);		// noBins
+	                                    if (!canParse)			throw new InvalidInputFileException("Error: 'noBins' input type mismatch at line = "+line);
 	                                    int noBins = Integer.parseInt(areaTokens[7]);
-	                                    if (noBins < 0)	throw new InvalidInputFileException("Error: noBins cannot be negative.");
-	                                    if (noBins > 65535) {
-	                                    	throw new InvalidInputFileException("Error: noBins exceeds maximum 65,535.");
-	                                    }
+	                                    if (noBins < 0)			throw new InvalidInputFileException("Error: 'noBins' cannot be negative.");
+	                                    if (noBins > 65535) 	throw new InvalidInputFileException("Error: 'noBins' exceeds maximum 65,535.");
+	                                    if (noBins == 0)		System.out.println("Warning: Input for 'noBins' parameter is 0 for areaIdx = "+areaIdx);
+	                                    
 	                                    int m = noBins + 1; 
-	                                    short[][] roadLayout = new short[m][m];
+	                                    short[][] roadsLayout = new short[m][m];
 	                                    boolean areaFound = false;
 	                                    
-	                                    while ((!areaFound) && (line = br.readLine()) != null) {	// this block looks for roadlayout matrix
+	                                    while ((!areaFound) && (line = br.readLine()) != null) {	// this block looks for roadsLayout matrix
 	                                    	if (!(line.startsWith("#") || line.isEmpty())) {
 	                                    		String[] layoutTokens = line.split("\\s+");
 	                                    		if (!(layoutTokens[0].equals("roadsLayout"))) {
@@ -169,13 +179,13 @@ public class Simulator {
 	                                    			if (!((matrixTokens[0].equals("#")) || line.isEmpty())) {
 	                                    				if (matrixTokens.length != m) {
 		                                                    throw new InvalidInputFileException("Error: Incorrect number of row "
-		                                                    		+ "elements in roadlayout for areaIdx = " + areaIdx);
+		                                                    		+ "elements in roadsLayout for areaIdx = " + areaIdx);
 	                                    				} else {
 	                                    					int index = 0;
 		                                                    for (int col = 0; col < m; col++) {
 		                                                    	canParse = tryParseShort(matrixTokens[index]);
-		                                                    	if (!canParse)		throw new InvalidInputFileException("Element type mismatch in roadLayout matrix for areaIdx = "+ areaIdx);
-		                                                        roadLayout[count][col] = Short.parseShort(matrixTokens[index]);                                                 
+		                                                    	if (!canParse)		throw new InvalidInputFileException("Error: Element type mismatch in roadsLayout matrix for areaIdx = "+areaIdx);
+		                                                        roadsLayout[count][col] = Short.parseShort(matrixTokens[index]);
 		                                                        index++;
 		                                                    }
 		                                                    count++;
@@ -184,20 +194,21 @@ public class Simulator {
 	                                    		}
 	                                            
 	                                            if (count == m) {	// check that sufficient area information has been obtained
+	                                            	boolean isDiagonallyZero = true;
 	                                                for (int d = 0; d < m; d++) {	// check the matrix is diagonally zeros
-	                                                    if (roadLayout[d][d] != 0) {
-	                                                        throw new InvalidInputFileException("Error: Roadlayout matrix not diagonally zero "
-	                                                        		+ "for areaIdx = " + areaIdx);
+	                                                    if (roadsLayout[d][d] != 0) {
+	                                                    	isDiagonallyZero = false;
 	                                                    }
 	                                                }
+	                                                if (!isDiagonallyZero)		System.out.println("Warning: 'roadsLayout' matrix is not diagonally 0 for areaIdx = "+areaIdx);
 	                                                areaFound = true;
 	                                            } else {
 	                                                throw new InvalidInputFileException("Error: Incorrect no. of columns for the "
-	                                                		+ "roadLayout matrix for areaIdx = " + areaIdx);
+	                                                		+ "roadsLayout matrix for areaIdx = " + areaIdx);
 	                                            }
 	                                    	}
 	                                    }
-	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadLayout);
+	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadsLayout);
 	                                    serviceAreas.add(curr_sa);	// append new service area to list of service areas 
 	                                    if (serviceAreas.size() == noAreas)		serviceAreasFound = true;	//check whether sufficient no. of service areas have been found
 									}
@@ -207,24 +218,24 @@ public class Simulator {
 						break;
 						
 					case "serviceFreq":		// experimentation
-						if (noAreasFound) {
-							System.out.println("Warning: Multiple inputs for noAreas variable. "
-									+ "Previously stored area information will be overwritten.");
-						} else if (!(tokens[1].equals("experiment"))) {
-							throw new InvalidInputFileException("Error: Invalid format: missing keyword \"experiment\" in this line: " + line);
-						} else if (tokensLen < 3) {
-							// if missing input for experimentation
-							// continue to parse the files
-							System.out.println("Warning: Missing input in this line: " + line);
+						if (!(tokens[1].equals("experiment"))) {
+							throw new InvalidInputFileException("Error: Invalid format: missing keyword 'experiment' in this line: " + line);
+						} if (tokensLen == 2) {
+							System.out.println("Warning: Missing input in this line: "+line+"\nThis line will be disregarded.");
 						} else {
-							if (tokensLen == 3)		System.out.println("Warning: Only one input has been found for serviceFreq experiment.");
+							if (noAreasFound)	System.out.println("Warning: Multiple inputs for 'noAreas' parameter. Previously stored area information will be overwritten.");
+							noAreasFound = false;		// reset relevant parameters
+							serviceAreasFound = false;
+							serviceAreas.clear();
 							for (int i = 2; i < tokensLen; i++) {
 								canParse = tryParseFloat(tokens[i]);
-								if (!canParse)		throw new InvalidInputFileException("Error: serviceFreq input type mismatch at line = "+line);
+								if (!canParse)		throw new InvalidInputFileException("Error: 'serviceFreq' input type mismatch at line = "+line);
 								float serviceFreq = Float.parseFloat(tokens[i]);
-								if (serviceFreq < 0)	throw new InvalidInputFileException("Error: serviceFreq cannot be negative.");
+								if (serviceFreq < 0)	throw new InvalidInputFileException("Error: 'serviceFreq' cannot be negative.");
+								if (serviceFreq == 0)	System.out.println("Warning: Input for 'serviceFreq' experimentation parameter equals to 0.");
 								serviceFreqExp.add(serviceFreq);
 							}
+							if (serviceFreqExp.size() == 1) 	System.out.println("Warning: Only one experimentation input for 'serviceFreq'.");
 							isExperiment = true;
 							while ((!noAreasFound) && ((line = br.readLine()) != null)) {
 								if (!(line.startsWith("#") || line.isEmpty())) {
@@ -232,14 +243,17 @@ public class Simulator {
 									if (!(noAreasTokens[0].equals("noAreas"))) {
 										// TODO write this better
 										throw new InvalidInputFileException("\nError: Invalid format."
-												+ "\nThe noArea input should be in the line following serviceFreq experiment.");
+												+ "\nThe noArea input should be in the line following 'serviceFreq experiment'.");
 									} else {
 										if (noAreasTokens.length > 2) 	System.out.println("Warning: too many inputs for noAreas.");
 										canParse = tryParseShort(noAreasTokens[1]);
-										if (!canParse)		throw new InvalidInputFileException("Error: noAreas input type mismatch at line = "+line);
+										if (!canParse)		throw new InvalidInputFileException("Error: 'noAreas' input type mismatch at line = "+line);
 										noAreas = Short.parseShort(noAreasTokens[1]);
-										if (noAreas == 0)	System.out.println("Warning: no input for noAreas variable.");
-										if (noAreas < 0)	throw new InvalidInputFileException("Error: noAreas cannot be negative.");
+										if (noAreas < 0)	throw new InvalidInputFileException("Error: 'noAreas' cannot be negative.");
+										if (noAreas == 0) {
+											System.out.println("Warning: Input for 'noAreas' parameter is 0.");
+											serviceAreasFound = true;
+										}
 										noAreasFound = true;
 									}
 								}
@@ -250,36 +264,41 @@ public class Simulator {
 									String[] areaTokens = line.split("\\s+");
 									if (!areaTokens[0].equals("areaIdx")) {
 										throw new InvalidInputFileException("\nError: Invalid format."
-												+ "\nThe line following noAreas variable should be in the format:"
+												+ "\nThe line following noAreas parameter should be in the format:"
 												+ "\nareaIdx <uint8_t> serviceFreq <float> thresholdVal <float> noBins <uint16_t>");
-									} else if (!((areaTokens.length == 8) && (areaTokens[2].equals("serviceFreq")) &&
+									} else if (!((areaTokens.length >= 8) && (areaTokens[2].equals("serviceFreq")) &&
 	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
 										throw new InvalidInputFileException("Invalid format for service area description line: " + line);
 									} else {
-										canParse = tryParseShort(areaTokens[1]);
-										if (!canParse)		throw new InvalidInputFileException("Error: areaIdx input type mismatch at line = "+line);
-										short areaIdx = Short.parseShort(areaTokens[1]);
-										if (areaIdx < 0)	throw new InvalidInputFileException("Error: areaIdx cannot be negative.");
+										if (areaTokens.length > 8)		System.out.println("Warning: too many inputs in this line: " + line);
 										
-										canParse = tryParseFloat(areaTokens[3]);
-										if (!canParse)		throw new InvalidInputFileException("Error: serviceFreq input type mismatch at line = "+line);
+										canParse = tryParseShort(areaTokens[1]);	// areaIdx
+										if (!canParse)		throw new InvalidInputFileException("Error: 'areaIdx' input type mismatch at line = "+line);
+										short areaIdx = Short.parseShort(areaTokens[1]);
+										if (areaIdx < 0)	throw new InvalidInputFileException("Error: 'areaIdx' cannot be negative.");
+										
+										canParse = tryParseFloat(areaTokens[3]);	// serviceFreq
+										if (!canParse)			throw new InvalidInputFileException("Error: 'serviceFreq' input type mismatch at line = "+line);
 										float serviceFreq = Float.parseFloat(areaTokens[3]);
-	                                    if (serviceFreq < 0)	throw new InvalidInputFileException("Error: serviceFreq cannot be negative.");
+	                                    if (serviceFreq < 0)	throw new InvalidInputFileException("Error: 'serviceFreq' cannot be negative.");
+	                                    if (serviceFreq == 0) 	System.out.println("Warning: 'serviceFreq' is 0 for areaIdx = "+areaIdx);
 	                                    
-										canParse = tryParseFloat(areaTokens[5]);
-										if (!canParse)		throw new InvalidInputFileException("Error: thresholdVal input type mismatch at line = "+line);
+										canParse = tryParseFloat(areaTokens[5]);	// thresholdVal
+										if (!canParse)			throw new InvalidInputFileException("Error: thresholdVal input type mismatch at line = "+line);
 	                                    float thresholdVal = Float.parseFloat(areaTokens[5]);
 	                                    if (thresholdVal < 0)	throw new InvalidInputFileException("Error: thresholdVal cannot be negative.");
-	                                   
-										canParse = tryParseInt(areaTokens[7]);
-										if (!canParse)		throw new InvalidInputFileException("Error: noBins input type mismatch at line = "+line);
+	                                    if (thresholdVal == 0)	System.out.println("Warning: 'thresholdVal' is 0 for areaIdx = "+areaIdx);
+	                                    if (thresholdVal >= 1)	System.out.println("Warning: 'thresholdVal' is greater than or qual to 1 for areaIdx = "+areaIdx);
+										
+	                                    canParse = tryParseInt(areaTokens[7]);		// noBins
+										if (!canParse)			throw new InvalidInputFileException("Error: noBins input type mismatch at line = "+line);
 	                                    int noBins = Integer.parseInt(areaTokens[7]);
-	                                    if (noBins < 0)	throw new InvalidInputFileException("Error: noBins cannot be negative.");
-	                                    if (noBins > 65535) {
-	                                    	throw new InvalidInputFileException("Error: noBins exceeds maximum 65,535.");
-	                                    }
+	                                    if (noBins < 0)			throw new InvalidInputFileException("Error: noBins cannot be negative.");
+	                                    if (noBins > 65535) 	throw new InvalidInputFileException("Error: noBins exceeds maximum 65,535.");
+	                                    if (noBins == 0) 		System.out.println("Warning: 'noBins' is 0 for areaIdx = "+areaIdx);
+	                                    
 	                                    int m = noBins + 1; 
-	                                    short[][] roadLayout = new short[m][m];
+	                                    short[][] roadsLayout = new short[m][m];
 	                                    boolean areaFound = false;
 
 	                                    while ((!areaFound) && (line = br.readLine()) != null) {
@@ -295,14 +314,14 @@ public class Simulator {
 	                                    			String[] matrixTokens = line.trim().split("\\s+");
 	                                    			if (!((matrixTokens[0].equals("#")) || line.isEmpty())) {
 	                                    				if (matrixTokens.length != m) {
-		                                                    throw new InvalidInputFileException("Incorrect number of row elements in roadlayout "
+		                                                    throw new InvalidInputFileException("Incorrect number of row elements in roadsLayout "
 		                                                    		+ "for areaIdx = " + areaIdx);
 	                                    				} else {
 	                                    					int index = 0;
 		                                                    for (int col = 0; col < m; col++) {
 		                                                    	canParse = tryParseShort(matrixTokens[index]);
-		                                                    	if (!canParse)		throw new InvalidInputFileException("Element type mismatch in roadLayout matrix for areaIdx = "+ areaIdx);
-		                                                        roadLayout[count][col] = Short.parseShort(matrixTokens[index]);                                                 
+		                                                    	if (!canParse)		throw new InvalidInputFileException("Element type mismatch in roadsLayout matrix for areaIdx = "+ areaIdx);
+		                                                        roadsLayout[count][col] = Short.parseShort(matrixTokens[index]);                                                 
 		                                                        index++;
 		                                                    }
 		                                                    count++;
@@ -311,121 +330,122 @@ public class Simulator {
 	                                    		}
 
 	                                            if (count == m) {	// check that valid and sufficient area information has been obtained 
-	        	                                    for (int d = 0; d < m; d++) {	// check the matrix is diagonally zeros
-	        	                                        if (roadLayout[d][d] != 0) {
-	        	                                            throw new InvalidInputFileException("Error: Roadlayout matrix not diagonally zero "
-	        	                                            		+ "for areaIdx = " + areaIdx);
+	        	                                    boolean isDiagonallyZero = true;
+	                                            	for (int d = 0; d < m; d++) {	// check the matrix is diagonally zeros
+	        	                                        if (roadsLayout[d][d] != 0) {
+	        	                                        	isDiagonallyZero = false;
 	        	                                        }
 	        	                                    }
+	                                            	if (!isDiagonallyZero)		System.out.println("Warning: 'roadsLayout' matrix is not diagonally zero for areaIdx = "+areaIdx);
 	                                                areaFound = true;
 	                                            } else {
-	                                                throw new InvalidInputFileException("Error: Incorrect no. of columns for the roadLayout matrix "
+	                                                throw new InvalidInputFileException("Error: Incorrect no. of columns for the 'roadsLayout' matrix "
 	                                                		+ "for areaIdx = " + areaIdx + ".");
 	                                            }
 	                                    	}
 	                                    }
-	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadLayout);
+	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadsLayout);
 	                                    serviceAreas.add(curr_sa);
 	                                    if (serviceAreas.size() == noAreas)		serviceAreasFound = true;
 									}
 								}
-								
 							}
 						}
 						break;
 						
 					case "lorryVolume":
 						if (lorryVolumeFound) {
-							System.out.println("Warning: lorryVolume variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'lorryVolume' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for lorryVolume variable.");
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs for 'lorryVolume' parameter.");
 							canParse = tryParseShort(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: lorryVolume input type mismatch at line = "+line);
+							if (!canParse)			throw new InvalidInputFileException("Error: 'lorryVolume' input type mismatch at line = "+line);
 							lorryVolume = Short.parseShort(tokens[1]);
-							if (lorryVolume < 0)	throw new InvalidInputFileException("Error: lorryVolume cannot be negative.");
-							if (lorryVolume == 0)	System.out.println("Warning: The lorryVolume variable is zero.");
+							if (lorryVolume < 0)	throw new InvalidInputFileException("Error: 'lorryVolume' parameter cannot be negative.");
+							if (lorryVolume == 0)	System.out.println("Warning: 'lorryVolume' parameter is zero.");
 							lorryVolumeFound = true;
 						}  
 						break;
 					
 					case "lorryMaxLoad":
 						if (lorryMaxLoadFound) {
-							System.out.println("Warning: lorryMaxLoad variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'lorryMaxLoad' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for lorryMaxLoad variable.");
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs for 'lorryMaxLoad' parameter.");
 							canParse = tryParseInt(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: lorryMaxLoad input type mismatch at line = "+line);
+							if (!canParse)			throw new InvalidInputFileException("Error: 'lorryMaxLoad' input type mismatch at line = "+line);
 							lorryMaxLoad = Integer.parseInt(tokens[1]);
-							if (lorryMaxLoad < 0)	throw new InvalidInputFileException("Error: lorryMaxLoad cannot be negative.");
-							if (lorryMaxLoad == 0)	System.out.println("Warning: The lorryMaxLoad variable is zero.");
+							if (lorryMaxLoad < 0)	throw new InvalidInputFileException("Error: 'lorryMaxLoad' cannot be negative.");
+							if (lorryMaxLoad == 0)	System.out.println("Warning: 'lorryMaxLoad' parameter is zero.");
 							lorryMaxLoadFound = true;
 						}
 						break;
 					
 					case "binServiceTime":
 						if (binServiceTimeFound) {
-							System.out.println("Warning: binServiceTime variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'binServiceTime' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for lorryMaxLoad variable.");
+							if (tokensLen > 2)			System.out.println("Warning: too many inputs for 'binServiceTime' parameter.");
 							canParse = tryParseInt(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: binServiceTime input type mismatch at line = "+line);
+							if (!canParse)				throw new InvalidInputFileException("Error: 'binServiceTime' input type mismatch at line = "+line);
 							binServiceTime = Integer.parseInt(tokens[1]);
-							if (binServiceTime < 0)		throw new InvalidInputFileException("Error: binServiceTime cannot be negative.");
-							if (binServiceTime == 0)	System.out.println("Warning: The binServiceTime variable is zero.");
+							if (binServiceTime < 0)		throw new InvalidInputFileException("Error: 'binServiceTime' parameter cannot be negative.");
+							if (binServiceTime == 0)	System.out.println("Warning: 'binServiceTime' parameter is zero.");
 							binServiceTimeFound = true;
 						}
 						break;
 	
 					case "binVolume":
 						if (binVolumeFound) {
-							System.out.println("Warning: binVolume variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'binVolume' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for binVolume variable");
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs for 'binVolume' parameter");
 							canParse = tryParseFloat(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: binVolume input type mismatch at line = "+line);
+							if (!canParse)			throw new InvalidInputFileException("Error: 'binVolume' input type mismatch at line = "+line);
 							binVolume = Float.parseFloat(tokens[1]);
-							if (binVolume < 0)		throw new InvalidInputFileException("Error: binVolume cannot be negative.");
-							if (binVolume == 0)		System.out.println("Warning: The binVolume variable is zero.");
+							if (binVolume < 0)		throw new InvalidInputFileException("Error: 'binVolume' cannot be negative.");
+							if (binVolume == 0)		System.out.println("Warning: 'binVolume' parameter is zero.");
 							binVolumeFound = true;	
 						}				
 						break;
 					
 					case "disposalDistrRate":
 						if (disposalDistrRateFound) {
-							System.out.println("Warning: disposalDistrRate variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'disposalDistrRate' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else if (tokensLen >= 2) {
 							if (tokens[1].equals("experiment")) {	// experimentation
-								if (tokensLen <= 3) {
-									System.out.println("Warning: Missing input in this line: " + line);
+								if (tokensLen == 2) {
+									System.out.println("Warning: Missing input in this line: "+line+"\nThis line will be disregarded.");
 								} else {
 									for (int i = 2; i < tokensLen; i++) {
 										canParse = tryParseFloat(tokens[i]);
-										if (!canParse)			throw new InvalidInputFileException("Error: disposalDistrRate input type mismatch at line = "+line);
+										if (!canParse)			throw new InvalidInputFileException("Error: 'disposalDistrRate' input type mismatch at line = "+line);
 										float ddr = Float.parseFloat(tokens[i]);
-										if (ddr < 0)	throw new InvalidInputFileException("Error: disposalDistrRate cannot be negative.");
-										if (ddr == 0)		System.out.println("Warning: The disposalDistrRate variable is zero.");
+										if (ddr < 0)			throw new InvalidInputFileException("Error: 'disposalDistrRate' parameter cannot be negative.");
+										if (ddr == 0)			System.out.println("Warning: 'disposalDistrRate' parameter is zero.");
 										disposalDistrRateExp.add(ddr);
 										isExperiment = true;
 									}
 									disposalDistrRateFound = true;
+									if (disposalDistrRateExp.size()==1) 	System.out.println("Only one experimentation input for 'disposalDistrRate'.");	// continue as experiment
 								}
 							} else {	// not experimentation
-								if (tokensLen > 2)		System.out.println("Warning: too many inputs for disposalDistrRate variable");
+								if (tokensLen > 2)				System.out.println("Warning: too many inputs for 'disposalDistrRate' parameter");
 								canParse = tryParseFloat(tokens[1]);
-								if (!canParse)			throw new InvalidInputFileException("Error: disposalDistrRate input type mismatch at line = "+line);
+								if (!canParse)					throw new InvalidInputFileException("Error: 'disposalDistrRate' input type mismatch at line = "+line);
 								disposalDistrRate = Float.parseFloat(tokens[1]);
-								if (disposalDistrRate < 0)		throw new InvalidInputFileException("Error: disposalDistrRate cannot be negative.");
-								if (disposalDistrRate == 0)		System.out.println("Warning: The disposalDistrRate variable is zero.");
+								if (disposalDistrRate < 0)		throw new InvalidInputFileException("Error: 'disposalDistrRate' parameter cannot be negative.");
+								if (disposalDistrRate == 0)		System.out.println("Warning: 'disposalDistrRate' parameter is zero.");
 								disposalDistrRateFound = true;
 							}
 						}
@@ -433,32 +453,33 @@ public class Simulator {
 					
 					case "disposalDistrShape":
 						if (disposalDistrShapeFound) {
-							System.out.println("Warning: disposalDistrShape variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'disposalDistrShape' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else if (tokensLen >= 2) {
 							if (tokens[1].equals("experiment")) {	// experimentation
-								if (tokensLen <= 3) {
-									System.out.println("Warning: Missing input in this line: " + line);
+								if (tokensLen == 2) {
+									System.out.println("Warning: Missing input in this line: "+line+"\nThis line will be disregarded.");
 								} else {
 									for (int i = 2; i < tokensLen; i++) {
 										canParse = tryParseShort(tokens[i]);
-										if (!canParse)			throw new InvalidInputFileException("Error: disposalDistrShape input type mismatch at line = "+line);
+										if (!canParse)			throw new InvalidInputFileException("Error: 'disposalDistrShape' input type mismatch at line = "+line);
 										short dds = Short.parseShort(tokens[i]);
-										if (dds < 0)	throw new InvalidInputFileException("Error: disposalDistrShape cannot be negative.");
-										if (dds == 0)		System.out.println("Warning: The disposalDistrShape variable is zero.");
+										if (dds < 0)			throw new InvalidInputFileException("Error: 'disposalDistrShape' parameter cannot be negative.");
+										if (dds == 0)			System.out.println("Warning: The 'disposalDistrShape' parameter is zero.");
 										disposalDistrShapeExp.add(dds);
 										isExperiment = true;
 									}
 									disposalDistrShapeFound = true;
+									if (disposalDistrShapeExp.size()==1) 	System.out.println("Only one experimentation input for 'disposalDistrShape'.");	// continue as experiment
 								}
 							} else {	// not experimentation
-								if (tokensLen > 2)		System.out.println("Warning: too many inputs for disposalDistrShape variable");
+								if (tokensLen > 2)				System.out.println("Warning: too many inputs for 'disposalDistrShape' parameter");
 								canParse = tryParseShort(tokens[1]);
-								if (!canParse)			throw new InvalidInputFileException("Error: disposalDistrShape input type mismatch at line = "+line);
+								if (!canParse)					throw new InvalidInputFileException("Error: 'disposalDistrShape' input type mismatch at line = "+line);
 								disposalDistrShape = Short.parseShort(tokens[1]);
-								if (disposalDistrShape < 0)		throw new InvalidInputFileException("Error: disposalDistrShape cannot be negative.");
-								if (disposalDistrShape == 0)		System.out.println("Warning: The disposalDistrShape variable is zero.");
+								if (disposalDistrShape < 0)		throw new InvalidInputFileException("Error: 'disposalDistrShape' parameter cannot be negative.");
+								if (disposalDistrShape == 0)	System.out.println("Warning: 'disposalDistrShape' parameter is zero.");
 								disposalDistrShapeFound = true;
 							}
 						}  
@@ -466,81 +487,81 @@ public class Simulator {
 					
 					case "bagVolume":
 						if (bagVolumeFound) {
-							System.out.println("Warning: bagVolume variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'bagVolume' parameter has already been found. Disregarding this input.");
 						}  else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for bagVolume variable");
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs for 'bagVolume' parameter");
 							canParse = tryParseFloat(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: bagVolume input type mismatch at line = "+line);
+							if (!canParse)			throw new InvalidInputFileException("Error: 'bagVolume' input type mismatch at line = "+line);
 							bagVolume = Float.parseFloat(tokens[1]);
-							if (bagVolume < 0)		throw new InvalidInputFileException("Error: bagVolume cannot be negative.");
-							if (bagVolume == 0)		System.out.println("Warning: The bagVolume variable is zero.");
+							if (bagVolume < 0)		throw new InvalidInputFileException("Error: 'bagVolume' parameter cannot be negative.");
+							if (bagVolume == 0)		System.out.println("Warning: 'bagVolume' parameter is zero.");
 							bagVolumeFound = true;
 						}  
 						break;
 					
 					case "bagWeightMin":
 						if (bagWeightMinFound) {
-							System.out.println("Warning: bagWeightMin variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'bagWeightMin' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for bagWeightMin variable");
+							if (tokensLen > 2)			System.out.println("Warning: too many inputs for 'bagWeightMin' parameter");
 							canParse = tryParseFloat(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: bagWeightMin input type mismatch at line = "+line);
+							if (!canParse)				throw new InvalidInputFileException("Error: 'bagWeightMin' input type mismatch at line = "+line);
 							bagWeightMin = Float.parseFloat(tokens[1]);
-							if (bagWeightMin < 0)		throw new InvalidInputFileException("Error: bagWeightMin cannot be negative.");
-							if (bagWeightMin == 0)		System.out.println("Warning: The bagWeightMin variable is zero.");
+							if (bagWeightMin < 0)		throw new InvalidInputFileException("Error: 'bagWeightMin' parameter cannot be negative.");
+							if (bagWeightMin == 0)		System.out.println("Warning: 'bagWeightMin' parameter is zero.");
 							bagWeightMinFound = true;
 						}  
 						break;
 					
 					case "bagWeightMax":
 						if (bagWeightMaxFound) {
-							System.out.println("Warning: bagWeightMax variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'bagWeightMax' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for bagWeightMax variable");
+							if (tokensLen > 2)			System.out.println("Warning: too many inputs for 'bagWeightMax' parameter");
 							canParse = tryParseFloat(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: bagWeightMax input type mismatch at line = "+line);
+							if (!canParse)				throw new InvalidInputFileException("Error: 'bagWeightMax' input type mismatch at line = "+line);
 							bagWeightMax = Float.parseFloat(tokens[1]);
-							if (bagWeightMax < 0)		throw new InvalidInputFileException("Error: bagWeightMax cannot be negative.");
-							if (bagWeightMax == 0)		System.out.println("Warning: The bagWeightMax variable is zero.");
+							if (bagWeightMax < 0)		throw new InvalidInputFileException("Error: 'bagWeightMax' parameter cannot be negative.");
+							if (bagWeightMax == 0)		System.out.println("Warning: 'bagWeightMax' parameter is zero.");
 							bagWeightMaxFound = true;
 						}  
 						break;
 					
 					case "stopTime":
 						if (stopTimeFound) {
-							System.out.println("Warning: stopTimeFound variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'stopTimeFound' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for stopTime variable");
+							if (tokensLen > 2)		System.out.println("Warning: too many inputs for 'stopTime' parameter");
 							canParse = tryParseFloat(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: stopTime input type mismatch at line = "+line);
+							if (!canParse)			throw new InvalidInputFileException("Error: 'stopTime' input type mismatch at line = "+line);
 							stopTime = Float.parseFloat(tokens[1]);
-							if (stopTime < 0)		throw new InvalidInputFileException("Error: stopTime cannot be negative.");
-							if (stopTime == 0)		System.out.println("Warning: The stopTime variable is zero.");
+							if (stopTime < 0)		throw new InvalidInputFileException("Error: 'stopTime' parameter cannot be negative.");
+							if (stopTime == 0)		System.out.println("Warning: 'stopTime' parameter is zero.");
 							stopTimeFound = true;
 						}  
 						break;
 					
 					case "warmUpTime":
 						if (warmUpTimeFound) {
-							System.out.println("Warning: warmUpTime variable has already been found. Disregarding this input.");
+							System.out.println("Warning: 'warmUpTime' parameter has already been found. Disregarding this input.");
 						} else if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
 							// TODO add a line saying we will keep searching for the input???
 						} else {
-							if (tokensLen > 2)		System.out.println("Warning: too many inputs for warmUpTime variable");
+							if (tokensLen > 2)			System.out.println("Warning: too many inputs for 'warmUpTime' parameter");
 							canParse = tryParseFloat(tokens[1]);
-							if (!canParse)			throw new InvalidInputFileException("Error: warmUpTime input type mismatch at line = "+line);
+							if (!canParse)				throw new InvalidInputFileException("Error: 'warmUpTime' input type mismatch at line = "+line);
 							warmUpTime = Float.parseFloat(tokens[1]);
-							if (warmUpTime < 0)		throw new InvalidInputFileException("Error: warmUpTime cannot be negative.");
-							if (warmUpTime == 0)		System.out.println("Warning: The warmUpTime variable is zero.");
+							if (warmUpTime < 0)			throw new InvalidInputFileException("Error: 'warmUpTime' parameter cannot be negative.");
+							if (warmUpTime == 0)		System.out.println("Warning: 'warmUpTime' parameters is zero.");
 							warmUpTimeFound = true;
 						}
 						break;
@@ -557,6 +578,7 @@ public class Simulator {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Error: IO Exception error.");
 			e.printStackTrace();
 		} 
 	}
@@ -566,59 +588,62 @@ public class Simulator {
 	 * if all found, checks if all inputs make sense
 	 */
 	public void validation() throws InvalidInputFileException {
-		// System.out.println("Validating input paramters:");
 		boolean isMissing = false;
 		if (!lorryVolumeFound) {
-			System.out.println("Error: Missing parameter lorryVolume."); isMissing = true;
+			System.out.println("Error: Missing parameter 'lorryVolume'."); isMissing = true;
 		}
 		if (!lorryMaxLoadFound)	{
-			System.out.println("Error: Missing parameter lorryMaxLoad."); isMissing = true;
+			System.out.println("Error: Missing parameter 'lorryMaxLoad'."); isMissing = true;
 		}
 		if (!binServiceTimeFound) {
-			System.out.println("Error: Missing parameter binServiceTime."); isMissing = true;
+			System.out.println("Error: Missing parameter 'binServiceTime'."); isMissing = true;
 		}
 		if (!binVolumeFound) {
-			System.out.println("Error: Missing parameter binVolume."); isMissing = true;
+			System.out.println("Error: Missing parameter 'binVolume'."); isMissing = true;
 		}
 		if (!disposalDistrRateFound) {
-			System.out.println("Error: Missing parameter disposalDistrRate."); isMissing = true;
+			System.out.println("Error: Missing parameter 'disposalDistrRate'."); isMissing = true;
 		}
 		if (!disposalDistrShapeFound) {
-			System.out.println("Error: Missing parameter disposalDistrShape."); isMissing = true;
+			System.out.println("Error: Missing parameter 'disposalDistrShape'."); isMissing = true;
 		}
 		if (!bagVolumeFound) {
-			System.out.println("Error: Missing parameter bagVolume."); isMissing = true;
+			System.out.println("Error: Missing parameter 'bagVolume'."); isMissing = true;
 		}
 		if (!bagWeightMinFound) {
-			System.out.println("Error: Missing parameter bagWeightMin."); isMissing = true;
+			System.out.println("Error: Missing parameter 'bagWeightMin'."); isMissing = true;
 		}
 		if (!bagWeightMaxFound)	{
-			System.out.println("Error: Missing parameter bagWeightMax."); isMissing = true;
+			System.out.println("Error: Missing parameter 'bagWeightMax'."); isMissing = true;
+		}
+		if (noAreas > 0) {
+			if (!serviceAreasFound) {
+				System.out.println("Error: Insufficient or missing service areas."); 
+				System.out.println("Number of service areas: " + noAreas);
+				System.out.println("Number of service area specifications found: " + serviceAreas.size());
+				isMissing = true;
+			}
 		}
 		if (!noAreasFound) {
-			System.out.println("Error: Missing parameter noAreas."); isMissing = true;
-		}
-		if (!serviceAreasFound) {
-			System.out.println("Error: Insufficient or missing service areas."); 
-			System.out.println("Number of service areas: " + noAreas);
-			System.out.println("Number of service area specifications found: " + serviceAreas.size());
-			isMissing = true;
+			System.out.println("Error: Missing parameter 'noAreas'."); isMissing = true;
 		}
 		if (!stopTimeFound)	{
-			System.out.println("Error: Missing parameter stopTime."); isMissing = true;
+			System.out.println("Error: Missing parameter 'stopTime'."); isMissing = true;
 		}
 		if (!warmUpTimeFound) {
-			System.out.println("Error: Missing parameter warmUpTime."); isMissing = true;
+			System.out.println("Error: Missing parameter 'warmUpTime'."); isMissing = true;
 		}
 		if (isMissing) { // terminates program by throwing an exception
 			throw new InvalidInputFileException("Error: Missing one or more parameters.");
-		} else {
-			// check if parameters make sense
+		} else {	// check if parameters make sense
 			if (stopTime < warmUpTime) {
 				System.out.println("Warning: 'stopTime' parameter smaller than 'warmUpTime'. The simulation will continue.");
 			}
 			if (bagWeightMin > bagWeightMax) {
 				System.out.println("Warning: 'bagWeightMax' parameter smaller than 'bagWeightMin'. The simulation will continue.");
+			}
+			if (bagWeightMin == bagWeightMax) {
+				System.out.println("Warning: 'bagWeightMax' parameter equals to 'bagWeightMin'. The simulation will continue.");
 			}
 			if (bagWeightMax > lorryMaxLoad) {
 				System.out.println("Warning: 'lorryMaxLoad' parameter smaller than 'bagWeightMax'. The simulation will continue.");
@@ -632,18 +657,14 @@ public class Simulator {
 			for (ServiceArea sa : serviceAreas) {
 				float serviceFreq = sa.getServiceFreq();
 				short areaIdx = sa.getAreaIdx();
-				// TODO convert disposalDistrRate from hour to second!!!!
-				if (disposalDistrRate > serviceFreq) {
-					System.out.println("Warning: 'disposalDistrRate' parameter bigger than 'serviceFreq' parameter for service area with areaIdx = "+areaIdx);
+				if (disposalDistrRate > serviceFreq) {	// TODO: check piazza.. is this correct?
+					System.out.println("Warning: 'disposalDistrRate' parameter greater than 'serviceFreq' for service area with areaIdx = "+areaIdx);
 				}
 			}
-			System.out.println("All parameters found. Simulation continues");
 		}
 	}
 	
-	/*
 	public void printAllInputs() {
-		// print all inputs
 		System.out.println("lorryVolume = "+lorryVolume);
 		System.out.println("lorryMaxLoad = "+lorryMaxLoad);
 		System.out.println("binServiceTime = "+binServiceTime);
@@ -658,15 +679,15 @@ public class Simulator {
 		for (ServiceArea sa : serviceAreas) System.out.println(sa.toString());
 		System.out.println("stopTime = "+stopTime);
 		System.out.println("warmUpTime = "+warmUpTime);
-		// check whether it is an experimentation input file
-		System.out.println("isExperiment = "+isExperiment);
+		System.out.println("isExperiment = "+isExperiment);		// check whether it is an experimentation input file
 		System.out.println("All disposalDistrRate:");
 		for (Float sa : disposalDistrRateExp) System.out.println("disposalDistrRateExp: " + sa);
 		System.out.println("All disposalDistrShape:");
 		for (Short sa : disposalDistrShapeExp) System.out.println("disposalDistrShapeExp: " + sa);
 		System.out.println("All serviceFreq:");
 		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
-	}*/
+	}
+	
 	
 	// Simulator implementation
 	PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // for storing upcoming events
@@ -674,6 +695,12 @@ public class Simulator {
 	int now() {
 		return time;
 	}
+	public void insert(AbstractEvent e) {	// insert event into queue
+		this.events.add(e);
+	}
+	/**
+	 * extracts all events from 'events' priority queue and execute them
+	 */
 	public void doAllEvents() {		// extracts all events from 'events' queue and execute them
 		AbstractEvent e;
         while ((e = (AbstractEvent) events.poll()) != null) {
@@ -681,10 +708,6 @@ public class Simulator {
             e.execute(this);
         }
     }
-	public void insert(AbstractEvent e) {	// insert event into queue
-		this.events.add(e);
-	}
-	
 	/** 
 	 * assign a lorry to each service areas
 	 * create bins in each service areas
@@ -696,6 +719,7 @@ public class Simulator {
 		}
 	}
 	
+	
 	/**
 	 * Starts simulator
 	 * If this is an experiment, several simulations will be run with different parameters.
@@ -705,7 +729,7 @@ public class Simulator {
 			// at the moment, only one set of parameters will be run
 			// because no implementation for experiments yet
 			// run experiments
-			System.out.println("This is an experiment and will be run differently.");
+			System.out.println("This input script contains experiment keyword and will be run differently.");
 			System.out.println("No support for experimentation yet.");
 			System.out.println("Run program with only one input per parameter.");
 			if (disposalDistrRateExp.size() > 0) {
@@ -714,13 +738,13 @@ public class Simulator {
 			if (disposalDistrShapeExp.size() > 0) {
 				disposalDistrShape = disposalDistrShapeExp.get(0);
 			}
-			System.out.println("Simulation starts:");
-			
-			// set attributes again
+			//System.out.println("Simulation starts:");
+
+			// set attributes again for experiments
 			Random.setDisposalDistrRate(disposalDistrRate);
 			Random.setDisposalDistrShape(disposalDistrShape);
 			
-			for (ServiceArea sa : serviceAreas) {	// generate disposal events for each bin
+			for (ServiceArea sa : serviceAreas) {	// generate an initial disposal event for each bin
 				for (Bin bin : sa.getBins()) {
 					DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
 					this.events.add(disposalEventGenerator);
@@ -728,9 +752,8 @@ public class Simulator {
 			}
 			doAllEvents();	// execute all events from priority queue
 		} else {
-			System.out.println("Simulation starts:");
-
-			for (ServiceArea sa : serviceAreas) {	// generate disposal events for each bin
+			// System.out.println("Simulation starts:");
+			for (ServiceArea sa : serviceAreas) {	// generate an initial disposal event for each bin
 				for (Bin bin : sa.getBins()) {
 					DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
 					this.events.add(disposalEventGenerator);
@@ -744,18 +767,21 @@ public class Simulator {
 	 * Last stage of the simulation is statistical analysis
 	 */
 	public void statsAnalysis() {
-		System.out.println("Simulation finishs. Statisitic Analysis starts:");
-		System.out.println("No implementation yet");
+		//System.out.println("Simulation finishes. Statisitic Analysis starts:");
+		System.out.println("Warning: No implementation yet for statistical analysis.");
 	}
+	
 	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
 		String file_path = args[0];
 		Simulator citySimulator = new Simulator();
 		
 		citySimulator.parseInputs(file_path);	// parse inputs
 		
+		citySimulator.printAllInputs();
+
 		citySimulator.validation();		// check that all inputs exist
 
-		//citySimulator.printAllInputs();
+		// citySimulator.printAllInputs();
 		
 		// initialize all variables
 		Bag.setBagVolume(bagVolume);
