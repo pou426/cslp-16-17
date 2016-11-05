@@ -37,6 +37,7 @@ public class ServiceArea {
 	
 	/**
 	 * return a list of bins in this service area
+	 * 
 	 * @return an array of bins
 	 */
 	public Bin[] getBins() {
@@ -52,15 +53,25 @@ public class ServiceArea {
 	public float getServiceFreq() {
 		return this.serviceFreq;
 	}
+	public float getThresholdVal() {
+		return this.thresholdVal;
+	}
 
-	/*
+	
 	// print service area information for checking
 	public String toString() {
 		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq = "+String.valueOf(serviceFreq)
 				+" thresholdVal = "+String.valueOf(thresholdVal)+" noBins = "+String.valueOf(noBins);
-		String b = "\nroadsLayout = "+Arrays.deepToString(roadsLayout);
-		String result = a+b;
+		String b = "\nroadsLayout = ";
+		String c = "\n";
+		for (int i = 0; i < roadsLayout.length; i++) {
+			for (int j = 0; j < roadsLayout[0].length; j++) {
+				c = c + roadsLayout[i][j] + " ";
+			}
+			if (!(i==roadsLayout.length-1)) c = c + "\n";
+		}
+		String result = a+b+c;
 		return result;
-	}*/
+	}
 	
 }

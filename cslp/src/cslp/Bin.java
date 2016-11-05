@@ -42,27 +42,25 @@ public class Bin {
 			// if a bin is overflowed, disposal events cannot happen anymore.
 			// System.out.println("disposal event occurs but bin has overflowed. bin content unchanged. time = "+e.timeToString());
 		} else {
-			Bag bag = new Bag(); // bag to be disposed in this bin
+			Bag bag = new Bag(); 							// bag to be disposed in this bin
 			float bagWeight = bag.getWeight();
 			this.wasteVolume += Bag.getBagVolume();
 			this.wasteWeight += bagWeight;
-			// output disposal event
+			
 			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
-			System.out.println(disposalString);
-			// output change in bin content event
+			System.out.println(disposalString);				// output disposal event
+			
 			String binStatusString = e.timeToString() + " -> load of bin "+areaIdx+"."+binIdx+" became "+String.format("%.3f",wasteWeight)+" kg and contents volume "+String.format("%.3f", wasteVolume)+" m^3";
-			System.out.println(binStatusString);
-			if (currentOccupancy() > thresholdVal) { // updates isExceedThreshold variable if necessary
+			System.out.println(binStatusString);			// output change in bin content event
+			if (currentOccupancy() > thresholdVal) { 		// updates isExceedThreshold variable if necessary
 				isExceedThreshold = true;
-				// output exceed threshold event
 				String exceedThresholdString = e.timeToString() + " -> occupancy threshold of bin "+areaIdx+"."+binIdx+" exceeded";
-				System.out.println(exceedThresholdString);
+				System.out.println(exceedThresholdString);	// output exceed threshold event
 			}
-			if (currentOccupancy() >= 1) { // updates isOverflow variable if necessary
+			if (currentOccupancy() >= 1) { 					// updates isOverflow variable if necessary
 				isOverflow = true;
-				// output bin overflow event
 				String overflowString = e.timeToString() + " -> "+ "bin "+areaIdx+"."+binIdx+" overflowed";
-				System.out.println(overflowString);
+				System.out.println(overflowString);			// output bin overflow event
 			}
 		}
 	}
