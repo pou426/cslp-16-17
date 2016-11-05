@@ -11,6 +11,21 @@ simulations of the bin collection process in a "smart" city. This simulator is d
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
+Input File Specification
+------------------------------------------------------------------------------
+
+If multiple inputs are found, the new ones are always ignored apart from the 'noArea' keyword. In which case, the new information always overwrite the previously stored data.
+
+Throw errors if:
+
+
+Issue warnings if:
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
 Class Explanation
 ------------------------------------------------------------------------------
 
@@ -108,8 +123,17 @@ Tests
 
 A list of input text files are submitted in the root directory. With each input text script testing different aspects of the parsing part of the program.
 
-		input files		|		aspect tested
-	---------------------------------------------------
-		input1.txt 		|		
-		input2.txt 		|		
-		input3.txt 		|		
+The aspects tested by the input script is specified on the top of the file.
+
+	input files		|		aspect(s) tested
+----------------------------------------------------------------------
+	input1.txt 		|		all correct inputs
+	input2.txt 		|		different incorrect input parameters
+	input3.txt 		|		overwriting service area information 
+	input4.txt 		| 		check missing input parameters
+	input5.txt 		|		check missing service area
+	input6.txt 		| 		identify experiment keywords
+	input7.txt 		|		checks number of experiment inputs
+	input8.txt 		|		checks the max. number of bins
+
+
