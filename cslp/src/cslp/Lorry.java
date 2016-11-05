@@ -42,6 +42,9 @@ public class Lorry {
 	public void emptyBin(Bin bin) {
 		this.currentTrashVolume += (Bin.getBinVolume())/2;
 		this.currentTrashWeight += bin.getWasteWeight();
+		bin.resetIsOverflow();		// optimise this
+		bin.resetWasteVolume();
+		bin.resetWasteWeight();
 	}
 	
 	public static short getLorryVolume() {
