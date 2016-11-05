@@ -38,12 +38,12 @@ public class Bin {
 	 * @param a disposal event e 
 	 */
 	public void disposeBag(DisposalEvent e) {
+		Bag bag = new Bag(); 							// bag to be disposed in this bin
+		float bagWeight = bag.getWeight();
 		if (isOverflow) {
-			// if a bin is overflowed, disposal events cannot happen anymore.
-			// System.out.println("disposal event occurs but bin has overflowed. bin content unchanged. time = "+e.timeToString());
+			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
+			System.out.println(disposalString);				// output disposal event
 		} else {
-			Bag bag = new Bag(); 							// bag to be disposed in this bin
-			float bagWeight = bag.getWeight();
 			this.wasteVolume += Bag.getBagVolume();
 			this.wasteWeight += bagWeight;
 			
@@ -67,6 +67,9 @@ public class Bin {
 	
 	public boolean isOverflow() {
 		return isOverflow;
+	}
+	public void resetIsOverflow() {
+		this.isOverflow = false;
 	}
 	
 	/**
@@ -96,5 +99,14 @@ public class Bin {
 	}
 	public float getWasteWeight() {
 		return this.wasteWeight;
+	}
+	public void resetWasteWeight() {
+		this.wasteWeight = 0;
+	}
+	public float getWasteVolume() {
+		return this.wasteVolume;
+	}
+	public void resetWasteVolume() {
+		this.wasteVolume = 0;
 	}
 }
