@@ -60,7 +60,7 @@ public class Simulator {
 	 * Returns boolean for the program to handle
 	 * methods are called whenever the input parameter is supposed to be an int/short/float/byte
 	 */
-	private boolean tryParseByte(String value) {
+	private static boolean tryParseByte(String value) {
 		try {
 			Byte.parseByte(value);
 			return true;
@@ -68,7 +68,7 @@ public class Simulator {
 			return false;
 		}
 	}
-	private boolean tryParseInt(String value) {		
+	private static boolean tryParseInt(String value) {		
 		// optimize this into one for all int/float/short
 		// and check for maximum value and non negative and zero value
 		// pass int/float/short and the name of parameter as value?! 
@@ -82,7 +82,7 @@ public class Simulator {
 	         return false;  
 	      } 
 	}
-	private boolean tryParseShort(String value) {  
+	private static boolean tryParseShort(String value) {  
 	     try {  
 	         Short.parseShort(value);  
 	         return true;  
@@ -90,7 +90,7 @@ public class Simulator {
 	         return false;  
 	      }  
 	}
-	private boolean tryParseFloat(String value) {  
+	private static boolean tryParseFloat(String value) {  
 	     try {  
 	         Float.parseFloat(value);  
 	         return true;  
@@ -104,7 +104,7 @@ public class Simulator {
 	 * stores them into variables
 	 * checks invalid inputs or input formats
 	 */
-	public void parseInputs(String file_path) throws FileNotFoundException {	
+	public static void parseInputs(String file_path) throws FileNotFoundException {	
 		try {
 			File file = new File(file_path);
 			FileReader fr = new FileReader(file);
@@ -608,11 +608,11 @@ public class Simulator {
 	}
 	
 	/**
-	 * identifies missing inputs and terminate program if missing
-	 * if all found, checks if all inputs make sense
-	 * Terminates program if error exists
+	 * Identifies missing inputs and terminate program if missing.
+	 * If all found, checks if all inputs make sense.
+	 * Terminates program if error exists.
 	 */
-	public void validation() throws InvalidInputFileException {
+	public static void validation() throws InvalidInputFileException {
 		boolean isMissing = false;
 		if (!lorryVolumeFound) {
 			System.out.println("Error: Missing parameter 'lorryVolume'."); isMissing = true;
@@ -697,7 +697,7 @@ public class Simulator {
 	/**
 	 * method to print all parameter values in human readable format
 	 */
-	public void printAllInputs() {
+	public static void printAllInputs() {
 		System.out.println("lorryVolume = "+lorryVolume);
 		System.out.println("lorryMaxLoad = "+lorryMaxLoad);
 		System.out.println("binServiceTime = "+binServiceTime);
@@ -797,7 +797,7 @@ public class Simulator {
 	 * Last stage of the simulation is statistical analysis
 	 */
 	public void statsAnalysis() {
-		//System.out.println("Simulation finishes. Statisitic Analysis starts:");
+		//System.out.println("Simulation finishes. Statistical Analysis starts:");
 		// System.out.println("Warning: No implementation yet for statistical analysis.");
 	}
 	
@@ -805,12 +805,12 @@ public class Simulator {
 		String file_path = args[0];
 		Simulator citySimulator = new Simulator();
 		
-		citySimulator.parseInputs(file_path);	// parse inputs
+		Simulator.parseInputs(file_path);	// parse inputs
 		// citySimulator.printAllInputs();
 
-		citySimulator.validation();		// check that all inputs exist
+		Simulator.validation();		// check that all inputs exist
 
-		// citySimulator.printAllInputs();
+		// Simulator.printAllInputs();
 		
 		// initialize all variables
 		Bag.setBagVolume(bagVolume);
