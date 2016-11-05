@@ -53,11 +53,12 @@ public class Bin {
 			String binStatusString = e.timeToString() + " -> load of bin "+areaIdx+"."+binIdx+" became "+String.format("%.3f",wasteWeight)+" kg and contents volume "+String.format("%.3f", wasteVolume)+" m^3";
 			System.out.println(binStatusString);			// output change in bin content event
 			if (currentOccupancy() > thresholdVal) { 		// updates isExceedThreshold variable if necessary
+				// only output the first exceed thresholdVal occurrence ??????
 				isExceedThreshold = true;
 				String exceedThresholdString = e.timeToString() + " -> occupancy threshold of bin "+areaIdx+"."+binIdx+" exceeded";
 				System.out.println(exceedThresholdString);	// output exceed threshold event
 			}
-			if (currentOccupancy() >= 1) { 					// updates isOverflow variable if necessary
+			if (currentOccupancy() >= 1) { 					// updates isOverflow variable if necessary			
 				isOverflow = true;
 				String overflowString = e.timeToString() + " -> "+ "bin "+areaIdx+"."+binIdx+" overflowed";
 				System.out.println(overflowString);			// output bin overflow event

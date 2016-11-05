@@ -19,6 +19,10 @@ import java.util.PriorityQueue;
  */
 public class Simulator {
 		
+	// change input parameters to instance variable
+	// change experimental inputs to class variable
+	// ?????
+	
 	// input parameters
 	private static short lorryVolume;
 	private static int lorryMaxLoad;
@@ -687,9 +691,8 @@ public class Simulator {
 				}
 			}
 		}
-		// terminate program if contains error
 		boolean containsError = Error.getContainsError();
-		if (containsError) {
+		if (containsError) {	// terminate program if contains error
 			System.exit(0);
 		}
 	}
@@ -734,7 +737,7 @@ public class Simulator {
 	 * assign a lorry to each service areas
 	 * create bins in each service areas
 	 */
-	public void initialiseCity() {
+	public static void initialiseCity() {
 		for (ServiceArea sa : serviceAreas) {
 			sa.setLorry(new Lorry());
 			sa.setBins();
@@ -761,9 +764,6 @@ public class Simulator {
 			// at the moment, only one set of parameters will be run
 			// because no implementation for experiments yet
 			// run experiments
-			// System.out.println("This input script contains experiment keyword and will be run differently.");
-			// System.out.println("No support for experimentation yet.");
-			// System.out.println("Run program with only one input per parameter.");
 			if (disposalDistrRateExp.size() > 0) {
 				disposalDistrRate = disposalDistrRateExp.get(0);
 			}
@@ -806,11 +806,8 @@ public class Simulator {
 		Simulator citySimulator = new Simulator();
 		
 		Simulator.parseInputs(file_path);	// parse inputs
-		// citySimulator.printAllInputs();
 
 		Simulator.validation();		// check that all inputs exist
-
-		// Simulator.printAllInputs();
 		
 		// initialize all variables
 		Bag.setBagVolume(bagVolume);
@@ -824,7 +821,7 @@ public class Simulator {
 		Lorry.setLorryVolume(lorryVolume);
 		AbstractEvent.setStopTime(stopTime);
 		
-		citySimulator.initialiseCity();		// set up all service areas
+		Simulator.initialiseCity();		// set up all service areas
 		
 		// should maybe implement this into two parts for experiments and non experiment
 		citySimulator.start();
