@@ -14,7 +14,7 @@ public class ServiceArea {
 	private int noBins;
 	private byte[][] roadsLayout = null; 
 	// TODO change to array list ??????
-	private Bin[] bins = new Bin[300]; // in reality the number of bins should be < 250
+	private Bin[] bins = null; // in reality the number of bins should be < 250
 	private Lorry lorry; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
@@ -24,6 +24,8 @@ public class ServiceArea {
 		this.thresholdVal = thresholdVal;
 		this.noBins = noBins;
 		this.roadsLayout = roadsLayout;
+		Bin[] bins = new Bin[noBins];
+		this.bins = bins;
 		for (int i = 0; i < noBins; i++) {
 			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
 		}
