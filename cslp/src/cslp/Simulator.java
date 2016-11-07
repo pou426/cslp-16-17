@@ -146,7 +146,12 @@ public class Simulator {
 								if (!(line.startsWith("#") || line.isEmpty())) {
 									String[] areaTokens = line.split("\\s+");
 									if (!areaTokens[0].equals("areaIdx")) {
-										Error.throwError("Error: Invalid format in the line following the noArea paramter in line: "+line);
+										int totalServiceAreasFound = serviceAreas.size();
+										if (totalServiceAreasFound == 0) {
+											Error.throwError("Error: Invalid format in the line following the noArea paramter in line: "+line);
+										} else if (totalServiceAreasFound < noAreas) {
+											Error.throwError("Error: Expecting more service area information. Invalid format in line: "+line);
+										}										
 									} else if (!((areaTokens.length >= 8) && (areaTokens[2].equals("serviceFreq")) &&
 	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
 										Error.throwError("Error: Invalid format for service area description line: " + line);
@@ -283,9 +288,12 @@ public class Simulator {
 								if (!(line.startsWith("#") || line.isEmpty())) {
 									String[] areaTokens = line.split("\\s+");
 									if (!areaTokens[0].equals("areaIdx")) {
-										Error.throwError("\nError: Invalid format."
-												+ "\nThe line following noAreas parameter should be in the format:"
-												+ "\nareaIdx <uint8_t> serviceFreq <float> thresholdVal <float> noBins <uint16_t>");
+										int totalServiceAreasFound = serviceAreas.size();
+										if (totalServiceAreasFound == 0) {
+											Error.throwError("Error: Invalid format in the line following the noArea paramter in line: "+line);
+										} else if (totalServiceAreasFound < noAreas) {
+											Error.throwError("Error: Expecting more service area information. Invalid format in line: "+line);
+										}										
 									} else if (!((areaTokens.length >= 8) && (areaTokens[2].equals("serviceFreq")) &&
 	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
 										Error.throwError("Invalid format for service area description line: " + line);
