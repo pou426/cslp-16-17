@@ -8,7 +8,7 @@ package cslp;
 public abstract class AbstractEvent implements Comparable {	
 	// all events belong to an array list for storing output????????
 	
-	private static float stopTime;
+	private static float stopTime;	// each event knows when the stopTime is
 	private int time; // time (in seconds) in which the event happens during the simulation
 
 	public static float getStopTime() {
