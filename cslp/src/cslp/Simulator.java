@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 /**
@@ -34,7 +35,8 @@ public class Simulator {
 	private static float bagWeightMin;
 	private static float bagWeightMax;
 	private static short noAreas;
-	private static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>(); // serviceFreq experessed as x trips per hour
+	private static HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();
+	//private static ArrayList<ServiceArea> serviceAreas = new ArrayList<ServiceArea>(); // serviceFreq experessed as x trips per hour
 	private static float stopTime;
 	private static float warmUpTime;
 	
@@ -232,8 +234,12 @@ public class Simulator {
 	                                            }
 	                                    	}
 	                                    }
+	                                    // if service area with the specific areaIdx already exists, overwrite.
+	                                    if (serviceAreas.get(areaIdx) != null) {
+	                                    	System.out.println("Warning: Service area information for areaIdx = "+areaIdx+" has been found. Overwritting the previously stored service area information.");
+	                                    }
 	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadsLayout);
-	                                    serviceAreas.add(curr_sa);	// append new service area to list of service areas 
+	                                    serviceAreas.put(areaIdx, curr_sa);	// append new service area to list of service areas 
 	                                    if (serviceAreas.size() == noAreas)		serviceAreasFound = true;	//check whether sufficient no. of service areas have been found
 									}
 								}
@@ -373,8 +379,12 @@ public class Simulator {
 	                                            }
 	                                    	}
 	                                    }
+	                                    // if service area with the specific areaIdx already exists, overwrite.
+	                                    if (serviceAreas.get(areaIdx) != null) {
+	                                    	System.out.println("Warning: Service area information for areaIdx = "+areaIdx+" has been found. Overwritting the previously stored service area information.");
+	                                    }
 	                                    ServiceArea curr_sa = new ServiceArea(areaIdx,serviceFreq,thresholdVal,noBins,roadsLayout);
-	                                    serviceAreas.add(curr_sa);
+	                                    serviceAreas.put(areaIdx,curr_sa);
 	                                    if (serviceAreas.size() == noAreas)		serviceAreasFound = true;
 									}
 								}
@@ -683,7 +693,7 @@ public class Simulator {
 		if ((binVolume/2) > lorryVolume) {	// lorry compresses bin volume by half its original value
 			System.out.println("Warning: 'lorryVolume' parameter smaller than 'binVolume'. The simulation will continue.");
 		}
-		for (ServiceArea sa : serviceAreas) {
+		for (ServiceArea sa : serviceAreas.values()) {
 			float serviceFreq = sa.getServiceFreq();
 			short areaIdx = sa.getAreaIdx();
 			if (disposalDistrRate < serviceFreq) {
@@ -712,7 +722,7 @@ public class Simulator {
 	 * assign a lorry to each service areas
 	 */
 	public static void initialiseCity() {
-		for (ServiceArea sa : serviceAreas) {
+		for (ServiceArea sa : serviceAreas.values()) {
 			sa.setLorry(new Lorry());
 		}
 	}
@@ -732,7 +742,7 @@ public class Simulator {
 		System.out.println("bagWeightMax = "+bagWeightMax);
 		System.out.println("noAreas = "+noAreas);
 		System.out.println("Service Areas information: ");
-		for (ServiceArea sa : serviceAreas) System.out.println(sa.toString());
+		for (ServiceArea sa : serviceAreas.values()) System.out.println(sa.toString());
 		System.out.println("stopTime = "+stopTime);
 		System.out.println("warmUpTime = "+warmUpTime);
 		System.out.println("isExperiment = "+isExperiment);		// check whether it is an experimentation input file
@@ -785,7 +795,7 @@ public class Simulator {
 			Random.setDisposalDistrRate(disposalDistrRate);
 			Random.setDisposalDistrShape(disposalDistrShape);
 			
-			for (ServiceArea sa : serviceAreas) {	// generate an initial disposal event for each bin
+			for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
 				for (Bin bin : sa.getBins()) {
 					DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
 					this.events.add(disposalEventGenerator);
@@ -793,7 +803,7 @@ public class Simulator {
 			}
 			doAllEvents();	// execute all events from priority queue
 		} else {
-			for (ServiceArea sa : serviceAreas) {	// generate an initial disposal event for each bin
+			for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
 				for (Bin bin : sa.getBins()) {
 					DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
 					this.events.add(disposalEventGenerator);
