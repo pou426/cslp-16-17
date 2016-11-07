@@ -12,13 +12,13 @@ public class ServiceArea {
 	private float serviceFreq; // eg. serviceFreq 0.0625 means 0.0625 trips per hour
 	private float thresholdVal;
 	private int noBins;
-	private byte[][] roadsLayout = null; 
+	private int[][] roadsLayout = null; 
 	// TODO change to array list ??????
 	private Bin[] bins = null; // in reality the number of bins should be < 250
 	private Lorry lorry; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
-			float thresholdVal, int noBins, byte[][] roadsLayout) {
+			float thresholdVal, int noBins, int[][] roadsLayout) {
 		this.areaIdx = areaIdx;
 		this.serviceFreq = serviceFreq;
 		this.thresholdVal = thresholdVal;
@@ -60,9 +60,9 @@ public class ServiceArea {
 
 	// print service area information for checking
 	public String toString() {
-		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq = "+String.valueOf(serviceFreq)
+		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq (in hour) = "+String.valueOf(serviceFreq)
 				+" thresholdVal = "+String.valueOf(thresholdVal)+" noBins = "+String.valueOf(noBins);
-		String b = "\nroadsLayout = ";
+		String b = "\nroadsLayout (in sec) = ";
 		String c = "\n";
 		for (int i = 0; i < roadsLayout.length; i++) {
 			for (int j = 0; j < roadsLayout[0].length; j++) {
