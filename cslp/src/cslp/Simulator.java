@@ -120,17 +120,17 @@ public class Simulator {
 					String[] tokens = line.split("\\s+");
 					int tokensLen = tokens.length;
 					
-					boolean canParse;		// boolean for int/short/float inputs
+					boolean canParse;		// boolean for int/byte/short/float inputs
 					switch (tokens[0]) {	// check the first word in each line for input parameter
 					case "noAreas":
 						if (tokensLen < 2) {
-							System.out.println("Warning: Missing input in this line: " + line);
+							System.out.println("Warning: Missing input for 'noArea' parameter.");
 						} else { 
 							if (noAreasFound)		System.out.println("Warning: 'noAreas' parameter has already been found. Overwritting the previous input.");
 							noAreasFound = false;	// reset relevant parameters
 							serviceAreasFound = false;
 							serviceAreas.clear();
-							if (tokensLen > 2)		System.out.println("Warning: Too many inputs for 'noAreas' parameter.");
+							if (tokensLen > 2)		System.out.println("Warning: Too many inputs for 'noAreas' parameter. Only the first input will be parsed.");
 							canParse = tryParseShort(tokens[1]);
 							if (!canParse)			Error.throwError("Error: 'noAreas' input type mismatch at line = "+line); 
 							noAreas = Short.parseShort(tokens[1]);
@@ -146,9 +146,7 @@ public class Simulator {
 								if (!(line.startsWith("#") || line.isEmpty())) {
 									String[] areaTokens = line.split("\\s+");
 									if (!areaTokens[0].equals("areaIdx")) {
-										Error.throwError("\nError: Invalid format."
-												+ "\nThe line following noAreas parameter should be in the format:"
-												+ "\nareaIdx <uint8_t> serviceFreq <float> thresholdVal <float> noBins <uint16_t>");
+										Error.throwError("Error: Invalid format in the line following the noArea paramter in line: "+line);
 									} else if (!((areaTokens.length >= 8) && (areaTokens[2].equals("serviceFreq")) &&
 	                                        (areaTokens[4].equals("thresholdVal")) && (areaTokens[6].equals("noBins")))) {
 										Error.throwError("Error: Invalid format for service area description line: " + line);
@@ -684,14 +682,6 @@ public class Simulator {
 				System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx);
 			}
 		}
-
-		// terminates simulation if contains error
-		boolean containsError = Error.getContainsError();
-		if (containsError) {
-			System.exit(1); 
-		} /*else {
-			Simulator.initialiseClassVars();
-		}*/
 	}
 	
 	/**
