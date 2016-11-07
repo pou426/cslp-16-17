@@ -30,7 +30,7 @@ public class DisposalEvent extends AbstractEvent {
 	 * to the Erlang k distribution and is passed as a new DisposalEvent object to 
 	 * the list of events (stored in a Priority Queue in the class Simulator).
 	 * 
-	 * @param simulator
+	 * @param simulator		a Simulator instance that executes this event
 	 */
 	public void execute(Simulator simulator) {
     	this.bin.disposeBag(this); 

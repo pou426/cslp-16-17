@@ -36,7 +36,7 @@ Classes:
 - Bag
 - Bin
 - DisposalEvent <- extends AbstractEvent
-- InvalidInputFileException <- extends Exception
+- Error
 - Lorry
 - Random
 - ServiceArea
@@ -82,7 +82,7 @@ Code Structure - Outputs:
 	5. lorry arrived at/left location
 	6. lorry load/contents volume changed
 
-Code Structure - Statistical Analysis:
+Code Structure - Statistical Analysis: (no implementation yet)
 - Average Trip Duration
 - Number of Trips per Schedule
 - Trip Efficiency
@@ -108,7 +108,7 @@ On command line, type:
 $ chmod +x compile.sh
 $ chmod +x simulate.sh
 $ ./compile.sh
-$ ./simulate.sh <input_file_name> [OPTIONS]
+$ ./simulate.sh <input_file_name>
 
 or 
 $ ./simulate.sh
@@ -124,7 +124,7 @@ Tests
 A list of input text files are submitted in the root directory. With each input text script testing different aspects of the parsing part of the program.
 
 The aspects tested by the input script is specified on the top of the file.
-
+<!-- 
 	input files		|		aspect(s) tested
 ----------------------------------------------------------------------
 	input1.txt 		|		all correct inputs
@@ -138,3 +138,4 @@ The aspects tested by the input script is specified on the top of the file.
 	input9.txt 		| 		checks if input exceeds maximum values
 
 
+ -->

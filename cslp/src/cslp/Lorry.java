@@ -3,8 +3,6 @@ package cslp;
 /**
  * Lorry class
  * Keeps track of the trash volume and weight within itself.
- * 
- * @author home
  *
  */
 public class Lorry {
@@ -30,6 +28,7 @@ public class Lorry {
 	
 	public Lorry() {
 		this.currentTrashVolume = 0;
+		this.currentTrashWeight = 0;
 		this.location = 0; // lorry stations at the depot in the initial state
 	}
 	
@@ -37,7 +36,7 @@ public class Lorry {
 	 * Empties the waste inside a bin. 
 	 * Compress the waste volume to half its original volume
 	 * 
-	 * @param bin
+	 * @param bin	The Bin stance this lorry is servicing
 	 */
 	public void emptyBin(Bin bin) {
 		this.currentTrashVolume += (Bin.getBinVolume())/2;

@@ -64,6 +64,12 @@ public class Simulator {
 	 * Returns boolean for the program to handle
 	 * methods are called whenever the input parameter is supposed to be an int/short/float/byte
 	 */
+	// optimize this into one for all int/float/short
+	// and check for maximum value and non negative and zero value
+	// pass int/float/short and the name of parameter as value?! 
+	// print error message and exit program?! 
+	// pass a boolean for can be negative values??? like roadsLayout matrix?!
+	// use uint8 uint16 int8..????? 
 	private static boolean tryParseByte(String value) {
 		try {
 			Byte.parseByte(value);
@@ -73,12 +79,6 @@ public class Simulator {
 		}
 	}
 	private static boolean tryParseInt(String value) {		
-		// optimize this into one for all int/float/short
-		// and check for maximum value and non negative and zero value
-		// pass int/float/short and the name of parameter as value?! 
-		// print error message and exit program?! 
-		// pass a boolean for can be negative values??? like roadsLayout matrix?!
-		// use uint8 uint16 int8..????? 
 	     try {  
 	         Integer.parseInt(value);  
 	         return true;  
@@ -125,7 +125,7 @@ public class Simulator {
 					case "noAreas":
 						if (tokensLen < 2) {
 							System.out.println("Warning: Missing input in this line: " + line);
-						} else {
+						} else { 
 							if (noAreasFound)		System.out.println("Warning: 'noAreas' parameter has already been found. Overwritting the previous input.");
 							noAreasFound = false;	// reset relevant parameters
 							serviceAreasFound = false;
@@ -601,12 +601,10 @@ public class Simulator {
 			br.close();
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error: Input file not found. Program will terminate");
+			Error.throwError("Error: Input file not found. The simulation will terminate");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error: IO Exception error.");
+			Error.throwError("Error: IO Exception error.");
 			e.printStackTrace();
 		} 
 	}
@@ -616,84 +614,108 @@ public class Simulator {
 	 * If all found, checks if all inputs make sense.
 	 * Terminates program if error exists.
 	 */
-	public static void validation() throws InvalidInputFileException {
-		boolean isMissing = false;
+	public static void validation() {
 		if (!lorryVolumeFound) {
-			System.out.println("Error: Missing parameter 'lorryVolume'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'lorryVolume'."); 
 		}
 		if (!lorryMaxLoadFound)	{
-			System.out.println("Error: Missing parameter 'lorryMaxLoad'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'lorryMaxLoad'."); 
 		}
 		if (!binServiceTimeFound) {
-			System.out.println("Error: Missing parameter 'binServiceTime'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'binServiceTime'.");
 		}
 		if (!binVolumeFound) {
-			System.out.println("Error: Missing parameter 'binVolume'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'binVolume'.");
 		}
 		if (!disposalDistrRateFound) {
-			System.out.println("Error: Missing parameter 'disposalDistrRate'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'disposalDistrRate'.");
 		}
 		if (!disposalDistrShapeFound) {
-			System.out.println("Error: Missing parameter 'disposalDistrShape'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'disposalDistrShape'.");
 		}
 		if (!bagVolumeFound) {
-			System.out.println("Error: Missing parameter 'bagVolume'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'bagVolume'.");
 		}
 		if (!bagWeightMinFound) {
-			System.out.println("Error: Missing parameter 'bagWeightMin'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'bagWeightMin'.");
 		}
 		if (!bagWeightMaxFound)	{
-			System.out.println("Error: Missing parameter 'bagWeightMax'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'bagWeightMax'.");
 		}
 		if (noAreas > 0) {
 			if (!serviceAreasFound) {
-				System.out.println("Error: Insufficient or missing service areas."); 
-				System.out.println("Number of service areas: " + noAreas);
-				System.out.println("Number of service area specifications found: " + serviceAreas.size());
-				isMissing = true;
+				Error.throwError("Error: Insufficient or missing service areas."
+						+ "\nNumber of service areas: " + noAreas
+						+ "\nNumber of service area specifications found: " + serviceAreas.size()); 
 			}
 		}
 		if (!noAreasFound) {
-			System.out.println("Error: Missing parameter 'noAreas'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'noAreas'."); 
 		}
 		if (!stopTimeFound)	{
-			System.out.println("Error: Missing parameter 'stopTime'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'stopTime'."); 
 		}
 		if (!warmUpTimeFound) {
-			System.out.println("Error: Missing parameter 'warmUpTime'."); isMissing = true;
+			Error.throwError("Error: Missing parameter 'warmUpTime'."); 
 		}
-		if (isMissing) { 	// terminates program by throwing an exception
-			Error.throwError("Error: Missing one or more parameters.");
-		} else {	// check if parameters make sense
-			if (stopTime < warmUpTime) {
-				System.out.println("Warning: 'stopTime' parameter smaller than 'warmUpTime'. The simulation will continue.");
-			}
-			if (bagWeightMin > bagWeightMax) {
-				Error.throwError("Error: 'bagWeightMin' parameter greater than 'bagWeightMax'.");
-			}
-			if (bagWeightMin == bagWeightMax) {
-				System.out.println("Warning: 'bagWeightMax' parameter equals to 'bagWeightMin'. The simulation will continue.");
-			}
-			if (bagWeightMax > lorryMaxLoad) {
-				System.out.println("Warning: 'lorryMaxLoad' parameter smaller than 'bagWeightMax'. The simulation will continue.");
-			}
-			if (bagVolume > binVolume) {
-				System.out.println("Warning: 'binVolume' parameter smaller than 'bagVolume'. The simulation will continue.");
-			}
-			if ((binVolume/2) > lorryVolume) {	// lorry compresses bin volume by half its original value
-				System.out.println("Warning: 'lorryVolume' parameter smaller than 'binVolume'. The simulation will continue.");
-			}
-			for (ServiceArea sa : serviceAreas) {
-				float serviceFreq = sa.getServiceFreq();
-				short areaIdx = sa.getAreaIdx();
-				if (disposalDistrRate < serviceFreq) {	// TODO: check piazza.. is this correct?
-					System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx);
-				}
+		// checks magnitudes of parameters
+		if (bagWeightMin > bagWeightMax) {
+			Error.throwError("Error: 'bagWeightMin' parameter greater than 'bagWeightMax'.");
+		}
+		if (stopTime < warmUpTime) {
+			System.out.println("Warning: 'stopTime' parameter smaller than 'warmUpTime'. The simulation will continue.");
+		}
+		if (bagWeightMin == bagWeightMax) {
+			System.out.println("Warning: 'bagWeightMax' parameter equals to 'bagWeightMin'. The simulation will continue.");
+		}
+		if (bagWeightMax > lorryMaxLoad) {
+			System.out.println("Warning: 'lorryMaxLoad' parameter smaller than 'bagWeightMax'. The simulation will continue.");
+		}
+		if (bagVolume > binVolume) {
+			System.out.println("Warning: 'binVolume' parameter smaller than 'bagVolume'. The simulation will continue.");
+		}
+		if ((binVolume/2) > lorryVolume) {	// lorry compresses bin volume by half its original value
+			System.out.println("Warning: 'lorryVolume' parameter smaller than 'binVolume'. The simulation will continue.");
+		}
+		for (ServiceArea sa : serviceAreas) {
+			float serviceFreq = sa.getServiceFreq();
+			short areaIdx = sa.getAreaIdx();
+			if (disposalDistrRate < serviceFreq) {
+				System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx);
 			}
 		}
+
+		// terminates simulation if contains error
 		boolean containsError = Error.getContainsError();
-		if (containsError) {	// terminate program if contains error
-			System.exit(0);
+		if (containsError) {
+			System.exit(1); 
+		} /*else {
+			Simulator.initialiseClassVars();
+		}*/
+	}
+	
+	/**
+	 * Initialize all static class variables for all classes
+	 */
+	public static void initialiseClassVars() {
+		Bag.setBagVolume(bagVolume);
+		Bag.setBagWeightMax(bagWeightMax);
+		Bag.setBagWeightMin(bagWeightMin);
+		Bin.setBinVolume(binVolume); 
+		Random.setDisposalDistrRate(disposalDistrRate);
+		Random.setDisposalDistrShape(disposalDistrShape);	
+		Lorry.setBinServiceTime(binServiceTime);
+		Lorry.setLorryMaxLoad(lorryMaxLoad);
+		Lorry.setLorryVolume(lorryVolume);
+		AbstractEvent.setStopTime(stopTime);
+	}
+	
+	/** 
+	 * assign a lorry to each service areas
+	 */
+	public static void initialiseCity() {
+		for (ServiceArea sa : serviceAreas) {
+			sa.setLorry(new Lorry());
 		}
 	}
 	
@@ -726,22 +748,12 @@ public class Simulator {
 	
 	// Simulator implementation
 	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // for storing upcoming events
-	int time;	// current simulation time
-	int now() {
+	private int time;	// current simulation time
+	public int now() {
 		return time;
 	}
 	public void insert(AbstractEvent e) {	// insert event into queue
 		this.events.add(e);
-	}
-	/** 
-	 * assign a lorry to each service areas
-	 * create bins in each service areas
-	 */
-	public static void initialiseCity() {
-		for (ServiceArea sa : serviceAreas) {
-			sa.setLorry(new Lorry());
-			sa.setBins();
-		}
 	}
 	
 	/**
@@ -801,7 +813,7 @@ public class Simulator {
 		// System.out.println("Warning: No implementation yet for statistical analysis.");
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, InvalidInputFileException {
+	public static void main(String[] args) throws FileNotFoundException {
 		String file_path = args[0];
 		Simulator citySimulator = new Simulator();
 		
@@ -809,18 +821,7 @@ public class Simulator {
 
 		Simulator.validation();		// check that all inputs exist
 		
-		// initialize all variables
-		Bag.setBagVolume(bagVolume);
-		Bag.setBagWeightMax(bagWeightMax);
-		Bag.setBagWeightMin(bagWeightMin);
-		Bin.setBinVolume(binVolume); 
-		Random.setDisposalDistrRate(disposalDistrRate);
-		Random.setDisposalDistrShape(disposalDistrShape);	
-		Lorry.setBinServiceTime(binServiceTime);
-		Lorry.setLorryMaxLoad(lorryMaxLoad);
-		Lorry.setLorryVolume(lorryVolume);
-		AbstractEvent.setStopTime(stopTime);
-		
+		Simulator.initialiseClassVars(); // set up all Classes		
 		Simulator.initialiseCity();		// set up all service areas
 		
 		// should maybe implement this into two parts for experiments and non experiment

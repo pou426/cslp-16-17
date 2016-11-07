@@ -13,7 +13,8 @@ public class ServiceArea {
 	private float thresholdVal;
 	private int noBins;
 	private byte[][] roadsLayout = null; 
-	private Bin[] bins = new Bin[250]; // in reality the number of bins should be < 250
+	// TODO change to array list ??????
+	private Bin[] bins = new Bin[300]; // in reality the number of bins should be < 250
 	private Lorry lorry; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
@@ -23,22 +24,20 @@ public class ServiceArea {
 		this.thresholdVal = thresholdVal;
 		this.noBins = noBins;
 		this.roadsLayout = roadsLayout;
+		for (int i = 0; i < noBins; i++) {
+			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
+		}
 		this.lorry = null;
 	}
 	
 	public void setLorry(Lorry lorry) {
 		this.lorry = lorry;
 	}
-	public void setBins() {
-		for (int i = 0; i < noBins; i++) {
-			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
-		}
-	}
 	
 	/**
 	 * return a list of bins in this service area
 	 * 
-	 * @return an array of bins
+	 * @return Bin[]	an array of all bins in that service area
 	 */
 	public Bin[] getBins() {
 		Bin[] availableBins = new Bin[noBins];
@@ -57,7 +56,6 @@ public class ServiceArea {
 		return this.thresholdVal;
 	}
 
-	
 	// print service area information for checking
 	public String toString() {
 		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq = "+String.valueOf(serviceFreq)
