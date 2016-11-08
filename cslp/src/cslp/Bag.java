@@ -29,19 +29,19 @@ public class Bag {
 	public static void setBagVolume(float bagVolume) {
 		Bag.bagVolume = bagVolume;
 	}
-
+	/*
 	public static float getBagWeightMin() {
 		return bagWeightMin;
 	}
-
+	*/
 	public static void setBagWeightMin(float bagWeightMin) {
 		Bag.bagWeightMin = bagWeightMin;
 	}
-
+	/*
 	public static float getBagWeightMax() {
 		return bagWeightMax;
 	}
-
+	*/
 	public static void setBagWeightMax(float bagWeightMax) {
 		Bag.bagWeightMax = bagWeightMax;
 	}
