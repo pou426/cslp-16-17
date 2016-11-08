@@ -1,5 +1,6 @@
-# input script 3
-# test overwriting area specifiations for both experiment and non experiment
+# input script 18
+# test matrix elements < -1
+# should throw and error
 
 # Total waste volume a lorry can accommodate (cubic metres)
 lorryVolume 20
@@ -41,7 +42,7 @@ serviceFreq experiment 0 5
 noAreas 1
 areaIdx 0 serviceFreq 0.5 thresholdVal 0.5 noBins 5
 roadsLayout
- 0  2  2  2  2  2 
+ 0  -2  2  2  2  2 
  3  0  5 -1 -1  2
 -1 -1  0  2 -1  2
 -1 -1 -1  0  2  2

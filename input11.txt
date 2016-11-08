@@ -1,0 +1,61 @@
+# input script 11
+# test areaIdx line
+# should follow strict format
+# if service area with areaIdx already found, overwrite
+
+
+lorryVolume 24
+lorryMaxLoad 20
+binServiceTime 30
+binVolume 2
+disposalDistrRate 2.0
+disposalDistrShape 25
+bagVolume 0.05
+bagWeightMin 2
+bagWeightMax 8
+noAreas 4
+areaIdx 20 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 25 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 25 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 30 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 1 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+
+
+stopTime 36.0
+
+warmUpTime 12.0

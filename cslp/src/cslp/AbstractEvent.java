@@ -6,7 +6,6 @@ package cslp;
  * 
  */
 public abstract class AbstractEvent implements Comparable {	
-	// all events belong to an array list for storing output????????
 	
 	private static float stopTime;	// each event knows when the stopTime is
 	private int time; // time (in seconds) in which the event happens during the simulation
@@ -24,8 +23,13 @@ public abstract class AbstractEvent implements Comparable {
 		this.time = time;
 	}
 
+	/**
+	 * method to convert time into day:hour:min:sec format
+	 * 
+	 * @return String	the time in which current event happens in DD:HH:MM:SS format
+	 * 
+	 */
 	public String timeToString() {
-		// method to convert time into day:hour:min:sec format
 		int secCount = time;
 		int minCount = 0;
 		int hrCount = 0;

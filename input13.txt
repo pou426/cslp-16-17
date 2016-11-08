@@ -1,0 +1,58 @@
+# input script 13
+# check non diagonal roadsLayout matrix
+
+lorryVolume 24
+lorryMaxLoad 20
+binServiceTime 30
+binVolume 5
+disposalDistrRate 2.0
+disposalDistrShape 1
+bagVolume 0.5
+bagWeightMin 2
+bagWeightMax 5
+serviceFreq experiment 3.4 5.6 7.8
+noAreas 4
+areaIdx 20 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 1  3 -1 -14 -1  4 
+ 3  2  5 -1 -1 -1
+-1 -1  3  12 -1 -1
+-1 -1 -1  4  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 25 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 25 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 30 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+areaIdx 1 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -14 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  12 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+
+stopTime 10
+
+warmUpTime 10.0
