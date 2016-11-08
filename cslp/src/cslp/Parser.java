@@ -754,6 +754,21 @@ public class Parser {
 		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
 	}
 
+	/**
+	 * Method to parse and validate inputs from file.
+	 * Set all static variables in other classes.
+	 * Set up the city by assigning a lorry to each service area.
+	 * 
+	 * @param filepath		an absolute path to the desired input file
+	 * @throws FileNotFoundException
+	 */
+	public void runParser(String filepath) throws FileNotFoundException {
+		parseInputs(filepath);
+		validation();
+		initialiseClassVars();
+		initialiseCity();
+	}
+
 	// getters 
 	public short getLorryVolume() {
 		return lorryVolume;
@@ -806,11 +821,4 @@ public class Parser {
 	public ArrayList<Float> getServiceFreqExp() {
 		return serviceFreqExp;
 	}
-	
-	public void runParser(String filepath) throws FileNotFoundException {
-		parseInputs(filepath);
-		validation();
-		initialiseClassVars();
-		initialiseCity();
 	}
-}
