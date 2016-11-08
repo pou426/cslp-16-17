@@ -100,6 +100,10 @@ public class Simulator {
 	 * reads a file and parses all the inputs
 	 * stores them into variables
 	 * checks invalid inputs or input formats
+	 * converts warmUpTime and stopTime from hour to seconds
+	 * 
+	 * @param file_path		absolute file path to a file
+	 * 
 	 */
 	public static void parseInputs(String file_path) throws FileNotFoundException {	
 		try {
@@ -204,9 +208,9 @@ public class Simulator {
 		                                                    	if (!canParse)		Error.throwError("Error: Element type mismatch in 'roadsLayout' matrix for areaIdx = "+areaIdx);
 		                                                        int element = Integer.parseInt(matrixTokens[index]); // in Minutes
 		                                                        if (element > 127)	Error.throwError("Error: Element in 'roadsLayout' matrix exceeds maximum value for type int8 (127) at line = "+line);
-		                                                        if (element < -128)	Error.throwError("Error: Element in 'roadsLayout' matrix smaller than minimum value for type in8 (-128) at line = "+line);
+		                                                        if (element < -1)	Error.throwError("Error: Element in 'roadsLayout' can only be either positive integers or -1 to indicate no direct link. Error in line = "+line);
 		                                                    	if ((element == 0) && (count != col)) System.out.println("Warning: the distance between two bins is 0.");
-		                                                    	element = element *60;  // convert to second
+		                                                    	if (element != -1)	element = element *60;  // convert to second
 		                                                        roadsLayout[count][col] = element;
 		                                                        index++;
 		                                                    }
@@ -356,9 +360,9 @@ public class Simulator {
 		                                                    	if (!canParse)		Error.throwError("Error: Element type mismatch in 'roadsLayout' matrix for areaIdx = "+areaIdx);
 		                                                        int element = Integer.parseInt(matrixTokens[index]); // in Minutes
 		                                                        if (element > 127)	Error.throwError("Error: Element in 'roadsLayout' matrix exceeds maximum value for type int8 (127) at line = "+line);
-		                                                        if (element < -128)	Error.throwError("Error: Element in 'roadsLayout' matrix smaller than minimum value for type in8 (-128) at line = "+line);
+		                                                        if (element < -1)	Error.throwError("Error: Element in 'roadsLayout' can only be either positive integers or -1 to indicate no direct link. Error in line = "+line);
 		                                                    	if ((element == 0) && (count != col)) System.out.println("Warning: the distance between two bins is 0.");
-		                                                    	element = element *60;  // convert to second
+		                                                    	if (element != -1)	element = element *60;  // convert to second
 		                                                        roadsLayout[count][col] = element;
 		                                                        index++;
 		                                                    }
@@ -691,11 +695,14 @@ public class Simulator {
 		if (bagWeightMin > bagWeightMax) {
 			Error.throwError("Error: 'bagWeightMin' parameter greater than 'bagWeightMax'.");
 		}
+		if (bagWeightMin == bagWeightMax) {
+			System.out.println("Warning: 'bagWeightMin' parameter equals to 'bagWeightMax'. The simulation will continue.");
+		}
 		if (stopTime < warmUpTime) {
 			System.out.println("Warning: 'stopTime' parameter smaller than 'warmUpTime'. The simulation will continue.");
 		}
-		if (bagWeightMin == bagWeightMax) {
-			System.out.println("Warning: 'bagWeightMax' parameter equals to 'bagWeightMin'. The simulation will continue.");
+		if (stopTime == warmUpTime) {
+			System.out.println("Warning: 'stopTime' parameter equals to 'warmUpTime'. The simulation will continue.");
 		}
 		if (bagWeightMax > lorryMaxLoad) {
 			System.out.println("Warning: 'lorryMaxLoad' parameter smaller than 'bagWeightMax'. The simulation will continue.");
@@ -710,7 +717,7 @@ public class Simulator {
 			float serviceFreq = sa.getServiceFreq();
 			short areaIdx = sa.getAreaIdx();
 			if (disposalDistrRate < serviceFreq) {
-				System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx);
+				System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx+". The simulation will continue.");
 			}
 		}
 	}
@@ -814,7 +821,7 @@ public class Simulator {
 					this.events.add(disposalEventGenerator);
 				}
 			}
-			doAllEvents();	// execute all events from priority queue
+			//doAllEvents();	// execute all events from priority queue
 		} else {
 			for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
 				for (Bin bin : sa.getBins()) {
@@ -822,8 +829,9 @@ public class Simulator {
 					this.events.add(disposalEventGenerator);
 				}
 			}
-			doAllEvents();	// execute all events from priority queue
+			//doAllEvents();	// execute all events from priority queue
 		}
+		doAllEvents();		// execute all events from priority queue
 	}
 	
 	/**
@@ -831,7 +839,7 @@ public class Simulator {
 	 */
 	public void statsAnalysis() {
 		//System.out.println("Simulation finishes. Statistical Analysis starts:");
-		// System.out.println("Warning: No implementation yet for statistical analysis.");
+		//System.out.println("Warning: No implementation yet for statistical analysis.");
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
