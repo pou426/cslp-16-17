@@ -41,7 +41,7 @@ public class Lorry {
 	public void emptyBin(Bin bin) {
 		this.currentTrashVolume += (Bin.getBinVolume())/2;
 		this.currentTrashWeight += bin.getWasteWeight();
-		bin.resetIsOverflow();		// optimise this
+		bin.resetIsOverflow();
 		bin.resetWasteVolume();
 		bin.resetWasteWeight();
 	}
@@ -70,5 +70,4 @@ public class Lorry {
 	public void setLorryLocation(int location) {
 		this.location = location;
 	}
-	
 }

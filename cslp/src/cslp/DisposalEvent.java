@@ -9,23 +9,16 @@ package cslp;
  *
  */
 public class DisposalEvent extends AbstractEvent {
-	// link this event to the output list???
-	// set this at constructor...
-	// when execute.... 
-	// set a string to describe disposal event
-	// in the disposeBag in the bin, set the string to ... 
-	// then append new event strings to the output list 
+
+	private Bin bin;	// each disposal event belongs to a specific bin
 	
-	private Bin bin;
-	
-	public DisposalEvent(int time, Bin bin) {
-		setTime(time);
+	public DisposalEvent(int time, Bin bin) {	
+		setTime(time);	// time in the simulation at which this disposal event occurs  
 		this.bin = bin;
 	}
 	
 	/**
-	 * Method called to execute this disposal event. Disposal event occurs at the
-	 * time given by the 'time' variable. 
+	 * Method called to execute this disposal event. 
 	 * If maximum time of simulation not exceeded, the time is incremented according
 	 * to the Erlang k distribution and is passed as a new DisposalEvent object to 
 	 * the list of events (stored in a Priority Queue in the class Simulator).

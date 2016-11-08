@@ -70,9 +70,17 @@ public class Bin {
 		}
 	}
 	
+	/**
+	 * Check whether a bin is overflow
+	 * 
+	 * @return boolean		true is the ratio of waste volume to bin volume is greater than or equal to 1
+	 */
 	public boolean isOverflow() {
 		return isOverflow;
 	}
+	/**
+	 * Return the isOverflow flag to false when a bin has been serviced
+	 */
 	public void resetIsOverflow() {
 		this.isOverflow = false;
 	}

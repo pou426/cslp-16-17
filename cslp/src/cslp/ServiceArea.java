@@ -13,8 +13,7 @@ public class ServiceArea {
 	private float thresholdVal;
 	private int noBins;
 	private int[][] roadsLayout = null; 
-	// TODO change to array list ??????
-	private Bin[] bins = null; // in reality the number of bins should be < 250
+	private Bin[] bins = null;
 	private Lorry lorry; // each service area has its own lorry
 	
 	public ServiceArea(short areaIdx, float serviceFreq,
@@ -26,7 +25,7 @@ public class ServiceArea {
 		this.roadsLayout = roadsLayout;
 		Bin[] bins = new Bin[noBins];
 		this.bins = bins;
-		for (int i = 0; i < noBins; i++) {
+		for (int i = 0; i < noBins; i++) {		// create bins
 			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
 		}
 		this.lorry = null;
@@ -42,11 +41,7 @@ public class ServiceArea {
 	 * @return Bin[]	an array of all bins in that service area
 	 */
 	public Bin[] getBins() {
-		Bin[] availableBins = new Bin[noBins];
-		for (int i = 0; i < noBins; i++) {
-			availableBins[i] = bins[i];
-		}
-		return availableBins;
+		return bins;
 	}
 	public short getAreaIdx() {
 		return areaIdx;

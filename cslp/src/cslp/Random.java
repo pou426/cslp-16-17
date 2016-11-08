@@ -3,7 +3,6 @@ package cslp;
 /**
  * Random class
  * 
- * @author home
  *
  */
 public class Random {
@@ -12,20 +11,16 @@ public class Random {
 
 	/**
 	 * Method to create Erlang K values for disposal event
-	 * @return int		time for the next disposal event to happen in second
+	 * @return integer		time for the next disposal event to happen in second
 	 */
 	public static int erlangk() {
 		double erlangk = 0;
 		for (int i = 0; i < disposalDistrShape; i++) {
-			double rand = Math.random();
-			double rate = -1/disposalDistrRate;
-			double logged = Math.log(rand);
-			double result = rate*logged;
+			double result = (-1/disposalDistrRate)*(Math.log(Math.random()));
 			erlangk += result;
 		}
-		double convertToSec = erlangk*60*60; // conversion from hour to second
-		int finalresult = (int) Math.round(convertToSec);
-		return finalresult;
+		int erlangkSec = (int) Math.round(erlangk*60*60);	// convert to second
+		return erlangkSec;
 	}
 	
 	public static void setDisposalDistrRate(float disposalDistrRate) {
