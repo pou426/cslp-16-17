@@ -32,8 +32,11 @@ Issue warnings if:
 - roadsLayout matrix not diagonally zero or zero (for non-diagonal elements)
 - repeat areaIdx values, overwrite
 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 Code Structure:
+------------------------------------------------------------------------------
 
 Code Structure - Reading Inputs:
 - compile.sh compiles the java files from the command line.
@@ -60,9 +63,11 @@ Code Structure - Statistical Analysis: (no implementation yet)
 - Percentage of Overflowed Bins
 - Visualisation
 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 Tests:
-
+------------------------------------------------------------------------------
 
 A list of input text files are submitted in the "input_scripts" directory. With each input text script testing different aspects of the parsing part of the program.
 
