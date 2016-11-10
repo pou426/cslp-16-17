@@ -10,10 +10,11 @@ public class Bag {
 	private static float bagWeightMin;
 	private static float bagWeightMax;
 	
-	private float weight; // instance variable
+	private float weight;
 	
 	public Bag() {
-		float w =  (float) (Math.random() * (bagWeightMax - bagWeightMin) + bagWeightMin);
+		// assign random weight to bag
+		float w =  (float) (Math.random() * (bagWeightMax - bagWeightMin) + bagWeightMin); 
 		this.weight = w;
 	}
 	

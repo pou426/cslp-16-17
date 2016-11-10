@@ -6,7 +6,6 @@ package cslp;
  * When initialized, the time parameter is the current time of simulation,
  * and the bin parameter is the bin in which this disposal event occurs.
  * 
- *
  */
 public class DisposalEvent extends AbstractEvent {
 

@@ -2,7 +2,7 @@ README.md
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-Synopsis
+Synopsis:
 ------------------------------------------------------------------------------
 
 This is a command-line application for Computer Science Large Practical. The purpose of which is to execute stochastic
@@ -11,7 +11,7 @@ simulations of the bin collection process in a "smart" city. This simulator is d
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-Input File Specification
+Input File Specification:
 ------------------------------------------------------------------------------
 
 If multiple inputs are found, the new ones are always ignored apart from the 'noArea' keyword. In which case, the new information always overwrite the previously stored data.

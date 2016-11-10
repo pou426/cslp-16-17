@@ -10,19 +10,6 @@ public abstract class AbstractEvent implements Comparable {
 	private static float stopTime;	// each event knows when the stopTime (in seconds) is 
 	private int time; // time (in seconds) in which the event happens during the simulation
 
-	public static float getStopTime() {
-		return AbstractEvent.stopTime;
-	}
-	public static void setStopTime(float stopTime) {
-		AbstractEvent.stopTime = stopTime;
-	}
-	public int getTime() {
-		return time;
-	}
-	public void setTime(int time) {
-		this.time = time;
-	}
-
 	/**
 	 * method to convert time into day:hour:min:sec format
 	 * 
@@ -79,5 +66,20 @@ public abstract class AbstractEvent implements Comparable {
 		else if (getTime() > anotherEventTime)	return 1;
 		else return -1;
 	}
-
+	
+	public static float getStopTime() {
+		return AbstractEvent.stopTime;
+	}
+	
+	public static void setStopTime(float stopTime) {
+		AbstractEvent.stopTime = stopTime;
+	}
+	
+	public int getTime() {
+		return time;
+	}
+	
+	public void setTime(int time) {
+		this.time = time;
+	}
 }
