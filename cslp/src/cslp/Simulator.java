@@ -109,11 +109,11 @@ public class Simulator {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String filepath = args[0];
-		Parser parser = new Parser();
-		parser.runParser(filepath);
-		System.out.println("parser parsed.");
 		
-		setParameters(parser);
+		Parser parser = new Parser();
+		parser.runParser(filepath);	
+		
+		setParameters(parser);	// set relevant static variables in all classes
 		
 		Simulator citySimulator = new Simulator();
 		citySimulator.start();

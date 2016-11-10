@@ -47,9 +47,9 @@ public class Parser {
 	private boolean warmUpTimeFound = false;
 
 	/** 
-	 * methods to catch exceptions when parsing int/short/float strings from file
-	 * Returns boolean for the program to handle
-	 * methods are called whenever the input parameter is supposed to be an int/short/float/byte
+	 * methods to catch exceptions when parsing int type inputs from file
+	 * 
+	 * @return boolean		true if the type matches
 	 */
 	private boolean tryParseInt(String value) {		
 	     try {  
@@ -59,6 +59,11 @@ public class Parser {
 	         return false;  
 	      } 
 	}
+	/** 
+	 * methods to catch exceptions when parsing short type inputs from file
+	 * 
+	 * @return boolean		true if the type matches
+	 */
 	private boolean tryParseShort(String value) {  
 	     try {  
 	         Short.parseShort(value);  
@@ -67,6 +72,11 @@ public class Parser {
 	         return false;  
 	      }  
 	}
+	/** 
+	 * methods to catch exceptions when parsing float type inputs from file
+	 * 
+	 * @return boolean		true if the type matches
+	 */
 	private boolean tryParseFloat(String value) {  
 	     try {  
 	         Float.parseFloat(value);  

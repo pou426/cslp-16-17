@@ -27,7 +27,6 @@ public abstract class AbstractEvent implements Comparable {
 	 * method to convert time into day:hour:min:sec format
 	 * 
 	 * @return String	the time in which current event happens in DD:HH:MM:SS format
-	 * 
 	 */
 	public String timeToString() {
 		int secCount = time;
