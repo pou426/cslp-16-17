@@ -17,7 +17,8 @@ Input File Specification
 If multiple inputs are found, the new ones are always ignored apart from the 'noArea' keyword. In which case, the new information always overwrite the previously stored data.
 
 Throw errors if:
-
+- incorrect data type has been parsed from input file
+- 
 
 Issue warnings if:
 
@@ -35,7 +36,7 @@ Abstract Classes:
 Classes:
 - Bag
 - Bin
-- DisposalEvent <- extends AbstractEvent
+- DisposalEvent <- extends AbstractEvent ??????????????
 - Error
 - Lorry
 - Random
@@ -89,14 +90,6 @@ Code Structure - Statistical Analysis: (no implementation yet)
 - Average Volume Collected
 - Percentage of Overflowed Bins
 - Visualisation
-
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-Motivation
-------------------------------------------------------------------------------
-
-The movativation of this practical is to study a smart city scnerario, in which bins are equipped with sensors to indicate their occupancy. By studying the simulation outputs, we hope to learn how the system behaves and find the optimal parameters in collection frequencies and route planning in order to reduce cost when this is implemented in real-life.
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
