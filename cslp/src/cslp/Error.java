@@ -2,12 +2,13 @@ package cslp;
 
 /**
  * Error class
- *
+ * 
  */
 public class Error {
 
 	/**
-	 * prints error and set containsError flag to true 
+	 * Prints error using stderr
+	 *  
 	 * @param message		an error message containing error information
 	 */
 	public static void throwError(String message) {

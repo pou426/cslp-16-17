@@ -29,9 +29,13 @@ public class Simulator {
 	private static ArrayList<Float> disposalDistrRateExp = new ArrayList<Float>();
 	private static ArrayList<Short> disposalDistrShapeExp = new ArrayList<Short>();
 	private static ArrayList<Float> serviceFreqExp = new ArrayList<Float>();
-		
+	
+	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // stores upcoming events
+	private int time;	// current simulation time
+
 	/**
 	 * Set all static variables in Simulator class from parsed input file
+	 * 
 	 * @param parser
 	 */
 	public static void setParameters(Parser parser) {
@@ -54,14 +58,19 @@ public class Simulator {
 		disposalDistrShapeExp = parser.getDisposalDistrShapeExp();
 		serviceFreqExp = parser.getServiceFreqExp();
 	}
-	
-	// Simulator implementation
-	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // for storing upcoming events
-	private int time;	// current simulation time
-	
-	public void insert(AbstractEvent e) {	// insert event into queue
+		
+	/**
+	 * Insert an event into the simulator's priority queue 'events'
+	 * 
+	 * @param e		an AbstractEvent instance
+	 */
+	public void insert(AbstractEvent e) {	// insert event into events queue
 		this.events.add(e);
 	}
+	
+	/**
+	 * @return int		current simulation time
+	 */
 	public int now() {
 		return time;
 	}
@@ -97,7 +106,7 @@ public class Simulator {
 				this.events.add(disposalEventGenerator);
 			}
 		}
-		doAllEvents();		// execute all events from priority queue
+		doAllEvents();	// execute all events from priority queue
 	}
 	
 	/**
@@ -112,6 +121,7 @@ public class Simulator {
 		
 		Parser parser = new Parser();
 		parser.runParser(filepath);	
+		//parser.printAllInputs();
 		
 		setParameters(parser);	// set relevant static variables in all classes
 		

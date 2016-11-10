@@ -5,13 +5,7 @@ package cslp;
  *
  */
 public class Bin {
-	/*
-	 * Overflow events can be tracked at most once between
-	 * two bin service instances. 
-	 * Occupancy of a bin may exceed capacity, when it becomes
-	 * full after the disposal of one bag. For any bag this
-	 * can happen at most once between two service instances
-	 */
+	
 	private static float binVolume; 
 	
 	private short areaIdx;
@@ -19,8 +13,8 @@ public class Bin {
 	private float thresholdVal;
 	private float wasteVolume;
 	private float wasteWeight;
-	private boolean isOverflow; // = true when the bin is overflowed 
-	private boolean isExceedThreshold; // = true when the waste content exceed threshold
+	private boolean isOverflow; // flag for overflow event 
+	private boolean isExceedThreshold; // flag for exceed threshold event
 
 	public Bin(short areaIdx, int binIdx, float thresholdVal) {
 		this.areaIdx = areaIdx;
@@ -39,7 +33,7 @@ public class Bin {
 	 * @param e		a disposal event
 	 */
 	public void disposeBag(DisposalEvent e) {
-		Bag bag = new Bag(); 	// bag to be disposed in this bin
+		Bag bag = new Bag();
 		float bagWeight = bag.getWeight();
 		if (isOverflow) {	// if bin already overflowed, do not update its content, just output the disposal event
 			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
@@ -87,7 +81,8 @@ public class Bin {
 	
 	/**
 	 * Method to calculate the current ratio of waste volume to the bin volume
-	 * @return		the current occupancy of the bin given as waste volume divided by the bin volume
+	 * 
+	 * @return double		the current occupancy of the bin given as waste volume divided by the bin volume
 	 */
 	public double currentOccupancy() {
 		return wasteVolume/binVolume;

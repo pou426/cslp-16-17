@@ -59,6 +59,7 @@ public class Parser {
 	         return false;  
 	      } 
 	}
+	
 	/** 
 	 * methods to catch exceptions when parsing short type inputs from file
 	 * 
@@ -72,6 +73,7 @@ public class Parser {
 	         return false;  
 	      }  
 	}
+	
 	/** 
 	 * methods to catch exceptions when parsing float type inputs from file
 	 * 
@@ -219,7 +221,7 @@ public class Parser {
 	                                                if (!isDiagonallyZero)		System.out.println("Warning: 'roadsLayout' matrix is not diagonally 0 for areaIdx = "+areaIdx);
 	                                                areaFound = true;
 	                                            } else {
-	                                                Error.throwError("Error: Incorrect no. of columns for the "
+	                                                Error.throwError("Error: Incorrect no. of rows for the "
 	                                                		+ "roadsLayout matrix for areaIdx = " + areaIdx);
 	                                            }
 	                                    	}
@@ -239,7 +241,7 @@ public class Parser {
 						
 					case "serviceFreq":		// experimentation
 						if (!(tokens[1].equals("experiment"))) {
-							Error.throwError("Error: Invalid format: missing keyword 'experiment' in this line: " + line);
+							System.out.println("Warning: Missing 'experiment' keyword or unrecognised input 'serviceFreq' in this line: " + line);
 						} if (tokensLen == 2) {
 							System.out.println("Warning: Missing input in this line: "+line+"\nThis line will be disregarded.");
 						} else {
@@ -472,7 +474,7 @@ public class Parser {
 										if (!canParse)			Error.throwError("Error: 'disposalDistrRate' input type mismatch at line = "+line);
 										float ddr = Float.parseFloat(tokens[i]);
 										if (ddr < 0)			Error.throwError("Error: 'disposalDistrRate' parameter cannot be negative.");
-										if (ddr == 0)			System.out.println("Warning: 'disposalDistrRate' parameter is zero.");
+										if (ddr == 0)			Error.throwError("Error: 'disposalDistrRate' parameter is zero. This will result in divison by zero in the erlang-k scale.");
 										if (ddr > Float.MAX_VALUE)	Error.throwError("Error: 'disposalDistrRate' parameter exceeds maximum value for type float at line = "+line);
 										disposalDistrRateExp.add(ddr);
 										isExperiment = true;
@@ -486,7 +488,7 @@ public class Parser {
 								if (!canParse)					Error.throwError("Error: 'disposalDistrRate' input type mismatch at line = "+line);
 								disposalDistrRate = Float.parseFloat(tokens[1]);
 								if (disposalDistrRate < 0)		Error.throwError("Error: 'disposalDistrRate' parameter cannot be negative.");
-								if (disposalDistrRate == 0)		System.out.println("Warning: 'disposalDistrRate' parameter is zero.");
+								if (disposalDistrRate == 0)			Error.throwError("Error: 'disposalDistrRate' parameter is zero. This will result in divison by zero in the erlang-k scale.");
 								if (disposalDistrRate > Float.MAX_VALUE)	Error.throwError("Error: 'disposalDistrRate' parameter exceeds maximum value for type float at line ="+line);
 								disposalDistrRateFound = true;
 							}
@@ -508,7 +510,7 @@ public class Parser {
 										if (!canParse)			Error.throwError("Error: 'disposalDistrShape' input type mismatch at line = "+line);
 										short dds = Short.parseShort(tokens[i]);
 										if (dds < 0)			Error.throwError("Error: 'disposalDistrShape' parameter cannot be negative.");
-										if (dds == 0)			System.out.println("Warning: The 'disposalDistrShape' parameter is zero.");
+										if (dds == 0)			Error.throwError("Error: The 'disposalDistrShape' parameter is zero. All disposal events would occur at time = 0.");
 										if (dds > 255)			Error.throwError("Error: 'disposalDistrShape' input exceeds maximum value 255 at line = "+line);
 										disposalDistrShapeExp.add(dds);
 										isExperiment = true;
@@ -522,7 +524,7 @@ public class Parser {
 								if (!canParse)					Error.throwError("Error: 'disposalDistrShape' input type mismatch at line = "+line);
 								disposalDistrShape = Short.parseShort(tokens[1]);
 								if (disposalDistrShape < 0)		Error.throwError("Error: 'disposalDistrShape' parameter cannot be negative.");
-								if (disposalDistrShape == 0)	System.out.println("Warning: 'disposalDistrShape' parameter is zero.");
+								if (disposalDistrShape == 0)	Error.throwError("Error: The 'disposalDistrShape' parameter is zero. All disposal events would occur at time = 0.");
 								if (disposalDistrShape > 255)	Error.throwError("Error: 'disposalDistrShape' input exceeds maximum value 255 at line = "+line);
 								disposalDistrShapeFound = true;
 							}
@@ -624,7 +626,7 @@ public class Parser {
 			br.close();
 
 		} catch (FileNotFoundException e) {
-			Error.throwError("Error: Input file invalid. The simulation will terminate");	
+			Error.throwError("Error: Input file invalid.");	
 			e.printStackTrace();
 		} catch (IOException e) {
 			Error.throwError("Error: IO Exception error.");
@@ -665,7 +667,7 @@ public class Parser {
 		if (!bagWeightMaxFound)	{
 			Error.throwError("Error: Missing parameter 'bagWeightMax'.");
 		}
-		if (noAreasFound && (noAreas > 0)) { //TODO: is this redundant?? 
+		if (noAreasFound && (noAreas > 0)) { //TODO: is this redundant?
 			if (!serviceAreasFound) {
 				Error.throwError("Error: Insufficient or missing service areas."
 						+ "\nNumber of service areas: " + noAreas
@@ -725,6 +727,7 @@ public class Parser {
 		Lorry.setBinServiceTime(binServiceTime);
 		Lorry.setLorryMaxLoad(lorryMaxLoad);
 		Lorry.setLorryVolume(lorryVolume);
+		
 		AbstractEvent.setStopTime(stopTime);
 	}
 	
@@ -779,7 +782,6 @@ public class Parser {
 		initialiseCity();
 	}
 
-	// getters 
 	public short getLorryVolume() {
 		return lorryVolume;
 	}

@@ -3,7 +3,6 @@ package cslp;
 /**
  * Random class
  * 
- *
  */
 public class Random {
 	private static float disposalDistrRate; // expressed per hour
@@ -11,7 +10,8 @@ public class Random {
 
 	/**
 	 * Method to create Erlang K values for disposal event
-	 * @return integer		time for the next disposal event to happen in second
+	 * 
+	 * @return int		time for the next disposal event to happen in second
 	 */
 	public static int erlangk() {
 		double erlangk = 0;

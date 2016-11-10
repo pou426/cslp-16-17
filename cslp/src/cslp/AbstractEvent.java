@@ -7,7 +7,7 @@ package cslp;
  */
 public abstract class AbstractEvent implements Comparable {	
 	
-	private static float stopTime;	// each event knows when the stopTime is
+	private static float stopTime;	// each event knows when the stopTime (in seconds) is 
 	private int time; // time (in seconds) in which the event happens during the simulation
 
 	public static float getStopTime() {
@@ -55,6 +55,7 @@ public abstract class AbstractEvent implements Comparable {
 	
 	/**
 	 * Method called to execute the event during the simulation.
+	 * 
 	 * @param simulator
 	 */
 	public abstract void execute(Simulator simulator); 
@@ -64,6 +65,9 @@ public abstract class AbstractEvent implements Comparable {
 	 * where time is the time during the simulation in which the event occurs.
 	 * If the 'time' variable of the current Event instance is greater than the
 	 * other, return 1. If they are equal, return 0. Otherwise, return -1.
+	 * 
+	 * @param Object	another event
+	 * @return int 
 	 */
 	@Override
 	public int compareTo(Object anotherEvent) {

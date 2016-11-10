@@ -15,7 +15,6 @@ public class Bag {
 	public Bag() {
 		float w =  (float) (Math.random() * (bagWeightMax - bagWeightMin) + bagWeightMin);
 		this.weight = w;
-		//this.weight = (float) (Math.round(w*100.0)/100.0);
 	}
 	
 	public float getWeight() {
@@ -29,19 +28,11 @@ public class Bag {
 	public static void setBagVolume(float bagVolume) {
 		Bag.bagVolume = bagVolume;
 	}
-	/*
-	public static float getBagWeightMin() {
-		return bagWeightMin;
-	}
-	*/
+	
 	public static void setBagWeightMin(float bagWeightMin) {
 		Bag.bagWeightMin = bagWeightMin;
 	}
-	/*
-	public static float getBagWeightMax() {
-		return bagWeightMax;
-	}
-	*/
+
 	public static void setBagWeightMax(float bagWeightMax) {
 		Bag.bagWeightMax = bagWeightMax;
 	}

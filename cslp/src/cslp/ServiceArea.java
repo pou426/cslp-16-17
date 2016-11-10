@@ -53,7 +53,9 @@ public class ServiceArea {
 		return this.thresholdVal;
 	}
 
-	// print service area information for checking
+	/** 
+	 * print service area information for checking
+	 */
 	public String toString() {
 		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq (in hour) = "+String.valueOf(serviceFreq)
 				+" thresholdVal = "+String.valueOf(thresholdVal)+" noBins = "+String.valueOf(noBins);
