@@ -2,7 +2,7 @@ README.md
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-Synopsis
+## Synopsis ##
 ------------------------------------------------------------------------------
 
 This is a command-line application for Computer Science Large Practical. The purpose of which is to execute stochastic
