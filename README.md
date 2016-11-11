@@ -73,24 +73,17 @@ A list of input text files are submitted in the "input_scripts" directory. With 
 
 The aspects tested by the input script is specified on the top of the file.
 
-The aspects each input script tested is specified as follows:
-- input1.txt: a valid input files without errors or warnings
-- input2_1.txt ~ input2_3.txt: all experiment related testing 
-	- identify experiment
-	- missing experiment keyword
-	- only one experiment input
-	- valid experiment input script but run as a non-experiment simulation
-- input3.txt: checks that inputs are reasonable
-- input4.txt: checks valid or invalid input types and values
-- input5_1.txt ~ input5_10.txt: all area specification related testing
-	- areaIdx line format
-	- noAreas = 0
-	- missing area specifications
-	- noArea parameter followed by areaIdx parameter in the next line
-	- roadsLayout matrix should be diagonally zero
-	- test element values in roadsLayout matrix
-	- insufficient service area specifications
-	- test number of row elements in the roadsLayout matrix
-	- checks number of rows in roadsLayout matrix
-- input6.txt: checks that only output overflow and exceed tresholdVal event once
-- input7_1.txt ~ input 7_2.txt: checks that disposalDistrShape and disposalDistrRate cannot be 0
+The aspects each input script tested is specified as follows (according to input script number):
+Non-experiment testing:
+1. all correct inputs for non-experiment simulation with blank lines and comments
+2. too many (valid and invalid) inputs at the END of the line. should only parse the first input
+3 - 15: check invalid input
+16 - 24: check incorrect input data type
+25 - 40: check negative value inputs
+41 - 43: check 0 value inputs
+44 - 56: check exceed maximum and by commenting out the keywords to check missing keywords
+57: check that inputs makes sense
+58 - 60: checks experiment - identify experiments, check missing experiment keyword, only one input for experiment, correct experiment input but run as non experiment simulation (for now)
+62 - 74: all area specification related checks - areaIdx format, noAreas = 0, no or insufficient service information, strict format of lines after noArea line, diagonal 0 matrix, roadsLayout matrix elements magnitude, number of row elements and number of rows, identify missing row, duplicate service area information
+75 - 76: disposalDistrRate and disposalDistrShape = 0
+77: test generation of events
