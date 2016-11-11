@@ -25,6 +25,9 @@ public class DisposalEvent extends AbstractEvent {
 	 * @param simulator		a Simulator instance that executes this event
 	 */
 	public void execute(Simulator simulator) {
+		if (!(getTime() < getStopTime())) {
+			return;
+		}
     	this.bin.disposeBag(this); 
     	int currTime = getTime();
     	int newTime = currTime + Random.erlangk();
