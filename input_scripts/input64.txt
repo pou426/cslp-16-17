@@ -1,0 +1,15 @@
+# test no service area information when noArea > 0
+
+
+lorryVolume 24
+lorryMaxLoad 20
+binServiceTime 30
+binVolume 2
+disposalDistrRate 2.0
+disposalDistrShape 25
+bagVolume 0.05
+bagWeightMin 2
+bagWeightMax 8
+noAreas 2
+stopTime 36.0
+warmUpTime 12.0

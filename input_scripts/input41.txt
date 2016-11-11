@@ -1,0 +1,22 @@
+# 0 values - all apart from disposalDistrRate and disposalDistrShape and noAreas
+
+lorryVolume 0
+lorryMaxLoad 0
+binServiceTime 0
+binVolume 0
+disposalDistrRate 2
+disposalDistrShape 2
+bagVolume 0
+bagWeightMin 0
+bagWeightMax 0
+noAreas 1
+areaIdx 0 serviceFreq 0 thresholdVal 0 noBins 5
+roadsLayout
+ 0  3 -1 -1 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  2 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+stopTime 0
+warmUpTime 0

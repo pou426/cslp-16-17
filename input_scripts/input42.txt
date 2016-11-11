@@ -1,0 +1,22 @@
+# 0 values for noAreas - ignore all service area information after this
+
+lorryVolume 20
+lorryMaxLoad 200
+binServiceTime 5
+binVolume 3
+disposalDistrRate 2
+disposalDistrShape 2
+bagVolume 1
+bagWeightMin 2
+bagWeightMax 5
+noAreas 0
+areaIdx 0 serviceFreq 0.5 thresholdVal 0.7 noBins 5
+roadsLayout
+ 0  3 -1 -1 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  2 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+stopTime 36
+warmUpTime 12

@@ -1,0 +1,19 @@
+# 0 values for matrix
+
+lorryVolume 20
+lorryMaxLoad 200
+binServiceTime 5
+binVolume 3
+disposalDistrRate 2
+disposalDistrShape 2
+bagVolume 1
+bagWeightMin 2
+bagWeightMax 5
+noAreas 1
+areaIdx 0 serviceFreq 0.5 thresholdVal 0.7 noBins 2
+roadsLayout
+ 0 0 0
+ 0 0 0
+ 0 0 0
+stopTime 36
+warmUpTime 12

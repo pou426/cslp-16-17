@@ -1,0 +1,44 @@
+# checks maximum input
+
+#lorryVolume 20
+lorryVolume 256
+
+lorryMaxLoad 7000
+#lorryMaxLoad 65536
+
+binServiceTime 130
+#binServiceTime 65536
+
+binVolume 2
+#binVolume 10E1000
+
+disposalDistrRate 2
+#disposalDistrRate 10E1000
+
+disposalDistrShape 6
+#disposalDistrShape 256
+
+bagVolume 0.05
+#bagVolume 256
+
+bagWeightMin 2
+#bagWeightMin 10E1000
+
+bagWeightMax 8
+#bagWeightMax 10E1000
+
+noAreas 1
+areaIdx 0 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout
+ 0  3 -1 -1 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  2 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+
+stopTime 36.0
+#stopTime 10E1000
+
+warmUpTime 12.0
+#warmUpTime 10E1000

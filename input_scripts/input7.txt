@@ -1,0 +1,22 @@
+# invalid input - disposalDistrRate
+
+lorryVolume 2
+lorryMaxLoad 7000 
+binServiceTime 130
+binVolume 2
+disposalDistrRate omg 2.0 
+disposalDistrShape 2 
+bagVolume 0.05
+bagWeightMin 2
+bagWeightMax 38
+noAreas 1
+areaIdx 0 serviceFreq 0.0625 thresholdVal 0.75 noBins 5
+roadsLayout 3 
+ 0  3 -1 -1 -1  4 
+ 3  0  5 -1 -1 -1
+-1 -1  0  2 -1 -1
+-1 -1 -1  0  2  2
+-1  1 -1 -1  0 -1
+ 4 -1 -1  2  4  0
+stopTime 4.0
+warmUpTime 1.0
