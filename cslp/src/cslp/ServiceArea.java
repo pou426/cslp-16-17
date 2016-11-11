@@ -16,8 +16,8 @@ public class ServiceArea {
 	private Bin[] bins = null;
 	private Lorry lorry; // each service area has its own lorry
 	
-	public ServiceArea(short areaIdx, float serviceFreq,
-			float thresholdVal, int noBins, int[][] roadsLayout) {
+	public ServiceArea(short areaIdx, float serviceFreq, float thresholdVal, 
+			int noBins, int[][] roadsLayout) {
 		this.areaIdx = areaIdx;
 		this.serviceFreq = serviceFreq;
 		this.thresholdVal = thresholdVal;

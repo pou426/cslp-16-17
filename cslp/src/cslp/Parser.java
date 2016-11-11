@@ -186,6 +186,9 @@ public class Parser {
 	                                    					+ "\nThe line following area specification should be the roadsLayout "
 	                                    					+ "parameter.\nError in areaIdx = " + areaIdx);
 	                                    		} 
+	                                    		if (layoutTokens.length != 1) {
+	                                    			System.out.println("Warning: unrecognised token(s) after 'roadsLayout' parameter. This token will be ignored.");
+	                                    		}
 	                                    		int count = 0;
 	                                    		while ((count < m) && ((line=br.readLine()) != null)) {
 	                                    			String[] matrixTokens = line.trim().split("\\s+");
@@ -338,6 +341,9 @@ public class Parser {
 	                                    					+ "\nThe line following area specification should be the roadsLayout "
 	                                    					+ "parameter.\nError in areaIdx = " + areaIdx);
 	                                    		} 
+	                                    		if (layoutTokens.length != 1) {
+	                                    			System.out.println("Warning: unrecognised token(s) after 'roadsLayout' parameter. This token will be ignored.");
+	                                    		}
 	                                    		int count = 0;
 	                                    		while ((count < m) && ((line=br.readLine()) != null)) {
 	                                    			String[] matrixTokens = line.trim().split("\\s+");
@@ -420,10 +426,10 @@ public class Parser {
 							lorryMaxLoad = Integer.parseInt(tokens[1]);
 							if (lorryMaxLoad < 0)		Error.throwError("Error: 'lorryMaxLoad' cannot be negative.");
 							if (lorryMaxLoad == 0)		System.out.println("Warning: 'lorryMaxLoad' parameter is zero.");
-							if (lorryVolume > 65535)	Error.throwError("Error: 'lorryMaxLoad' input exceeds maximum value 65,535 at line = "+line);
+							if (lorryMaxLoad > 65535)	Error.throwError("Error: 'lorryMaxLoad' input exceeds maximum value 65,535 at line = "+line);
 							lorryMaxLoadFound = true;
 						}
-						break;
+				 		break;
 					
 					case "binServiceTime":
 						if (binServiceTimeFound) {
