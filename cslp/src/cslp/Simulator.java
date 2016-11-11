@@ -91,15 +91,6 @@ public class Simulator {
 	 * If this is an experiment, several simulations will be run with different parameters.
 	 */
 	public void start() {
-		if (isExperiment) {
-			// at the moment, only one set of parameters will be run because no implementation for experiments yet
-			if (disposalDistrRateExp.size() > 0)	disposalDistrRate = disposalDistrRateExp.get(0);
-			if (disposalDistrShapeExp.size() > 0) 	disposalDistrShape = disposalDistrShapeExp.get(0);
-
-			// reset attributes for experiments
-			Random.setDisposalDistrRate(disposalDistrRate);
-			Random.setDisposalDistrShape(disposalDistrShape);
-		}
 		for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
 			for (Bin bin : sa.getBins()) {
 				DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
@@ -126,9 +117,17 @@ public class Simulator {
 		setParameters(parser);	// set relevant static variables in all classes
 		
 		Simulator citySimulator = new Simulator();
-		citySimulator.start();
-		citySimulator.statsAnalysis();
-		// should maybe implement this into two parts for experiments and non experiment
 		
+		if (isExperiment) {
+			// at the moment, only one set of parameters will be run because no implementation for experiments yet
+			if (disposalDistrRateExp.size() > 0)	disposalDistrRate = disposalDistrRateExp.get(0);
+			if (disposalDistrShapeExp.size() > 0) 	disposalDistrShape = disposalDistrShapeExp.get(0);
+
+			// reset attributes for experiments
+			Random.setDisposalDistrRate(disposalDistrRate);
+			Random.setDisposalDistrShape(disposalDistrShape);
+		}
+		citySimulator.start();
+		citySimulator.statsAnalysis();		
     } 	
 }
