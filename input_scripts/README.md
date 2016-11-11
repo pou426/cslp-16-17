@@ -1,1 +1,0 @@
-input scripts go to this folder
