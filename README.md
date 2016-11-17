@@ -45,7 +45,7 @@ Code Structure - Reading Inputs:
 - Input parameters are stored in the Simulator class as static variables.
 - Each service area and their information is stored as a ServiceArea instance. All instances stored within the ArrayList called serviceAreas.
 - Simulator class contains a Priority Queue to store all events according their time of occurence, with methods to insert new events to list.
-- start() method in Simulator class runs the simulator under the condition of whether the input file continas the experiment keyword.
+- start() method in Simulator class runs the simulator under the condition of whether the input file contains the experiment keyword.
 
 Code Structure - Generate, Schedule and Execute Waste Disposal Events:
 - When the simulation starts, the first disposal event for each bin is generated with the time parameter set as a random value returned by the erlangk() method in Random class. All disposal events are added to the events Priority Queue.
