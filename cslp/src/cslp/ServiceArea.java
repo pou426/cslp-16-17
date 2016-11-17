@@ -10,6 +10,7 @@ public class ServiceArea {
 	
 	private short areaIdx; 
 	private float serviceFreq; // eg. serviceFreq 0.0625 means 0.0625 trips per hour
+	private int serviceInterval; // in second
 	private float thresholdVal;
 	private int noBins;
 	private int[][] roadsLayout = null; 
@@ -20,6 +21,7 @@ public class ServiceArea {
 			int noBins, int[][] roadsLayout) {
 		this.areaIdx = areaIdx;
 		this.serviceFreq = serviceFreq;
+		this.serviceInterval = Math.round((1/serviceFreq)*60*60); // in second
 		this.thresholdVal = thresholdVal;
 		this.noBins = noBins;
 		this.roadsLayout = roadsLayout;
@@ -34,7 +36,9 @@ public class ServiceArea {
 	public void setLorry(Lorry lorry) {
 		this.lorry = lorry;
 	}
-	
+	public Lorry getLorry() {
+		return this.lorry;
+	}
 	/**
 	 * return a list of bins in this service area
 	 * 
@@ -52,7 +56,9 @@ public class ServiceArea {
 	public float getThresholdVal() {
 		return this.thresholdVal;
 	}
-
+	public int getServiceInterval() {
+		return this.serviceInterval;
+	}
 	/** 
 	 * print service area information for checking
 	 */
