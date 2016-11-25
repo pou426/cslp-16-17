@@ -11,8 +11,8 @@ public class DisposalEvent extends AbstractEvent {
 
 	private Bin bin;	// each disposal event belongs to a specific bin
 	
-	public DisposalEvent(int time, Bin bin) {	
-		setTime(time);	// time in the simulation at which this disposal event occurs  
+	public DisposalEvent(int eventTime, Bin bin) {	
+		setTime(eventTime);	// time in the simulation at which this disposal event occurs  
 		this.bin = bin;
 	}
 	
@@ -36,4 +36,5 @@ public class DisposalEvent extends AbstractEvent {
     		simulator.insert(this);
     	}
     }
+
 }
