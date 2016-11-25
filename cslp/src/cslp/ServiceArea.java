@@ -1,5 +1,6 @@
 package cslp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -16,6 +17,8 @@ public class ServiceArea {
 	private int[][] roadsLayout = null; 
 	private Bin[] bins = null;
 	private Lorry lorry; // each service area has its own lorry
+	private boolean isServicing; // carrying out service event?
+	ArrayList<BinServiceEvent> waitingServiceEvents = new ArrayList<BinServiceEvent>();
 	
 	public ServiceArea(short areaIdx, float serviceFreq, float thresholdVal, 
 			int noBins, int[][] roadsLayout) {
@@ -31,6 +34,7 @@ public class ServiceArea {
 			this.bins[i] = new Bin(areaIdx, i+1, thresholdVal);
 		}
 		this.lorry = null;
+		this.isServicing = false;
 	}
 	
 	public void setLorry(Lorry lorry) {
@@ -38,6 +42,12 @@ public class ServiceArea {
 	}
 	public Lorry getLorry() {
 		return this.lorry;
+	}
+	public void setIsServicing(boolean b) {
+		this.isServicing = b;
+	}
+	public boolean getIsServicing() {
+		return this.isServicing;
 	}
 	/**
 	 * return a list of bins in this service area
