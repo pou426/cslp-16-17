@@ -7,8 +7,9 @@ package cslp;
  */
 public abstract class AbstractEvent implements Comparable {	
 	
+	private static float warmUpTime; // in second
 	private static float stopTime;	// each event knows when the stopTime (in seconds) is 
-	private int time; // time (in seconds) in which the event happens during the simulation
+	private int eventTime; // time (in seconds) in which the event happens during the simulation
 
 	/**
 	 * method to convert time into day:hour:min:sec format
@@ -16,7 +17,7 @@ public abstract class AbstractEvent implements Comparable {
 	 * @return String	the time in which current event happens in DD:HH:MM:SS format
 	 */
 	public String timeToString() {
-		int secCount = time;
+		int secCount = eventTime;
 		int minCount = 0;
 		int hrCount = 0;
 		int dayCount = 0;
@@ -66,7 +67,12 @@ public abstract class AbstractEvent implements Comparable {
 		else if (getTime() > anotherEventTime)	return 1;
 		else return -1;
 	}
-	
+	public static float getWarmUpTime() {
+		return AbstractEvent.warmUpTime;
+	}
+	public static void setWarmUpTime(float warmUpTime) {
+		AbstractEvent.warmUpTime = warmUpTime;
+	}
 	public static float getStopTime() {
 		return AbstractEvent.stopTime;
 	}
@@ -76,10 +82,10 @@ public abstract class AbstractEvent implements Comparable {
 	}
 	
 	public int getTime() {
-		return time;
+		return eventTime;
 	}
 	
 	public void setTime(int time) {
-		this.time = time;
+		this.eventTime = time;
 	}
 }
