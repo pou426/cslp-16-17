@@ -8,24 +8,34 @@ public class Bin {
 	
 	private static float binVolume; 
 	
+	private ServiceArea serviceArea; // points to service area
 	private short areaIdx;
 	private int binIdx;
 	private float thresholdVal;
+	
 	private float wasteVolume;
 	private float wasteWeight;
+	
 	private boolean isOverflow; // flag for overflow event 
 	private boolean isExceedThreshold; // flag for exceed threshold event
 
-	public Bin(short areaIdx, int binIdx, float thresholdVal) {
-		this.areaIdx = areaIdx;
+	public Bin(ServiceArea serviceArea, int binIdx) {
+		this.serviceArea = serviceArea;
+		this.areaIdx = serviceArea.getAreaIdx();
 		this.binIdx = binIdx;
-		this.thresholdVal = thresholdVal;
+		this.thresholdVal = serviceArea.getThresholdVal();
 		this.wasteVolume = 0;
 		this.wasteWeight = 0;
 		this.isOverflow = false;
 		this.isExceedThreshold = false;
 	}
 	
+	public void printStatus() {
+		System.out.println("wasteVolume: "+wasteVolume);
+		System.out.println("wasteWeight: "+wasteWeight);
+		System.out.println("isOverflow: "+isOverflow);
+		System.out.println("isExceedThreshold: "+isExceedThreshold);
+	}
 	/**
 	 * When a disposal event is executed, the contents and status of the bin are modified accordingly.
 	 * This method outputs the event in a readable format, keeps track of and updates current status of the bin.
@@ -79,6 +89,13 @@ public class Bin {
 		this.isOverflow = false;
 	}
 	
+	public boolean isExceedThreshold() {
+		return this.isExceedThreshold;
+	}
+	
+	public void resetIsExceedThreshold() {
+		this.isExceedThreshold = false;
+	}
 	/**
 	 * Method to calculate the current ratio of waste volume to the bin volume
 	 * 
