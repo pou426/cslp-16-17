@@ -10,11 +10,13 @@ public class Lorry {
 	private static int lorryMaxLoad; 
 	private static int binServiceTime;
 	
+	private ServiceArea serviceArea; // points to service area it belongs
 	private int location; // keeps track of lorry's location in the service area
 	private float currentTrashVolume; 
 	private float currentTrashWeight;
 	
-	public Lorry() {
+	public Lorry(ServiceArea serviceArea) {
+		this.serviceArea = serviceArea;
 		this.currentTrashVolume = 0;
 		this.currentTrashWeight = 0;
 		this.location = 0; // lorry stations at the depot in the initial state
@@ -31,6 +33,7 @@ public class Lorry {
 		this.currentTrashVolume += (Bin.getBinVolume())/2;
 		this.currentTrashWeight += bin.getWasteWeight();
 		bin.resetIsOverflow();
+		bin.resetIsExceedThreshold();
 		bin.resetWasteVolume();
 		bin.resetWasteWeight();
 	}
