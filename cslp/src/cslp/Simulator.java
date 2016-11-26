@@ -11,26 +11,24 @@ import java.util.PriorityQueue;
  */
 public class Simulator {
 
-	private HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();	// roadsLayout elements in seconds, serviceFreq in hour
-	
 	// experiments
 	private static boolean isExperiment = false;
 	private static ArrayList<Float> disposalDistrRateExp = new ArrayList<Float>();
 	private static ArrayList<Short> disposalDistrShapeExp = new ArrayList<Short>();
 	private static ArrayList<Float> serviceFreqExp = new ArrayList<Float>();
-
-	// simulation
+	
+	private float disposalDistrRate;
+	private short disposalDistrShape;
+	private HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();	// roadsLayout elements in seconds, serviceFreq in hour
 	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // stores upcoming events
 	private int time;	// current simulation time
 
-	public Simulator(Parser parser) {
-		this.serviceAreas = parser.initialiseServiceAreas();
+	public Simulator(Parser parser, float ddr, short dds) {
+		this.disposalDistrRate = ddr;
+		this.disposalDistrShape = dds;
+		this.serviceAreas = parser.createServiceAreas(); // new service area instance
 		this.events.clear();
 		this.time = 0;
-	}
-	
-	public HashMap<Short,ServiceArea> getServiceAreas() {
-		return this.serviceAreas;
 	}
 	
 	/**
@@ -71,9 +69,10 @@ public class Simulator {
 	 * If this is an experiment, several simulations will be run with different parameters.
 	 */
 	public void start() {
+		Random random = new Random(disposalDistrRate, disposalDistrShape);
 		for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
 			for (Bin bin : sa.getBins()) {
-				DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
+				DisposalEvent disposalEventGenerator = new DisposalEvent(random.erlangk(), bin, random);
 				this.events.add(disposalEventGenerator);
 			}
 			BinServiceEvent binServiceEventGenerator = new BinServiceEvent(sa.getServiceInterval(),sa); // first event at service interval
@@ -89,7 +88,13 @@ public class Simulator {
 		// insert code here
 	}
 	
-	// setters
+	
+	
+	// getters and setters
+	public HashMap<Short,ServiceArea> getServiceAreas() {
+		return this.serviceAreas;
+	}
+	
 	public static void setIsExperiment(boolean isExperiment) {
 		Simulator.isExperiment = isExperiment;
 	}
@@ -104,12 +109,7 @@ public class Simulator {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -119,28 +119,28 @@ public class Simulator {
 		parser.runParser(filepath);
 		parser.printAllInputs();
 		
-		HashMap<Short,ServiceArea> sas = parser.getServiceAreas();
+		float ddr = parser.getDisposalDistrRate();
+		short dds = parser.getDisposalDistrShape();
+		Simulator citySimulator = new Simulator(parser, ddr, dds);
+		Random random = new Random(ddr, dds);
 		System.out.println("----------------------ALL BIN STATUS--------------------");
-		for (ServiceArea sa : sas.values()) {
+		for (ServiceArea sa : citySimulator.getServiceAreas().values()) {
 			Bin[] allBins = sa.getBins();
 			for (Bin b : allBins) {
 				b.printStatus();
 			}
 		}
-		Simulator.setParameters(parser);	// set relevant static variables in this class
 		
-
 		if (args.length > 1) {
-			Simulator citySimulator = new Simulator(parser);
 			
 			if (args[1].equals("a")) {
 				// checks Erlang K here
 				// collect a bunch of erlangK values with different rate and shape and plot graph
 				System.out.println("--------------------------CHECKING ERLANGK-------------------------------");
-				System.out.println("Example of Erlang K value (in minute): "+Random.erlangk()/60);	
-				System.out.println("Average of Erlang K value (in minute): "+Random.meanErlangK()/60);
+				System.out.println("Example of Erlang K value (in minute): "+random.erlangk()/60);	
+				System.out.println("Average of Erlang K value (in minute): "+random.meanErlangK()/60);
 				int erlangk = 0;
-				for (int i = 0; i < 100; i++)	erlangk += Random.erlangk();
+				for (int i = 0; i < 100; i++)	erlangk += random.erlangk();
 				erlangk = erlangk/100;
 				System.out.println("Average of 100 Erlang K values (in minute): "+erlangk/60);
 			}
@@ -155,7 +155,7 @@ public class Simulator {
 				for (ServiceArea sa : citySimulator.getServiceAreas().values()) {
 					Bin[] bins = sa.getBins();
 					for (Bin bin : bins) {
-						DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
+						DisposalEvent disposalEventGenerator = new DisposalEvent(random.erlangk(), bin, random);
 						citySimulator.insert(disposalEventGenerator);
 						System.out.println("Generate disposal event for areaIdx = "+bin.getAreaIdx()+" and binIdx = "+bin.getBinIdx());
 					}
@@ -178,7 +178,7 @@ public class Simulator {
 				for (ServiceArea sa : citySimulator.getServiceAreas().values()) {
 					Bin[] bins = sa.getBins();
 					for (Bin bin : bins) {
-						DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
+						DisposalEvent disposalEventGenerator = new DisposalEvent(random.erlangk(), bin, random);
 						citySimulator.insert(disposalEventGenerator);	
 					}
 				}
@@ -199,21 +199,25 @@ public class Simulator {
 		System.out.println("             ***************************               ");
 		System.out.println("              *************************                ");
 
-		
-		// reset everything... 
-		parser.runParser(filepath);
-		setParameters(parser);
-		parser.initialiseCity();
-		HashMap<Short,ServiceArea> sas1 = parser.getServiceAreas();
+		// check citySimulator status
 		System.out.println("----------------------ALL BIN STATUS--------------------");
-		for (ServiceArea sa : sas1.values()) {
+		for (ServiceArea sa : citySimulator.getServiceAreas().values()) {
+			Bin[] allBins = sa.getBins();
+			for (Bin b : allBins) {
+				b.printStatus();
+			}
+		}
+		
+		// create new simulator
+		Simulator citySimulator1 = new Simulator(parser, ddr, dds);
+		System.out.println("----------------------ALL BIN STATUS----------------------");
+		for (ServiceArea sa : citySimulator1.getServiceAreas().values()) {
 			Bin[] allBins = sa.getBins();
 			for (Bin b : allBins) {
 				b.printStatus();
 			}
 		}
 
-		Simulator citySimulator1 = new Simulator(parser);
 		System.out.println("\n-----------------------------Restart now!!---------------------------------"
 				+ "\ncurrent no of events in queue: "+citySimulator1.events.size());
 		
