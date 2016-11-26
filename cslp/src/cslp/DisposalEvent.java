@@ -10,11 +10,13 @@ package cslp;
 public class DisposalEvent extends AbstractEvent {
 
 	private Bin bin;	// each disposal event belongs to a specific bin
+	private Random random; 
 	
-	public DisposalEvent(int eventTime, Bin bin) {	
-		setTime(eventTime);	// time in the simulation at which this disposal event occurs  
+	public DisposalEvent(int eventTime, Bin bin, Random random) {	
+		schedule(eventTime);	// time in the simulation at which this disposal event occurs  
 		this.bin = bin;
-	}
+		this.random = random;
+;	}
 	
 	/**
 	 * Method called to execute this disposal event. 
@@ -25,16 +27,22 @@ public class DisposalEvent extends AbstractEvent {
 	 * @param simulator		a Simulator instance that executes this event
 	 */
 	public void execute(Simulator simulator) {
-		if (!(getTime() < getStopTime())) {
+		if (!(getEventTime() < getStopTime())) {
 			return;
 		}
     	this.bin.disposeBag(this); 
-    	int currTime = getTime();
-    	int newTime = currTime + Random.erlangk();
-    	setTime(newTime);
-    	if (getTime() < getStopTime()) {
+    	int currTime = getEventTime(); // schedule next disposal event for this bin
+    	int newTime = currTime + random.erlangk();
+    	schedule(newTime);
+    	if (getEventTime() < getStopTime()) {
     		simulator.insert(this);
     	}
     }
-
+	
+	/** For checking **/
+	public String toString() {
+		String s = "I am a DisposalEvent for time = "+getEventTime();
+		s += " and areaIdx = "+bin.getAreaIdx()+" and binIdx = "+bin.getBinIdx();
+		return s;
+	}
 }
