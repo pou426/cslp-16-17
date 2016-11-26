@@ -41,6 +41,14 @@ public abstract class AbstractEvent implements Comparable {
 		return result;
 	}
 	
+	/** 
+	 * Schedule event time
+	 * 
+	 * @param eventTime
+	 */
+	public void schedule(int eventTime) {
+		this.eventTime = eventTime;
+	}
 	/**
 	 * Method called to execute the event during the simulation.
 	 * 
@@ -62,11 +70,12 @@ public abstract class AbstractEvent implements Comparable {
 		if (!(anotherEvent instanceof AbstractEvent)) {
 			throw new ClassCastException("Error: An Event object expected.");
 		}
-		int anotherEventTime = ((AbstractEvent) anotherEvent).getTime();
-		if (getTime() == anotherEventTime)		return 0;
-		else if (getTime() > anotherEventTime)	return 1;
+		int anotherEventTime = ((AbstractEvent) anotherEvent).getEventTime();
+		if (getEventTime() == anotherEventTime)		return 0;
+		else if (getEventTime() > anotherEventTime)	return 1;
 		else return -1;
 	}
+	
 	public static float getWarmUpTime() {
 		return AbstractEvent.warmUpTime;
 	}
@@ -76,16 +85,11 @@ public abstract class AbstractEvent implements Comparable {
 	public static float getStopTime() {
 		return AbstractEvent.stopTime;
 	}
-	
 	public static void setStopTime(float stopTime) {
 		AbstractEvent.stopTime = stopTime;
 	}
-	
-	public int getTime() {
+	public int getEventTime() {
 		return eventTime;
 	}
 	
-	public void setTime(int time) {
-		this.eventTime = time;
-	}
 }
