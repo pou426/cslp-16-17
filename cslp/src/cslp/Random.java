@@ -5,15 +5,19 @@ package cslp;
  * 
  */
 public class Random {
-	private static float disposalDistrRate; // expressed per hour
-	private static short disposalDistrShape;
+	private float disposalDistrRate; // expressed per hour
+	private short disposalDistrShape;
 
+	public Random(float disposalDistrRate, short disposalDistrShape) {
+		this.disposalDistrRate = disposalDistrRate;
+		this.disposalDistrShape = disposalDistrShape;
+	}
 	/**
 	 * Method to create Erlang K values for disposal event
 	 * 
 	 * @return int		time for the next disposal event to happen in second
 	 */
-	public static int erlangk() {
+	public int erlangk() {
 		double erlangk = 0;
 		for (int i = 0; i < disposalDistrShape; i++) {
 			double result = (-1/disposalDistrRate)*(Math.log(Math.random()));
@@ -23,11 +27,8 @@ public class Random {
 		return erlangkSec;
 	}
 	
-	public static void setDisposalDistrRate(float disposalDistrRate) {
-		Random.disposalDistrRate = disposalDistrRate;
-	}
-	
-	public static void setDisposalDistrShape(short disposalDistrShape) {
-		Random.disposalDistrShape = disposalDistrShape;
+	/** For checking **/
+	public double meanErlangK() {
+		return 60*60*disposalDistrShape/disposalDistrRate;
 	}
 }
