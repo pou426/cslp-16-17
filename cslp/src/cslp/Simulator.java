@@ -20,6 +20,8 @@ public class Simulator {
 	private float disposalDistrRate;
 	private short disposalDistrShape;
 	private HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();	// roadsLayout elements in seconds, serviceFreq in hour
+	
+	private Random random;
 	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // stores upcoming events
 	private int time;	// current simulation time
 
@@ -27,6 +29,7 @@ public class Simulator {
 		this.disposalDistrRate = ddr;
 		this.disposalDistrShape = dds;
 		this.serviceAreas = parser.createServiceAreas(); // new service area instance
+		this.random = new Random(ddr, dds);
 		this.events.clear();
 		this.time = 0;
 	}
@@ -46,15 +49,10 @@ public class Simulator {
 	public int now() {
 		return time;
 	}
-
-	/**For Checking**/
-	public PriorityQueue<AbstractEvent> getEvents() {
-		return events;
-	}
 	
 	/**
-	 * extracts all events from 'events' priority queue and execute them
-	 * update simulator time
+	 * Extracts all events from 'events' priority queue and execute them.
+	 * Updates simulator time
 	 */
 	public void doAllEvents() {
 		AbstractEvent e;
@@ -69,12 +67,13 @@ public class Simulator {
 	 * If this is an experiment, several simulations will be run with different parameters.
 	 */
 	public void start() {
-		Random random = new Random(disposalDistrRate, disposalDistrShape);
 		for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
+
 			for (Bin bin : sa.getBins()) {
 				DisposalEvent disposalEventGenerator = new DisposalEvent(random.erlangk(), bin, random);
 				this.events.add(disposalEventGenerator);
 			}
+			
 			BinServiceEvent binServiceEventGenerator = new BinServiceEvent(sa.getServiceInterval(),sa); // first event at service interval
 			this.events.add(binServiceEventGenerator);
 		}
@@ -160,9 +159,9 @@ public class Simulator {
 						System.out.println("Generate disposal event for areaIdx = "+bin.getAreaIdx()+" and binIdx = "+bin.getBinIdx());
 					}
 				}
-				System.out.println("No. of disposal events generated: "+citySimulator.getEvents().size());
-				while (!citySimulator.getEvents().isEmpty()) {
-					System.out.println(citySimulator.getEvents().poll().toString());
+				System.out.println("No. of disposal events generated: "+citySimulator.events.size());
+				while (!citySimulator.events.isEmpty()) {
+					System.out.println(citySimulator.events.poll().toString());
 				}
 				System.out.println("Initial generation ok! generate new events again.\n");
 				System.out.println("   ***   ***      ***   ***      ***   ***   ");
@@ -186,21 +185,27 @@ public class Simulator {
 				System.out.println("----------------------Disposal events finish checking--------------------\n");
 			}
 		} 
-		
-		System.out.println("               *                     *                 ");
-		System.out.println("              ***                   ***                ");
-		System.out.println("             *******              ******               ");
-		System.out.println("            *****************************              ");
-		System.out.println("            *****************************              ");
-		System.out.println("         ************************************          ");
-		System.out.println("           *******************************             ");
-		System.out.println("         ************************************          ");
-		System.out.println("            *****************************              ");
-		System.out.println("             ***************************               ");
-		System.out.println("              *************************                ");
 
+		System.out.println("		..▓▓..▓▓");
+		System.out.println("		..▓▓......▓▓");
+		System.out.println("		..▓▓......▓▓..................▓▓▓▓");
+		System.out.println("		..▓▓......▓▓..............▓▓......▓▓▓▓");
+		System.out.println("		..▓▓....▓▓..............▓......▓▓......▓▓");
+		System.out.println("		....▓▓....▓............▓....▓▓....▓▓▓....▓▓");
+		System.out.println("		......▓▓....▓........▓....▓▓..........▓▓....▓");
+		System.out.println("		........▓▓..▓▓....▓▓..▓▓................▓▓");
+		System.out.println("		........▓▓......▓▓....▓▓");
+		System.out.println("		.......▓......................▓");
+		System.out.println("		.....▓.........................▓");
+		System.out.println("		....▓......^..........^......▓");
+		System.out.println("		....▓............♥.............▓");
+		System.out.println("		....▓..........................▓");
+		System.out.println("		......▓..........ٮ..........▓");
+		System.out.println("		..........▓▓..........▓▓ \n");
+
+		
 		// check citySimulator status
-		System.out.println("----------------------ALL BIN STATUS--------------------");
+		System.out.println("---------------------- ALL BIN STATUS for sim 1 --------------------");
 		for (ServiceArea sa : citySimulator.getServiceAreas().values()) {
 			Bin[] allBins = sa.getBins();
 			for (Bin b : allBins) {
@@ -208,9 +213,10 @@ public class Simulator {
 			}
 		}
 		
+		System.out.println("LOGGING INFO: -------------- creating new simulator... -----------------");
 		// create new simulator
 		Simulator citySimulator1 = new Simulator(parser, ddr, dds);
-		System.out.println("----------------------ALL BIN STATUS----------------------");
+		System.out.println("---------------------- ALL BIN STATUS for new sim ----------------------");
 		for (ServiceArea sa : citySimulator1.getServiceAreas().values()) {
 			Bin[] allBins = sa.getBins();
 			for (Bin b : allBins) {
@@ -222,7 +228,7 @@ public class Simulator {
 				+ "\ncurrent no of events in queue: "+citySimulator1.events.size());
 		
 		// not for testing
-		if (isExperiment) {
+//		if (isExperiment) {
 			// at the moment, only one set of parameters will be run because no implementation for experiments yet
 //				if (disposalDistrRateExp.size() > 0) {
 //					float disposalDistrRate = disposalDistrRateExp.get(0);
@@ -232,7 +238,7 @@ public class Simulator {
 //					short disposalDistrShape = disposalDistrShapeExp.get(0);
 //					Random.setDisposalDistrShape(disposalDistrShape);
 //				}
-		}
+//		}
 
 		System.out.println("Now, create initial disposal events and inital bin servicing events.");
 		citySimulator1.start();

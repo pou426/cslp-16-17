@@ -18,7 +18,7 @@ public class ServiceAreaInfo {
 	}
 	
 	/** 
-	 * print service area information for checking
+	 * FOR CHECKING: print service area information for checking
 	 */
 	public String toString() {
 		String a = "areaIdx = "+String.valueOf(areaIdx)+" serviceFreq (in hour) = "+String.valueOf(serviceFreq)

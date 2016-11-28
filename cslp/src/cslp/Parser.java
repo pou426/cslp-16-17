@@ -724,6 +724,9 @@ public class Parser {
 	 * Initialize all static class variables for all classes
 	 */
 	public void initialiseClassVars() {
+		AbstractEvent.setWarmUpTime(warmUpTime);
+		AbstractEvent.setStopTime(stopTime);
+
 		Bag.setBagVolume(bagVolume);
 		Bag.setBagWeightMax(bagWeightMax);
 		Bag.setBagWeightMin(bagWeightMin);
@@ -734,9 +737,6 @@ public class Parser {
 		Lorry.setLorryMaxLoad(lorryMaxLoad);
 		Lorry.setLorryVolume(lorryVolume);
 
-		AbstractEvent.setWarmUpTime(warmUpTime);
-		AbstractEvent.setStopTime(stopTime);
-		
 		Simulator.setIsExperiment(isExperiment);
 		Simulator.setDisposalDistrRateExp(disposalDistrRateExp);
 		Simulator.setDisposalDistrShapeExp(disposalDistrShapeExp);
@@ -744,7 +744,7 @@ public class Parser {
 	}
 
 	/** 
-	 * Creates a service area hashmap and assign lorry...
+	 * Creates a deep copy of the service area Hashmap instance and assign lorry...
 	 * 
 	 * @return	HashMap<Short,ServiceArea> 		new service area instance
 	 */
@@ -766,27 +766,29 @@ public class Parser {
 	 * method to print all parameter values in human readable format
 	 */
 	public void printAllInputs() {
-		System.out.println("lorryVolume = "+lorryVolume);
-		System.out.println("lorryMaxLoad = "+lorryMaxLoad);
-		System.out.println("binServiceTime = "+binServiceTime);
-		System.out.println("binVolume = "+binVolume);
-		System.out.println("disposalDistrRate (avg. per hour) = "+disposalDistrRate);
-		System.out.println("disposalDistrShape = "+disposalDistrShape);
-		System.out.println("bagVolume = "+bagVolume);
-		System.out.println("bagWeightMin = "+bagWeightMin);
-		System.out.println("bagWeightMax = "+bagWeightMax);
-		System.out.println("noAreas = "+noAreas);
+		System.out.println("LOGGING INFO: ------------------- PRINTING ALL INPUTS FOR CHECKING ---------------------");
+		System.out.println("lorryVolume : "+lorryVolume);
+		System.out.println("lorryMaxLoad : "+lorryMaxLoad);
+		System.out.println("binServiceTime : "+binServiceTime);
+		System.out.println("binVolume : "+binVolume);
+		System.out.println("disposalDistrRate (avg. per hour) : "+disposalDistrRate);
+		System.out.println("disposalDistrShape : "+disposalDistrShape);
+		System.out.println("bagVolume : "+bagVolume);
+		System.out.println("bagWeightMin : "+bagWeightMin);
+		System.out.println("bagWeightMax : "+bagWeightMax);
+		System.out.println("noAreas : "+noAreas);
 		System.out.println("Service Areas information: ");
 		for (ServiceAreaInfo saInfo : serviceAreaInfos.values()) System.out.println(saInfo.toString());
-		System.out.println("stopTime (in second) = "+stopTime);
-		System.out.println("warmUpTime (in second) = "+warmUpTime);
-		System.out.println("isExperiment = "+isExperiment);		// check whether it is an experimentation input file
+		System.out.println("stopTime (in second) : "+stopTime);
+		System.out.println("warmUpTime (in second) : "+warmUpTime);
+		System.out.println("isExperiment : "+isExperiment);		// check whether it is an experimentation input file
 		System.out.println("All disposalDistrRate (avg. per hour):");
 		for (Float sa : disposalDistrRateExp) System.out.println("disposalDistrRateExp: " + sa);
 		System.out.println("All disposalDistrShape:");
 		for (Short sa : disposalDistrShapeExp) System.out.println("disposalDistrShapeExp: " + sa);
 		System.out.println("All serviceFreq (expressed in hour):");
 		for (Float sa : serviceFreqExp) System.out.println("serviceFreqExp: " + sa);
+		System.out.println("LOGGING INFO: ----------------------------- FINISH PRINTING ----------------------------");
 	}
 
 	/**

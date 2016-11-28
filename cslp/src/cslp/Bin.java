@@ -8,9 +8,10 @@ public class Bin {
 	
 	private static float binVolume; 
 	
-	private ServiceArea serviceArea; // points to service area
-	private short areaIdx;
-	private int binIdx;
+	private ServiceArea serviceArea; // points to service area.. want this one to check bin occupancy and compute path??? 
+	
+	private short areaIdx; // for easy checking....
+	private int binIdx;	   // aka the location... 
 	private float thresholdVal;
 	
 	private float wasteVolume;
@@ -31,10 +32,8 @@ public class Bin {
 	}
 	
 	public void printStatus() {
-		System.out.println("wasteVolume: "+wasteVolume);
-		System.out.println("wasteWeight: "+wasteWeight);
-		System.out.println("isOverflow: "+isOverflow);
-		System.out.println("isExceedThreshold: "+isExceedThreshold);
+		System.out.println("Current Bin Status: areaIdx : "+areaIdx+" binIdx : "+binIdx);
+		System.out.println("WasteVolume : "+wasteVolume+" wasteWeight : "+wasteWeight+" isOverflow : "+isOverflow+" isExceedThreshold : "+isExceedThreshold);
 	}
 	/**
 	 * When a disposal event is executed, the contents and status of the bin are modified accordingly.
