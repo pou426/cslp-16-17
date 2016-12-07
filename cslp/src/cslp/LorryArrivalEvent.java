@@ -1,78 +1,70 @@
 package cslp;
 
-import sun.misc.Perf.GetPerfAction;
+import java.util.logging.Logger;
 
 public class LorryArrivalEvent extends AbstractEvent {
 
-	private ServiceArea sa;
-	private Bin bin;
-	private int currLocation;
-	private BinServiceEvent binServiceEvent;
+	private static final Logger LOGGER = Logger.getLogger(LorryDepartureEvent.class.getName());
 	
-	public LorryArrivalEvent(int eventTime, int arriveAt, ServiceArea sa, BinServiceEvent binServiceEvent) {
+	private ServiceArea sa;
+	private int currLocation;
+	
+	public LorryArrivalEvent(int eventTime, int arriveAt, ServiceArea sa) {
 		schedule(eventTime);
 		this.currLocation = arriveAt;
 		this.sa = sa;
-		if (currLocation != 0) {
-			this.bin = sa.getBins()[arriveAt-1];
-		} else {
-			System.out.println("---- LorryArrivalEvent destination is depot ----");
+		if (currLocation == 0) { // for logging
+			LOGGER.info("LorryArrivalEvent destination is depot.");
 		}
-		this.binServiceEvent = binServiceEvent;
 	}
+	
+	public int getCurrLocation() {
+		return this.currLocation;
+	}
+	
 	@Override
 	public void execute(Simulator simulator) {
-		// TODO Auto-generated method stub
-		System.out.println("LOGGING INFO : Executing LorryArrivalEvent for areaIdx : "+sa.getAreaIdx()+" arriving at : "+currLocation);
-		System.out.println("Current time : "+getEventTime()+ " in time format: "+timeToString());
+
+		LOGGER.info("areaIdx : "+sa.getAreaIdx()+" currLocation : "+currLocation+" currTime : "+getEventTime()+" ("+timeToString()+")");
 		if (!(getEventTime() < getStopTime())) {
-			System.out.println("BOO YOU WHORE!");
+			LOGGER.info("Should not reach this state.");
 			return;
 		}
 		Lorry lorry = sa.getLorry();
-		lorry.setLorryLocation(currLocation); // move lorry 
+		lorry.setLorryLocation(this); // move lorry 
 		if (currLocation != 0) { // not at depot right now
-			int timeToEmptyBin = lorry.getBinServiceTime();
+			int timeToEmptyBin = Lorry.getBinServiceTime();
 			int binEmptiedTime = getEventTime() + timeToEmptyBin; // new time for bin emptied event
 			if (binEmptiedTime < getStopTime()) {
-				// do checkings here for the bin and lorry capacity..... 
-				float binVol = bin.getWasteVolume()/2;
+				// do checking here for the bin and lorry capacity..... 
+				Bin bin = sa.getBin(currLocation); // current bin...
+				float binVol = bin.getWasteVolume()/2; // compressed
 				float binWeight = bin.getWasteWeight();
 				float remainingVol = Lorry.getLorryVolume() - lorry.getCurrentTrashVolume();
 				float remainingWeight = Lorry.getLorryMaxLoad() - lorry.getCurrentTrashWeight();
-				// or should checking be done after emptying a bin?????
+				LOGGER.info("currLocation : "+currLocation+" binVol (compressed) : "+binVol+" binWeight : "+binWeight+" remainingVol : "+remainingVol+" remainingWeight : "+remainingWeight);
 				if (binVol > remainingVol) {
-					System.out.println("-------------------------------------------------------OOOOOOOHHHHHHH NOOOOOOOOOO----------------------------------");
-					System.out.println("Lorry does not have enough volume to empty bin");
-					System.out.println("lorry current remaining volume : "+remainingVol+" current remaining weight : "+remainingWeight);
-					System.out.println("Bin current volume (compressed) :"+binVol+" current weight : "+binWeight);
-					// rescedule here........
-					// should be the same event! 
-					LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa, binServiceEvent);
+					LOGGER.info("Lorry does not have enough volume to empty bin. Inserted new LorryDepartureEvent to depot.");
+					LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa);
 					simulator.insert(lorryDepartureEvent);
 				} else if (binWeight > remainingWeight) {
-					System.out.println("------------------------------------------------------OOOOOOOHHHHHHH NOOOOOOOOOO----------------------------------");
-					System.out.println("Lorry does not have enough weight to empty bin");
-					System.out.println("lorry current remaining volume : "+remainingVol+" current remaining weight : "+remainingWeight);
-					System.out.println("Bin current volume (compressed) :"+binVol+" current weight : "+binWeight);
-					// reschedule here.........
-					// should be the same event! 
-					LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa, binServiceEvent);
+					LOGGER.info("Lorry does not have enough load to empty bin. Inserted new LorryDepartureEvent to depot.");
+					LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa);
 					simulator.insert(lorryDepartureEvent);
 				} else {
-	 				BinEmptiedEvent binEmptiedEvent = new BinEmptiedEvent(binEmptiedTime, sa, bin, binServiceEvent);
+					bin.setIsServicing(); // isServicing until binEmptiedEvent is executed, such that dipsoal events cannot happen at that bin.
+	 				BinEmptiedEvent binEmptiedEvent = new BinEmptiedEvent(binEmptiedTime, sa, bin);
 					simulator.insert(binEmptiedEvent);	
 				}
-			} // else return? 
+			}
+			return;
 		} else if (currLocation == 0) {
-			// empty lorry event here...
-			System.out.println("LOGGING INFO : [LorryArrivalEvent] arrived at depot for areaIdx = "+sa.getAreaIdx());
-			System.out.println("[LorryArrivalEvent] going to empty lorry.");
-			int timeToEmptyLorry = lorry.getBinServiceTime() * 5; // 5 times as long as bin service time
+			int timeToEmptyLorry = Lorry.getBinServiceTime() * 5; // 5 times as long as bin service time
 			int lorryEmptiedTime = getEventTime() + timeToEmptyLorry;
 			if (lorryEmptiedTime < getStopTime()) {
-				LorryEmptiedEvent lorryEmptiedEvent = new LorryEmptiedEvent(lorryEmptiedTime, sa, lorry, binServiceEvent);
+				LorryEmptiedEvent lorryEmptiedEvent = new LorryEmptiedEvent(lorryEmptiedTime, sa);
 				simulator.insert(lorryEmptiedEvent);
+				LOGGER.info("Inserted LorryEmpitedEvent. areaIdx : "+sa.getAreaIdx());
 			}
 		}
 	}

@@ -8,8 +8,6 @@ public class Bin {
 	
 	private static float binVolume; 
 	
-	private ServiceArea serviceArea; // points to service area.. want this one to check bin occupancy and compute path??? 
-	
 	private short areaIdx; // for easy checking....
 	private int binIdx;	   // aka the location... 
 	private float thresholdVal;
@@ -19,9 +17,9 @@ public class Bin {
 	
 	private boolean isOverflow; // flag for overflow event 
 	private boolean isExceedThreshold; // flag for exceed threshold event
+	private boolean isServicing; // if servicing, cannot dipsose bags
 
 	public Bin(ServiceArea serviceArea, int binIdx) {
-		this.serviceArea = serviceArea;
 		this.areaIdx = serviceArea.getAreaIdx();
 		this.binIdx = binIdx;
 		this.thresholdVal = serviceArea.getThresholdVal();
@@ -29,12 +27,9 @@ public class Bin {
 		this.wasteWeight = 0;
 		this.isOverflow = false;
 		this.isExceedThreshold = false;
+		this.isServicing = false;
 	}
 	
-	public void printStatus() {
-		System.out.println("Current Bin Status: areaIdx : "+areaIdx+" binIdx : "+binIdx);
-		System.out.println("WasteVolume : "+wasteVolume+" wasteWeight : "+wasteWeight+" isOverflow : "+isOverflow+" isExceedThreshold : "+isExceedThreshold);
-	}
 	/**
 	 * When a disposal event is executed, the contents and status of the bin are modified accordingly.
 	 * This method outputs the event in a readable format, keeps track of and updates current status of the bin.
@@ -44,31 +39,31 @@ public class Bin {
 	public void disposeBag(DisposalEvent e) {
 		Bag bag = new Bag();
 		float bagWeight = bag.getWeight();
-		if (isOverflow) {	// if bin already overflowed, do not update its content, just output the disposal event
+		if (isOverflow || isServicing) {	// if servicing event is happening or if bin already overflowed, do not update its content, just output the disposal event
 			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
-			System.out.println(disposalString);				// output disposal event
+			if (!AbstractEvent.getIsExperiment()) System.out.println(disposalString);				// output disposal event
 		} else {
 			this.wasteVolume += Bag.getBagVolume();
 			this.wasteWeight += bagWeight;
 			
 			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
-			System.out.println(disposalString);				// output disposal event
+			if (!AbstractEvent.getIsExperiment()) System.out.println(disposalString);				// output disposal event
 			
 			String binStatusString = e.timeToString() + " -> load of bin "+areaIdx+"."+binIdx+" became "+String.format("%.3f",wasteWeight)+" kg and contents volume "+String.format("%.3f", wasteVolume)+" m^3";
-			System.out.println(binStatusString);			// output change in bin content event
+			if (!AbstractEvent.getIsExperiment()) System.out.println(binStatusString);			// output change in bin content event
 			
 			if (!isExceedThreshold) {	// only outputs exceed thresholdVal event if this is first occurence between bin service
 				if (currentOccupancy() > thresholdVal) { 		// updates isExceedThreshold variable if necessary
 					isExceedThreshold = true;
 					String exceedThresholdString = e.timeToString() + " -> occupancy threshold of bin "+areaIdx+"."+binIdx+" exceeded";
-					System.out.println(exceedThresholdString);	// output exceed threshold event
+					if (!AbstractEvent.getIsExperiment()) System.out.println(exceedThresholdString);	// output exceed threshold event
 				}
 			}
 			
 			if (currentOccupancy() >= 1) { 	// updates isOverflow variable if necessary			
 				isOverflow = true;
 				String overflowString = e.timeToString() + " -> "+ "bin "+areaIdx+"."+binIdx+" overflowed";
-				System.out.println(overflowString);			// output bin overflow event
+				if (!AbstractEvent.getIsExperiment()) System.out.println(overflowString);			// output bin overflow event
 			}
 		}
 	}
@@ -95,6 +90,16 @@ public class Bin {
 	public void resetIsExceedThreshold() {
 		this.isExceedThreshold = false;
 	}
+	
+	public boolean isServicing() {
+		return this.isServicing;
+	}
+	public void setIsServicing() {
+		this.isServicing = true;
+	}
+	public void resetIsServicing() {
+		this.isServicing = false;
+	}
 	/**
 	 * Method to calculate the current ratio of waste volume to the bin volume
 	 * 
@@ -106,6 +111,9 @@ public class Bin {
 	
 	public double currentWeight() {
 		return this.wasteWeight;
+	}
+	public double currentVol() {
+		return this.wasteVolume;
 	}
 	
 	public short getAreaIdx() {

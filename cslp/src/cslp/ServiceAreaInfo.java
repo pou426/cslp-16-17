@@ -55,4 +55,7 @@ public class ServiceAreaInfo {
 		return this.roadsLayout;
 	}
 	
+	public void setServiceFreq(float serviceFreq) {
+		this.serviceFreq = serviceFreq;
+	}
 }

@@ -9,6 +9,7 @@ public abstract class AbstractEvent implements Comparable {
 	
 	private static float warmUpTime; // in second
 	private static float stopTime;	// each event knows when the stopTime (in seconds) is 
+	private static boolean isExperiment;
 	private int eventTime; // time (in seconds) in which the event happens during the simulation
 
 	/**
@@ -88,6 +89,13 @@ public abstract class AbstractEvent implements Comparable {
 	public static void setStopTime(float stopTime) {
 		AbstractEvent.stopTime = stopTime;
 	}
+	public static boolean getIsExperiment() {
+		return AbstractEvent.isExperiment;
+	}
+	public static void setIsExperiment(boolean isExperiment) {
+		AbstractEvent.isExperiment = isExperiment;
+	}
+	
 	public int getEventTime() {
 		return eventTime;
 	}

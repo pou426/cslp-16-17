@@ -1,46 +1,46 @@
 package cslp;
 
+import java.util.logging.Logger;
+
 public class BinEmptiedEvent extends AbstractEvent {
 
+	private static final Logger LOGGER = Logger.getLogger(BinEmptiedEvent.class.getName());
+
 	private ServiceArea sa;
-	private Lorry lorry;
 	private Bin bin; // as a location
-	private BinServiceEvent binServiceEvent;
 	
-	public BinEmptiedEvent(int eventTime, ServiceArea sa, Bin bin, BinServiceEvent binServiceEvent) {
+	public BinEmptiedEvent(int eventTime, ServiceArea sa, Bin bin) {
 		schedule(eventTime);
 		this.sa = sa;
-		this.lorry = sa.getLorry();
 		this.bin = bin;
-		this.binServiceEvent = binServiceEvent;
+	}
+	
+	public Bin getBin() {
+		return this.bin;
 	}
 	
 	@Override
 	public void execute(Simulator simulator) {
-		System.out.println("LOGGING INFO : Executing BinEmptiedEvent for areaIdx : "+sa.getAreaIdx());
-		System.out.println("before emptying..."); // for checking
-		bin.printStatus(); // for checking
-		// lorry.printStatus(); // for checking
-		lorry.emptyBin(bin); 
-		System.out.println("after emptying..."); // for checking
-		bin.printStatus(); // for checking
-		// lorry.printStatus(); // for checking
+		if (!(getEventTime() < getStopTime())) {
+			LOGGER.info("Should not reach this state.");
+			return;
+		}
+		Lorry lorry = sa.getLorry();
+		LOGGER.info("Before emptying: bin weight : "+bin.currentWeight()+" vol : "+bin.currentVol()+" Lorry weight : "+lorry.getCurrentTrashWeight()+" vol : "+lorry.getCurrentTrashVolume());
+		lorry.emptyBin(this); 
+		LOGGER.info("After emptying: bin weight : "+bin.currentWeight()+" vol : "+bin.currentVol()+" Lorry weight : "+lorry.getCurrentTrashWeight()+" vol : "+lorry.getCurrentTrashVolume());
 		int currLocation = lorry.getLorryLocation();
 		if (sa.isDone()) {
-			System.out.println("LOGGING INFO : Done servicing for areaIdx : "+sa.getAreaIdx());
-			LorryDepartureEvent goHome = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa, binServiceEvent);
+			LOGGER.info("BinServiceEvent done. areaIdx : "+sa.getAreaIdx()+" insert new lorry departure event. currLocation : "+currLocation);
+			LorryDepartureEvent goHome = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa);
 			simulator.insert(goHome);
-			System.out.println("LOGGING INFO : Inserted a new lorry departure event for areaIdx : "+sa.getAreaIdx());
-			System.out.println("current location : "+currLocation+" current destination : 0");
 			return;
 		}
 		int currDestination = sa.getNextBinInQueue();
 		// no need to check time because binEmptied = departEvent..
-		LorryDepartureEvent goToNextBin = new LorryDepartureEvent(getEventTime(), currLocation, currDestination, sa, binServiceEvent);
+		LorryDepartureEvent goToNextBin = new LorryDepartureEvent(getEventTime(), currLocation, currDestination, sa);
 		simulator.insert(goToNextBin);
-		System.out.println("LOGGING INFO : Inserted a departure event for areaIdx : "+sa.getAreaIdx());
-		System.out.println("current Location : "+currLocation+" current destination: "+currDestination);
+		LOGGER.info("Inserted LorryDepartureEvent. areaIdx : "+sa.getAreaIdx()+" currLocation : "+currLocation+" currDestination : "+currDestination);
 	}
 
-	
 }

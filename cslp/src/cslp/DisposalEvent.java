@@ -10,12 +10,10 @@ package cslp;
 public class DisposalEvent extends AbstractEvent {
 
 	private Bin bin;	// each disposal event belongs to a specific bin
-	private Random random; 
 	
-	public DisposalEvent(int eventTime, Bin bin, Random random) {	
+	public DisposalEvent(int eventTime, Bin bin) {	
 		schedule(eventTime);	// time in the simulation at which this disposal event occurs  
 		this.bin = bin;
-		this.random = random;
 ;	}
 	
 	/**
@@ -32,17 +30,11 @@ public class DisposalEvent extends AbstractEvent {
 		}
     	this.bin.disposeBag(this); 
     	int currTime = getEventTime(); // schedule next disposal event for this bin
-    	int newTime = currTime + random.erlangk();
+    	int newTime = currTime + Random.erlangk();
     	schedule(newTime);
     	if (getEventTime() < getStopTime()) {
     		simulator.insert(this);
     	}
     }
 	
-	/** For checking **/
-	public String toString() {
-		String s = "I am a DisposalEvent for time = "+getEventTime();
-		s += " and areaIdx = "+bin.getAreaIdx()+" and binIdx = "+bin.getBinIdx();
-		return s;
-	}
 }

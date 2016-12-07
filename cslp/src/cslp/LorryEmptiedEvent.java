@@ -1,30 +1,37 @@
 package cslp;
 
+import java.util.logging.Logger;
+
 public class LorryEmptiedEvent extends AbstractEvent {
 
+	private static final Logger LOGGER = Logger.getLogger(LorryEmptiedEvent.class.getName());
+	
 	private ServiceArea sa;
 	private Lorry lorry;
-	private BinServiceEvent binServiceEvent;
 	
-	public LorryEmptiedEvent(int eventTime, ServiceArea sa, Lorry lorry, BinServiceEvent binServiceEvent) {
+	public LorryEmptiedEvent(int eventTime, ServiceArea sa) {
 		schedule(eventTime);
 		this.sa = sa;
-		this.lorry = lorry;
-		this.binServiceEvent = binServiceEvent;
+		this.lorry = sa.getLorry();
 	}
 
 	@Override
 	public void execute(Simulator simulator) {
-		System.out.println("LOGGING INFO: [LorryEmptiedEvent] LorryEmptiedEvent executed for areaIdx : "+sa.getAreaIdx());
-		System.out.println("Current lorry location should be 0, location = "+lorry.getLorryLocation());
-		lorry.emptyLorry();
+		if (!(getEventTime() < getStopTime())) {
+			LOGGER.info("Should not reach this state.");
+			return;
+		}
+		float beforeEmptyWeight = lorry.getCurrentTrashWeight(); // before emptying...
+		float beforeEmptyVol = lorry.getCurrentTrashVolume(); // before emptying...
+		LOGGER.info("Execute LorryEmptiedEvent. areaIdx : "+sa.getAreaIdx()+" currLocation : "+lorry.getLorryLocation());
+		lorry.emptyLorry(this);
+		LOGGER.info("Emptied lorry. before emptying : weight : "+beforeEmptyWeight+" vol : "+beforeEmptyVol+" after emptying : weight : "+lorry.getCurrentTrashWeight()+" vol : "+lorry.getCurrentTrashVolume());
 		if (sa.isDone()) {
-			System.out.println("No more bins in queue. bin service event finishes.");
-			System.out.println("current time : "+getEventTime()+" stop time: "+getStopTime());
-			binServiceEvent.updateObserver(getEventTime()); 
+			sa.getBinServiceEvent().update(getEventTime(), beforeEmptyWeight, beforeEmptyVol); 
+			LOGGER.info("BinServiceEvent finishes. updated BinServiceEvent. currTime : "+getEventTime()+" stopTime : "+getStopTime());
 		} else {
-			System.out.println("There is still bins in queue, this should be a rescheduling event.. compute paths again!");
-			binServiceEvent.reschedule();
+			sa.getBinServiceEvent().reschedule(getEventTime(), beforeEmptyWeight, beforeEmptyVol);
+			LOGGER.info("Still bins in queue. Rescheduled BinServiceEvent. currTime : "+getEventTime()+" before emptying weight : "+beforeEmptyWeight+" vol : "+beforeEmptyVol);
 		}
 	}
 }
