@@ -29,6 +29,8 @@ public class NearestNeighbour {
 		}
 		visited[0] = true;
 		
+		int totalDuration = 0;
+		
 		boolean keepGoing = true;
 		
 		int currLocation = 0; // always start at depot
@@ -53,10 +55,12 @@ public class NearestNeighbour {
 				nn = 0;
 				route[idx] = nn;
 				keepGoing = false;
+				totalDuration += routeLayout[currLocation][0];
 			} else {
 				route[idx] = nn;
 				currLocation = nn;
 				visited[nn] = true;
+				totalDuration += minDist;
 			}
 			minDist = Integer.MAX_VALUE;
 			nn = -1;
@@ -68,7 +72,7 @@ public class NearestNeighbour {
 			routeString+=Integer.toString(r)+" -> ";
 		}
 		routeString+="END";
-		LOGGER.info(routeString);
+		LOGGER.info(routeString+"\tTotal duration = "+totalDuration);
 		return route; // index in the subgraph form
 	}
 	

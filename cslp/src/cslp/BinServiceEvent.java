@@ -97,8 +97,6 @@ public class BinServiceEvent extends AbstractEvent {
 	 * @param finishTime		finish time for this bin service event
 	 */
 	public void update(int finishTime, float collectedWeight, float collectedVol) {
-		LOGGER.info("Update BinServiceEvent. areaIdx : "+sa.getAreaIdx()+" original next bin service event time : "+nextEventTime+" current bin service event finish time : "+finishTime);
-
 		// Statistics
 		int currTripDuration = finishTime - getEventTime();
 		float currTripEfficiency = (currTripDuration/60)/collectedWeight; // kg/min
@@ -131,9 +129,9 @@ public class BinServiceEvent extends AbstractEvent {
 		if (finishTime > nextEventTime) { // if delayed
 			nextEventTime = finishTime;
 			nextEvent.schedule(nextEventTime);
-			LOGGER.info("\tDelay occurs: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+" ("+nextEvent.timeToString()+")	finish time = "+finishTime);
+			LOGGER.info("\tDelay occurs: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+"	finish time = "+finishTime);
 		} else {
-			LOGGER.info("\tNo delay: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+" ("+nextEvent.timeToString()+")	finish time = "+finishTime);
+			LOGGER.info("\tNo delay: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+"	finish time = "+finishTime);
 		}
 		
 		sa.setBinServiceEvent(null);

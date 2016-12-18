@@ -237,9 +237,14 @@ public class ServiceArea extends ServiceAreaInfo {
 			}
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 
-			// using knn method
+			// using NN method
 			serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
+			
+			// using BruteForce method
+//			serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
+
 			return;
+			
 		} else { // rescheduling event
 			int len = serviceQueue.size()+1;
 			int[] requiredVertices = new int[len];
@@ -251,8 +256,12 @@ public class ServiceArea extends ServiceAreaInfo {
 			Arrays.sort(requiredVertices);
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 			
-			// using knn method
+			// using NN method
 			serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
+			
+			// using BruteForce method
+//			serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
+
 			return;
 		}
 	}
