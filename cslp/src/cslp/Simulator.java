@@ -15,6 +15,7 @@ public class Simulator {
 
 	private static final Logger LOGGER = Logger.getLogger(Simulator.class.getName());
 
+
 	private HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();	// roadsLayout elements in seconds, serviceFreq in hour
 	
 	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // stores upcoming events
@@ -47,7 +48,7 @@ public class Simulator {
 	 * Updates simulator time
 	 */
 	public void doAllEvents() {
-		LOGGER.info("Do All events from the event priority queue.");
+//		LOGGER.info("Do All events from the event priority queue.");
 		AbstractEvent e;
         while ((e = (AbstractEvent) events.poll()) != null) {
             time = e.getEventTime();
@@ -60,7 +61,7 @@ public class Simulator {
 	 * If this is an experiment, several simulations will be run with different parameters.
 	 */
 	public void start() {
-		LOGGER.info("---------------------------------------- Starts the simulator: initial disposal + bin service events. ----------------------------------------");
+//		LOGGER.info("---------------------------------------- Starts the simulator: initial disposal + bin service events. ----------------------------------------");
 		for (ServiceArea sa : serviceAreas.values()) {	// generate an initial disposal event for each bin
 
 			for (Bin bin : sa.getBins()) {
@@ -87,7 +88,7 @@ public class Simulator {
 			int avgTripDuration = Math.round(sa.getAvgTripDuration()); // in second
 			totalAvgTripDuration += avgTripDuration;
 			String formatDuration = timeToString(avgTripDuration);
-			String avgTripDurationString = "area "+sa.getAreaIdx()+":  average trip duration "+formatDuration;
+			String avgTripDurationString = "area "+sa.getAreaIdx()+": average trip duration "+formatDuration;
 			System.out.println(avgTripDurationString);			
 		}
 		// for overall
@@ -100,19 +101,19 @@ public class Simulator {
 		for (ServiceArea sa : serviceAreas.values()) {
 			float avgNoTrips = sa.getAvgNoTripsPerSchedule();
 			totalAvgNoTrips += avgNoTrips;
-			String avgNoTripsString = "area "+sa.getAreaIdx()+":  average no.  trips "+String.format("%.3f",avgNoTrips);
+			String avgNoTripsString = "area "+sa.getAreaIdx()+": average no. trips "+String.format("%.3f",avgNoTrips);
 			System.out.println(avgNoTripsString);
 		}
 		// overall here
 		totalAvgNoTrips = totalAvgNoTrips/noAreas;
-		String totalAvgNoTripsString = "overall average no.  trips "+String.format("%.3f",totalAvgNoTrips);
+		String totalAvgNoTripsString = "overall average no. trips "+String.format("%.3f",totalAvgNoTrips);
 		System.out.println(totalAvgNoTripsString);
 		
 		float totalTripEfficiency = 0;
 		for (ServiceArea sa : serviceAreas.values()) {
 			float tripEfficiency = sa.getTripEfficiency();
 			totalTripEfficiency += tripEfficiency;
-			String tripEfficiencyString = "area "+sa.getAreaIdx()+":  trip efficiency "+String.format("%.3f", tripEfficiency);
+			String tripEfficiencyString = "area "+sa.getAreaIdx()+": trip efficiency "+String.format("%.3f", tripEfficiency);
 			System.out.println(tripEfficiencyString);
 		}
 		// overall here
@@ -124,7 +125,7 @@ public class Simulator {
 		for (ServiceArea sa : serviceAreas.values()) {
 			float avgVolCollected = sa.getAvgVolCollected();
 			totalAvgVolCollected += avgVolCollected;
-			String avgVolCollectedString = "area "+sa.getAreaIdx()+":  average volume collected "+String.format("%.3f",avgVolCollected);
+			String avgVolCollectedString = "area "+sa.getAreaIdx()+": average volume collected "+String.format("%.3f",avgVolCollected);
 			System.out.println(avgVolCollectedString);
 		}
 		// for overall
@@ -134,16 +135,16 @@ public class Simulator {
 		
 		float totalOverflowPercent = 0;
 		for (ServiceArea sa : serviceAreas.values()) {
-			float overflowPercent = sa.getOverflowPercent();
+			float overflowPercent = sa.getAvgOverflowPercent();
 			totalOverflowPercent += overflowPercent;
-			String overflowPercentString = "area "+sa.getAreaIdx()+":  percentage of bins overflowed "+String.format("%.3f", overflowPercent);
+			String overflowPercentString = "area "+sa.getAreaIdx()+": percentage of bins overflowed "+String.format("%.3f", overflowPercent);
 			System.out.println(overflowPercentString);
 		}
 		// for overall
 		totalOverflowPercent = totalOverflowPercent/noAreas;
-		String totalOverflowPercentString = "overall percentage of bins overflowed "+totalOverflowPercent;
+		String totalOverflowPercentString = "overall percentage of bins overflowed "+String.format("%.3f", totalOverflowPercent);
 		System.out.println(totalOverflowPercentString);
-		
+
 		System.out.println("---");
 	}
 	
@@ -165,23 +166,18 @@ public class Simulator {
 	}
 	
 	
-
-	
-	
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String filepath = args[0];
 		Parser parser = new Parser();
 		
-		
 		parser.runParser(filepath);
-		parser.printAllInputs();
+//		parser.printAllInputs();
 		boolean isExperiment = parser.isExperiment();
 		
 		if (!isExperiment) {
 			// Random ddr and dds attributes already set in parser
 			// service area already ready for running.
-			LOGGER.info("This is not an experiment");
 			Simulator citySimulator = new Simulator(parser);
 			
 			citySimulator.start();
