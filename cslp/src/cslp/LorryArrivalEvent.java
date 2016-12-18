@@ -45,10 +45,12 @@ public class LorryArrivalEvent extends AbstractEvent {
 				LOGGER.info("currLocation : "+currLocation+" binVol (compressed) : "+binVol+" binWeight : "+binWeight+" remainingVol : "+remainingVol+" remainingWeight : "+remainingWeight);
 				if (binVol > remainingVol) {
 					LOGGER.info("Lorry does not have enough volume to empty bin. Inserted new LorryDepartureEvent to depot.");
+					sa.insertToQueue(currLocation);
 					LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa);
 					simulator.insert(lorryDepartureEvent);
 				} else if (binWeight > remainingWeight) {
 					LOGGER.info("Lorry does not have enough load to empty bin. Inserted new LorryDepartureEvent to depot.");
+					sa.insertToQueue(currLocation);
 					LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa);
 					simulator.insert(lorryDepartureEvent);
 				} else {
@@ -59,6 +61,7 @@ public class LorryArrivalEvent extends AbstractEvent {
 			}
 			return;
 		} else if (currLocation == 0) {
+			// TODO: check whether the lorry is just passing by or actually needs to empty lorry
 			int timeToEmptyLorry = Lorry.getBinServiceTime() * 5; // 5 times as long as bin service time
 			int lorryEmptiedTime = getEventTime() + timeToEmptyLorry;
 			if (lorryEmptiedTime < getStopTime()) {
