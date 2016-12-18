@@ -207,7 +207,7 @@ public class Parser {
 		                                                        int element = Integer.parseInt(matrixTokens[index]); // in Minutes
 		                                                        if (element > 127)	Error.throwError("Error: Element in 'roadsLayout' matrix exceeds maximum value for type int8 (127) at line = "+line);
 		                                                        if (element < -1)	Error.throwError("Error: Element in 'roadsLayout' can only be either positive integers or -1 to indicate no direct link. Error in line = "+line);
-		                                                    	if ((element == 0) && (count != col)) Error.throwError("Warning: the distance between two bins is 0.");
+		                                                    	if ((element == 0) && (count != col)) Error.throwError("Error: the distance between two bins is 0.");
 		                                                    	if (element != -1)	element = element *60;  // convert to second
 		                                                        roadsLayout[count][col] = element;
 		                                                        index++;
@@ -362,7 +362,7 @@ public class Parser {
 		                                                        int element = Integer.parseInt(matrixTokens[index]); // in Minutes
 		                                                        if (element > 127)	Error.throwError("Error: Element in 'roadsLayout' matrix exceeds maximum value for type int8 (127) at line = "+line);
 		                                                        if (element < -1)	Error.throwError("Error: Element in 'roadsLayout' can only be either positive integers or -1 to indicate no direct link. Error in line = "+line);
-		                                                    	if ((element == 0) && (count != col)) System.out.println("Warning: the distance between two bins is 0.");
+		                                                    	if ((element == 0) && (count != col)) Error.throwError("Error: the distance between two bins is 0.");
 		                                                    	if (element != -1)	element = element *60;  // convert to second
 		                                                        roadsLayout[count][col] = element;
 		                                                        index++;
@@ -765,7 +765,6 @@ public class Parser {
 	 * @return	HashMap<Short,ServiceArea> 		new service area instance
 	 */
 	public HashMap<Short,ServiceArea> createServiceAreas() {
-		LOGGER.info("Creating a deep copy of service area HashMap.");
 		HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();
 		for (ServiceAreaInfo saInfo : this.serviceAreaInfos.values()) {
 			short areaIdx = saInfo.getAreaIdx();
@@ -816,7 +815,6 @@ public class Parser {
 	 * @throws FileNotFoundException
 	 */
 	public void runParser(String filepath) throws FileNotFoundException {
-		LOGGER.info("Run parser: parse inputs -> validation -> initialise class variables.");
 		parseInputs(filepath);
 		validation();
 		initialiseClassVars();
