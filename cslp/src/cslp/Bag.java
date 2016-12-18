@@ -37,5 +37,12 @@ public class Bag {
 	public static void setBagWeightMax(float bagWeightMax) {
 		Bag.bagWeightMax = bagWeightMax;
 	}
+	
+	public static float getBagWeightMin() {
+		return Bag.bagWeightMin;
+	}
 
+	public static float getBagWeightMax() {
+		return Bag.bagWeightMax;
+	}
 }
