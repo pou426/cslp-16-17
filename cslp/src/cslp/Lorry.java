@@ -33,6 +33,12 @@ public class Lorry {
 	 * @param bin	The Bin instance this lorry is servicing
 	 */
 	public void emptyBin(BinEmptiedEvent e) {
+		// what should lorry do when it arrives at a bin which will overflow
+		// the lorry??? should it take as much trash as it can from the bin
+		// and then return after going to the depot or shold it go staright
+		// to the depot, return, and empty it after this? 
+		// either fully service a bin or you retun to depot. if u return there
+		// will be no service time
 		Bin bin = e.getBin();
 		this.currentTrashVolume += (bin.getWasteVolume())/2;
 		this.currentTrashWeight += bin.getWasteWeight();
