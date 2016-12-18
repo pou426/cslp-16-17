@@ -100,6 +100,7 @@ public class Bin {
 	public void resetIsServicing() {
 		this.isServicing = false;
 	}
+	
 	/**
 	 * Method to calculate the current ratio of waste volume to the bin volume
 	 * 
