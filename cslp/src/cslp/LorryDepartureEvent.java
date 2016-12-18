@@ -25,17 +25,17 @@ public class LorryDepartureEvent extends AbstractEvent {
 			return; // actually should never get to this stage?? 
 		}
 		
-		int timeToNextBin = sa.getTimeBetweenLocations(departFrom, arriveAt); // assuming always positive here...
+		int timeToNextBin = sa.getTimeBetweenLocations(departFrom, arriveAt);
 		int arrivalTime = getEventTime() + timeToNextBin;
-		LOGGER.info("areaIdx : "+sa.getAreaIdx()+" currLocation : "+departFrom+" currDestination : "+arriveAt+" currTime : "+getEventTime()+" arrivalTime: "+arrivalTime);
 		
 		Lorry lorry = sa.getLorry();
 		lorry.departLorry(this);
 		
 		if (arrivalTime < getStopTime()) {
 			LorryArrivalEvent getThere = new LorryArrivalEvent(arrivalTime, arriveAt, sa);
-			simulator.insert(getThere); // insert arrival event...
-			LOGGER.info("Inserted LorryArrivalEvent for areaIdx : "+sa.getAreaIdx()+" arrivalTime : "+arrivalTime+" destination : "+arriveAt);
+			simulator.insert(getThere);
+			LOGGER.info("\tInserted LorryArrivalEvent: areaIdx = "+sa.getAreaIdx()+"	depart from = "+departFrom+"	arrive at = "+arriveAt
+					 +"\n\tdeparture time = "+getEventTime()+"	arrival time = "+arrivalTime);
 		}
 	}
 	

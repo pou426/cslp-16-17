@@ -2,14 +2,6 @@ package cslp;
 
 import java.util.logging.Logger;
 
-
-/**
- * Service area service bin event.... 
- *
- */
-
-// becomes an observer here
-// observes all lorry departure and arrival events... to keep track???
 public class BinServiceEvent extends AbstractEvent {
 
 	private static final Logger LOGGER = Logger.getLogger(BinServiceEvent.class.getName());
@@ -18,64 +10,83 @@ public class BinServiceEvent extends AbstractEvent {
 	private Simulator simulator;
 	
 	private int nextEventTime; // time for next bin servicing event
-	private BinServiceEvent nextEvent; // this will keep scheduling new BinServiceEvent 
+	private BinServiceEvent nextEvent; // generate next BinServiceEvent until stopTime 
 		
-	// STATISTICS here
-	private int noTrips;
+	// STATISTICS
+	private int noTrips; // no of trips performed during each scheduled servicing event
 	
 	public BinServiceEvent(int eventTime, ServiceArea sa) {	
-		schedule(eventTime);	// time in the simulation at which this disposal event occurs  
-		this.noTrips = 0;
+		schedule(eventTime);
 		this.sa = sa;
-		this.nextEventTime = eventTime + sa.getServiceInterval(); // current event time + service Interval 
-		if (nextEventTime < getStopTime()) {
+		this.nextEventTime = eventTime + sa.getServiceInterval(); // next event time = current event time + service Interval 
+		if (nextEventTime < getStopTime()) { 
 			this.nextEvent = new BinServiceEvent(nextEventTime, sa);
 		} 
+		this.noTrips = 0;
 	}
 	
+	/**
+	 * Method called when rescheduling is required. This occurs when a lorry has exceeded its capacity and returned to depot
+	 * with bins in the service queue not yet serviced. 
+	 * 
+	 * @param lorryEmptiedEventTime		time when lorry finished emptying its content
+	 * @param collectedWeight			weight of collected trash
+	 * @param collectedVol				volume of collected trash
+	 */
 	public void reschedule(int lorryEmptiedEventTime, float collectedWeight, float collectedVol) {
 		if (!(lorryEmptiedEventTime < getStopTime())) {
 			LOGGER.severe("Should not reach this state.");
 			return;
 		}
-		Lorry lorry = sa.getLorry(); // bin service event carried out by lorry
-		// FOR CHECKING...
-		LOGGER.info("Reschedule current BinServiceEvent. Service queue size : "+sa.getServiceQueueSize()+" lorry trash vol : "+lorry.getCurrentTrashVolume()+" lorry trash weight : "+lorry.getCurrentTrashWeight());
-		if (lorry.getLorryLocation() != 0) { // for checking. should not reach this state
-			LOGGER.severe("Lorry location should be depot. Current lorry location : "+lorry.getLorryLocation());
-			return;
+		Lorry lorry = sa.getLorry(); 
+		int currLocation = lorry.getLorryLocation(); // should be 0
+		if (sa.isDone() || (lorry.getLorryLocation() != 0)) {
+			LOGGER.severe("Should not reach this state.");
 		}
-
-		int lastStartTime = getEventTime(); // start time for this event
+		
+		int startTime = getEventTime(); // start time for this event
 		schedule(lorryEmptiedEventTime); // start time for next event
-		if (sa.isDone()) { // for checking.. should not reach here
-			LOGGER.severe("This is a rescheduling event but no bins to be serviced?");
-			update(getEventTime(), 0, 0);
-			return;
-		}
-		int currLocation = lorry.getLorryLocation(); // should be at 0... 
 		
-		sa.computePath(); // compute path here. 
-		
+		int leftoverBins = sa.getServiceQueueSize();
+		sa.computePath(); // compute path to service what's left 
 		int currDestination = sa.getNextBinInQueue();
+
 		LorryDepartureEvent departLorry = new LorryDepartureEvent(getEventTime(), currLocation, currDestination, sa);
 		simulator.insert(departLorry);
-		LOGGER.info("Inserted lorry departure event. currLocation : "+currLocation+" currDestination : "+currDestination);
 		
+		LOGGER.info("\tCurrent time: "+getEventTime()+" ("+timeToString()+")"+
+				"\n\tCurrent Location: "+currLocation+
+				"\n\tBefore rescheduling: service queue size = "+leftoverBins+"	Lorry trash weight = "+lorry.getCurrentTrashWeight()+"	Lorry trash vol = "+lorry.getCurrentTrashVolume()+
+				"\n\tAfter reshceduling:  service queue size = "+sa.getServiceInterval()+
+				"\n\tInserted lorry departure event: current Location = "+currLocation+" current destination = "+currDestination);
+		
+		// Statistics
 		if (!(lorryEmptiedEventTime < getWarmUpTime())) {
-			// for STATS
 			noTrips += 1;
-			int currTripDuration = getEventTime() - lastStartTime;
-			float currTripEfficiency = (currTripDuration/60)/collectedWeight; // kg/min
-			if (collectedWeight == 0) { // safety 
+			int currTripDuration = getEventTime() - startTime;
+			float currTripEfficiency = (currTripDuration/60)/collectedWeight; // unit : kg/min
+			if (collectedWeight == 0) { // avoid division by 0
 				currTripEfficiency = 0;
 			}
 			sa.addTripDuration(currTripDuration);
 			sa.addTripEfficiency(currTripEfficiency); // kg/min
 			sa.addVolCollected(collectedVol);
-			LOGGER.info("Statistics: current noTrips : "+noTrips+" currTripDuration : "+currTripDuration+" currTripEffiency : "+currTripEfficiency+" collectedVol : "+collectedVol+" collectedWeight : "+collectedWeight);
+			
+			LOGGER.info("\tStatistics: collected"+
+					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent no trips = "+noTrips+
+					  "\n\tcurrent trip duration = "+currTripDuration+
+					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
+					  "\n\tcollected volume = "+collectedVol+
+					  "\n\tcollected weight = "+collectedWeight);
 		} else {
-			LOGGER.info("statistics not collected because current time : "+lorryEmptiedEventTime+" is less than warm up time : "+getWarmUpTime());
+			LOGGER.info("\tStatistics: NOT collected"+
+					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent no trips = "+noTrips+
+//					  "\n\tcurrent trip duration = "+currTripDuration+
+//					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
+					  "\n\tcollected volume = "+collectedVol+
+					  "\n\tcollected weight = "+collectedWeight);
 		}
 	}
 	
@@ -87,39 +98,49 @@ public class BinServiceEvent extends AbstractEvent {
 	 */
 	public void update(int finishTime, float collectedWeight, float collectedVol) {
 		LOGGER.info("Update BinServiceEvent. areaIdx : "+sa.getAreaIdx()+" original next bin service event time : "+nextEventTime+" current bin service event finish time : "+finishTime);
+
+		// Statistics
+		int currTripDuration = finishTime - getEventTime();
+		float currTripEfficiency = (currTripDuration/60)/collectedWeight; // kg/min
+		if (collectedWeight == 0) 	currTripEfficiency = 0;
 		
 		if (!(finishTime < getWarmUpTime())) {
-			// STATISTICS HERE
 			noTrips += 1;
 			sa.addNoTrip(noTrips);
-			int currTripDuration = finishTime - getEventTime();
-			float currTripEfficiency = (currTripDuration/60)/collectedWeight; // kg/min
-			if (collectedWeight == 0) { // safety 
-				currTripEfficiency = 0;
-			}
 			sa.addTripDuration(currTripDuration);
 			sa.addTripEfficiency(currTripEfficiency); // kg/min
 			sa.addVolCollected(collectedVol);
 			
-			LOGGER.info("Statistics: current noTrips : "+noTrips+" currTripDuration : "+currTripDuration+" currTripEffiency : "+currTripEfficiency+" collectedVol : "+collectedVol+" collectedWeight : "+collectedWeight);
+			LOGGER.info("\tStatistics: collected"+
+					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent no trips = "+noTrips+
+					  "\n\tcurrent trip duration = "+currTripDuration+
+					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
+					  "\n\tcollected volume = "+collectedVol+
+					  "\n\tcollected weight = "+collectedWeight);
 		} else {
-			LOGGER.info("statistics not collected because current time : "+finishTime+" is less than warm up time : "+getWarmUpTime());
+			LOGGER.info("\tStatistics: NOT collected"+
+					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent no trips = "+noTrips+
+					  "\n\tcurrent trip duration = "+currTripDuration+
+					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
+					  "\n\tcollected volume = "+collectedVol+
+					  "\n\tcollected weight = "+collectedWeight);
 		}
-//		if (!(finishTime < getStopTime())) {
-//			return;
-//		}
 		
 		if (finishTime > nextEventTime) { // if delayed
 			nextEventTime = finishTime;
 			nextEvent.schedule(nextEventTime);
-			LOGGER.info("Delay occurs: areaIdx : "+sa.getAreaIdx()+" original next time : "+nextEventTime+" ("+nextEvent.timeToString()+") finish time : "+finishTime);
+			LOGGER.info("\tDelay occurs: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+" ("+nextEvent.timeToString()+")	finish time = "+finishTime);
 		} else {
-			LOGGER.info("No delay: areaIdx : "+sa.getAreaIdx()+" original next time : "+nextEventTime+" finish time : "+finishTime);
-//			LOGGER.info("No delay: areaIdx : "+sa.getAreaIdx()+" original next time : "+nextEventTime+" ("+nextEvent.timeToString()+") finish time : "+finishTime);
+			LOGGER.info("\tNo delay: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+" ("+nextEvent.timeToString()+")	finish time = "+finishTime);
 		}
+		
+		sa.setBinServiceEvent(null);
+		
 		if (nextEventTime < getStopTime()) {
 			this.simulator.insert(nextEvent);
-			LOGGER.info("Another BinServiceEvent inserted to queue. nextEventTime : "+nextEventTime+" in hh:mm:ss format : "+nextEvent.timeToString());
+			LOGGER.info("Another BinServiceEvent inserted to queue. nextEventTime : "+nextEventTime+" ("+nextEvent.timeToString()+")");
 			return;
 		}
 		LOGGER.info("No more bin service events.");
@@ -128,19 +149,25 @@ public class BinServiceEvent extends AbstractEvent {
 		
 	@Override
 	public void execute(Simulator simulator) {
-		this.simulator = simulator;
-		sa.setBinServiceEvent(this);
-		
-		if (!(getEventTime() < getWarmUpTime())) {
-			// for stats
-			float overflowPercent = sa.computeOverflowPercent();
-			sa.addOverflowPercent(overflowPercent);			
-		}
-		
-		LOGGER.info("Event time : "+timeToString()+" areaIdx : "+sa.getAreaIdx());
 		if (!(getEventTime() < getStopTime())) {
 			LOGGER.severe("Should not reach this state.");
 			return;
+		}
+		
+		this.simulator = simulator;
+		sa.setBinServiceEvent(this);
+		
+		// Statistics
+		float overflowPercent = sa.computeOverflowPercent();
+		if (!(getEventTime() < getWarmUpTime())) {
+			sa.addOverflowPercent(overflowPercent);	
+			LOGGER.info("\tStatistics: collected"
+					+ "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()
+					+ "\n\tOverflow percent = "+overflowPercent);
+		} else {
+			LOGGER.info("\tStatistics: NOT collected"
+					+ "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()
+					+ "\n\tOverflow percent = "+overflowPercent);
 		}
 		
 		Lorry lorry = sa.getLorry(); // bin service event carried out by lorry
@@ -152,18 +179,18 @@ public class BinServiceEvent extends AbstractEvent {
 		
 		sa.computePath();  // a queue of integers to indicate the order of bins to serve
 		
-		if (sa.isDone()) { // is this for checking? 
+		if (sa.isDone()) {
 			LOGGER.warning("No bin to be served.");
 			update(getEventTime(), 0, 0);
 			return;
 		}
 				
-		int currLocation = lorry.getLorryLocation(); // should be at 0... 
+		int currLocation = lorry.getLorryLocation(); // should be 0 
 		int currDestination = sa.getNextBinInQueue();
 		LorryDepartureEvent departLorry = new LorryDepartureEvent(getEventTime(), currLocation, currDestination, sa);
 		simulator.insert(departLorry);
 
-		LOGGER.info("Lorry departure event inserted. currLocation : "+currLocation+" currDestination : "+currDestination);
+		LOGGER.info("\tLorry departure event inserted: currLocation = "+currLocation+" currDestination = "+currDestination);
 	}
 	
 }

@@ -12,8 +12,7 @@ public class Error {
 	 * @param message		an error message containing error information
 	 */
 	public static void throwError(String message) {
-		System.err.println(message);
-		System.err.println("The simulation will terminate.");
+		System.err.println(message + "\tThe simulation will terminate.");
 		System.exit(1);
 	}
 }

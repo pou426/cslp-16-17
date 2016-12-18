@@ -18,20 +18,27 @@ public class LorryEmptiedEvent extends AbstractEvent {
 	@Override
 	public void execute(Simulator simulator) {
 		if (!(getEventTime() < getStopTime())) {
-			LOGGER.info("Should not reach this state.");
+			LOGGER.severe("Should not reach this state.");
 			return;
 		}
-		float beforeEmptyWeight = lorry.getCurrentTrashWeight(); // before emptying...
-		float beforeEmptyVol = lorry.getCurrentTrashVolume(); // before emptying...
-		LOGGER.info("Execute LorryEmptiedEvent. areaIdx : "+sa.getAreaIdx()+" currLocation : "+lorry.getLorryLocation());
+		float beforeEmptyWeight = lorry.getCurrentTrashWeight(); // lorry's weight before emptying
+		float beforeEmptyVol = lorry.getCurrentTrashVolume(); // lorry's volume before emptying
 		lorry.emptyLorry(this);
-		LOGGER.info("Emptied lorry. before emptying : weight : "+beforeEmptyWeight+" vol : "+beforeEmptyVol+" after emptying : weight : "+lorry.getCurrentTrashWeight()+" vol : "+lorry.getCurrentTrashVolume());
+		
 		if (sa.isDone()) {
 			sa.getBinServiceEvent().update(getEventTime(), beforeEmptyWeight, beforeEmptyVol); 
-			LOGGER.info("BinServiceEvent finishes. updated BinServiceEvent. currTime : "+getEventTime()+" stopTime : "+getStopTime());
+			LOGGER.info("\tareaIdx = "+sa.getAreaIdx()+" current location = "+lorry.getLorryLocation()
+					+"\n\tbefore emptying: lorry weight = "+beforeEmptyWeight+"	lorry volume = "+beforeEmptyVol
+					+"\n\tafter emptying:  lorry weight = "+lorry.getCurrentTrashWeight()+"	lorry volume = "+lorry.getCurrentTrashVolume()
+					+"\n\tBinServiceEvent finishes, update BinServiceEvent: current time = "+getEventTime()+"	stop time = "+getStopTime());
+			return;
 		} else {
 			sa.getBinServiceEvent().reschedule(getEventTime(), beforeEmptyWeight, beforeEmptyVol);
-			LOGGER.info("Still bins in queue. Rescheduled BinServiceEvent. currTime : "+getEventTime()+" before emptying weight : "+beforeEmptyWeight+" vol : "+beforeEmptyVol);
+			LOGGER.info("\tareaIdx = "+sa.getAreaIdx()+" current location = "+lorry.getLorryLocation()
+					+"\n\tbefore emptying: lorry weight = "+beforeEmptyWeight+"	lorry volume = "+beforeEmptyVol
+					+"\n\tafter emptying:  lorry weight = "+lorry.getCurrentTrashWeight()+"	lorry volume = "+lorry.getCurrentTrashVolume()
+					+"\n\tStill bins in queue, reschedule BinServiceEvent: current time = "+getEventTime());
+			return;
 		}
 	}
 }

@@ -2,17 +2,13 @@ package cslp;
 
 import java.util.logging.Logger;
 
-/**
- * Lorry class
- *
- */
 public class Lorry {
 	
 	private static final Logger LOGGER = Logger.getLogger(Lorry.class.getName());
 
 	private static short lorryVolume; 
 	private static int lorryMaxLoad; 
-	private static int binServiceTime; // change to become service area's attribute
+	private static int binServiceTime; // unit : second
 	
 	private ServiceArea sa;
 	private int location; // keeps track of lorry's location in the service area
@@ -30,49 +26,57 @@ public class Lorry {
 	 * Empties the waste inside a bin. 
 	 * Compress the waste volume to half its original volume
 	 * 
-	 * @param bin	The Bin instance this lorry is servicing
+	 * @param e		The current BinEmptiedEvent instance
 	 */
 	public void emptyBin(BinEmptiedEvent e) {
-		// what should lorry do when it arrives at a bin which will overflow
-		// the lorry??? should it take as much trash as it can from the bin
-		// and then return after going to the depot or shold it go staright
-		// to the depot, return, and empty it after this? 
-		// either fully service a bin or you retun to depot. if u return there
-		// will be no service time
 		Bin bin = e.getBin();
-		this.currentTrashVolume += (bin.getWasteVolume())/2;
+		this.currentTrashVolume += (bin.getWasteVolume())/2; // compressed volume
 		this.currentTrashWeight += bin.getWasteWeight();
-		bin.resetIsOverflow();
-		bin.resetIsExceedThreshold();
-		bin.resetIsServicing(); // bin not being serviced anymore...
-		bin.resetWasteVolume();
-		bin.resetWasteWeight();
+		bin.resetAll();
+
 		String binStatusString = e.timeToString() + " -> load of bin "+bin.getAreaIdx()+"."+bin.getBinIdx()+" became "+String.format("%.3f",bin.currentWeight())+" kg and contents volume "+String.format("%.3f", bin.currentVol())+" m^3";
-		if (!AbstractEvent.getIsExperiment()) System.out.println(binStatusString);// output change in bin content event
+		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binStatusString);// output change in bin content event
+		else	LOGGER.info(binStatusString);
+		
 		String binEmptiedString = e.timeToString()+" -> load of lorry "+sa.getAreaIdx()+" became "+String.format("%.3f",currentTrashWeight)+" kg and contents volume "+String.format("%.3f", currentTrashVolume)+" m^3";
-		if (!AbstractEvent.getIsExperiment()) System.out.println(binEmptiedString);
+		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binEmptiedString);
+		else 	LOGGER.info(binEmptiedString);
+		
 	}
 	
+	/**
+	 * Empties the content of the lorry.
+	 * 
+	 * @param e		The current LorryEmptiedEvent instance. Once executed, lorry becomes empty.
+	 */
 	public void emptyLorry(LorryEmptiedEvent e) {
 		if (location != 0) {
 			LOGGER.severe("Should not reach this state.");
 		}
 		this.currentTrashVolume = 0;
 		this.currentTrashWeight = 0;
+		
 		String lorryEmptiedString = e.timeToString()+" -> load of lorry "+sa.getAreaIdx()+" became "+String.format("%.3f",currentTrashWeight)+" kg and contents volume "+String.format("%.3f", currentTrashVolume)+" m^3";
-		if (!AbstractEvent.getIsExperiment()) System.out.println(lorryEmptiedString);
+		if (!AbstractEvent.getIsExperiment())	System.out.println(lorryEmptiedString);
+		else 	LOGGER.info(lorryEmptiedString);
 
 	}
 	
 	public void setLorryLocation(LorryArrivalEvent e) {
 		this.location = e.getCurrLocation();
 		String lorryArrivalString = e.timeToString()+" -> lorry "+sa.getAreaIdx()+" arrived at location "+sa.getAreaIdx()+"."+location;
-		if (!AbstractEvent.getIsExperiment()) System.out.println(lorryArrivalString);				// output disposal event
+		if (!AbstractEvent.getIsExperiment()) System.out.println(lorryArrivalString);
+		else 	LOGGER.info(lorryArrivalString);
 	}
 	
+	/**
+	 * Output string for lorry departure
+	 * @param e
+	 */
 	public void departLorry(LorryDepartureEvent e) {
 		String lorryDepartureString = e.timeToString()+" -> lorry "+sa.getAreaIdx()+" left location "+sa.getAreaIdx()+"."+location;
-		if (!AbstractEvent.getIsExperiment()) System.out.println(lorryDepartureString);				// output disposal event
+		if (!AbstractEvent.getIsExperiment()) System.out.println(lorryDepartureString);				
+		else 	LOGGER.info(lorryDepartureString);
 	}
 	
 	public static short getLorryVolume() {

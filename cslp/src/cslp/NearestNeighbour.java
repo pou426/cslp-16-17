@@ -1,29 +1,32 @@
 package cslp;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
- * this method always work since u have precomputed the graph with floyd warshall algorithm
- * @author home
- *
+ * Applying this method on a matrix after running the shortest path algorithm
+ * would always work given that the graph provided is reasonable.
+ * 
  */
-
 public class NearestNeighbour {
+	
+	private static final Logger LOGGER = Logger.getLogger(NearestNeighbour.class.getName());
 
+	/**
+	 * This method returns a route from the routeLayout matrix with 0's at beginning and end
+	 * 
+	 * @param routeLayout	a sub matrix of the original roadsLayout matrix, containing only bins that require servicing
+	 * @return int[]		an array of servicing route in order
+	 */
 	public int[] getRoute(int[][] routeLayout) {
 		
-		// returns a route that include depots (begining and end)
-		
-		// do checking...
 		int routeLen = routeLayout.length+1;
 		int[] route = new int[routeLen];
-		// starts and ends at 0
 		int len = routeLayout.length;
 		boolean[] visited = new boolean[len];
 		for (boolean b : visited) {
 			b = false;
 		}
-		
 		visited[0] = true;
 		
 		boolean keepGoing = true;
@@ -35,7 +38,7 @@ public class NearestNeighbour {
 		idx++;
 		
 		int minDist = Integer.MAX_VALUE;
-		int nn = -1;
+		int nn = -1; // nearest neighbour
 		
 		while (keepGoing) {
 			for (int i = 0; i < len; i++) {
@@ -59,44 +62,37 @@ public class NearestNeighbour {
 			nn = -1;
 			idx++;
 		}
-		System.out.print("Route is: ");
+		
+		String routeString = "Route: ";
 		for (int r : route) {
-			System.out.print(r+" -> ");
+			routeString+=Integer.toString(r)+" -> ";
 		}
-		System.out.println();
+		routeString+="END";
+		LOGGER.info(routeString);
 		return route; // index in the subgraph form
 	}
 	
-	// input ServiceArea instance so directly modify the sa's serviceQueue
-	// instead of creating another arraylist?
+	/**
+	 * Creates an Arraylist of service queue in terms of actual binIdx from routeLayout 
+	 * and the array of binIdx
+	 * 
+	 * @param routeLayout				sub graph of roadsLayout
+	 * @param requiredVertices			array of required vertices with depot and bin locations as elements
+	 * @return	ArrayList<Integer> 		service queue with route for graph traversal
+	 */
 	public ArrayList<Integer> getServiceQueue(int[][] routeLayout, int[] requiredVertices) {
 		int[] route = getRoute(routeLayout);
 		
-		int len = route.length - 2; // remove depots at the start and end
 		ArrayList<Integer> serviceQueue = new ArrayList<>();
-		System.out.print("serviceQueue: ");
+		String serviceQueueString = "serviceQueue: ";
 		for (int i = 1; i < route.length-1; i++) {
 			int subGraphLocation = route[i];
 			int location = requiredVertices[subGraphLocation];
 			serviceQueue.add(location);
-			System.out.print(location+" -> ");
+			serviceQueueString += Integer.toString(location)+" -> ";
 		}
-		System.out.println();
+		serviceQueueString+="END";
+		LOGGER.info(serviceQueueString);
 		return serviceQueue;
-	}
-	
-	
-	public static void main(String[] args) {
-		int[][] routeLayout = { { 0, 1, 2, 3, 5},
-								{ 1, 0, 2, 4, 7},
-								{ 5, 2, 0, 3, 1},
-								{ 1, 1, 4, 0, 2},
-								{ 3, 1, 4, 1, 0}};
-		NearestNeighbour nearestNeighbour = new NearestNeighbour();
-		int[] route = nearestNeighbour.getRoute(routeLayout);
-		System.out.println("route : ");
-		for (int i : route) {
-			System.out.print(i+" ");
-		}
 	}
 }

@@ -1,7 +1,7 @@
 package cslp;
 
 /**
- * Random class
+ * Contains method for erlangK distribution
  * 
  */
 public class Random {

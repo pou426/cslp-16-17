@@ -1,18 +1,18 @@
 package cslp;
 
 /**
- * Abstract class AbstractEvent for all possible events that occur during the simulation.
+ * Abstract class AbstractEvent for all possible events that will occur during the simulation.
  * Implements the Comparable interface to compare the times of occurrence of two events.
  * 
  */
 public abstract class AbstractEvent implements Comparable {	
 	
-	private static float warmUpTime; // in second
-	private static float stopTime;	// each event knows when the stopTime (in seconds) is 
-	private static boolean isExperiment;
-	private int eventTime; // time (in seconds) in which the event happens during the simulation
+	private static float warmUpTime; // unit: second
+	private static float stopTime;	// unit: second 
+	private static boolean isExperiment; // no output if experiment 
+	private int eventTime; // unit: second. The time during which this event happens.
 
-	/**
+	/** 
 	 * method to convert time into day:hour:min:sec format
 	 * 
 	 * @return String	the time in which current event happens in DD:HH:MM:SS format
@@ -50,8 +50,9 @@ public abstract class AbstractEvent implements Comparable {
 	public void schedule(int eventTime) {
 		this.eventTime = eventTime;
 	}
+	
 	/**
-	 * Method called to execute the event during the simulation.
+	 * Abtract method called to execute the event during the simulation.
 	 * 
 	 * @param simulator
 	 */
@@ -94,8 +95,7 @@ public abstract class AbstractEvent implements Comparable {
 	}
 	public static void setIsExperiment(boolean isExperiment) {
 		AbstractEvent.isExperiment = isExperiment;
-	}
-	
+	}	
 	public int getEventTime() {
 		return eventTime;
 	}
