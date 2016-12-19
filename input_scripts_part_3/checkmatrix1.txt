@@ -1,0 +1,20 @@
+stopTime 10
+warmUpTime 0.0
+
+lorryVolume 24
+lorryMaxLoad 8500
+binServiceTime 300
+binVolume 3.0
+disposalDistrRate 2.0
+disposalDistrShape 1
+bagVolume 0.04
+bagWeightMin 3
+bagWeightMax 10
+
+noAreas 1
+areaIdx 0 serviceFreq 1 thresholdVal 0.1 noBins 3
+roadsLayout
+ 0 -1  2  3
+-1  0  3  4
+-1  5  0  3
+ 2 -1  3  0
