@@ -23,7 +23,6 @@ public class BinServiceEvent extends AbstractEvent {
 			this.nextEvent = new BinServiceEvent(nextEventTime, sa);
 		} 
 		this.noTrips = 0;
-//		BinServiceEvent.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**
@@ -110,7 +109,7 @@ public class BinServiceEvent extends AbstractEvent {
 			sa.addTripEfficiency(currTripEfficiency); // kg/min
 			sa.addVolCollected(collectedVol);
 			
-			LOGGER.info("\tStatistics: collected"+
+			LOGGER.info("\tStatistics: collected. areaIdx = "+sa.getAreaIdx()+
 					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
 					  "\n\tcurrent no trips = "+noTrips+
 					  "\n\tcurrent trip duration = "+currTripDuration+
@@ -118,7 +117,7 @@ public class BinServiceEvent extends AbstractEvent {
 					  "\n\tcollected volume = "+collectedVol+
 					  "\n\tcollected weight = "+collectedWeight);
 		} else {
-			LOGGER.info("\tStatistics: NOT collected"+
+			LOGGER.info("\tStatistics: NOT collected. areaIdx = "+sa.getAreaIdx()+
 					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
 					  "\n\tcurrent no trips = "+noTrips+
 					  "\n\tcurrent trip duration = "+currTripDuration+
@@ -142,14 +141,14 @@ public class BinServiceEvent extends AbstractEvent {
 			LOGGER.info("Another BinServiceEvent inserted to queue. nextEventTime : "+nextEventTime+" ("+nextEvent.timeToString()+")");
 			return;
 		}
-		LOGGER.info("No more bin service events.");
+		LOGGER.info("No more bin service events. areaIdx = "+sa.getAreaIdx());
 		return;
 	}
 		
 	@Override
 	public void execute(Simulator simulator) {
 		if (!(getEventTime() < getStopTime())) {
-			LOGGER.severe("Should not reach this state.");
+			LOGGER.severe("Should not reach this state. areaIdx = "+sa.getAreaIdx());
 			return;
 		}
 		
@@ -172,14 +171,14 @@ public class BinServiceEvent extends AbstractEvent {
 		Lorry lorry = sa.getLorry(); // bin service event carried out by lorry
 		
 		if (lorry.getLorryLocation() != 0) { // for checking
-			LOGGER.severe("Should not reach this state.");
+			LOGGER.severe("Should not reach this state. areaIdx = "+sa.getAreaIdx());
 			return;
 		}
 		
 		sa.computePath();  // a queue of integers to indicate the order of bins to serve
 		
 		if (sa.isDone()) {
-			LOGGER.warning("No bin to be served.");
+			LOGGER.warning("No bin to be served. areaIdx = "+sa.getAreaIdx());
 			update(getEventTime(), 0, 0);
 			return;
 		}
@@ -189,7 +188,7 @@ public class BinServiceEvent extends AbstractEvent {
 		LorryDepartureEvent departLorry = new LorryDepartureEvent(getEventTime(), currLocation, currDestination, sa);
 		simulator.insert(departLorry);
 
-		LOGGER.info("\tLorry departure event inserted: currLocation = "+currLocation+" currDestination = "+currDestination);
+		LOGGER.info("\tLorry departure event inserted: areaIdx = "+sa.getAreaIdx()+" currLocation = "+currLocation+" currDestination = "+currDestination);
 	}
 	
 }

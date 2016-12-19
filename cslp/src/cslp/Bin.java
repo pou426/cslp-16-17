@@ -34,7 +34,6 @@ public class Bin {
 		this.isOverflow = false;
 		this.isExceedThreshold = false;
 		this.isServicing = false;
-//		Bin.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**
@@ -45,7 +44,7 @@ public class Bin {
 	 */
 	public void disposeBag(DisposalEvent e) {
 		float bagWeight = bag.getWeight();
-		
+
 		if (isOverflow || isServicing) {	// if servicing event is happening or if bin already overflowed, do not update its content, just output the disposal event
 			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
 			if (!AbstractEvent.getIsExperiment()) 	System.out.println(disposalString);				// output disposal event

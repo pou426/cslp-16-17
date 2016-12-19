@@ -2,6 +2,7 @@ package cslp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,7 +50,9 @@ public class ServiceArea extends ServiceAreaInfo {
 		// using FloydWarshall method
 		FloydWarshall floydWarshall = new FloydWarshall();
 		this.minDistMatrix = floydWarshall.getMinDistMatrix(roadsLayout);
-//		ServiceArea.LOGGER.setLevel(Level.OFF);
+		
+		String minDistStr = floydWarshall.minDistToString(minDistMatrix);
+		LOGGER.info("\tareaIdx = "+getAreaIdx()+" \n"+minDistStr);
 	}
 	
 	
@@ -231,8 +234,8 @@ public class ServiceArea extends ServiceAreaInfo {
 	 * A rescheduling occurs if the service queue still contains bin index.
 	 */
 	public void computePath() {
-		int bfThreshold = 13;
-		
+		int bfThreshold = 10; // threshold of the number of bins to determine which method to use.
+
 		if (isDone()) { // new servicing event
 			int[] requiredVertices = createRequiredVertices();
 			
@@ -241,7 +244,7 @@ public class ServiceArea extends ServiceAreaInfo {
 			}
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 			
-			if (getNoBins() <= bfThreshold) {
+			if (routeLayout.length <= bfThreshold) {
 				// using BruteForce method
 				serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
 			} else {
@@ -263,7 +266,7 @@ public class ServiceArea extends ServiceAreaInfo {
 			Arrays.sort(requiredVertices);
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 			
-			if (getNoBins() <= bfThreshold) {
+			if (routeLayout.length <= bfThreshold) {
 				// using BruteForce method
 				serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
 			} else {

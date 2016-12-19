@@ -1,6 +1,7 @@
 package cslp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,9 +14,11 @@ public class NearestNeighbour {
 	
 	public static final Logger LOGGER = Logger.getLogger(NearestNeighbour.class.getName());
 
-//	public NearestNeighbour() {
-//		NearestNeighbour.LOGGER.setLevel(Level.OFF);
-//	}
+	private int minDuration;
+	
+	public int getMinDuration() {
+		return this.minDuration;
+	}
 	
 	/**
 	 * This method returns a route from the routeLayout matrix with 0's at beginning and end
@@ -24,7 +27,6 @@ public class NearestNeighbour {
 	 * @return int[]		an array of servicing route in order
 	 */
 	public int[] getRoute(int[][] routeLayout) {
-		
 		int routeLen = routeLayout.length+1;
 		int[] route = new int[routeLen];
 		int len = routeLayout.length;
@@ -77,7 +79,10 @@ public class NearestNeighbour {
 			routeString+=Integer.toString(r)+" -> ";
 		}
 		routeString+="END";
-		LOGGER.info(routeString+"\tTotal duration = "+totalDuration);
+		LOGGER.info(routeString+" \t Total duration = "+totalDuration);
+		
+		this.minDuration = totalDuration;
+		
 		return route; // index in the subgraph form
 	}
 	
@@ -104,4 +109,5 @@ public class NearestNeighbour {
 		LOGGER.info(serviceQueueString);
 		return serviceQueue;
 	}
+	
 }

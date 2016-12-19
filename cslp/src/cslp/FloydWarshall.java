@@ -1,9 +1,13 @@
 package cslp;
 
+import java.util.logging.Logger;
+
 public class FloydWarshall {
 
+	public static final Logger LOGGER = Logger.getLogger(FloydWarshall.class.getName());
+
 	private static final int INF = Integer.MAX_VALUE;
-	
+
 	/**
 	 * Compute the shortest path between all paris using the Floyd Warshall algorithm
 	 * @param roadsLayout	roadsLayout matrix from input file
@@ -45,21 +49,22 @@ public class FloydWarshall {
 		
 		for (int i = 1; i < path.length; i++) {
 			if (path[i][0] == -1) {
-				System.out.println("Warning: No route back to depot.");
+				LOGGER.warning("Warning: No route back to depot.");
 			}
 		}
 		
 		return minDist;
 	}
 
-	public void printMinDistMatrix(int[][] minDistMatrix) {
-		System.out.println("Minimum Distance Matrix");
+	public String minDistToString(int[][] minDistMatrix) {
+		String str = "Minimum Distance Matrix: \n";
 		for (int i = 0; i < minDistMatrix.length; i++) {
 			for (int j = 0; j < minDistMatrix.length; j++) {
-				System.out.print(minDistMatrix[i][j] + " ");
+				str += Integer.toString(minDistMatrix[i][j])+" ";
 			}
-			System.out.println();
+			str += "\n";
 		}
+		return str;
 	}
 
 	public void printPath(int[][] path) {

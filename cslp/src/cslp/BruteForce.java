@@ -13,7 +13,6 @@ public class BruteForce {
 	
 	public BruteForce() {
 		this.minDuration = Integer.MAX_VALUE;
-//		BruteForce.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**
@@ -41,7 +40,7 @@ public class BruteForce {
 			routeString+=Integer.toString(s)+" -> ";
 		}
 		routeString+="END";
-		LOGGER.info(routeString+"\tTotal duration = "+minDuration);
+		LOGGER.info(routeString+" \t Total duration = "+minDuration);
 		
 		return this.shortestPath;
 	}

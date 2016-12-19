@@ -1,6 +1,9 @@
 package cslp;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -11,7 +14,7 @@ import java.util.logging.Logger;
 public class Simulator {
 
 	public static final Logger LOGGER = Logger.getLogger(Simulator.class.getName());
-
+	
 	private HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();	// roadsLayout elements in seconds, serviceFreq in hour
 	
 	private PriorityQueue<AbstractEvent> events = new PriorityQueue<AbstractEvent>(); // stores upcoming events
@@ -21,7 +24,6 @@ public class Simulator {
 		this.serviceAreas = parser.createServiceAreas(); // new service area instance
 		this.events.clear();
 		this.time = 0;
-//		Simulator.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**
@@ -46,6 +48,7 @@ public class Simulator {
 	 */
 	public void doAllEvents() {
 		LOGGER.info("Do All events from the event priority queue.");
+
 		AbstractEvent e;
         while ((e = (AbstractEvent) events.poll()) != null) {
             time = e.getEventTime();
@@ -62,11 +65,21 @@ public class Simulator {
 
 			for (Bin bin : sa.getBins()) {
 				DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
-				this.events.add(disposalEventGenerator);
+				if (disposalEventGenerator.getEventTime() < disposalEventGenerator.getStopTime()) {
+					this.events.add(disposalEventGenerator);
+
+				} else {
+					LOGGER.warning("\tInitial disposal event exceeds stop time. areaIdx = "+sa.getAreaIdx());
+				}
 			}
 			
 			BinServiceEvent binServiceEventGenerator = new BinServiceEvent(sa.getServiceInterval(), sa); // first event at service interval
-			this.events.add(binServiceEventGenerator);
+			if (binServiceEventGenerator.getEventTime() < binServiceEventGenerator.getStopTime()) {
+				this.events.add(binServiceEventGenerator);
+
+			} else {
+				LOGGER.warning("\tInitial bin service event exceeds stop time. areaIdx = "+sa.getAreaIdx());
+			}
 		}
 		doAllEvents();	// execute all events from priority queue
 	}
@@ -181,7 +194,7 @@ public class Simulator {
 		LorryDepartureEvent.LOGGER.setLevel(Level.ALL);
 		LorryArrivalEvent.LOGGER.setLevel(Level.ALL);
 		Lorry.LOGGER.setLevel(Level.ALL);
-//		FloydWarshal.LOGGER.setLevel(Level.ALL);
+		FloydWarshall.LOGGER.setLevel(Level.ALL);
 //		Error.LOGGER.setLevel(Level.ALL);
 //		DisposalEvent.LOGGER.setLevel(Level.ALL);
 		BruteForce.LOGGER.setLevel(Level.ALL);
@@ -203,7 +216,7 @@ public class Simulator {
 		LorryDepartureEvent.LOGGER.setLevel(Level.OFF);
 		LorryArrivalEvent.LOGGER.setLevel(Level.OFF);
 		Lorry.LOGGER.setLevel(Level.OFF);
-//		FloydWarshal.LOGGER.setLevel(Level.ALL);
+		FloydWarshall.LOGGER.setLevel(Level.ALL);
 //		Error.LOGGER.setLevel(Level.ALL);
 //		DisposalEvent.LOGGER.setLevel(Level.ALL);
 		BruteForce.LOGGER.setLevel(Level.OFF);
@@ -226,6 +239,7 @@ public class Simulator {
 			turnLoggerOff();
 		}
 		
+		
 		Parser parser = new Parser();
 		
 		parser.runParser(filepath);
@@ -238,7 +252,7 @@ public class Simulator {
 			// Random ddr and dds attributes already set in parser
 			// service area ready for running
 			Simulator citySimulator = new Simulator(parser);
-			
+
 			citySimulator.start();
 			citySimulator.statsAnalysis();
 		}
@@ -259,7 +273,7 @@ public class Simulator {
 			if (disposalDistrShapeExp.isEmpty()) isDdsExp = false;
 			if (serviceFreqExp.isEmpty()) isSfExp = false;
 			
-			
+			int expNo = 1;
 			// NOTE: parser already taken care of ddr and dds if any one of them is not experiment.
 			if (isDdrExp) { // ddr is an experiment
 				for (float ddr : disposalDistrRateExp) {
@@ -274,11 +288,17 @@ public class Simulator {
 										sa.changeServiceFreq(sf);
 									}
 									citySimulatorExp.start();
+									String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" disposalDistrShape "+dds+" serviceFreq "+sf;
+									System.out.println(expString);
+									expNo++;
 									citySimulatorExp.statsAnalysis();
 								}
 							} else {
 								Simulator citySimulatorExp = new Simulator(parser);
 								citySimulatorExp.start();
+								String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" disposalDistrShape "+dds;
+								System.out.println(expString);
+								expNo++;
 								citySimulatorExp.statsAnalysis();
 							}
 						}
@@ -289,11 +309,17 @@ public class Simulator {
 								sa.changeServiceFreq(sf);
 							}
 							citySimulatorExp.start();
+							String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" serviceFreq "+sf;
+							System.out.println(expString);
+							expNo++;
 							citySimulatorExp.statsAnalysis();
 						}
 					} else {
 						Simulator citySimulatorExp = new Simulator(parser);
 						citySimulatorExp.start();
+						String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr;
+						System.out.println(expString);
+						expNo++;
 						citySimulatorExp.statsAnalysis();
 					}
 				}
@@ -307,11 +333,17 @@ public class Simulator {
 								sa.changeServiceFreq(sf);
 							}
 							citySimulatorExp.start();
+							String expString = "Experiment #"+expNo+": disposalDistrShape "+dds+" serviceFreq "+sf;
+							System.out.println(expString);
+							expNo++;
 							citySimulatorExp.statsAnalysis();
 						}
 					} else {
 						Simulator citySimulatorExp = new Simulator(parser);
 						citySimulatorExp.start();
+						String expString = "Experiment #"+expNo+": disposalDistrShape "+dds;
+						System.out.println(expString);
+						expNo++;
 						citySimulatorExp.statsAnalysis();
 					}
 				}
@@ -322,6 +354,9 @@ public class Simulator {
 						sa.changeServiceFreq(sf);
 					}
 					citySimulatorExp.start();
+					String expString = "Experiment #"+expNo+": serviceFreq "+sf;
+					System.out.println(expString);
+					expNo++;
 					citySimulatorExp.statsAnalysis();
 				}
 			} else {
