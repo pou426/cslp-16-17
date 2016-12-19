@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class Lorry {
 	
-	private static final Logger LOGGER = Logger.getLogger(Lorry.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(Lorry.class.getName());
 
 	private static short lorryVolume; 
 	private static int lorryMaxLoad; 
@@ -20,6 +20,7 @@ public class Lorry {
 		this.currentTrashWeight = 0;
 		this.sa = sa;
 		this.location = 0; // lorry stations at the depot in the initial state
+//		Lorry.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**

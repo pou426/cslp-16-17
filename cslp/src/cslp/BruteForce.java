@@ -6,13 +6,14 @@ import java.util.logging.Logger;
 
 public class BruteForce {
 
-	private static final Logger LOGGER = Logger.getLogger(BruteForce.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(BruteForce.class.getName());
 
 	private int minDuration;
 	private int[] shortestPath; // shortest path does not include depots at the beginning and end 
 	
 	public BruteForce() {
 		this.minDuration = Integer.MAX_VALUE;
+//		BruteForce.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**

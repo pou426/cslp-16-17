@@ -2,6 +2,7 @@ package cslp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -10,7 +11,7 @@ import java.util.logging.Logger;
  */
 public class ServiceArea extends ServiceAreaInfo {
 
-	private static final Logger LOGGER = Logger.getLogger(ServiceArea.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(ServiceArea.class.getName());
 
 	private int serviceInterval; // in second (time interval between scheduled bin servicing events
 	private Bin[] bins = null;
@@ -48,6 +49,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		// using FloydWarshall method
 		FloydWarshall floydWarshall = new FloydWarshall();
 		this.minDistMatrix = floydWarshall.getMinDistMatrix(roadsLayout);
+//		ServiceArea.LOGGER.setLevel(Level.OFF);
 	}
 	
 	
@@ -229,6 +231,8 @@ public class ServiceArea extends ServiceAreaInfo {
 	 * A rescheduling occurs if the service queue still contains bin index.
 	 */
 	public void computePath() {
+		int bfThreshold = 13;
+		
 		if (isDone()) { // new servicing event
 			int[] requiredVertices = createRequiredVertices();
 			
@@ -236,12 +240,15 @@ public class ServiceArea extends ServiceAreaInfo {
 				return;
 			}
 			int[][] routeLayout = createRouteLayout(requiredVertices);
-
-			// using NN method
-			serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
 			
-			// using BruteForce method
-//			serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
+			if (getNoBins() <= bfThreshold) {
+				// using BruteForce method
+				serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
+			} else {
+				// using NN method
+				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
+			}
+			
 
 			return;
 			
@@ -256,12 +263,14 @@ public class ServiceArea extends ServiceAreaInfo {
 			Arrays.sort(requiredVertices);
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 			
-			// using NN method
-			serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
+			if (getNoBins() <= bfThreshold) {
+				// using BruteForce method
+				serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
+			} else {
+				// using NN method
+				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
+			}
 			
-			// using BruteForce method
-//			serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
-
 			return;
 		}
 	}

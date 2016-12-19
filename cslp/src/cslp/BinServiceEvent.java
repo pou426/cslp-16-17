@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class BinServiceEvent extends AbstractEvent {
 
-	private static final Logger LOGGER = Logger.getLogger(BinServiceEvent.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(BinServiceEvent.class.getName());
 
 	private ServiceArea sa; 
 	private Simulator simulator;
@@ -23,6 +23,7 @@ public class BinServiceEvent extends AbstractEvent {
 			this.nextEvent = new BinServiceEvent(nextEventTime, sa);
 		} 
 		this.noTrips = 0;
+//		BinServiceEvent.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**

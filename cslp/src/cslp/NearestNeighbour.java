@@ -1,6 +1,7 @@
 package cslp;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -10,8 +11,12 @@ import java.util.logging.Logger;
  */
 public class NearestNeighbour {
 	
-	private static final Logger LOGGER = Logger.getLogger(NearestNeighbour.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(NearestNeighbour.class.getName());
 
+//	public NearestNeighbour() {
+//		NearestNeighbour.LOGGER.setLevel(Level.OFF);
+//	}
+	
 	/**
 	 * This method returns a route from the routeLayout matrix with 0's at beginning and end
 	 * 

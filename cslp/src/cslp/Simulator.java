@@ -4,12 +4,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class Simulator {
 
-	private static final Logger LOGGER = Logger.getLogger(Simulator.class.getName());
-
+	public static final Logger LOGGER = Logger.getLogger(Simulator.class.getName());
 
 	private HashMap<Short,ServiceArea> serviceAreas = new HashMap<Short,ServiceArea>();	// roadsLayout elements in seconds, serviceFreq in hour
 	
@@ -20,6 +21,7 @@ public class Simulator {
 		this.serviceAreas = parser.createServiceAreas(); // new service area instance
 		this.events.clear();
 		this.time = 0;
+//		Simulator.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**
@@ -168,8 +170,62 @@ public class Simulator {
 		return this.serviceAreas;
 	}
 	
+	public static void turnLoggerOn() {
+		Simulator.LOGGER.setLevel(Level.ALL);
+//		ServiceAreaInfo.LOGGER.setLevel(Level.ALL);
+		ServiceArea.LOGGER.setLevel(Level.ALL);
+//		Random.LOGGER.setLevel(Level.ALL);
+		Parser.LOGGER.setLevel(Level.ALL);
+		NearestNeighbour.LOGGER.setLevel(Level.ALL);
+		LorryEmptiedEvent.LOGGER.setLevel(Level.ALL);
+		LorryDepartureEvent.LOGGER.setLevel(Level.ALL);
+		LorryArrivalEvent.LOGGER.setLevel(Level.ALL);
+		Lorry.LOGGER.setLevel(Level.ALL);
+//		FloydWarshal.LOGGER.setLevel(Level.ALL);
+//		Error.LOGGER.setLevel(Level.ALL);
+//		DisposalEvent.LOGGER.setLevel(Level.ALL);
+		BruteForce.LOGGER.setLevel(Level.ALL);
+		BinServiceEvent.LOGGER.setLevel(Level.ALL);
+		BinEmptiedEvent.LOGGER.setLevel(Level.ALL);
+		Bin.LOGGER.setLevel(Level.ALL);
+//		Bag.LOGGER.setLevel(Level.ALL);
+//		AbstractEvent.LOGGER.setLevel(Level.ALL);
+	}
+	
+	public static void turnLoggerOff() {
+		Simulator.LOGGER.setLevel(Level.OFF);
+//		ServiceAreaInfo.LOGGER.setLevel(Level.ALL);
+		ServiceArea.LOGGER.setLevel(Level.OFF);
+//		Random.LOGGER.setLevel(Level.ALL);
+		Parser.LOGGER.setLevel(Level.OFF);
+		NearestNeighbour.LOGGER.setLevel(Level.OFF);
+		LorryEmptiedEvent.LOGGER.setLevel(Level.OFF);
+		LorryDepartureEvent.LOGGER.setLevel(Level.OFF);
+		LorryArrivalEvent.LOGGER.setLevel(Level.OFF);
+		Lorry.LOGGER.setLevel(Level.OFF);
+//		FloydWarshal.LOGGER.setLevel(Level.ALL);
+//		Error.LOGGER.setLevel(Level.ALL);
+//		DisposalEvent.LOGGER.setLevel(Level.ALL);
+		BruteForce.LOGGER.setLevel(Level.OFF);
+		BinServiceEvent.LOGGER.setLevel(Level.OFF);
+		BinEmptiedEvent.LOGGER.setLevel(Level.OFF);
+		Bin.LOGGER.setLevel(Level.OFF);
+//		Bag.LOGGER.setLevel(Level.ALL);
+//		AbstractEvent.LOGGER.setLevel(Level.ALL);
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		String filepath = args[0];
+		if (args.length > 1) {
+			if (args[1].equals("yes")) { // flag for printing logger. default is false.
+				turnLoggerOn();
+			} else {
+				turnLoggerOff();
+			}
+		} else {
+			turnLoggerOff();
+		}
+		
 		Parser parser = new Parser();
 		
 		parser.runParser(filepath);

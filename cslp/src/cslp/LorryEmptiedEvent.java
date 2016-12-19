@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class LorryEmptiedEvent extends AbstractEvent {
 
-	private static final Logger LOGGER = Logger.getLogger(LorryEmptiedEvent.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(LorryEmptiedEvent.class.getName());
 	
 	private ServiceArea sa;
 	private Lorry lorry;
@@ -13,6 +13,7 @@ public class LorryEmptiedEvent extends AbstractEvent {
 		schedule(eventTime);
 		this.sa = sa;
 		this.lorry = sa.getLorry();
+//		LorryEmptiedEvent.LOGGER.setLevel(Level.OFF);
 	}
 
 	@Override

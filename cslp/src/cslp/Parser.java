@@ -7,12 +7,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Parser {
 
-	private static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
 
+//	public Parser() {
+//		Parser.LOGGER.setLevel(Level.OFF);
+//	}
+	
 	// input parameters
 	private short lorryVolume;
 	private int lorryMaxLoad;

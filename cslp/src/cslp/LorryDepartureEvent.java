@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class LorryDepartureEvent extends AbstractEvent {
 
-	private static final Logger LOGGER = Logger.getLogger(LorryDepartureEvent.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(LorryDepartureEvent.class.getName());
 	
 	private ServiceArea sa;
 	private int departFrom;
@@ -16,6 +16,7 @@ public class LorryDepartureEvent extends AbstractEvent {
 		this.departFrom = departFrom;
 		this.arriveAt = arriveAt;
 		this.sa = sa;
+//		LorryDepartureEvent.LOGGER.setLevel(Level.OFF);
 	}
 	
 	@Override

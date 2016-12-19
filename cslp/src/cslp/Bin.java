@@ -8,7 +8,7 @@ import java.util.logging.Logger;
  */
 public class Bin {
 	
-	private static final Logger LOGGER = Logger.getLogger(Bin.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(Bin.class.getName());
 
 	private static float binVolume; 
 	
@@ -34,6 +34,7 @@ public class Bin {
 		this.isOverflow = false;
 		this.isExceedThreshold = false;
 		this.isServicing = false;
+//		Bin.LOGGER.setLevel(Level.OFF);
 	}
 	
 	/**

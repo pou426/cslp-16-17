@@ -8,10 +8,6 @@ public class Random {
 	private static float disposalDistrRate; // expressed per hour
 	private static short disposalDistrShape;
 
-//	public Random(float disposalDistrRate, short disposalDistrShape) {
-//		this.disposalDistrRate = disposalDistrRate;
-//		this.disposalDistrShape = disposalDistrShape;
-//	}
 	/**
 	 * Method to create Erlang K values for disposal event
 	 * 

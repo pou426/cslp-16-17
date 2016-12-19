@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class BinEmptiedEvent extends AbstractEvent {
 
-	private static final Logger LOGGER = Logger.getLogger(BinEmptiedEvent.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(BinEmptiedEvent.class.getName());
 
 	private ServiceArea sa;
 	private Bin bin;
@@ -13,6 +13,7 @@ public class BinEmptiedEvent extends AbstractEvent {
 		schedule(eventTime);
 		this.sa = sa;
 		this.bin = bin;
+//		BinEmptiedEvent.LOGGER.setLevel(Level.OFF);
 	}
 	
 	public Bin getBin() {
