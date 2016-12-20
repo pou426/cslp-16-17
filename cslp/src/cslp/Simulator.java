@@ -95,15 +95,6 @@ public class Simulator {
 	 */
 	public void statsAnalysis(PrintStream ps) {
 		// output to a text file
-//		PrintStream console = System.out;
-		
-//		File file = new File("../output_files/output.txt");
-//		FileOutputStream fos = new FileOutputStream(file);
-//		PrintStream ps = new PrintStream(fos);
-//		System.setOut(ps);
-//		System.out.println("This goes to out.txt");
-//		System.setOut(console);
-//		System.out.println("This also goes to the console");
 		
 		int noAreas = serviceAreas.size();
 
@@ -158,8 +149,6 @@ public class Simulator {
 				overflow_percent_str += "\n";
 			}
 			
-			System.out.println("areaIdx = "+sa.getAreaIdx()+" avg trip dur = "+avg_trip_duration+" avg no trips = "+total_avg_no_trips+" trip effiency = "+trip_efficiency+" avg vol col = "+avg_vol_collected+" overflow % = "+overflow_percent);
-			System.out.println();
 		}
 		System.out.println(avg_trip_duration_str);
 		ps.println(avg_trip_duration_str);
@@ -203,6 +192,7 @@ public class Simulator {
 
 		System.out.println("---");
 		ps.println("---");
+		
 		// ============================== average trip duration ==============================
 //		int totalAvgTripDuration = 0;
 //		for (ServiceArea sa : serviceAreas.values()) {
@@ -397,12 +387,20 @@ public class Simulator {
 		parser.runParser(filepath);
 //		parser.printAllInputs();
 		boolean isExperiment = parser.isExperiment();
+
 		
+//		File file = new File("../output_files/output.txt");
+//		FileOutputStream fos = new FileOutputStream(file);
+//		PrintStream ps = new PrintStream(fos);
+//		System.out.println("This goes to out.txt");
+//		System.setOut(console);
+//		System.out.println("This also goes to the console");
 		
+//		PrintStream console = System.out;
 		File file = new File("./output_files/output.txt");
 		FileOutputStream fos = new FileOutputStream(file);
 		PrintStream ps = new PrintStream(fos);
-
+//		System.setOut(ps);
 		
 		// ================================== NOT EXPERIMENT ==================================
 		if (!isExperiment) {

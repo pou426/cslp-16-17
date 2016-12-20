@@ -29,6 +29,14 @@ public class ServiceArea extends ServiceAreaInfo {
 	private ArrayList<Float> volCollected = new ArrayList<Float>();
 	private ArrayList<Float> overflowPercent = new ArrayList<Float>();
 	
+//	public void checking() {
+//		System.out.println("I am in service area class. \noverflow percent size = " + overflowPercent.size());
+//		System.out.println("area = "+getAreaIdx());
+//		for (float o : overflowPercent) {
+//			System.out.println(o);
+//		}
+//	}
+	
 	public int getServiceQueueSize() {
 		return this.serviceQueue.size();
 	}

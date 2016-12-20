@@ -160,6 +160,7 @@ public class BinServiceEvent extends AbstractEvent {
 		
 		// Statistics
 		float overflowPercent = sa.computeOverflowPercent();
+
 		if (!(getEventTime() < getWarmUpTime())) {
 			sa.addOverflowPercent(overflowPercent);	
 			LOGGER.info("\tStatistics: collected"
