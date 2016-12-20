@@ -1,0 +1,24 @@
+# to check summary statistics are appropriately colleccted
+# setting a small value for lorryVolume to check resheculding event collect statistics
+
+stopTime 500
+warmUpTime 1.0
+
+lorryVolume 2
+lorryMaxLoad 8500
+binServiceTime 300
+binVolume 3.0
+bagVolume 0.04
+bagWeightMin 3
+bagWeightMax 10
+
+disposalDistrRate 10
+disposalDistrShape 1
+
+noAreas 1
+
+areaIdx 0 serviceFreq 0.15 thresholdVal 0.1 noBins 2
+roadsLayout
+0 1 2
+10 0 2
+3 9 0
