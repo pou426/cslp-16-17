@@ -1,3 +1,12 @@
+# check the kind of matrx in which the route planning algorithm will not work
+
+# matrix with only one path in and one path out gives you a path between all pairs in the minimum distance matrix 
+
+# each column needs to have at least one 'in' arc
+
+# lower limition for maximum amount of -1's: to have a maximum number of -1's in the roadsLayout matrix and yet still be able to generate a complete graph after computing the shortest path algorithm, we need the elements above/below/left/right of the diagonal elements to be non -1.
+
+
 stopTime 10
 warmUpTime 1.0
 
@@ -5,61 +14,36 @@ lorryVolume 24
 lorryMaxLoad 8500
 binServiceTime 300
 binVolume 3.0
-disposalDistrRate 4.0
+disposalDistrRate 2.0
 disposalDistrShape 1
 bagVolume 0.04
 bagWeightMin 3
 bagWeightMax 10
 
-noAreas 4
-areaIdx 0 serviceFreq 0.5 thresholdVal 0.8 noBins 3
-roadsLayout
- 0 -1  2  3
- 2  0  3  4
--1  5  0 -1
- 2 -1  3  0
+#noAreas 1
+#areaIdx 0 serviceFreq 0.5 thresholdVal 0.5 noBins 3
+#roadsLayout
+# 0 -1 -1 -1
+#-1  0 -1 -1
+#-1 -1  0 -1
+#-1 -1 -1  0
 
-areaIdx 1 serviceFreq 0.3 thresholdVal 0.9 noBins 5
-roadsLayout
- 0  3  4  2  1 -1
- 9  0 -1  2 -1  4
- 8  4  0 -1  2  3
- 1  2  2  0  1 -1
- 4  2  9 -1  0  2
- 2  9  8  9  9 -1
+#noAreas 1
+#areaIdx 0 serviceFreq 0.5 thresholdVal 0.5 noBins 3
+#roadsLayout
+# 0  1 -1 -1
+#-1  0  1 -1
+#-1 -1  0  1
+# 1 -1 -1  0
 
-areaIdx 2 serviceFreq 0.05 thresholdVal 0.4 noBins 12
+noAreas 1
+areaIdx 0 serviceFreq 0.5 thresholdVal 0.5 noBins 4
 roadsLayout
-  0	13	-1	-1	 6	-1	-1	-1	-1	-1	-1	-1	-1	
-13	 0	11	-1	-1	 1	-1	-1	-1	-1	-1	-1	-1		
--1	11	 0	15	-1	-1	 3	-1	-1	-1	-1	-1	-1		
--1	-1	15	 0	-1	-1	-1	 5	-1	-1	-1	-1	-1	
- 6	-1	-1	-1	 0	14	-1	-1	 1	-1	-1	-1	-1	
--1	 1	-1	-1	14	 0	 3	-1	-1	10	-1	-1	-1	
--1	-1	 3	-1	-1	 3	 0	 2	-1	-1	 9	-1	-1
--1	-1	-1	 5	-1	-1	 2	 0	-1	-1	-1	12	-1
--1	-1	-1	-1	 1	-1	-1	-1	 0	13	-1	-1	13	
--1	-1	-1	-1	-1	10	-1	-1	13	 0	 1	-1	-1
--1	-1	-1	-1	-1	-1	 9	-1	-1	 1	 0	 2	-1		 
--1	-1	-1	-1	-1	-1	-1	12	-1	-1	 2	 0	-1		
--1	-1	-1	-1	-1	-1	-1	-1	13	-1	-1	-1	 0		
+0	1	-1	-1	-1	
+1	0	-1	-1	-1	
+-1	1	0	1	-1	
+-1	-1	1	0	1	
+-1	-1	-1	1	0	
 
-areaIdx 3 serviceFreq 0.084 thresholdVal 0.6 noBins 15
-roadsLayout
- 0	13	-1	-1	 6	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
-13	 0	11	-1	-1	 1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
--1	11	 0	15	-1	-1	 3	-1	-1	-1	-1	-1	-1	-1	-1	-1
--1	-1	15	 0	-1	-1	-1	 5	-1	-1	-1	-1	-1	-1	-1	-1
- 6	-1	-1	-1	 0	14	-1	-1	 1	-1	-1	-1	-1	-1	-1	-1
--1	 1	-1	-1	14	 0	 3	-1	-1	10	-1	-1	-1	-1	-1	-1
--1	-1	 3	-1	-1	 3	 0	 2	-1	-1	 9	-1	-1	-1	-1	-1
--1	-1	-1	 5	-1	-1	 2	 0	-1	-1	-1	12	-1	-1	-1	-1
--1	-1	-1	-1	 1	-1	-1	-1	 0	13	-1	-1	13	-1	-1	-1
--1	-1	-1	-1	-1	10	-1	-1	13	 0	 1	-1	-1	 1	-1	-1
--1	-1	-1	-1	-1	-1	 9	-1	-1	 1	 0	 2	-1	-1	 8	-1
--1	-1	-1	-1	-1	-1	-1	12	-1	-1	 2	 0	-1	-1	-1	 4
--1	-1	-1	-1	-1	-1	-1	-1	13	-1	-1	-1	 0	12	-1	-1
--1	-1	-1	-1	-1	-1	-1	-1	-1	 1	-1	-1	12	 0	 8	-1
--1	-1	-1	-1	-1	-1	-1	-1	-1	-1	 8	-1	-1	 8	 0	14
--1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	 4	-1	-1	14	 0
+
 

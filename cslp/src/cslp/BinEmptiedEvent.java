@@ -13,7 +13,6 @@ public class BinEmptiedEvent extends AbstractEvent {
 		schedule(eventTime);
 		this.sa = sa;
 		this.bin = bin;
-//		BinEmptiedEvent.LOGGER.setLevel(Level.OFF);
 	}
 	
 	public Bin getBin() {
@@ -27,6 +26,11 @@ public class BinEmptiedEvent extends AbstractEvent {
 			return;
 		}
 		Lorry lorry = sa.getLorry();
+		// for logging
+		float beforeWeight = bin.getWasteWeight();
+		float beforeVol = bin.getWasteVolume();
+		float beforeLorryWeight = lorry.getCurrentTrashWeight();
+		float beforeLorryVol = lorry.getCurrentTrashVolume();
 		lorry.emptyBin(this); 
 		int currLocation = lorry.getLorryLocation();
 		int currDestination;
@@ -45,7 +49,7 @@ public class BinEmptiedEvent extends AbstractEvent {
 		
 		LOGGER.info("\tCurrent time: "+getEventTime()+" ("+timeToString()+")"+
 				"\n\tCurrent Location: "+currLocation+
-				"\n\tBefore emptying: bin weight = "+bin.currentWeight()+"	vol = "+bin.currentVol()+"	Lorry weight = "+lorry.getCurrentTrashWeight()+"	vol = "+lorry.getCurrentTrashVolume()+
+				"\n\tBefore emptying: bin weight = "+beforeWeight+"	vol = "+beforeVol+"	Lorry weight = "+beforeLorryWeight+"	vol = "+beforeLorryVol+
 				"\n\tAfter emptying:  bin weight = "+bin.currentWeight()+"	vol = "+bin.currentVol()+"	Lorry weight = "+lorry.getCurrentTrashWeight()+"	vol = "+lorry.getCurrentTrashVolume()+
 				"\n\tInserted LorryDepartureEvent for areaIdx = "+sa.getAreaIdx()+" 	eventTime = "+getEventTime()+" ("+timeToString()+")"+
 				"\n\tCurrent location = "+currLocation+"	Current destination =  "+currDestination+

@@ -140,29 +140,6 @@ public class ServiceArea extends ServiceAreaInfo {
 		return totalPercentageOverflow/noOfSchedules;
 	}
 	
-//	public void printAll() {
-//		System.out.println("Trip Durations:");
-//		for (int t : tripDurations) {
-//			System.out.println(t);
-//		}
-//		System.out.println("No of Trips per schedule:");
-//		for (int t : noTrips) {
-//			System.out.println(t);
-//		}
-//		System.out.println("Trip efficiencies:");
-//		for (float t : tripEfficiencies) {
-//			System.out.println(t);
-//		}
-//		System.out.println("Volume collected:");
-//		for (float v : volCollected) {
-//			System.out.println(v);
-//		}
-//		System.out.println("percentage of overflow:");
-//		for (float o : overflowPercent) {
-//			System.out.println(o);
-//		}
-//	}
-	
 	/**
 	 * Creates a sub matrix with information only from the bins that requires servicing
 	 * 
@@ -251,7 +228,6 @@ public class ServiceArea extends ServiceAreaInfo {
 				// using NN method
 				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
 			}
-			
 
 			return;
 			

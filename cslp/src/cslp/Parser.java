@@ -14,10 +14,6 @@ public class Parser {
 
 	public static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
 
-//	public Parser() {
-//		Parser.LOGGER.setLevel(Level.OFF);
-//	}
-	
 	// input parameters
 	private short lorryVolume;
 	private int lorryMaxLoad;
@@ -722,7 +718,15 @@ public class Parser {
 		for (ServiceAreaInfo saInfo : serviceAreaInfos.values()) {
 			float serviceFreq = saInfo.getServiceFreq();
 			short areaIdx = saInfo.getAreaIdx();
-			if (disposalDistrRate < serviceFreq) {
+			if (isExperiment && !(disposalDistrRateExp.isEmpty())) {
+				int n = disposalDistrRateExp.size();
+				for (int i = 0; i < n; i++) {
+					if (disposalDistrRateExp.get(i) < serviceFreq) {
+						System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx+". The simulation will continue.");
+					}
+				}
+			} 
+			else if (disposalDistrRate < serviceFreq) {
 				System.out.println("Warning: 'disposalDistrRate' parameter less than 'serviceFreq' for service area with areaIdx = "+areaIdx+". The simulation will continue.");
 			}
 		}

@@ -87,3 +87,48 @@ Non-experiment testing:
 62 - 74: all area specification related checks - areaIdx format, noAreas = 0, no or insufficient service information, strict format of lines after noArea line, diagonal 0 matrix, roadsLayout matrix elements magnitude, number of row elements and number of rows, identify missing row, duplicate service area information
 75 - 76: disposalDistrRate and disposalDistrShape = 0
 77: test generation of events
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+UPDATED: Part 3
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+Unfinished or non-obvious functionality:
+------------------------------------------------------------------------------
+
+The applicaton is considered to be complete following all specifications from the handout. Although, RandomPath class is an graph traversal algorithm that picks random vertices at it traverses the graph. The algorithm is done implementing but the code is not optimised. It has not been used in computing the path for bin collection due to time constraint. In that algorithm, it first computes the nearest neighbour path and use that as an upper bound. It returns a resulting route soon as it finds a path that is smaller than or equal to the upper bound.
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+Additional features:
+------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+Test input scripts:
+------------------------------------------------------------------------------
+Testing scripts for part 3 are included in the folder '/input_scripts_part_3/' as well as '/cslp/src/test/'. The former includes input text scripts with different input paramters and area specification, where as the later contains JUnit tests to test various methods in the program.
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+Test input scripts:
+------------------------------------------------------------------------------
+Output from the console is redirected to ./cslp/bin/output_files/output.txt
+
+
+
+

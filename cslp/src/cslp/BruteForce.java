@@ -17,7 +17,7 @@ public class BruteForce {
 	
 	/**
 	 * This method assumes that there is always a path between two locations
-	 * @param routeLayout	sub matrix of roadsLayout with only relevant elements
+	 * @param routeLayout	sub matrix of roadsLayout with only relevant locations (bin only)
 	 * @return int[]		an aaray of route for best performance
 	 */
 	public int[] getRoute(int[][] routeLayout) {

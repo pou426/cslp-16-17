@@ -91,7 +91,7 @@ public class RandomPath {
 	}
 
 	public ArrayList<Integer> getServiceQueue(int[][] routeLayout, int[] requiredVertices) {
-		int[] shortestPath = getRoute(routeLayout); // this updates the attributes
+		getRoute(routeLayout); // this updates the attributes
 		
 		ArrayList<Integer> serviceQueue = new ArrayList<>();
 		String serviceQueueString = "serviceQueue: ";

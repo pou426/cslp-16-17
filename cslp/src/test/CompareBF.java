@@ -2,6 +2,12 @@ package test;
 import java.util.Arrays;
 
 import cslp.BruteForce;
+
+/**
+ * This file creates testing for brute-force to identify the size of matrix 
+ * which gives least complexity
+ * 
+ */
 public class CompareBF {
 
 	public void testing(int n) {

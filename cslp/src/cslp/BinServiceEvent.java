@@ -126,12 +126,13 @@ public class BinServiceEvent extends AbstractEvent {
 					  "\n\tcollected weight = "+collectedWeight);
 		}
 		
+		int original = nextEventTime;
 		if (finishTime > nextEventTime) { // if delayed
 			nextEventTime = finishTime;
 			nextEvent.schedule(nextEventTime);
-			LOGGER.info("\tDelay occurs: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+"	finish time = "+finishTime);
+			LOGGER.info("\tDelay occurs: areaIdx = "+sa.getAreaIdx()+"	original next time: "+original+"	finish time = "+finishTime);
 		} else {
-			LOGGER.info("\tNo delay: areaIdx = "+sa.getAreaIdx()+"	original next time: "+nextEventTime+"	finish time = "+finishTime);
+			LOGGER.info("\tNo delay: areaIdx = "+sa.getAreaIdx()+"	original next time: "+original+"	finish time = "+finishTime);
 		}
 		
 		sa.setBinServiceEvent(null);
