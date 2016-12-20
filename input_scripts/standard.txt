@@ -5,13 +5,13 @@ lorryVolume 24
 lorryMaxLoad 8500
 binServiceTime 300
 binVolume 3.0
-disposalDistrRate 4.0
-disposalDistrShape 1
+disposalDistrRate experiment 1.0 4.0
+disposalDistrShape experiment 2 1
 bagVolume 0.04
 bagWeightMin 3
 bagWeightMax 10
 noAreas 2
-
+serviceFreq experiment 1.0 0.5
 areaIdx 0 serviceFreq 0.084 thresholdVal 0.6 noBins 15
 roadsLayout
  0	13	-1	-1	 6	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
