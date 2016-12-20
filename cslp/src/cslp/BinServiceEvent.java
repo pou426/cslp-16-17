@@ -64,7 +64,7 @@ public class BinServiceEvent extends AbstractEvent {
 		if (!(lorryEmptiedEventTime < getWarmUpTime())) {
 			noTrips += 1;
 			int currTripDuration = getEventTime() - startTime;
-			float currTripEfficiency = (currTripDuration/60)/collectedWeight; // unit : kg/min
+			float currTripEfficiency = collectedWeight/(currTripDuration/60); // unit : kg/min
 			if (collectedWeight == 0) { // avoid division by 0
 				currTripEfficiency = 0;
 			}
@@ -73,7 +73,7 @@ public class BinServiceEvent extends AbstractEvent {
 			sa.addVolCollected(collectedVol);
 			
 			LOGGER.info("\tStatistics: collected"+
-					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent time = "+lorryEmptiedEventTime+"	warm up time = "+getWarmUpTime()+
 					  "\n\tcurrent no trips = "+noTrips+
 					  "\n\tcurrent trip duration = "+currTripDuration+
 					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
@@ -81,7 +81,7 @@ public class BinServiceEvent extends AbstractEvent {
 					  "\n\tcollected weight = "+collectedWeight);
 		} else {
 			LOGGER.info("\tStatistics: NOT collected"+
-					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent time = "+lorryEmptiedEventTime+"	warm up time = "+getWarmUpTime()+
 					  "\n\tcurrent no trips = "+noTrips+
 //					  "\n\tcurrent trip duration = "+currTripDuration+
 //					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
@@ -99,18 +99,20 @@ public class BinServiceEvent extends AbstractEvent {
 	public void update(int finishTime, float collectedWeight, float collectedVol) {
 		// Statistics
 		int currTripDuration = finishTime - getEventTime();
-		float currTripEfficiency = (currTripDuration/60)/collectedWeight; // kg/min
+		float currTripEfficiency = collectedWeight/(currTripDuration/60); // kg/min
 		if (collectedWeight == 0) 	currTripEfficiency = 0;
 		
 		if (!(finishTime < getWarmUpTime())) {
-			noTrips += 1;
+			if (!(currTripDuration == 0)) {
+				noTrips += 1 ;
+			}
 			sa.addNoTrip(noTrips);
 			sa.addTripDuration(currTripDuration);
 			sa.addTripEfficiency(currTripEfficiency); // kg/min
 			sa.addVolCollected(collectedVol);
 			
 			LOGGER.info("\tStatistics: collected. areaIdx = "+sa.getAreaIdx()+
-					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent time = "+finishTime+"	warm up time = "+getWarmUpTime()+
 					  "\n\tcurrent no trips = "+noTrips+
 					  "\n\tcurrent trip duration = "+currTripDuration+
 					  "\n\tcurrent trip efficiency = "+currTripEfficiency+
@@ -118,7 +120,7 @@ public class BinServiceEvent extends AbstractEvent {
 					  "\n\tcollected weight = "+collectedWeight);
 		} else {
 			LOGGER.info("\tStatistics: NOT collected. areaIdx = "+sa.getAreaIdx()+
-					  "\n\tcurrent time = "+getEventTime()+"	warm up time = "+getWarmUpTime()+
+					  "\n\tcurrent time = "+finishTime+"	warm up time = "+getWarmUpTime()+
 					  "\n\tcurrent no trips = "+noTrips+
 					  "\n\tcurrent trip duration = "+currTripDuration+
 					  "\n\tcurrent trip efficiency = "+currTripEfficiency+

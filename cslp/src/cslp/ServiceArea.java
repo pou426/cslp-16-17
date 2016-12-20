@@ -96,7 +96,7 @@ public class ServiceArea extends ServiceAreaInfo {
 	}
 	
 	public float getAvgNoTripsPerSchedule() {
-		int noOfSchedules = noTrips.size();
+		int noOfSchedules = overflowPercent.size();
 		if (noOfSchedules == 0)	{
 			return 0;
 		}

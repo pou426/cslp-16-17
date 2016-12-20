@@ -157,6 +157,9 @@ public class Simulator {
 				avg_vol_collected_str += "\n";
 				overflow_percent_str += "\n";
 			}
+			
+			System.out.println("areaIdx = "+sa.getAreaIdx()+" avg trip dur = "+avg_trip_duration+" avg no trips = "+total_avg_no_trips+" trip effiency = "+trip_efficiency+" avg vol col = "+avg_vol_collected+" overflow % = "+overflow_percent);
+			System.out.println();
 		}
 		System.out.println(avg_trip_duration_str);
 		ps.println(avg_trip_duration_str);
