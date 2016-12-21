@@ -1,3 +1,5 @@
+# checks information collected
+
 stopTime 168
 warmUpTime 16.0
 
