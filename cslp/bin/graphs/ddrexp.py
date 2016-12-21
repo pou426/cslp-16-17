@@ -42,7 +42,7 @@ def convert_trip_dur(avg_trip_dur):
 
 f = open('../output_files/erlangkThr{}dds{}.txt'.format(thr,s))
 
-c = ['r','r','r','b','b','b','b','g','y','y','y','y']
+c = ['r','r','r','b','b','b','g','g','y','y','y','y']
 for line in f:
     tokens = line.strip().split()
 
@@ -95,7 +95,7 @@ while N > 0:
         idx += 1
         N -= 1
     cidx = int(curr_ddr[0])
-    ax.plot(curr_sf,curr_avg_trip_dur,c[cidx],marker='x',label='ddr={} dds={}'.format(curr_ddr,curr_dds))
+    ax.plot(curr_sf,curr_avg_trip_dur,c[cidx],label='ddr={} dds={}'.format(curr_ddr,curr_dds))
     curr_sf = []
     curr_avg_trip_dur = []
 box = ax.get_position()
@@ -136,7 +136,7 @@ while N > 0:
         idx += 1
         N -= 1
     cidx = int(curr_ddr[0])
-    ax.plot(curr_sf,curr_avg_no_trips,c[cidx],marker='x',label='ddr={} dds={}'.format(curr_ddr,curr_dds))
+    ax.plot(curr_sf,curr_avg_no_trips,c[cidx],label='ddr={} dds={}'.format(curr_ddr,curr_dds))
     curr_sf = []
     curr_avg_no_trips = []
 box = ax.get_position()
@@ -175,7 +175,7 @@ while N > 0:
         idx += 1
         N -= 1
     cidx = int(curr_ddr[0])
-    ax.plot(curr_sf,curr_trip_eff,c[cidx],marker='x',label='ddr={} dds={}'.format(curr_ddr,curr_dds))
+    ax.plot(curr_sf,curr_trip_eff,c[cidx],label='ddr={} dds={}'.format(curr_ddr,curr_dds))
     curr_sf = []
     curr_trip_eff = []
 box = ax.get_position()
@@ -215,7 +215,7 @@ while N > 0:
         idx += 1
         N -= 1
     cidx = int(curr_ddr[0])
-    ax.plot(curr_sf,curr_avg_vol_col,c[cidx],marker='x',label='ddr={} dds={}'.format(curr_ddr,curr_dds))
+    ax.plot(curr_sf,curr_avg_vol_col,c[cidx],label='ddr={} dds={}'.format(curr_ddr,curr_dds))
     curr_sf = []
     curr_avg_vol_col = []
 box = ax.get_position()
@@ -255,7 +255,7 @@ while N > 0:
         idx += 1
         N -= 1
     cidx = int(curr_ddr[0])
-    ax.plot(curr_sf,curr_per_overflow,c[cidx],marker='x',label='ddr={} dds={}'.format(curr_ddr,curr_dds))
+    ax.plot(curr_sf,curr_per_overflow,c[cidx],label='ddr={} dds={}'.format(curr_ddr,curr_dds))
     curr_sf = []
     curr_per_overflow = []
 box = ax.get_position()

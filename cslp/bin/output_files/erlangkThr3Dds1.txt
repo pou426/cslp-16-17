@@ -1,728 +1,728 @@
-Experiment #1: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.03
+Experiment #1: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.01
 ---
-area 0: average trip duration 00:04:51:18
-overall average trip duration 00:04:51:18
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 22.106
-overall trip efficiency 22.106
-area 0: average volume collected 19.961
-overall average volume collected 19.961
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
+area 0: trip efficiency 25.454
+overall trip efficiency 25.454
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
 ---
-Experiment #2: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.035
+Experiment #2: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.02
 ---
-area 0: average trip duration 00:05:03:36
-overall average trip duration 00:05:03:36
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 17.953
-overall trip efficiency 17.953
-area 0: average volume collected 17.326
-overall average volume collected 17.326
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
+area 0: trip efficiency 25.467
+overall trip efficiency 25.467
+area 0: average volume collected 22.792
+overall average volume collected 22.792
+area 0: percentage of bins overflowed 20.000
+overall percentage of bins overflowed 20.000
 ---
-Experiment #3: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.04
+Experiment #3: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.03
 ---
-area 0: average trip duration 00:05:07:32
-overall average trip duration 00:05:07:32
+area 0: average trip duration 00:04:50:49
+overall average trip duration 00:04:50:49
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 14.560
-overall trip efficiency 14.560
-area 0: average volume collected 15.045
-overall average volume collected 15.045
+area 0: trip efficiency 22.157
+overall trip efficiency 22.157
+area 0: average volume collected 19.895
+overall average volume collected 19.895
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #4: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.045
+Experiment #4: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.035
 ---
-area 0: average trip duration 00:04:52:50
-overall average trip duration 00:04:52:50
+area 0: average trip duration 00:04:46:18
+overall average trip duration 00:04:46:18
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 12.341
-overall trip efficiency 12.341
-area 0: average volume collected 13.391
-overall average volume collected 13.391
+area 0: trip efficiency 19.468
+overall trip efficiency 19.468
+area 0: average volume collected 17.496
+overall average volume collected 17.496
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #5: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.05
+Experiment #5: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.04
 ---
-area 0: average trip duration 00:05:54:54
-overall average trip duration 00:05:54:54
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 13.343
-overall trip efficiency 13.343
-area 0: average volume collected 16.188
-overall average volume collected 16.188
+area 0: average trip duration 00:04:51:11
+overall average trip duration 00:04:51:11
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 15.628
+overall trip efficiency 15.628
+area 0: average volume collected 15.075
+overall average volume collected 15.075
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #6: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.055
+Experiment #6: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.045
 ---
-area 0: average trip duration 00:06:13:02
-overall average trip duration 00:06:13:02
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 12.837
-overall trip efficiency 12.837
-area 0: average volume collected 16.446
-overall average volume collected 16.446
+area 0: average trip duration 00:04:48:46
+overall average trip duration 00:04:48:46
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 13.204
+overall trip efficiency 13.204
+area 0: average volume collected 13.581
+overall average volume collected 13.581
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #7: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.06
+Experiment #7: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.05
 ---
-area 0: average trip duration 00:06:53:43
-overall average trip duration 00:06:53:43
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 14.278
-overall trip efficiency 14.278
-area 0: average volume collected 18.593
-overall average volume collected 18.593
+area 0: average trip duration 00:05:56:31
+overall average trip duration 00:05:56:31
+area 0: average no. trips 1.500
+overall average no. trips 1.500
+area 0: trip efficiency 12.495
+overall trip efficiency 12.495
+area 0: average volume collected 16.096
+overall average volume collected 16.096
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #8: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.065
+Experiment #8: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.06
 ---
-area 0: average trip duration 00:06:02:35
-overall average trip duration 00:06:02:35
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 13.248
-overall trip efficiency 13.248
-area 0: average volume collected 16.057
-overall average volume collected 16.057
+area 0: average trip duration 00:06:24:42
+overall average trip duration 00:06:24:42
+area 0: average no. trips 1.176
+overall average no. trips 1.176
+area 0: trip efficiency 13.238
+overall trip efficiency 13.238
+area 0: average volume collected 16.964
+overall average volume collected 16.964
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #9: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.08
+Experiment #9: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.07
 ---
-area 0: average trip duration 00:05:45:15
-overall average trip duration 00:05:45:15
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 13.503
-overall trip efficiency 13.503
-area 0: average volume collected 14.494
-overall average volume collected 14.494
+area 0: average trip duration 00:06:16:21
+overall average trip duration 00:06:16:21
+area 0: average no. trips 1.053
+overall average no. trips 1.053
+area 0: trip efficiency 14.416
+overall trip efficiency 14.416
+area 0: average volume collected 16.904
+overall average volume collected 16.904
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #10: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.1
+Experiment #10: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.08
 ---
-area 0: average trip duration 00:05:13:02
-overall average trip duration 00:05:13:02
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 12.268
-overall trip efficiency 12.268
-area 0: average volume collected 11.946
-overall average volume collected 11.946
+area 0: average trip duration 00:05:40:26
+overall average trip duration 00:05:40:26
+area 0: average no. trips 1.045
+overall average no. trips 1.045
+area 0: trip efficiency 13.971
+overall trip efficiency 13.971
+area 0: average volume collected 14.671
+overall average volume collected 14.671
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #11: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.12
+Experiment #11: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.09
 ---
-area 0: average trip duration 00:04:54:03
-overall average trip duration 00:04:54:03
+area 0: average trip duration 00:05:27:02
+overall average trip duration 00:05:27:02
 area 0: average no. trips 1.000
 overall average no. trips 1.000
-area 0: trip efficiency 10.804
-overall trip efficiency 10.804
-area 0: average volume collected 10.027
-overall average volume collected 10.027
+area 0: trip efficiency 13.174
+overall trip efficiency 13.174
+area 0: average volume collected 13.363
+overall average volume collected 13.363
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #12: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.15
+Experiment #12: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.1
 ---
-area 0: average trip duration 00:04:26:34
-overall average trip duration 00:04:26:34
+area 0: average trip duration 00:05:09:13
+overall average trip duration 00:05:09:13
 area 0: average no. trips 1.000
 overall average no. trips 1.000
-area 0: trip efficiency 9.606
-overall trip efficiency 9.606
-area 0: average volume collected 8.084
-overall average volume collected 8.084
+area 0: trip efficiency 12.206
+overall trip efficiency 12.206
+area 0: average volume collected 11.841
+overall average volume collected 11.841
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
 Experiment #13: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.2
 ---
-area 0: average trip duration 00:03:55:47
-overall average trip duration 00:03:55:47
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 8.171
-overall trip efficiency 8.171
-area 0: average volume collected 6.044
-overall average volume collected 6.044
+area 0: average trip duration 00:03:33:57
+overall average trip duration 00:03:33:57
+area 0: average no. trips 1.018
+overall average no. trips 1.018
+area 0: trip efficiency 8.891
+overall trip efficiency 8.891
+area 0: average volume collected 5.993
+overall average volume collected 5.993
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #14: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.25
+Experiment #14: disposalDistrRate 2.0 disposalDistrShape 1 serviceFreq 0.3
 ---
-area 0: average trip duration 00:03:32:45
-overall average trip duration 00:03:32:45
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 7.097
-overall trip efficiency 7.097
-area 0: average volume collected 4.787
-overall average volume collected 4.787
+area 0: average trip duration 00:02:48:00
+overall average trip duration 00:02:48:00
+area 0: average no. trips 1.012
+overall average no. trips 1.012
+area 0: trip efficiency 7.425
+overall trip efficiency 7.425
+area 0: average volume collected 3.982
+overall average volume collected 3.982
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #15: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.03
+Experiment #15: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.01
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.300
-overall trip efficiency 25.300
+area 0: trip efficiency 25.163
+overall trip efficiency 25.163
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #16: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.035
+Experiment #16: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.02
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.312
-overall trip efficiency 25.312
+area 0: trip efficiency 25.364
+overall trip efficiency 25.364
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #17: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.04
+Experiment #17: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.03
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.381
-overall trip efficiency 25.381
+area 0: trip efficiency 25.277
+overall trip efficiency 25.277
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 87.500
+overall percentage of bins overflowed 87.500
+---
+Experiment #18: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.035
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.310
+overall trip efficiency 25.310
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 10.000
+overall percentage of bins overflowed 10.000
+---
+Experiment #19: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.04
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.380
+overall trip efficiency 25.380
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 9.091
+overall percentage of bins overflowed 9.091
+---
+Experiment #20: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.045
+---
+area 0: average trip duration 00:04:53:02
+overall average trip duration 00:04:53:02
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.267
+overall trip efficiency 25.267
+area 0: average volume collected 22.695
+overall average volume collected 22.695
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #21: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.05
+---
+area 0: average trip duration 00:04:55:00
+overall average trip duration 00:04:55:00
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 24.547
+overall trip efficiency 24.547
+area 0: average volume collected 22.307
+overall average volume collected 22.307
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #22: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.06
+---
+area 0: average trip duration 00:04:50:05
+overall average trip duration 00:04:50:05
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 21.998
+overall trip efficiency 21.998
+area 0: average volume collected 19.823
+overall average volume collected 19.823
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #23: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.07
+---
+area 0: average trip duration 00:04:32:47
+overall average trip duration 00:04:32:47
+area 0: average no. trips 2.105
+overall average no. trips 2.105
+area 0: trip efficiency 19.577
+overall trip efficiency 19.577
+area 0: average volume collected 16.750
+overall average volume collected 16.750
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #24: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.08
+---
+area 0: average trip duration 00:04:24:30
+overall average trip duration 00:04:24:30
+area 0: average no. trips 2.091
+overall average no. trips 2.091
+area 0: trip efficiency 16.619
+overall trip efficiency 16.619
+area 0: average volume collected 14.553
+overall average volume collected 14.553
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #25: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.09
+---
+area 0: average trip duration 00:04:41:09
+overall average trip duration 00:04:41:09
+area 0: average no. trips 1.800
+overall average no. trips 1.800
+area 0: trip efficiency 15.686
+overall trip efficiency 15.686
+area 0: average volume collected 14.941
+overall average volume collected 14.941
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #26: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.1
+---
+area 0: average trip duration 00:05:03:43
+overall average trip duration 00:05:03:43
+area 0: average no. trips 1.536
+overall average no. trips 1.536
+area 0: trip efficiency 16.007
+overall trip efficiency 16.007
+area 0: average volume collected 15.838
+overall average volume collected 15.838
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #27: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.2
+---
+area 0: average trip duration 00:04:55:35
+overall average trip duration 00:04:55:35
+area 0: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 13.261
+overall trip efficiency 13.261
+area 0: average volume collected 12.118
+overall average volume collected 12.118
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #28: disposalDistrRate 4.0 disposalDistrShape 1 serviceFreq 0.3
+---
+area 0: average trip duration 00:04:47:56
+overall average trip duration 00:04:47:56
+area 0: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 13.027
+overall trip efficiency 13.027
+area 0: average volume collected 11.539
+overall average volume collected 11.539
+area 0: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #29: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.01
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.357
+overall trip efficiency 25.357
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #18: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.045
+Experiment #30: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.02
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.305
-overall trip efficiency 25.305
+area 0: trip efficiency 25.395
+overall trip efficiency 25.395
 area 0: average volume collected 22.800
 overall average volume collected 22.800
-area 0: percentage of bins overflowed 46.154
-overall percentage of bins overflowed 46.154
+area 0: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
 ---
-Experiment #19: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.05
+Experiment #31: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.03
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.329
-overall trip efficiency 25.329
+area 0: trip efficiency 25.288
+overall trip efficiency 25.288
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
+---
+Experiment #32: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.035
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.302
+overall trip efficiency 25.302
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
+---
+Experiment #33: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.04
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.358
+overall trip efficiency 25.358
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
+---
+Experiment #34: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.045
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.336
+overall trip efficiency 25.336
+area 0: average volume collected 22.800
+overall average volume collected 22.800
+area 0: percentage of bins overflowed 38.462
+overall percentage of bins overflowed 38.462
+---
+Experiment #35: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.05
+---
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.000
+overall average no. trips 2.000
+area 0: trip efficiency 25.391
+overall trip efficiency 25.391
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 7.143
 overall percentage of bins overflowed 7.143
 ---
-Experiment #20: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.055
----
-area 0: average trip duration 00:05:02:08
-overall average trip duration 00:05:02:08
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 26.162
-overall trip efficiency 26.162
-area 0: average volume collected 23.560
-overall average volume collected 23.560
-area 0: percentage of bins overflowed 6.250
-overall percentage of bins overflowed 6.250
----
-Experiment #21: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.06
+Experiment #36: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.06
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.327
-overall trip efficiency 25.327
-area 0: average volume collected 22.796
-overall average volume collected 22.796
+area 0: trip efficiency 25.369
+overall trip efficiency 25.369
+area 0: average volume collected 22.799
+overall average volume collected 22.799
 area 0: percentage of bins overflowed 5.882
 overall percentage of bins overflowed 5.882
 ---
-Experiment #22: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.065
+Experiment #37: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.07
 ---
-area 0: average trip duration 00:05:00:55
-overall average trip duration 00:05:00:55
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.863
-overall trip efficiency 25.863
-area 0: average volume collected 23.357
-overall average volume collected 23.357
+area 0: average trip duration 00:04:53:06
+overall average trip duration 00:04:53:06
+area 0: average no. trips 2.105
+overall average no. trips 2.105
+area 0: trip efficiency 24.998
+overall trip efficiency 24.998
+area 0: average volume collected 22.494
+overall average volume collected 22.494
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #23: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.08
+Experiment #38: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.08
 ---
-area 0: average trip duration 00:04:41:16
-overall average trip duration 00:04:41:16
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 23.690
-overall trip efficiency 23.690
-area 0: average volume collected 20.582
-overall average volume collected 20.582
+area 0: average trip duration 00:04:45:12
+overall average trip duration 00:04:45:12
+area 0: average no. trips 2.091
+overall average no. trips 2.091
+area 0: trip efficiency 23.595
+overall trip efficiency 23.595
+area 0: average volume collected 20.805
+overall average volume collected 20.805
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #24: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.1
+Experiment #39: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.09
 ---
-area 0: average trip duration 00:04:31:03
-overall average trip duration 00:04:31:03
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 18.267
-overall trip efficiency 18.267
-area 0: average volume collected 16.117
-overall average volume collected 16.117
+area 0: average trip duration 00:04:22:47
+overall average trip duration 00:04:22:47
+area 0: average no. trips 2.080
+overall average no. trips 2.080
+area 0: trip efficiency 22.409
+overall trip efficiency 22.409
+area 0: average volume collected 18.217
+overall average volume collected 18.217
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #25: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.12
+Experiment #40: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.1
 ---
-area 0: average trip duration 00:04:13:36
-overall average trip duration 00:04:13:36
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 15.440
-overall trip efficiency 15.440
-area 0: average volume collected 13.966
-overall average volume collected 13.966
+area 0: average trip duration 00:04:18:26
+overall average trip duration 00:04:18:26
+area 0: average no. trips 1.964
+overall average no. trips 1.964
+area 0: trip efficiency 19.426
+overall trip efficiency 19.426
+area 0: average volume collected 16.579
+overall average volume collected 16.579
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #26: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.15
+Experiment #41: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.2
 ---
-area 0: average trip duration 00:05:04:03
-overall average trip duration 00:05:04:03
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 16.996
-overall trip efficiency 16.996
-area 0: average volume collected 17.361
-overall average volume collected 17.361
+area 0: average trip duration 00:05:03:28
+overall average trip duration 00:05:03:28
+area 0: average no. trips 1.333
+overall average no. trips 1.333
+area 0: trip efficiency 16.890
+overall trip efficiency 16.890
+area 0: average volume collected 17.314
+overall average volume collected 17.314
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #27: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.2
+Experiment #42: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.3
 ---
-area 0: average trip duration 00:04:34:07
-overall average trip duration 00:04:34:07
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 16.171
-overall trip efficiency 16.171
-area 0: average volume collected 15.312
-overall average volume collected 15.312
+area 0: average trip duration 00:05:45:32
+overall average trip duration 00:05:45:32
+area 0: average no. trips 1.065
+overall average no. trips 1.065
+area 0: trip efficiency 18.544
+overall trip efficiency 18.544
+area 0: average volume collected 20.122
+overall average volume collected 20.122
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #28: disposalDistrRate 6.0 disposalDistrShape 1 serviceFreq 0.25
----
-area 0: average trip duration 00:04:54:36
-overall average trip duration 00:04:54:36
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 16.787
-overall trip efficiency 16.787
-area 0: average volume collected 16.623
-overall average volume collected 16.623
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #29: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.03
+Experiment #43: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.01
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.328
-overall trip efficiency 25.328
+area 0: trip efficiency 25.197
+overall trip efficiency 25.197
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #30: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.035
+Experiment #44: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.02
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.379
-overall trip efficiency 25.379
+area 0: trip efficiency 25.409
+overall trip efficiency 25.409
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #31: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.04
+Experiment #45: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.03
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.344
-overall trip efficiency 25.344
+area 0: trip efficiency 25.441
+overall trip efficiency 25.441
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #32: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.045
+Experiment #46: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.035
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.212
-overall trip efficiency 25.212
+area 0: trip efficiency 25.311
+overall trip efficiency 25.311
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #33: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.05
+Experiment #47: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.04
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.251
-overall trip efficiency 25.251
-area 0: average volume collected 22.800
-overall average volume collected 22.800
-area 0: percentage of bins overflowed 7.143
-overall percentage of bins overflowed 7.143
----
-Experiment #34: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.055
----
-area 0: average trip duration 00:05:02:08
-overall average trip duration 00:05:02:08
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 26.153
-overall trip efficiency 26.153
-area 0: average volume collected 23.560
-overall average volume collected 23.560
-area 0: percentage of bins overflowed 6.250
-overall percentage of bins overflowed 6.250
----
-Experiment #35: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.06
----
-area 0: average trip duration 00:04:52:30
-overall average trip duration 00:04:52:30
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.432
-overall trip efficiency 25.432
-area 0: average volume collected 22.800
-overall average volume collected 22.800
-area 0: percentage of bins overflowed 5.882
-overall percentage of bins overflowed 5.882
----
-Experiment #36: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.065
----
-area 0: average trip duration 00:05:00:31
-overall average trip duration 00:05:00:31
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 26.143
-overall trip efficiency 26.143
-area 0: average volume collected 23.433
-overall average volume collected 23.433
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #37: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.08
----
-area 0: average trip duration 00:04:47:45
-overall average trip duration 00:04:47:45
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.001
-overall trip efficiency 25.001
-area 0: average volume collected 22.160
-overall average volume collected 22.160
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #38: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.1
----
-area 0: average trip duration 00:04:28:08
-overall average trip duration 00:04:28:08
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 20.901
-overall trip efficiency 20.901
-area 0: average volume collected 17.820
-overall average volume collected 17.820
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #39: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.12
----
-area 0: average trip duration 00:04:22:30
-overall average trip duration 00:04:22:30
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 18.558
-overall trip efficiency 18.558
-area 0: average volume collected 15.762
-overall average volume collected 15.762
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #40: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.15
----
-area 0: average trip duration 00:04:21:53
-overall average trip duration 00:04:21:53
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 18.427
-overall trip efficiency 18.427
-area 0: average volume collected 15.787
-overall average volume collected 15.787
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #41: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.2
----
-area 0: average trip duration 00:04:18:31
-overall average trip duration 00:04:18:31
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 18.438
-overall trip efficiency 18.438
-area 0: average volume collected 15.608
-overall average volume collected 15.608
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #42: disposalDistrRate 7.0 disposalDistrShape 1 serviceFreq 0.25
----
-area 0: average trip duration 00:04:18:24
-overall average trip duration 00:04:18:24
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 18.160
-overall trip efficiency 18.160
-area 0: average volume collected 15.457
-overall average volume collected 15.457
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #43: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.03
----
-area 0: average trip duration 00:04:52:30
-overall average trip duration 00:04:52:30
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.269
-overall trip efficiency 25.269
+area 0: trip efficiency 25.290
+overall trip efficiency 25.290
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #44: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.035
+Experiment #48: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.045
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.284
-overall trip efficiency 25.284
+area 0: trip efficiency 25.308
+overall trip efficiency 25.308
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 100.000
 overall percentage of bins overflowed 100.000
 ---
-Experiment #45: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.04
+Experiment #49: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.05
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.286
-overall trip efficiency 25.286
-area 0: average volume collected 22.800
-overall average volume collected 22.800
-area 0: percentage of bins overflowed 100.000
-overall percentage of bins overflowed 100.000
----
-Experiment #46: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.045
----
-area 0: average trip duration 00:04:52:30
-overall average trip duration 00:04:52:30
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.371
-overall trip efficiency 25.371
-area 0: average volume collected 22.800
-overall average volume collected 22.800
-area 0: percentage of bins overflowed 100.000
-overall percentage of bins overflowed 100.000
----
-Experiment #47: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.05
----
-area 0: average trip duration 00:04:52:30
-overall average trip duration 00:04:52:30
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.274
-overall trip efficiency 25.274
+area 0: trip efficiency 25.351
+overall trip efficiency 25.351
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 85.714
 overall percentage of bins overflowed 85.714
 ---
-Experiment #48: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.055
----
-area 0: average trip duration 00:05:02:08
-overall average trip duration 00:05:02:08
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 26.222
-overall trip efficiency 26.222
-area 0: average volume collected 23.560
-overall average volume collected 23.560
-area 0: percentage of bins overflowed 18.750
-overall percentage of bins overflowed 18.750
----
-Experiment #49: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.06
+Experiment #50: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.06
 ---
 area 0: average trip duration 00:04:52:30
 overall average trip duration 00:04:52:30
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 25.346
-overall trip efficiency 25.346
+area 0: trip efficiency 25.297
+overall trip efficiency 25.297
 area 0: average volume collected 22.800
 overall average volume collected 22.800
 area 0: percentage of bins overflowed 5.882
 overall percentage of bins overflowed 5.882
 ---
-Experiment #50: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.065
+Experiment #51: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.07
 ---
-area 0: average trip duration 00:05:00:31
-overall average trip duration 00:05:00:31
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 26.087
-overall trip efficiency 26.087
-area 0: average volume collected 23.433
-overall average volume collected 23.433
+area 0: average trip duration 00:04:52:30
+overall average trip duration 00:04:52:30
+area 0: average no. trips 2.105
+overall average no. trips 2.105
+area 0: trip efficiency 25.326
+overall trip efficiency 25.326
+area 0: average volume collected 22.800
+overall average volume collected 22.800
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #51: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.08
+Experiment #52: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.08
 ---
-area 0: average trip duration 00:04:51:48
-overall average trip duration 00:04:51:48
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 25.264
-overall trip efficiency 25.264
-area 0: average volume collected 22.677
-overall average volume collected 22.677
+area 0: average trip duration 00:04:49:35
+overall average trip duration 00:04:49:35
+area 0: average no. trips 2.091
+overall average no. trips 2.091
+area 0: trip efficiency 25.320
+overall trip efficiency 25.320
+area 0: average volume collected 22.564
+overall average volume collected 22.564
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #52: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.1
+Experiment #53: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.09
 ---
-area 0: average trip duration 00:04:28:15
-overall average trip duration 00:04:28:15
-area 0: average no. trips 2.000
-overall average no. trips 2.000
-area 0: trip efficiency 23.170
-overall trip efficiency 23.170
-area 0: average volume collected 19.382
-overall average volume collected 19.382
+area 0: average trip duration 00:04:37:45
+overall average trip duration 00:04:37:45
+area 0: average no. trips 2.040
+overall average no. trips 2.040
+area 0: trip efficiency 24.951
+overall trip efficiency 24.951
+area 0: average volume collected 21.347
+overall average volume collected 21.347
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #53: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.12
+Experiment #54: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.1
 ---
-area 0: average trip duration 00:04:32:40
-overall average trip duration 00:04:32:40
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 20.671
-overall trip efficiency 20.671
-area 0: average volume collected 17.627
-overall average volume collected 17.627
-area 0: percentage of bins overflowed 0.000
-overall percentage of bins overflowed 0.000
----
-Experiment #54: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.15
----
-area 0: average trip duration 00:04:32:37
-overall average trip duration 00:04:32:37
-area 0: average no. trips 1.000
-overall average no. trips 1.000
-area 0: trip efficiency 20.316
-overall trip efficiency 20.316
-area 0: average volume collected 17.511
-overall average volume collected 17.511
+area 0: average trip duration 00:04:24:18
+overall average trip duration 00:04:24:18
+area 0: average no. trips 2.036
+overall average no. trips 2.036
+area 0: trip efficiency 23.914
+overall trip efficiency 23.914
+area 0: average volume collected 19.656
+overall average volume collected 19.656
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
 Experiment #55: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.2
 ---
-area 0: average trip duration 00:04:35:02
-overall average trip duration 00:04:35:02
+area 0: average trip duration 00:04:00:22
+overall average trip duration 00:04:00:22
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 20.667
-overall trip efficiency 20.667
-area 0: average volume collected 17.707
-overall average volume collected 17.707
+area 0: trip efficiency 21.050
+overall trip efficiency 21.050
+area 0: average volume collected 16.112
+overall average volume collected 16.112
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
-Experiment #56: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.25
+Experiment #56: disposalDistrRate 8.0 disposalDistrShape 1 serviceFreq 0.3
 ---
-area 0: average trip duration 00:04:35:45
-overall average trip duration 00:04:35:45
+area 0: average trip duration 00:04:06:43
+overall average trip duration 00:04:06:43
 area 0: average no. trips 2.000
 overall average no. trips 2.000
-area 0: trip efficiency 20.644
-overall trip efficiency 20.644
-area 0: average volume collected 17.774
-overall average volume collected 17.774
+area 0: trip efficiency 21.111
+overall trip efficiency 21.111
+area 0: average volume collected 16.311
+overall average volume collected 16.311
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---

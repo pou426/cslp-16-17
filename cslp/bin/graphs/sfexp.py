@@ -11,7 +11,7 @@ thr4 = 0.65
 thr5 = 0.75
 thr6 = 0.8
 thr = [thr0,thr1,thr2,thr3,thr4,thr5,thr6]
-N = 10
+N = 25
 
 avg_trip_dur0 = []
 avg_trip_dur1 = []
@@ -196,18 +196,18 @@ area6 = {'avg_trip_dur':avg_trip_dur6, 'avg_no_trips':avg_no_trips6,
          'trip_eff':trip_eff6, 'avg_vol_col':avg_vol_col6,
          'per_overflow':per_overflow6}
 
-print(sf)
-print(trip_eff0)
+# print(sf)
+# print(trip_eff0)
 
 fig = plt.figure()
 ax = plt.subplot(111)
-ax.plot(sf,avg_trip_dur0,'b',marker='x',label='thr={}'.format(thr0))
-# ax.plot(sf,avg_trip_dur1,'g',marker='x',label='thr={}'.format(thr1))
-ax.plot(sf,avg_trip_dur2,'r',marker='x',label='thr={}'.format(thr2))
-ax.plot(sf,avg_trip_dur3,'c',marker='x',label='thr={}'.format(thr3))
-# ax.plot(sf,avg_trip_dur4,'m',marker='x',label='thr={}'.format(thr4))
-# ax.plot(sf,avg_trip_dur5,'y',marker='x',label='thr={}'.format(thr5))
-ax.plot(sf,avg_trip_dur6,'k',marker='x',label='thr={}'.format(thr6))
+ax.plot(sf,avg_trip_dur0,'r',label='thr={}'.format(thr0))
+# ax.plot(sf,avg_trip_dur1,'g',label='thr={}'.format(thr1))
+# ax.plot(sf,avg_trip_dur2,'r',label='thr={}'.format(thr2))
+ax.plot(sf,avg_trip_dur3,'b',label='thr={}'.format(thr3))
+# ax.plot(sf,avg_trip_dur4,'m',label='thr={}'.format(thr4))
+# ax.plot(sf,avg_trip_dur5,'y',label='thr={}'.format(thr5))
+ax.plot(sf,avg_trip_dur6,'g',label='thr={}'.format(thr6))
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
@@ -218,49 +218,51 @@ plt.savefig('sfVSthr{}tripDur.jpg'.format(N))
 
 fig = plt.figure()
 ax = plt.subplot(111)
-ax.plot(sf,avg_no_trips0,'b',marker='x',label='thr={}'.format(thr0))
-# ax.plot(sf,avg_no_trips1,'g',marker='x',label='thr={}'.format(thr1))
-# ax.plot(sf,avg_no_trips2,'r',marker='x',label='thr={}'.format(thr2))
-# ax.plot(sf,avg_no_trips3,'c',marker='x',label='thr={}'.format(thr3))
-# ax.plot(sf,avg_no_trips4,'m',marker='x',label='thr={}'.format(thr4))
-# ax.plot(sf,avg_no_trips5,'y',marker='x',label='thr={}'.format(thr5))
-ax.plot(sf,avg_no_trips6,'k',marker='x',label='thr={}'.format(thr6))
+ax.plot(sf,avg_no_trips0,'r',label='thr={}'.format(thr0))
+# ax.plot(sf,avg_no_trips1,'g',label='thr={}'.format(thr1))
+# ax.plot(sf,avg_no_trips2,'r',label='thr={}'.format(thr2))
+ax.plot(sf,avg_no_trips3,'b',label='thr={}'.format(thr3))
+# ax.plot(sf,avg_no_trips4,'m',label='thr={}'.format(thr4))
+# ax.plot(sf,avg_no_trips5,'y',label='thr={}'.format(thr5))
+ax.plot(sf,avg_no_trips6,'g',label='thr={}'.format(thr6))
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 plt.title('Service frequency vs average no. of trips \nfor different threshold values, noBins={}'.format(N))
 ax.set_xlabel('Service frequency (trips per hour)')
 ax.set_ylabel('average no. of trips')
+# ax.set_ylim([-2,4])
 plt.savefig('sfVSthr{}noTrips.jpg'.format(N))
 
 
 fig = plt.figure()
 ax = plt.subplot(111)
-ax.plot(sf,per_overflow0,'b',marker='x',label='thr={}'.format(thr0))
-# ax.plot(sf,per_overflow1,'g',marker='x',label='thr={}'.format(thr1))
-ax.plot(sf,per_overflow2,'r',marker='x',label='thr={}'.format(thr2))
-ax.plot(sf,per_overflow3,'c',marker='x',label='thr={}'.format(thr3))
-# ax.plot(sf,per_overflow4,'m',marker='x',label='thr={}'.format(thr4))
-# ax.plot(sf,per_overflow5,'y',marker='x',label='thr={}'.format(thr5))
-ax.plot(sf,per_overflow6,'k',marker='x',label='thr={}'.format(thr6))
+ax.plot(sf,per_overflow0,'r',label='thr={}'.format(thr0))
+# ax.plot(sf,per_overflow1,'g',label='thr={}'.format(thr1))
+# ax.plot(sf,per_overflow2,'r',label='thr={}'.format(thr2))
+ax.plot(sf,per_overflow3,'b',label='thr={}'.format(thr3))
+# ax.plot(sf,per_overflow4,'m',label='thr={}'.format(thr4))
+# ax.plot(sf,per_overflow5,'y',label='thr={}'.format(thr5))
+ax.plot(sf,per_overflow6,'g',label='thr={}'.format(thr6))
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 plt.title('Service frequency vs percentage overflow \nfor different threshold values, noBins={}'.format(N))
 ax.set_xlabel('Service frequency (trips per hour)')
 ax.set_ylabel('percentage overflow')
-ax.set_xlim([0,0.15])
+ax.set_xlim([0.025,0.12])
+ax.set_ylim([-5,105])
 plt.savefig('sfVSthr{}overflow.jpg'.format(N))
 
 fig = plt.figure()
 ax = plt.subplot(111)
-ax.plot(sf,trip_eff0,'b',marker='x',label='thr={}'.format(thr0))
-# ax.plot(sf,trip_eff1,'g',marker='x',label='thr={}'.format(thr1))
-ax.plot(sf,trip_eff2,'r',marker='x',label='thr={}'.format(thr2))
-ax.plot(sf,trip_eff3,'c',marker='x',label='thr={}'.format(thr3))
-# ax.plot(sf,trip_eff4,'m',marker='x',label='thr={}'.format(thr4))
-# ax.plot(sf,trip_eff5,'y',marker='x',label='thr={}'.format(thr5))
-ax.plot(sf,trip_eff6,'k',marker='x',label='thr={}'.format(thr6))
+ax.plot(sf,trip_eff0,'r',label='thr={}'.format(thr0))
+# ax.plot(sf,trip_eff1,'g',label='thr={}'.format(thr1))
+# ax.plot(sf,trip_eff2,'r',label='thr={}'.format(thr2))
+ax.plot(sf,trip_eff3,'b',label='thr={}'.format(thr3))
+# ax.plot(sf,trip_eff4,'m',label='thr={}'.format(thr4))
+# ax.plot(sf,trip_eff5,'y',label='thr={}'.format(thr5))
+ax.plot(sf,trip_eff6,'g',label='thr={}'.format(thr6))
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
@@ -271,13 +273,13 @@ plt.savefig('sfVSthr{}tripEff.jpg'.format(N))
 
 fig = plt.figure()
 ax = plt.subplot(111)
-ax.plot(sf,avg_vol_col0,'b',marker='x',label='thr={}'.format(thr0))
-# ax.plot(sf,avg_vol_col1,'g',marker='x',label='thr={}'.format(thr1))
-ax.plot(sf,avg_vol_col2,'r',marker='x',label='thr={}'.format(thr2))
-ax.plot(sf,avg_vol_col3,'c',marker='x',label='thr={}'.format(thr3))
-# ax.plot(sf,avg_vol_col4,'m',marker='x',label='thr={}'.format(thr4))
-# ax.plot(sf,avg_vol_col5,'y',marker='x',label='thr={}'.format(thr5))
-ax.plot(sf,avg_vol_col6,'k',marker='x',label='thr={}'.format(thr6))
+ax.plot(sf,avg_vol_col0,'r',label='thr={}'.format(thr0))
+# ax.plot(sf,avg_vol_col1,'g',label='thr={}'.format(thr1))
+# ax.plot(sf,avg_vol_col2,'r',label='thr={}'.format(thr2))
+ax.plot(sf,avg_vol_col3,'b',label='thr={}'.format(thr3))
+# ax.plot(sf,avg_vol_col4,'m',label='thr={}'.format(thr4))
+# ax.plot(sf,avg_vol_col5,'y',label='thr={}'.format(thr5))
+ax.plot(sf,avg_vol_col6,'g',label='thr={}'.format(thr6))
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
@@ -286,23 +288,23 @@ ax.set_xlabel('Service frequency (trips per hour)')
 ax.set_ylabel('average volume collected (kg)')
 plt.savefig('sfVSthr{}volCol.jpg'.format(N))
 
-
-print()
-notripsstr = '['
-for i in range(len(sf)):
-    if i == len(sf)-1:
-        notripsstr += '{}]'.format(sf[i])
-    else:
-        notripsstr += '{}, '.format(sf[i])
-print(notripsstr)
-print()
-
-print()
-notripsstr = '['
-for i in range(len(avg_no_trips6)):
-    if i == len(avg_no_trips0)-1:
-        notripsstr += '{}]'.format(trip_eff6[i])
-    else:
-        notripsstr += '{}, '.format(trip_eff6[i])
-print(notripsstr)
-print()
+#
+# print()
+# notripsstr = '['
+# for i in range(len(sf)):
+#     if i == len(sf)-1:
+#         notripsstr += '{}]'.format(sf[i])
+#     else:
+#         notripsstr += '{}, '.format(sf[i])
+# print(notripsstr)
+# print()
+#
+# print()
+# notripsstr = '['
+# for i in range(len(avg_no_trips6)):
+#     if i == len(avg_no_trips0)-1:
+#         notripsstr += '{}]'.format(trip_eff6[i])
+#     else:
+#         notripsstr += '{}, '.format(trip_eff6[i])
+# print(notripsstr)
+# print()

@@ -1,0 +1,2322 @@
+Experiment #1: serviceFreq 0.0
+---
+area 0: average trip duration 00:00:00:00
+area 1: average trip duration 00:00:00:00
+area 2: average trip duration 00:00:00:00
+area 3: average trip duration 00:00:00:00
+area 4: average trip duration 00:00:00:00
+area 5: average trip duration 00:00:00:00
+area 6: average trip duration 00:00:00:00
+overall average trip duration 00:00:00:00
+area 0: average no. trips 0.000
+area 1: average no. trips 0.000
+area 2: average no. trips 0.000
+area 3: average no. trips 0.000
+area 4: average no. trips 0.000
+area 5: average no. trips 0.000
+area 6: average no. trips 0.000
+overall average no. trips 0.000
+area 0: trip efficiency 0.000
+area 1: trip efficiency 0.000
+area 2: trip efficiency 0.000
+area 3: trip efficiency 0.000
+area 4: trip efficiency 0.000
+area 5: trip efficiency 0.000
+area 6: trip efficiency 0.000
+overall trip efficiency 0.000
+area 0: average volume collected 0.000
+area 1: average volume collected 0.000
+area 2: average volume collected 0.000
+area 3: average volume collected 0.000
+area 4: average volume collected 0.000
+area 5: average volume collected 0.000
+area 6: average volume collected 0.000
+overall average volume collected 0.000
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #2: serviceFreq 0.01
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.852
+area 1: trip efficiency 30.068
+area 2: trip efficiency 35.544
+area 3: trip efficiency 35.652
+area 4: trip efficiency 34.566
+area 5: trip efficiency 33.471
+area 6: trip efficiency 34.154
+overall trip efficiency 34.044
+area 0: average volume collected 15.200
+area 1: average volume collected 15.200
+area 2: average volume collected 15.200
+area 3: average volume collected 15.200
+area 4: average volume collected 15.200
+area 5: average volume collected 15.200
+area 6: average volume collected 15.200
+overall average volume collected 15.200
+area 0: percentage of bins overflowed 100.000
+area 1: percentage of bins overflowed 100.000
+area 2: percentage of bins overflowed 100.000
+area 3: percentage of bins overflowed 100.000
+area 4: percentage of bins overflowed 100.000
+area 5: percentage of bins overflowed 100.000
+area 6: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
+---
+Experiment #3: serviceFreq 0.02
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.384
+area 1: trip efficiency 30.153
+area 2: trip efficiency 35.723
+area 3: trip efficiency 35.394
+area 4: trip efficiency 34.356
+area 5: trip efficiency 33.628
+area 6: trip efficiency 34.014
+overall trip efficiency 33.950
+area 0: average volume collected 15.200
+area 1: average volume collected 15.200
+area 2: average volume collected 15.200
+area 3: average volume collected 15.200
+area 4: average volume collected 15.200
+area 5: average volume collected 15.200
+area 6: average volume collected 15.200
+overall average volume collected 15.200
+area 0: percentage of bins overflowed 100.000
+area 1: percentage of bins overflowed 100.000
+area 2: percentage of bins overflowed 100.000
+area 3: percentage of bins overflowed 100.000
+area 4: percentage of bins overflowed 100.000
+area 5: percentage of bins overflowed 100.000
+area 6: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
+---
+Experiment #4: serviceFreq 0.03
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.503
+area 1: trip efficiency 30.238
+area 2: trip efficiency 35.671
+area 3: trip efficiency 35.624
+area 4: trip efficiency 34.544
+area 5: trip efficiency 33.803
+area 6: trip efficiency 34.298
+overall trip efficiency 34.097
+area 0: average volume collected 15.200
+area 1: average volume collected 15.200
+area 2: average volume collected 15.200
+area 3: average volume collected 15.200
+area 4: average volume collected 15.200
+area 5: average volume collected 15.200
+area 6: average volume collected 15.200
+overall average volume collected 15.200
+area 0: percentage of bins overflowed 100.000
+area 1: percentage of bins overflowed 100.000
+area 2: percentage of bins overflowed 100.000
+area 3: percentage of bins overflowed 100.000
+area 4: percentage of bins overflowed 100.000
+area 5: percentage of bins overflowed 100.000
+area 6: percentage of bins overflowed 100.000
+overall percentage of bins overflowed 100.000
+---
+Experiment #5: serviceFreq 0.04
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.661
+area 1: trip efficiency 30.263
+area 2: trip efficiency 35.486
+area 3: trip efficiency 35.477
+area 4: trip efficiency 34.182
+area 5: trip efficiency 33.886
+area 6: trip efficiency 34.293
+overall trip efficiency 34.035
+area 0: average volume collected 15.198
+area 1: average volume collected 15.180
+area 2: average volume collected 15.200
+area 3: average volume collected 15.200
+area 4: average volume collected 15.200
+area 5: average volume collected 15.187
+area 6: average volume collected 15.195
+overall average volume collected 15.194
+area 0: percentage of bins overflowed 72.727
+area 1: percentage of bins overflowed 81.818
+area 2: percentage of bins overflowed 81.818
+area 3: percentage of bins overflowed 90.909
+area 4: percentage of bins overflowed 81.818
+area 5: percentage of bins overflowed 81.818
+area 6: percentage of bins overflowed 72.727
+overall percentage of bins overflowed 80.519
+---
+Experiment #6: serviceFreq 0.041
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.445
+area 1: trip efficiency 30.164
+area 2: trip efficiency 35.820
+area 3: trip efficiency 35.700
+area 4: trip efficiency 34.113
+area 5: trip efficiency 33.865
+area 6: trip efficiency 34.366
+overall trip efficiency 34.068
+area 0: average volume collected 15.193
+area 1: average volume collected 15.190
+area 2: average volume collected 15.192
+area 3: average volume collected 15.188
+area 4: average volume collected 15.192
+area 5: average volume collected 15.177
+area 6: average volume collected 15.200
+overall average volume collected 15.190
+area 0: percentage of bins overflowed 91.667
+area 1: percentage of bins overflowed 66.667
+area 2: percentage of bins overflowed 58.333
+area 3: percentage of bins overflowed 83.333
+area 4: percentage of bins overflowed 41.667
+area 5: percentage of bins overflowed 58.333
+area 6: percentage of bins overflowed 66.667
+overall percentage of bins overflowed 66.667
+---
+Experiment #7: serviceFreq 0.042
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:24:05
+area 6: average trip duration 00:02:22:15
+overall average trip duration 00:02:25:02
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.577
+area 1: trip efficiency 30.001
+area 2: trip efficiency 35.382
+area 3: trip efficiency 35.482
+area 4: trip efficiency 34.255
+area 5: trip efficiency 33.751
+area 6: trip efficiency 34.741
+overall trip efficiency 34.027
+area 0: average volume collected 15.195
+area 1: average volume collected 15.153
+area 2: average volume collected 15.140
+area 3: average volume collected 15.177
+area 4: average volume collected 15.188
+area 5: average volume collected 15.062
+area 6: average volume collected 15.058
+overall average volume collected 15.139
+area 0: percentage of bins overflowed 75.000
+area 1: percentage of bins overflowed 33.333
+area 2: percentage of bins overflowed 41.667
+area 3: percentage of bins overflowed 33.333
+area 4: percentage of bins overflowed 41.667
+area 5: percentage of bins overflowed 58.333
+area 6: percentage of bins overflowed 50.000
+overall percentage of bins overflowed 47.619
+---
+Experiment #8: serviceFreq 0.043
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.581
+area 1: trip efficiency 30.161
+area 2: trip efficiency 35.646
+area 3: trip efficiency 35.502
+area 4: trip efficiency 34.421
+area 5: trip efficiency 33.833
+area 6: trip efficiency 34.330
+overall trip efficiency 34.068
+area 0: average volume collected 15.190
+area 1: average volume collected 15.192
+area 2: average volume collected 15.185
+area 3: average volume collected 15.150
+area 4: average volume collected 15.163
+area 5: average volume collected 15.197
+area 6: average volume collected 15.192
+overall average volume collected 15.181
+area 0: percentage of bins overflowed 33.333
+area 1: percentage of bins overflowed 50.000
+area 2: percentage of bins overflowed 50.000
+area 3: percentage of bins overflowed 50.000
+area 4: percentage of bins overflowed 50.000
+area 5: percentage of bins overflowed 83.333
+area 6: percentage of bins overflowed 50.000
+overall percentage of bins overflowed 52.381
+---
+Experiment #9: serviceFreq 0.044
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.601
+area 1: trip efficiency 30.237
+area 2: trip efficiency 35.546
+area 3: trip efficiency 35.428
+area 4: trip efficiency 34.380
+area 5: trip efficiency 33.731
+area 6: trip efficiency 34.268
+overall trip efficiency 34.027
+area 0: average volume collected 15.163
+area 1: average volume collected 15.186
+area 2: average volume collected 15.195
+area 3: average volume collected 15.157
+area 4: average volume collected 15.146
+area 5: average volume collected 15.123
+area 6: average volume collected 15.172
+overall average volume collected 15.163
+area 0: percentage of bins overflowed 46.154
+area 1: percentage of bins overflowed 23.077
+area 2: percentage of bins overflowed 30.769
+area 3: percentage of bins overflowed 15.385
+area 4: percentage of bins overflowed 53.846
+area 5: percentage of bins overflowed 15.385
+area 6: percentage of bins overflowed 38.462
+overall percentage of bins overflowed 31.868
+---
+Experiment #10: serviceFreq 0.045
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.338
+area 1: trip efficiency 30.054
+area 2: trip efficiency 35.343
+area 3: trip efficiency 35.510
+area 4: trip efficiency 34.050
+area 5: trip efficiency 33.829
+area 6: trip efficiency 34.166
+overall trip efficiency 33.899
+area 0: average volume collected 15.108
+area 1: average volume collected 15.162
+area 2: average volume collected 15.132
+area 3: average volume collected 15.094
+area 4: average volume collected 15.048
+area 5: average volume collected 15.115
+area 6: average volume collected 15.126
+overall average volume collected 15.112
+area 0: percentage of bins overflowed 38.462
+area 1: percentage of bins overflowed 23.077
+area 2: percentage of bins overflowed 15.385
+area 3: percentage of bins overflowed 7.692
+area 4: percentage of bins overflowed 7.692
+area 5: percentage of bins overflowed 7.692
+area 6: percentage of bins overflowed 15.385
+overall percentage of bins overflowed 16.484
+---
+Experiment #11: serviceFreq 0.046
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.525
+area 1: trip efficiency 29.965
+area 2: trip efficiency 35.010
+area 3: trip efficiency 35.138
+area 4: trip efficiency 33.878
+area 5: trip efficiency 33.551
+area 6: trip efficiency 34.370
+overall trip efficiency 33.777
+area 0: average volume collected 15.132
+area 1: average volume collected 15.154
+area 2: average volume collected 15.080
+area 3: average volume collected 15.055
+area 4: average volume collected 15.009
+area 5: average volume collected 15.097
+area 6: average volume collected 15.105
+overall average volume collected 15.090
+area 0: percentage of bins overflowed 7.692
+area 1: percentage of bins overflowed 23.077
+area 2: percentage of bins overflowed 7.692
+area 3: percentage of bins overflowed 7.692
+area 4: percentage of bins overflowed 7.692
+area 5: percentage of bins overflowed 7.692
+area 6: percentage of bins overflowed 15.385
+overall percentage of bins overflowed 10.989
+---
+Experiment #12: serviceFreq 0.047
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:22:32
+overall average trip duration 00:02:25:21
+area 0: average no. trips 0.929
+area 1: average no. trips 0.929
+area 2: average no. trips 0.929
+area 3: average no. trips 0.929
+area 4: average no. trips 0.929
+area 5: average no. trips 0.929
+area 6: average no. trips 0.929
+overall average no. trips 0.929
+area 0: trip efficiency 34.114
+area 1: trip efficiency 29.807
+area 2: trip efficiency 35.131
+area 3: trip efficiency 35.133
+area 4: trip efficiency 34.104
+area 5: trip efficiency 33.555
+area 6: trip efficiency 34.137
+overall trip efficiency 33.712
+area 0: average volume collected 15.040
+area 1: average volume collected 15.018
+area 2: average volume collected 15.054
+area 3: average volume collected 15.066
+area 4: average volume collected 15.115
+area 5: average volume collected 15.040
+area 6: average volume collected 14.977
+overall average volume collected 15.044
+area 0: percentage of bins overflowed 7.143
+area 1: percentage of bins overflowed 7.143
+area 2: percentage of bins overflowed 14.286
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 21.429
+overall percentage of bins overflowed 7.143
+---
+Experiment #13: serviceFreq 0.048
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:02:25:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 34.011
+area 1: trip efficiency 29.595
+area 2: trip efficiency 34.948
+area 3: trip efficiency 35.061
+area 4: trip efficiency 33.705
+area 5: trip efficiency 33.146
+area 6: trip efficiency 33.810
+overall trip efficiency 33.468
+area 0: average volume collected 15.007
+area 1: average volume collected 14.957
+area 2: average volume collected 14.940
+area 3: average volume collected 15.023
+area 4: average volume collected 14.981
+area 5: average volume collected 14.913
+area 6: average volume collected 15.013
+overall average volume collected 14.976
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 7.143
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 1.020
+---
+Experiment #14: serviceFreq 0.049
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:23:00
+area 6: average trip duration 00:02:20:56
+overall average trip duration 00:02:24:42
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 33.686
+area 1: trip efficiency 29.522
+area 2: trip efficiency 34.740
+area 3: trip efficiency 34.854
+area 4: trip efficiency 34.114
+area 5: trip efficiency 33.358
+area 6: trip efficiency 34.107
+overall trip efficiency 33.483
+area 0: average volume collected 14.846
+area 1: average volume collected 14.846
+area 2: average volume collected 14.907
+area 3: average volume collected 14.864
+area 4: average volume collected 15.001
+area 5: average volume collected 14.707
+area 6: average volume collected 14.767
+overall average volume collected 14.848
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 7.143
+overall percentage of bins overflowed 1.020
+---
+Experiment #15: serviceFreq 0.05
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:23:00
+area 6: average trip duration 00:02:16:43
+overall average trip duration 00:02:24:06
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 33.694
+area 1: trip efficiency 29.294
+area 2: trip efficiency 34.685
+area 3: trip efficiency 34.622
+area 4: trip efficiency 33.355
+area 5: trip efficiency 33.399
+area 6: trip efficiency 34.210
+overall trip efficiency 33.323
+area 0: average volume collected 14.840
+area 1: average volume collected 14.786
+area 2: average volume collected 14.834
+area 3: average volume collected 14.807
+area 4: average volume collected 14.773
+area 5: average volume collected 14.667
+area 6: average volume collected 14.381
+overall average volume collected 14.727
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #16: serviceFreq 0.051
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:23:08
+area 6: average trip duration 00:02:15:12
+overall average trip duration 00:02:23:54
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 33.537
+area 1: trip efficiency 29.159
+area 2: trip efficiency 34.439
+area 3: trip efficiency 34.461
+area 4: trip efficiency 33.213
+area 5: trip efficiency 33.201
+area 6: trip efficiency 34.054
+overall trip efficiency 33.152
+area 0: average volume collected 14.736
+area 1: average volume collected 14.735
+area 2: average volume collected 14.712
+area 3: average volume collected 14.700
+area 4: average volume collected 14.717
+area 5: average volume collected 14.559
+area 6: average volume collected 14.171
+overall average volume collected 14.618
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #17: serviceFreq 0.052
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:21:44
+area 6: average trip duration 00:02:15:36
+overall average trip duration 00:02:23:45
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 33.271
+area 1: trip efficiency 28.722
+area 2: trip efficiency 34.330
+area 3: trip efficiency 34.009
+area 4: trip efficiency 32.631
+area 5: trip efficiency 32.781
+area 6: trip efficiency 33.872
+overall trip efficiency 32.802
+area 0: average volume collected 14.560
+area 1: average volume collected 14.492
+area 2: average volume collected 14.521
+area 3: average volume collected 14.604
+area 4: average volume collected 14.443
+area 5: average volume collected 14.323
+area 6: average volume collected 14.137
+overall average volume collected 14.440
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #18: serviceFreq 0.053
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:17:32
+area 6: average trip duration 00:02:09:00
+overall average trip duration 00:02:22:13
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 32.964
+area 1: trip efficiency 28.354
+area 2: trip efficiency 33.417
+area 3: trip efficiency 33.157
+area 4: trip efficiency 32.477
+area 5: trip efficiency 33.032
+area 6: trip efficiency 33.976
+overall trip efficiency 32.483
+area 0: average volume collected 14.463
+area 1: average volume collected 14.427
+area 2: average volume collected 14.333
+area 3: average volume collected 14.240
+area 4: average volume collected 14.329
+area 5: average volume collected 14.012
+area 6: average volume collected 13.487
+overall average volume collected 14.184
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #19: serviceFreq 0.054
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:22:49
+area 5: average trip duration 00:02:16:19
+area 6: average trip duration 00:02:09:15
+overall average trip duration 00:02:21:54
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 32.562
+area 1: trip efficiency 28.402
+area 2: trip efficiency 33.352
+area 3: trip efficiency 33.403
+area 4: trip efficiency 32.387
+area 5: trip efficiency 32.808
+area 6: trip efficiency 33.554
+overall trip efficiency 32.352
+area 0: average volume collected 14.317
+area 1: average volume collected 14.330
+area 2: average volume collected 14.262
+area 3: average volume collected 14.274
+area 4: average volume collected 14.295
+area 5: average volume collected 13.762
+area 6: average volume collected 13.400
+overall average volume collected 14.092
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #20: serviceFreq 0.055
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:18:08
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:11:56
+area 6: average trip duration 00:01:59:26
+overall average trip duration 00:02:19:55
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 31.799
+area 1: trip efficiency 27.661
+area 2: trip efficiency 33.101
+area 3: trip efficiency 33.045
+area 4: trip efficiency 31.884
+area 5: trip efficiency 32.362
+area 6: trip efficiency 33.707
+overall trip efficiency 31.937
+area 0: average volume collected 14.045
+area 1: average volume collected 14.025
+area 2: average volume collected 14.071
+area 3: average volume collected 14.150
+area 4: average volume collected 14.165
+area 5: average volume collected 13.126
+area 6: average volume collected 12.340
+overall average volume collected 13.703
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #21: serviceFreq 0.056
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:20:23
+area 5: average trip duration 00:02:12:15
+area 6: average trip duration 00:02:03:41
+overall average trip duration 00:02:20:11
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 31.740
+area 1: trip efficiency 27.521
+area 2: trip efficiency 32.856
+area 3: trip efficiency 32.818
+area 4: trip efficiency 31.804
+area 5: trip efficiency 32.463
+area 6: trip efficiency 33.437
+overall trip efficiency 31.806
+area 0: average volume collected 13.969
+area 1: average volume collected 13.911
+area 2: average volume collected 14.059
+area 3: average volume collected 14.046
+area 4: average volume collected 13.704
+area 5: average volume collected 13.162
+area 6: average volume collected 12.717
+overall average volume collected 13.653
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #22: serviceFreq 0.057
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:24:00
+area 5: average trip duration 00:02:12:30
+area 6: average trip duration 00:01:55:46
+overall average trip duration 00:02:19:36
+area 0: average no. trips 0.941
+area 1: average no. trips 0.941
+area 2: average no. trips 0.941
+area 3: average no. trips 0.941
+area 4: average no. trips 0.941
+area 5: average no. trips 0.941
+area 6: average no. trips 1.000
+overall average no. trips 0.950
+area 0: trip efficiency 31.329
+area 1: trip efficiency 27.483
+area 2: trip efficiency 32.044
+area 3: trip efficiency 32.183
+area 4: trip efficiency 31.402
+area 5: trip efficiency 32.408
+area 6: trip efficiency 32.498
+overall trip efficiency 31.335
+area 0: average volume collected 13.761
+area 1: average volume collected 13.895
+area 2: average volume collected 13.704
+area 3: average volume collected 13.801
+area 4: average volume collected 13.922
+area 5: average volume collected 13.265
+area 6: average volume collected 11.606
+overall average volume collected 13.422
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #23: serviceFreq 0.058
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:19:00
+area 4: average trip duration 00:02:22:56
+area 5: average trip duration 00:02:03:25
+area 6: average trip duration 00:01:52:35
+overall average trip duration 00:02:17:42
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 31.200
+area 1: trip efficiency 26.973
+area 2: trip efficiency 32.094
+area 3: trip efficiency 31.921
+area 4: trip efficiency 30.755
+area 5: trip efficiency 31.748
+area 6: trip efficiency 32.083
+overall trip efficiency 30.968
+area 0: average volume collected 13.716
+area 1: average volume collected 13.656
+area 2: average volume collected 13.726
+area 3: average volume collected 13.679
+area 4: average volume collected 13.462
+area 5: average volume collected 12.191
+area 6: average volume collected 11.185
+overall average volume collected 13.088
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #24: serviceFreq 0.059
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:17:28
+area 4: average trip duration 00:02:19:00
+area 5: average trip duration 00:02:05:00
+area 6: average trip duration 00:01:56:00
+overall average trip duration 00:02:17:38
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 30.860
+area 1: trip efficiency 26.305
+area 2: trip efficiency 31.564
+area 3: trip efficiency 31.655
+area 4: trip efficiency 30.678
+area 5: trip efficiency 31.243
+area 6: trip efficiency 32.169
+overall trip efficiency 30.639
+area 0: average volume collected 13.564
+area 1: average volume collected 13.305
+area 2: average volume collected 13.516
+area 3: average volume collected 13.391
+area 4: average volume collected 13.099
+area 5: average volume collected 12.025
+area 6: average volume collected 11.547
+overall average volume collected 12.921
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #25: serviceFreq 0.06
+---
+area 0: average trip duration 00:02:23:00
+area 1: average trip duration 00:02:44:00
+area 2: average trip duration 00:02:19:00
+area 3: average trip duration 00:02:18:14
+area 4: average trip duration 00:02:20:49
+area 5: average trip duration 00:01:59:14
+area 6: average trip duration 00:01:47:14
+overall average trip duration 00:02:15:55
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 29.946
+area 1: trip efficiency 26.440
+area 2: trip efficiency 30.417
+area 3: trip efficiency 30.853
+area 4: trip efficiency 30.229
+area 5: trip efficiency 31.212
+area 6: trip efficiency 30.662
+overall trip efficiency 29.966
+area 0: average volume collected 13.204
+area 1: average volume collected 13.273
+area 2: average volume collected 13.031
+area 3: average volume collected 13.093
+area 4: average volume collected 13.133
+area 5: average volume collected 11.472
+area 6: average volume collected 10.360
+overall average volume collected 12.509
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #26: serviceFreq 0.08
+---
+area 0: average trip duration 00:02:18:41
+area 1: average trip duration 00:02:20:30
+area 2: average trip duration 00:01:59:14
+area 3: average trip duration 00:01:47:11
+area 4: average trip duration 00:01:42:00
+area 5: average trip duration 00:01:29:30
+area 6: average trip duration 00:01:44:53
+overall average trip duration 00:01:54:34
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 0.773
+overall average no. trips 0.968
+area 0: trip efficiency 23.274
+area 1: trip efficiency 22.864
+area 2: trip efficiency 25.784
+area 3: trip efficiency 27.137
+area 4: trip efficiency 27.037
+area 5: trip efficiency 28.233
+area 6: trip efficiency 26.505
+overall trip efficiency 25.833
+area 0: average volume collected 9.927
+area 1: average volume collected 9.808
+area 2: average volume collected 9.519
+area 3: average volume collected 9.007
+area 4: average volume collected 8.619
+area 5: average volume collected 7.900
+area 6: average volume collected 10.027
+overall average volume collected 9.258
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 27.273
+overall percentage of bins overflowed 3.896
+---
+Experiment #27: serviceFreq 0.081
+---
+area 0: average trip duration 00:02:20:31
+area 1: average trip duration 00:02:15:16
+area 2: average trip duration 00:01:55:21
+area 3: average trip duration 00:01:46:05
+area 4: average trip duration 00:01:41:03
+area 5: average trip duration 00:01:29:57
+area 6: average trip duration 00:01:26:23
+overall average trip duration 00:01:50:39
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 1.000
+area 0: trip efficiency 22.618
+area 1: trip efficiency 23.210
+area 2: trip efficiency 25.687
+area 3: trip efficiency 26.932
+area 4: trip efficiency 26.886
+area 5: trip efficiency 24.458
+area 6: trip efficiency 25.636
+overall trip efficiency 25.061
+area 0: average volume collected 9.773
+area 1: average volume collected 9.611
+area 2: average volume collected 9.234
+area 3: average volume collected 8.890
+area 4: average volume collected 8.530
+area 5: average volume collected 7.988
+area 6: average volume collected 7.832
+overall average volume collected 8.837
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #28: serviceFreq 0.082
+---
+area 0: average trip duration 00:02:21:21
+area 1: average trip duration 00:02:10:39
+area 2: average trip duration 00:01:51:50
+area 3: average trip duration 00:01:41:37
+area 4: average trip duration 00:01:38:21
+area 5: average trip duration 00:01:29:05
+area 6: average trip duration 00:01:37:30
+overall average trip duration 00:01:50:03
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 0.870
+overall average no. trips 0.981
+area 0: trip efficiency 22.377
+area 1: trip efficiency 23.437
+area 2: trip efficiency 25.616
+area 3: trip efficiency 26.372
+area 4: trip efficiency 27.530
+area 5: trip efficiency 27.270
+area 6: trip efficiency 25.499
+overall trip efficiency 25.443
+area 0: average volume collected 9.770
+area 1: average volume collected 9.410
+area 2: average volume collected 8.898
+area 3: average volume collected 8.539
+area 4: average volume collected 8.439
+area 5: average volume collected 7.917
+area 6: average volume collected 9.173
+overall average volume collected 8.878
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 4.348
+area 6: percentage of bins overflowed 17.391
+overall percentage of bins overflowed 3.106
+---
+Experiment #29: serviceFreq 0.083
+---
+area 0: average trip duration 00:02:20:31
+area 1: average trip duration 00:02:05:47
+area 2: average trip duration 00:01:51:29
+area 3: average trip duration 00:01:41:26
+area 4: average trip duration 00:01:37:03
+area 5: average trip duration 00:01:42:57
+area 6: average trip duration 00:01:32:00
+overall average trip duration 00:01:50:10
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.826
+area 6: average no. trips 0.957
+overall average no. trips 0.969
+area 0: trip efficiency 22.250
+area 1: trip efficiency 23.586
+area 2: trip efficiency 25.595
+area 3: trip efficiency 27.217
+area 4: trip efficiency 27.132
+area 5: trip efficiency 27.459
+area 6: trip efficiency 26.630
+overall trip efficiency 25.695
+area 0: average volume collected 9.613
+area 1: average volume collected 9.058
+area 2: average volume collected 8.906
+area 3: average volume collected 8.503
+area 4: average volume collected 8.297
+area 5: average volume collected 9.574
+area 6: average volume collected 8.320
+overall average volume collected 8.896
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 13.043
+area 6: percentage of bins overflowed 4.348
+overall percentage of bins overflowed 2.484
+---
+Experiment #30: serviceFreq 0.084
+---
+area 0: average trip duration 00:02:20:42
+area 1: average trip duration 00:02:03:53
+area 2: average trip duration 00:01:51:48
+area 3: average trip duration 00:01:38:18
+area 4: average trip duration 00:01:34:45
+area 5: average trip duration 00:01:28:13
+area 6: average trip duration 00:02:08:43
+overall average trip duration 00:01:52:20
+area 0: average no. trips 0.958
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 0.583
+overall average no. trips 0.935
+area 0: trip efficiency 21.565
+area 1: trip efficiency 23.727
+area 2: trip efficiency 25.668
+area 3: trip efficiency 26.972
+area 4: trip efficiency 27.340
+area 5: trip efficiency 25.622
+area 6: trip efficiency 30.551
+overall trip efficiency 25.921
+area 0: average volume collected 9.363
+area 1: average volume collected 9.021
+area 2: average volume collected 8.891
+area 3: average volume collected 8.266
+area 4: average volume collected 8.032
+area 5: average volume collected 7.756
+area 6: average volume collected 13.100
+overall average volume collected 9.204
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 29.167
+overall percentage of bins overflowed 4.167
+---
+Experiment #31: serviceFreq 0.085
+---
+area 0: average trip duration 00:02:19:08
+area 1: average trip duration 00:02:08:28
+area 2: average trip duration 00:01:49:18
+area 3: average trip duration 00:01:40:08
+area 4: average trip duration 00:01:37:43
+area 5: average trip duration 00:01:31:57
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:01:55:48
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.958
+area 6: average no. trips 0.500
+overall average no. trips 0.923
+area 0: trip efficiency 21.896
+area 1: trip efficiency 23.302
+area 2: trip efficiency 25.884
+area 3: trip efficiency 26.790
+area 4: trip efficiency 27.186
+area 5: trip efficiency 25.894
+area 6: trip efficiency 34.267
+overall trip efficiency 26.460
+area 0: average volume collected 9.392
+area 1: average volume collected 9.198
+area 2: average volume collected 8.767
+area 3: average volume collected 8.486
+area 4: average volume collected 8.299
+area 5: average volume collected 8.140
+area 6: average volume collected 15.183
+overall average volume collected 9.638
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 4.167
+area 6: percentage of bins overflowed 20.833
+overall percentage of bins overflowed 3.571
+---
+Experiment #32: serviceFreq 0.086
+---
+area 0: average trip duration 00:02:17:35
+area 1: average trip duration 00:01:59:23
+area 2: average trip duration 00:01:48:55
+area 3: average trip duration 00:01:37:55
+area 4: average trip duration 00:01:36:15
+area 5: average trip duration 00:01:45:38
+area 6: average trip duration 00:01:29:55
+overall average trip duration 00:01:47:56
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.792
+area 6: average no. trips 0.917
+overall average no. trips 0.958
+area 0: trip efficiency 21.945
+area 1: trip efficiency 24.087
+area 2: trip efficiency 25.535
+area 3: trip efficiency 26.772
+area 4: trip efficiency 27.026
+area 5: trip efficiency 28.161
+area 6: trip efficiency 24.457
+overall trip efficiency 25.426
+area 0: average volume collected 9.317
+area 1: average volume collected 8.811
+area 2: average volume collected 8.645
+area 3: average volume collected 8.207
+area 4: average volume collected 8.160
+area 5: average volume collected 9.814
+area 6: average volume collected 8.338
+overall average volume collected 8.756
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 12.500
+area 6: percentage of bins overflowed 4.167
+overall percentage of bins overflowed 2.381
+---
+Experiment #33: serviceFreq 0.087
+---
+area 0: average trip duration 00:02:18:03
+area 1: average trip duration 00:02:01:55
+area 2: average trip duration 00:01:43:23
+area 3: average trip duration 00:01:38:03
+area 4: average trip duration 00:01:35:29
+area 5: average trip duration 00:02:17:55
+area 6: average trip duration 00:01:56:04
+overall average trip duration 00:01:55:50
+area 0: average no. trips 0.960
+area 1: average no. trips 0.960
+area 2: average no. trips 0.960
+area 3: average no. trips 0.960
+area 4: average no. trips 1.000
+area 5: average no. trips 0.520
+area 6: average no. trips 0.640
+overall average no. trips 0.857
+area 0: trip efficiency 21.353
+area 1: trip efficiency 23.764
+area 2: trip efficiency 25.737
+area 3: trip efficiency 26.399
+area 4: trip efficiency 26.299
+area 5: trip efficiency 32.003
+area 6: trip efficiency 29.297
+overall trip efficiency 26.407
+area 0: average volume collected 9.129
+area 1: average volume collected 8.904
+area 2: average volume collected 8.322
+area 3: average volume collected 8.237
+area 4: average volume collected 7.959
+area 5: average volume collected 14.117
+area 6: average volume collected 11.534
+overall average volume collected 9.743
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 28.000
+area 6: percentage of bins overflowed 24.000
+overall percentage of bins overflowed 7.429
+---
+Experiment #34: serviceFreq 0.088
+---
+area 0: average trip duration 00:02:17:07
+area 1: average trip duration 00:02:02:17
+area 2: average trip duration 00:01:45:05
+area 3: average trip duration 00:01:34:22
+area 4: average trip duration 00:01:34:36
+area 5: average trip duration 00:01:34:18
+area 6: average trip duration 00:01:27:02
+overall average trip duration 00:01:44:58
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.920
+area 6: average no. trips 1.000
+overall average no. trips 0.989
+area 0: trip efficiency 21.601
+area 1: trip efficiency 23.320
+area 2: trip efficiency 25.736
+area 3: trip efficiency 27.278
+area 4: trip efficiency 27.181
+area 5: trip efficiency 24.094
+area 6: trip efficiency 23.679
+overall trip efficiency 24.698
+area 0: average volume collected 9.098
+area 1: average volume collected 8.818
+area 2: average volume collected 8.475
+area 3: average volume collected 7.990
+area 4: average volume collected 7.997
+area 5: average volume collected 8.583
+area 6: average volume collected 7.822
+overall average volume collected 8.398
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 4.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.571
+---
+Experiment #35: serviceFreq 0.089
+---
+area 0: average trip duration 00:02:15:46
+area 1: average trip duration 00:01:54:55
+area 2: average trip duration 00:01:42:19
+area 3: average trip duration 00:01:36:19
+area 4: average trip duration 00:01:33:07
+area 5: average trip duration 00:01:26:00
+area 6: average trip duration 00:01:38:09
+overall average trip duration 00:01:43:47
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 0.840
+overall average no. trips 0.977
+area 0: trip efficiency 21.717
+area 1: trip efficiency 24.079
+area 2: trip efficiency 25.754
+area 3: trip efficiency 26.643
+area 4: trip efficiency 27.059
+area 5: trip efficiency 23.899
+area 6: trip efficiency 25.706
+overall trip efficiency 24.980
+area 0: average volume collected 9.047
+area 1: average volume collected 8.593
+area 2: average volume collected 8.297
+area 3: average volume collected 8.086
+area 4: average volume collected 7.942
+area 5: average volume collected 7.870
+area 6: average volume collected 9.313
+overall average volume collected 8.450
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 4.000
+area 6: percentage of bins overflowed 4.000
+overall percentage of bins overflowed 1.143
+---
+Experiment #36: serviceFreq 0.09
+---
+area 0: average trip duration 00:02:14:02
+area 1: average trip duration 00:01:55:53
+area 2: average trip duration 00:01:42:55
+area 3: average trip duration 00:01:34:26
+area 4: average trip duration 00:01:33:31
+area 5: average trip duration 00:01:27:29
+area 6: average trip duration 00:01:46:00
+overall average trip duration 00:01:44:53
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 0.760
+overall average no. trips 0.966
+area 0: trip efficiency 21.494
+area 1: trip efficiency 23.930
+area 2: trip efficiency 25.915
+area 3: trip efficiency 25.656
+area 4: trip efficiency 26.148
+area 5: trip efficiency 24.811
+area 6: trip efficiency 27.087
+overall trip efficiency 25.006
+area 0: average volume collected 8.867
+area 1: average volume collected 8.630
+area 2: average volume collected 8.374
+area 3: average volume collected 8.042
+area 4: average volume collected 7.974
+area 5: average volume collected 7.796
+area 6: average volume collected 10.262
+overall average volume collected 8.564
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #37: serviceFreq 0.091
+---
+area 0: average trip duration 00:02:13:23
+area 1: average trip duration 00:01:50:28
+area 2: average trip duration 00:01:42:58
+area 3: average trip duration 00:01:35:14
+area 4: average trip duration 00:01:31:09
+area 5: average trip duration 00:02:04:49
+area 6: average trip duration 00:01:27:41
+overall average trip duration 00:01:46:31
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.615
+area 6: average no. trips 0.962
+overall average no. trips 0.940
+area 0: trip efficiency 21.292
+area 1: trip efficiency 24.836
+area 2: trip efficiency 25.505
+area 3: trip efficiency 26.004
+area 4: trip efficiency 27.244
+area 5: trip efficiency 29.348
+area 6: trip efficiency 26.466
+overall trip efficiency 25.814
+area 0: average volume collected 8.734
+area 1: average volume collected 8.501
+area 2: average volume collected 8.231
+area 3: average volume collected 8.019
+area 4: average volume collected 7.829
+area 5: average volume collected 12.325
+area 6: average volume collected 7.860
+overall average volume collected 8.786
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 3.846
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.549
+---
+Experiment #38: serviceFreq 0.092
+---
+area 0: average trip duration 00:02:14:35
+area 1: average trip duration 00:01:53:51
+area 2: average trip duration 00:01:42:53
+area 3: average trip duration 00:01:34:00
+area 4: average trip duration 00:01:31:16
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:01:58:05
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.500
+area 6: average no. trips 0.500
+overall average no. trips 0.857
+area 0: trip efficiency 20.963
+area 1: trip efficiency 23.833
+area 2: trip efficiency 25.712
+area 3: trip efficiency 26.827
+area 4: trip efficiency 27.324
+area 5: trip efficiency 33.781
+area 6: trip efficiency 34.086
+overall trip efficiency 27.504
+area 0: average volume collected 8.648
+area 1: average volume collected 8.338
+area 2: average volume collected 8.284
+area 3: average volume collected 7.956
+area 4: average volume collected 7.843
+area 5: average volume collected 15.106
+area 6: average volume collected 15.097
+overall average volume collected 10.182
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 7.692
+area 6: percentage of bins overflowed 7.692
+overall percentage of bins overflowed 2.198
+---
+Experiment #39: serviceFreq 0.093
+---
+area 0: average trip duration 00:02:09:42
+area 1: average trip duration 00:01:51:21
+area 2: average trip duration 00:01:40:07
+area 3: average trip duration 00:01:34:58
+area 4: average trip duration 00:01:33:07
+area 5: average trip duration 00:01:43:15
+area 6: average trip duration 00:02:15:17
+overall average trip duration 00:01:49:41
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 0.962
+area 5: average no. trips 0.769
+area 6: average no. trips 0.538
+overall average no. trips 0.896
+area 0: trip efficiency 21.674
+area 1: trip efficiency 23.658
+area 2: trip efficiency 25.313
+area 3: trip efficiency 26.777
+area 4: trip efficiency 24.830
+area 5: trip efficiency 26.423
+area 6: trip efficiency 32.659
+overall trip efficiency 25.905
+area 0: average volume collected 8.642
+area 1: average volume collected 8.210
+area 2: average volume collected 8.004
+area 3: average volume collected 8.039
+area 4: average volume collected 8.022
+area 5: average volume collected 9.877
+area 6: average volume collected 14.020
+overall average volume collected 9.259
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 3.846
+area 6: percentage of bins overflowed 7.692
+overall percentage of bins overflowed 1.648
+---
+Experiment #40: serviceFreq 0.094
+---
+area 0: average trip duration 00:02:09:04
+area 1: average trip duration 00:01:51:27
+area 2: average trip duration 00:01:37:38
+area 3: average trip duration 00:01:34:22
+area 4: average trip duration 00:01:30:42
+area 5: average trip duration 00:01:34:45
+area 6: average trip duration 00:01:34:39
+overall average trip duration 00:01:41:48
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.889
+area 6: average no. trips 0.852
+overall average no. trips 0.963
+area 0: trip efficiency 20.971
+area 1: trip efficiency 23.318
+area 2: trip efficiency 25.307
+area 3: trip efficiency 27.305
+area 4: trip efficiency 25.902
+area 5: trip efficiency 26.805
+area 6: trip efficiency 28.676
+overall trip efficiency 25.469
+area 0: average volume collected 8.347
+area 1: average volume collected 8.088
+area 2: average volume collected 7.861
+area 3: average volume collected 8.079
+area 4: average volume collected 7.844
+area 5: average volume collected 8.679
+area 6: average volume collected 8.938
+overall average volume collected 8.262
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #41: serviceFreq 0.095
+---
+area 0: average trip duration 00:02:10:44
+area 1: average trip duration 00:01:50:18
+area 2: average trip duration 00:01:38:49
+area 3: average trip duration 00:01:33:47
+area 4: average trip duration 00:01:29:29
+area 5: average trip duration 00:01:36:00
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:01:49:01
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.889
+area 6: average no. trips 0.519
+overall average no. trips 0.915
+area 0: trip efficiency 20.966
+area 1: trip efficiency 23.499
+area 2: trip efficiency 25.375
+area 3: trip efficiency 27.284
+area 4: trip efficiency 27.570
+area 5: trip efficiency 24.282
+area 6: trip efficiency 33.964
+overall trip efficiency 26.134
+area 0: average volume collected 8.477
+area 1: average volume collected 8.119
+area 2: average volume collected 7.978
+area 3: average volume collected 7.927
+area 4: average volume collected 7.667
+area 5: average volume collected 8.727
+area 6: average volume collected 15.047
+overall average volume collected 9.134
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #42: serviceFreq 0.096
+---
+area 0: average trip duration 00:02:07:51
+area 1: average trip duration 00:01:49:07
+area 2: average trip duration 00:01:36:20
+area 3: average trip duration 00:01:31:09
+area 4: average trip duration 00:01:38:13
+area 5: average trip duration 00:01:33:50
+area 6: average trip duration 00:02:02:53
+overall average trip duration 00:01:45:37
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 0.889
+area 5: average no. trips 0.889
+area 6: average no. trips 0.630
+overall average no. trips 0.915
+area 0: trip efficiency 20.715
+area 1: trip efficiency 24.175
+area 2: trip efficiency 25.166
+area 3: trip efficiency 27.148
+area 4: trip efficiency 27.951
+area 5: trip efficiency 25.004
+area 6: trip efficiency 30.674
+overall trip efficiency 25.833
+area 0: average volume collected 8.170
+area 1: average volume collected 8.187
+area 2: average volume collected 7.747
+area 3: average volume collected 7.761
+area 4: average volume collected 8.659
+area 5: average volume collected 8.724
+area 6: average volume collected 12.286
+overall average volume collected 8.791
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #43: serviceFreq 0.097
+---
+area 0: average trip duration 00:02:08:11
+area 1: average trip duration 00:01:41:40
+area 2: average trip duration 00:01:37:36
+area 3: average trip duration 00:01:35:30
+area 4: average trip duration 00:01:31:22
+area 5: average trip duration 00:01:41:46
+area 6: average trip duration 00:02:24:00
+overall average trip duration 00:01:48:35
+area 0: average no. trips 0.964
+area 1: average no. trips 0.964
+area 2: average no. trips 0.964
+area 3: average no. trips 0.929
+area 4: average no. trips 0.964
+area 5: average no. trips 0.786
+area 6: average no. trips 0.500
+overall average no. trips 0.867
+area 0: trip efficiency 20.702
+area 1: trip efficiency 25.117
+area 2: trip efficiency 26.253
+area 3: trip efficiency 25.335
+area 4: trip efficiency 27.193
+area 5: trip efficiency 27.377
+area 6: trip efficiency 33.914
+overall trip efficiency 26.556
+area 0: average volume collected 8.168
+area 1: average volume collected 7.863
+area 2: average volume collected 7.950
+area 3: average volume collected 8.221
+area 4: average volume collected 7.714
+area 5: average volume collected 9.485
+area 6: average volume collected 15.064
+overall average volume collected 9.209
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 3.571
+overall percentage of bins overflowed 0.510
+---
+Experiment #44: serviceFreq 0.098
+---
+area 0: average trip duration 00:02:03:47
+area 1: average trip duration 00:01:44:21
+area 2: average trip duration 00:01:34:39
+area 3: average trip duration 00:01:30:28
+area 4: average trip duration 00:01:29:30
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:01:30:25
+overall average trip duration 00:01:45:35
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.500
+area 6: average no. trips 0.929
+overall average no. trips 0.918
+area 0: trip efficiency 21.308
+area 1: trip efficiency 24.199
+area 2: trip efficiency 25.733
+area 3: trip efficiency 27.501
+area 4: trip efficiency 24.366
+area 5: trip efficiency 33.119
+area 6: trip efficiency 26.361
+overall trip efficiency 26.084
+area 0: average volume collected 8.096
+area 1: average volume collected 7.911
+area 2: average volume collected 7.731
+area 3: average volume collected 7.715
+area 4: average volume collected 7.613
+area 5: average volume collected 14.900
+area 6: average volume collected 8.037
+overall average volume collected 8.858
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 3.571
+area 5: percentage of bins overflowed 3.571
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 1.020
+---
+Experiment #45: serviceFreq 0.099
+---
+area 0: average trip duration 00:02:04:11
+area 1: average trip duration 00:01:43:17
+area 2: average trip duration 00:01:36:32
+area 3: average trip duration 00:01:29:28
+area 4: average trip duration 00:01:29:28
+area 5: average trip duration 00:02:26:00
+area 6: average trip duration 00:01:40:00
+overall average trip duration 00:01:46:59
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.500
+area 6: average no. trips 0.786
+overall average no. trips 0.898
+area 0: trip efficiency 20.854
+area 1: trip efficiency 24.463
+area 2: trip efficiency 25.716
+area 3: trip efficiency 24.691
+area 4: trip efficiency 24.019
+area 5: trip efficiency 33.250
+area 6: trip efficiency 26.662
+overall trip efficiency 25.665
+area 0: average volume collected 7.971
+area 1: average volume collected 7.864
+area 2: average volume collected 7.957
+area 3: average volume collected 7.658
+area 4: average volume collected 7.589
+area 5: average volume collected 14.920
+area 6: average volume collected 9.490
+overall average volume collected 9.064
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #46: serviceFreq 0.1
+---
+area 0: average trip duration 00:02:00:04
+area 1: average trip duration 00:01:40:49
+area 2: average trip duration 00:01:33:56
+area 3: average trip duration 00:01:30:34
+area 4: average trip duration 00:01:30:28
+area 5: average trip duration 00:01:54:41
+area 6: average trip duration 00:01:32:05
+overall average trip duration 00:01:40:22
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 1.000
+area 5: average no. trips 0.679
+area 6: average no. trips 0.893
+overall average no. trips 0.939
+area 0: trip efficiency 21.449
+area 1: trip efficiency 24.289
+area 2: trip efficiency 23.622
+area 3: trip efficiency 26.448
+area 4: trip efficiency 24.425
+area 5: trip efficiency 27.705
+area 6: trip efficiency 25.825
+overall trip efficiency 24.823
+area 0: average volume collected 7.937
+area 1: average volume collected 7.634
+area 2: average volume collected 7.685
+area 3: average volume collected 7.534
+area 4: average volume collected 7.519
+area 5: average volume collected 10.993
+area 6: average volume collected 8.330
+overall average volume collected 8.233
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #47: serviceFreq 0.11
+---
+area 0: average trip duration 00:01:49:33
+area 1: average trip duration 00:01:35:12
+area 2: average trip duration 00:01:30:39
+area 3: average trip duration 00:01:29:17
+area 4: average trip duration 00:02:11:00
+area 5: average trip duration 00:01:40:05
+area 6: average trip duration 00:01:24:15
+overall average trip duration 00:01:40:00
+area 0: average no. trips 0.969
+area 1: average no. trips 0.969
+area 2: average no. trips 0.969
+area 3: average no. trips 0.969
+area 4: average no. trips 0.563
+area 5: average no. trips 0.813
+area 6: average no. trips 0.969
+overall average no. trips 0.888
+area 0: trip efficiency 20.972
+area 1: trip efficiency 24.134
+area 2: trip efficiency 23.185
+area 3: trip efficiency 21.226
+area 4: trip efficiency 29.552
+area 5: trip efficiency 26.370
+area 6: trip efficiency 26.801
+overall trip efficiency 24.606
+area 0: average volume collected 7.170
+area 1: average volume collected 7.231
+area 2: average volume collected 7.272
+area 3: average volume collected 7.221
+area 4: average volume collected 12.512
+area 5: average volume collected 8.604
+area 6: average volume collected 7.052
+overall average volume collected 8.152
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #48: serviceFreq 0.12
+---
+area 0: average trip duration 00:01:42:16
+area 1: average trip duration 00:01:29:56
+area 2: average trip duration 00:01:32:09
+area 3: average trip duration 00:01:25:48
+area 4: average trip duration 00:01:29:49
+area 5: average trip duration 00:01:23:25
+area 6: average trip duration 00:01:18:18
+overall average trip duration 00:01:28:48
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 1.000
+area 4: average no. trips 0.971
+area 5: average no. trips 1.000
+area 6: average no. trips 0.971
+overall average no. trips 0.992
+area 0: trip efficiency 20.962
+area 1: trip efficiency 23.318
+area 2: trip efficiency 22.966
+area 3: trip efficiency 23.292
+area 4: trip efficiency 22.456
+area 5: trip efficiency 24.351
+area 6: trip efficiency 24.769
+overall trip efficiency 23.159
+area 0: average volume collected 6.695
+area 1: average volume collected 6.697
+area 2: average volume collected 6.811
+area 3: average volume collected 6.662
+area 4: average volume collected 6.821
+area 5: average volume collected 6.549
+area 6: average volume collected 6.291
+overall average volume collected 6.647
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #49: serviceFreq 0.13
+---
+area 0: average trip duration 00:01:36:15
+area 1: average trip duration 00:01:27:13
+area 2: average trip duration 00:01:35:42
+area 3: average trip duration 00:01:27:18
+area 4: average trip duration 00:01:29:10
+area 5: average trip duration 00:01:20:16
+area 6: average trip duration 00:01:15:00
+overall average trip duration 00:01:27:16
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 0.892
+area 3: average no. trips 0.973
+area 4: average no. trips 0.973
+area 5: average no. trips 1.000
+area 6: average no. trips 1.000
+overall average no. trips 0.977
+area 0: trip efficiency 20.333
+area 1: trip efficiency 22.546
+area 2: trip efficiency 22.078
+area 3: trip efficiency 22.628
+area 4: trip efficiency 22.207
+area 5: trip efficiency 23.529
+area 6: trip efficiency 23.935
+overall trip efficiency 22.465
+area 0: average volume collected 6.135
+area 1: average volume collected 6.176
+area 2: average volume collected 6.978
+area 3: average volume collected 6.351
+area 4: average volume collected 6.331
+area 5: average volume collected 5.968
+area 6: average volume collected 5.782
+overall average volume collected 6.246
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #50: serviceFreq 0.14
+---
+area 0: average trip duration 00:01:33:15
+area 1: average trip duration 00:01:26:23
+area 2: average trip duration 00:01:31:22
+area 3: average trip duration 00:01:25:41
+area 4: average trip duration 00:01:25:17
+area 5: average trip duration 00:01:16:29
+area 6: average trip duration 00:01:13:27
+overall average trip duration 00:01:24:33
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 0.950
+area 3: average no. trips 0.950
+area 4: average no. trips 0.975
+area 5: average no. trips 1.000
+area 6: average no. trips 0.950
+overall average no. trips 0.975
+area 0: trip efficiency 19.350
+area 1: trip efficiency 18.635
+area 2: trip efficiency 18.979
+area 3: trip efficiency 22.283
+area 4: trip efficiency 21.268
+area 5: trip efficiency 22.005
+area 6: trip efficiency 23.208
+overall trip efficiency 20.818
+area 0: average volume collected 5.750
+area 1: average volume collected 5.743
+area 2: average volume collected 6.018
+area 3: average volume collected 6.025
+area 4: average volume collected 5.756
+area 5: average volume collected 5.471
+area 6: average volume collected 5.523
+overall average volume collected 5.755
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #51: serviceFreq 0.15
+---
+area 0: average trip duration 00:01:28:46
+area 1: average trip duration 00:01:30:59
+area 2: average trip duration 00:01:26:09
+area 3: average trip duration 00:01:23:24
+area 4: average trip duration 00:01:20:21
+area 5: average trip duration 00:01:13:23
+area 6: average trip duration 00:01:11:35
+overall average trip duration 00:01:22:05
+area 0: average no. trips 1.000
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 0.952
+area 4: average no. trips 1.000
+area 5: average no. trips 1.000
+area 6: average no. trips 0.929
+overall average no. trips 0.983
+area 0: trip efficiency 17.934
+area 1: trip efficiency 18.275
+area 2: trip efficiency 19.869
+area 3: trip efficiency 20.627
+area 4: trip efficiency 20.827
+area 5: trip efficiency 22.170
+area 6: trip efficiency 21.976
+overall trip efficiency 20.240
+area 0: average volume collected 5.251
+area 1: average volume collected 5.495
+area 2: average volume collected 5.376
+area 3: average volume collected 5.480
+area 4: average volume collected 5.265
+area 5: average volume collected 5.185
+area 6: average volume collected 5.460
+overall average volume collected 5.359
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #52: serviceFreq 0.16
+---
+area 0: average trip duration 00:01:28:45
+area 1: average trip duration 00:01:27:42
+area 2: average trip duration 00:01:25:04
+area 3: average trip duration 00:01:19:15
+area 4: average trip duration 00:01:17:16
+area 5: average trip duration 00:01:17:17
+area 6: average trip duration 00:01:22:41
+overall average trip duration 00:01:22:34
+area 0: average no. trips 0.978
+area 1: average no. trips 0.956
+area 2: average no. trips 0.956
+area 3: average no. trips 0.978
+area 4: average no. trips 1.000
+area 5: average no. trips 0.867
+area 6: average no. trips 0.711
+overall average no. trips 0.921
+area 0: trip efficiency 17.063
+area 1: trip efficiency 18.019
+area 2: trip efficiency 18.566
+area 3: trip efficiency 19.784
+area 4: trip efficiency 19.373
+area 5: trip efficiency 21.243
+area 6: trip efficiency 24.678
+overall trip efficiency 19.818
+area 0: average volume collected 5.080
+area 1: average volume collected 5.167
+area 2: average volume collected 5.087
+area 3: average volume collected 5.005
+area 4: average volume collected 4.904
+area 5: average volume collected 5.768
+area 6: average volume collected 6.826
+overall average volume collected 5.405
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #53: serviceFreq 0.2
+---
+area 0: average trip duration 00:01:24:52
+area 1: average trip duration 00:01:17:17
+area 2: average trip duration 00:01:14:48
+area 3: average trip duration 00:01:12:23
+area 4: average trip duration 00:01:15:02
+area 5: average trip duration 00:01:08:11
+area 6: average trip duration 00:01:04:54
+overall average trip duration 00:01:13:55
+area 0: average no. trips 1.018
+area 1: average no. trips 1.000
+area 2: average no. trips 1.000
+area 3: average no. trips 0.982
+area 4: average no. trips 0.929
+area 5: average no. trips 0.964
+area 6: average no. trips 0.964
+overall average no. trips 0.980
+area 0: trip efficiency 15.031
+area 1: trip efficiency 16.445
+area 2: trip efficiency 16.115
+area 3: trip efficiency 17.467
+area 4: trip efficiency 18.192
+area 5: trip efficiency 18.702
+area 6: trip efficiency 19.686
+overall trip efficiency 17.377
+area 0: average volume collected 4.011
+area 1: average volume collected 4.049
+area 2: average volume collected 3.999
+area 3: average volume collected 4.147
+area 4: average volume collected 4.405
+area 5: average volume collected 4.195
+area 6: average volume collected 4.131
+overall average volume collected 4.134
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---
+Experiment #54: serviceFreq 0.3
+---
+area 0: average trip duration 00:01:11:47
+area 1: average trip duration 00:01:06:36
+area 2: average trip duration 00:01:06:44
+area 3: average trip duration 00:01:02:37
+area 4: average trip duration 00:01:05:12
+area 5: average trip duration 00:01:03:44
+area 6: average trip duration 00:00:57:26
+overall average trip duration 00:01:04:52
+area 0: average no. trips 1.000
+area 1: average no. trips 0.953
+area 2: average no. trips 0.906
+area 3: average no. trips 0.929
+area 4: average no. trips 0.871
+area 5: average no. trips 0.765
+area 6: average no. trips 0.882
+overall average no. trips 0.901
+area 0: trip efficiency 11.338
+area 1: trip efficiency 12.725
+area 2: trip efficiency 12.795
+area 3: trip efficiency 13.814
+area 4: trip efficiency 14.272
+area 5: trip efficiency 16.028
+area 6: trip efficiency 16.532
+overall trip efficiency 13.929
+area 0: average volume collected 2.627
+area 1: average volume collected 2.741
+area 2: average volume collected 2.861
+area 3: average volume collected 2.816
+area 4: average volume collected 3.025
+area 5: average volume collected 3.434
+area 6: average volume collected 3.083
+overall average volume collected 2.941
+area 0: percentage of bins overflowed 0.000
+area 1: percentage of bins overflowed 0.000
+area 2: percentage of bins overflowed 0.000
+area 3: percentage of bins overflowed 0.000
+area 4: percentage of bins overflowed 0.000
+area 5: percentage of bins overflowed 0.000
+area 6: percentage of bins overflowed 0.000
+overall percentage of bins overflowed 0.000
+---

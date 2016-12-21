@@ -1,6 +1,7 @@
 # to tweak the disposalDistrRate and disposalDistShape and disposalDistRate parameters
 # no of bins = 30
 
+# in this file we adjust the threshold value for 0.3, 0.5 and 0.8
 stopTime 300
 warmUpTime 16.0
 
@@ -13,11 +14,12 @@ bagWeightMin 3
 bagWeightMax 10
 
 disposalDistrRate experiment 2 4 6 8
-disposalDistrShape experiment 1 2 3
+disposalDistrShape experiment 1
 
+serviceFreq = 0.01 0.02 0.03 0.035 0.04 0.045 0.05 0.06 0.07 0.08 0.09 0.1 0.2 0.3  
 noAreas 1
 
-areaIdx 0 serviceFreq 0.05 thresholdVal 0.3 noBins 30
+areaIdx 0 serviceFreq 0.05 thresholdVal 0.8 noBins 30
 roadsLayout
 0	26	19	16	17	11	21	26	27	23	19	12	26	22	16	28	17	23	14	11	28	23	14	23	28	27	24	26	19	23	18	
 26	0	26	14	27	18	25	24	25	24	11	13	16	16	24	18	20	16	11	25	28	10	27	23	14	14	25	13	28	10	26	
