@@ -22,6 +22,11 @@ public class ServiceAreaTest {
 		int result = serviceArea.getTimeBetweenLocations(1, 2); 
 		assertEquals(4, result);
 		
+		int result1 = serviceArea.getTimeBetweenLocations(2, 1); 
+		assertEquals(2, result1);
+		
+		int result2 = serviceArea.getTimeBetweenLocations(0, 2);
+		assertEquals(2, result2);
 //		int result1 = serviceArea.getTimeBetweenLocations(2, 1);
 //		assertEquals(7, result1);
 	}

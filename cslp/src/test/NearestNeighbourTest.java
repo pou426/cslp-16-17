@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import cslp.NearestNeighbour;;
@@ -9,28 +11,63 @@ import cslp.NearestNeighbour;;
 public class NearestNeighbourTest {
 
 	NearestNeighbour nearestNeighbour = new NearestNeighbour();
+	@Test
+	public void test() {
+		int[][] routeLayout = {{ 0, 1, 2, 3},
+							   { 3, 0, 5, 1},
+							   { 1, 3, 9, 6},
+							   { 9, 8, 7, 0}};
+		int[] requiredVertices = {0, 1, 4, 6, 9};
+		
+		ArrayList<Integer> result = nearestNeighbour.getServiceQueue(routeLayout, requiredVertices);
+		ArrayList<Integer> actuals = new ArrayList<Integer>();
+		actuals.add(1);
+		actuals.add(6);
+		actuals.add(4);
+		
+		assertArrayEquals(actuals, result);
+		
+		int resultDurr = nearestNeighbour.getMinDuration();
+		int actualDurr = 10;
+		
+		assertEquals(actualDurr, resultDurr);
+	}
 	
 	@Test
-	public void testGetRoute() {
-		int[][] routeLayout = {{ 0, 1, 2, 3},
-							   { 1, 0, 2, 3},
-							   { 1, 2, 0, 3},
-							   { 1, 2, 3, 0}};
+	public void test1() {
+		int[][] routeLayout = {{ 0, 20, 2, 3},
+							   { 3, 0, 5, 15},
+							   { 1, 13, 9, 6},
+							   { 9, 8, 17, 0}};
+		int[] requiredVertices = {0, 1, 4, 6, 9};
 		
-		int[] result = nearestNeighbour.getRoute(routeLayout);
-		int[] actuals = {0, 1, 2, 3, 0};
+		ArrayList<Integer> result = nearestNeighbour.getServiceQueue(routeLayout, requiredVertices);
+		ArrayList<Integer> actuals = new ArrayList<Integer>();
+		actuals.add(4);
+		actuals.add(6);
+		actuals.add(1);
 		
-		assertArrayEquals(result, actuals);
+		assertArrayEquals(actuals, result);
 		
-		int[][] routeLayout1 = {{ 0, 10,  5,  2},
-								{15,  0, 20, 21},
-								{12,  4,  0,  1},
-								{ 1, 20, 44,  0}};
+		int resultDurr = nearestNeighbour.getMinDuration();
+		int actualDurr = 19;
 		
-		int[] result1 = nearestNeighbour.getRoute(routeLayout1);
-		int[] actuals1 = {0, 3, 1, 2, 0};
-		
-		assertArrayEquals(result1, actuals1);
-		
+		assertEquals(actualDurr, resultDurr);
 	}
+
+	private void assertArrayEquals(ArrayList<Integer> result,
+			ArrayList<Integer> actuals) {
+		// TODO Auto-generated method stub
+		if (result.size() != actuals.size()) {
+			fail();
+		}
+		for (int i = 0; i < result.size(); i++) {
+			System.out.println(result.get(i));
+			System.out.println(actuals.get(i));
+			if (result.get(i) != actuals.get(i)) {
+				fail();
+			}
+		}
+	}
+		
 }

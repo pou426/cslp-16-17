@@ -1,4 +1,5 @@
 package test;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import cslp.BruteForce;
@@ -13,14 +14,17 @@ public class CompareBF {
 	public void testing(int n) {
 		BruteForce bf = new BruteForce();
 		int[][] matrix = new int[n][n];
+		int[] v = new int[n];
 		for (int i = 0; i < n; i++) {
+			v[i] = (int) Math.floor(Math.random()*10);
 			for (int j = 0; j < n; j++) {
 				matrix[i][j] = (int) Math.floor(Math.random()*10);
 				System.out.println(matrix[i][j]);
 			}
 		}
-		int[] route = bf.getRoute(matrix);
-		System.out.println(Arrays.toString(route));
+		
+		ArrayList<Integer> path = bf.getServiceQueue(matrix, v);
+		System.out.println(path.toString());
 		System.out.println();
 	}
 	public static void main(String[] args) {
