@@ -22,8 +22,8 @@ public class LorryEmptiedEvent extends AbstractEvent {
 			LOGGER.severe("Should not reach this state.");
 			return;
 		}
-		float beforeEmptyWeight = lorry.getCurrentTrashWeight(); // lorry's weight before emptying
-		float beforeEmptyVol = lorry.getCurrentTrashVolume(); // lorry's volume before emptying
+		float beforeEmptyWeight = lorry.getCurrentTrashWeight(); 	// lorry's weight before emptying
+		float beforeEmptyVol = lorry.getCurrentTrashVolume(); 		// lorry's volume before emptying
 		lorry.emptyLorry(this);
 		
 		if (sa.isDone()) {

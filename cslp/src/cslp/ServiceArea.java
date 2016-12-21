@@ -33,6 +33,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		return this.serviceQueue.size();
 	}
 	
+	/** Inserts a location to service queue, could be depot or bin index**/
 	public void insertToQueue(int location) {
 		serviceQueue.add(location);
 	}
@@ -222,16 +223,14 @@ public class ServiceArea extends ServiceAreaInfo {
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 			
 			if (routeLayout.length <= bfThreshold) {
-				// using BruteForce method
 				serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
 			} else {
-				// using NN method
 				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
 			}
 			return;
 			
 		} else { // rescheduling event
-			int len = serviceQueue.size()+1;
+			int len = serviceQueue.size() + 1;
 			int[] requiredVertices = new int[len];
 			requiredVertices[0] = 0;
 			for (int i = 1; i < len; i++) {
@@ -242,10 +241,8 @@ public class ServiceArea extends ServiceAreaInfo {
 			int[][] routeLayout = createRouteLayout(requiredVertices);
 			
 			if (routeLayout.length <= bfThreshold) {
-				// using BruteForce method
 				serviceQueue = new BruteForce().getServiceQueue(routeLayout, requiredVertices);
 			} else {
-				// using NN method
 				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
 			}
 			return;

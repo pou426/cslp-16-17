@@ -16,14 +16,13 @@ public class LorryDepartureEvent extends AbstractEvent {
 		this.departFrom = departFrom;
 		this.arriveAt = arriveAt;
 		this.sa = sa;
-//		LorryDepartureEvent.LOGGER.setLevel(Level.OFF);
 	}
 	
 	@Override
 	public void execute(Simulator simulator) {
 		if (!(getEventTime() < getStopTime())) {
 			LOGGER.severe("Should not reach this state.");
-			return; // actually should never get to this stage?? 
+			return; 
 		}
 		
 		int timeToNextBin = sa.getTimeBetweenLocations(departFrom, arriveAt);

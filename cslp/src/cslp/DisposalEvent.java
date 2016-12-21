@@ -14,7 +14,7 @@ public class DisposalEvent extends AbstractEvent {
 	public DisposalEvent(int eventTime, Bin bin) {	
 		schedule(eventTime);	// time in the simulation at which this disposal event occurs  
 		this.bin = bin;
-;	}
+	}
 	
 	/**
 	 * Method called to execute this disposal event. 

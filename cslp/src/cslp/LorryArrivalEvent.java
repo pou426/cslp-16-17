@@ -50,7 +50,9 @@ public class LorryArrivalEvent extends AbstractEvent {
 				sa.insertToQueue(currLocation); // insert thie bin back to service queue
 				LorryDepartureEvent lorryDepartureEvent = new LorryDepartureEvent(getEventTime(), currLocation, 0, sa);
 				simulator.insert(lorryDepartureEvent);
-				LOGGER.info("\tcurrent location = "+currLocation+"	bin volume (compressed) = "+binVol+"	binWeight = "+binWeight+" remaining lorry volume = "+remainingVol+"	remaining lorry weight = "+remainingWeight
+				LOGGER.info("\tcurrent location = "+currLocation+"	bin volume (compressed) = "+binVol
+						 +"	binWeight = "+binWeight+" remaining lorry volume = "+remainingVol
+						 +"	remaining lorry weight = "+remainingWeight
 						 +"\n\tLorry does not have enough volume/load to empty bin."
 						 +"\n\tLorryDepartureEvent inserted back to depot.");
 				return;
@@ -58,7 +60,9 @@ public class LorryArrivalEvent extends AbstractEvent {
 			bin.setIsServicing(); // isServicing until binEmptiedEvent is executed, such that dipsoal events cannot happen at that bin.
 			BinEmptiedEvent binEmptiedEvent = new BinEmptiedEvent(binEmptiedTime, sa, bin);
 			simulator.insert(binEmptiedEvent);	
-			LOGGER.info("\tcurrent location = "+currLocation+"	bin volume (compressed) = "+binVol+"	binWeight = "+binWeight+" remaining lorry volume = "+remainingVol+"	remaining lorry weight = "+remainingWeight
+			LOGGER.info("\tcurrent location = "+currLocation+"	bin volume (compressed) = "+binVol
+					 +"	binWeight = "+binWeight+" remaining lorry volume = "+remainingVol
+					 +"	remaining lorry weight = "+remainingWeight
 					 +"\n\tBinEmptiedEvent inserted: areaIdx = "+sa.getAreaIdx()+"	bin = "+bin.getBinIdx()+"	binEmptiedTime = "+binEmptiedTime);
 			
 		} else if (currLocation == 0) { // at depot, empties lorry straight away

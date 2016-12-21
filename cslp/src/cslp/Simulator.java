@@ -70,7 +70,6 @@ public class Simulator {
 				DisposalEvent disposalEventGenerator = new DisposalEvent(Random.erlangk(), bin);
 				if (disposalEventGenerator.getEventTime() < AbstractEvent.getStopTime()) {
 					this.events.add(disposalEventGenerator);
-
 				} else {
 					LOGGER.warning("\tInitial disposal event exceeds stop time. areaIdx = "+sa.getAreaIdx());
 				}
@@ -79,7 +78,6 @@ public class Simulator {
 			BinServiceEvent binServiceEventGenerator = new BinServiceEvent(sa.getServiceInterval(), sa); // first event at service interval
 			if (binServiceEventGenerator.getEventTime() < AbstractEvent.getStopTime()) {
 				this.events.add(binServiceEventGenerator);
-
 			} else {
 				LOGGER.warning("\tInitial bin service event exceeds stop time. areaIdx = "+sa.getAreaIdx());
 			}
@@ -216,7 +214,8 @@ public class Simulator {
 			hrCount -= 24;
 			dayCount += 1;
 		}
-		String result = String.format("%02d", dayCount)+":"+String.format("%02d", hrCount)+":"+String.format("%02d", minCount)+":"+String.format("%02d", secCount);
+		String result = String.format("%02d", dayCount)+":"+String.format("%02d", hrCount)+
+				":"+String.format("%02d", minCount)+":"+String.format("%02d", secCount);
 		return result;
 	}
 	
@@ -412,9 +411,8 @@ public class Simulator {
 					expNo++;
 					citySimulatorExp.statsAnalysis(ps);
 				}
-
 			} else {
-				LOGGER.info("This is an experiment but no value. should never reach here.");
+				LOGGER.info("This is an experiment but no value. Should not reach this state.");
 			}
 		}
 	}
