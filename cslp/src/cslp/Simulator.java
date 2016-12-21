@@ -192,103 +192,7 @@ public class Simulator {
 
 		System.out.println("---");
 		ps.println("---");
-		
-		// ============================== average trip duration ==============================
-//		int totalAvgTripDuration = 0;
-//		for (ServiceArea sa : serviceAreas.values()) {
-//			int avgTripDuration = Math.round(sa.getAvgTripDuration()); // in second
-//			totalAvgTripDuration += avgTripDuration;
-//			String avgTripDurationString = "area "+sa.getAreaIdx()+": average trip duration "+timeToString(avgTripDuration);
-//			System.out.println(avgTripDurationString);	
-//			ps.println(avgTripDurationString);
-//		}
-//		// overall
-//		totalAvgTripDuration = Math.round(totalAvgTripDuration/noAreas); // in second
-//		String totalAvgTripDurationString = "overall average trip duration "+timeToString(totalAvgTripDuration);
-//		System.out.println(totalAvgTripDurationString);
-//		ps.println(totalAvgTripDurationString);
-
-		// ============================== no. of trips ==============================
-//		float totalAvgNoTrips = 0;
-//		for (ServiceArea sa : serviceAreas.values()) {
-//			float avgNoTrips = sa.getAvgNoTripsPerSchedule();
-//			totalAvgNoTrips += avgNoTrips;
-//			String avgNoTripsString = "area "+sa.getAreaIdx()+": average no. trips "+String.format("%.3f",avgNoTrips);
-//			System.out.println(avgNoTripsString);
-//			ps.println(avgNoTripsString);
-//		}
-//		// overall here
-//		totalAvgNoTrips = totalAvgNoTrips/noAreas;
-//		String totalAvgNoTripsString = "overall average no. trips "+String.format("%.3f",totalAvgNoTrips);
-//		System.out.println(totalAvgNoTripsString);
-//		ps.println(totalAvgNoTripsString);
-		
-//		// ============================== trip efficiency ==============================
-//		float totalTripEfficiency = 0;
-//		for (ServiceArea sa : serviceAreas.values()) {
-//			float tripEfficiency = sa.getTripEfficiency();
-//			totalTripEfficiency += tripEfficiency;
-//			String tripEfficiencyString = "area "+sa.getAreaIdx()+": trip efficiency "+String.format("%.3f", tripEfficiency);
-//			System.out.println(tripEfficiencyString);
-//			ps.println(tripEfficiencyString);
-//		}
-//		// overall 
-//		totalTripEfficiency = totalTripEfficiency/noAreas;
-//		String totalTripEfficiencyString = "overall trip efficiency "+String.format("%.3f",totalTripEfficiency);
-//		System.out.println(totalTripEfficiencyString);
-//		ps.println(totalTripEfficiencyString);
-		
-//		// ============================== average volume collected ==============================
-//		float totalAvgVolCollected = 0;
-////		for (ServiceArea sa : serviceAreas.values()) {
-//			float avgVolCollected = sa.getAvgVolCollected();
-//			totalAvgVolCollected += avgVolCollected;
-//			String avgVolCollectedString = "area "+sa.getAreaIdx()+": average volume collected "+String.format("%.3f",avgVolCollected);
-//			System.out.println(avgVolCollectedString);
-//			ps.println(avgVolCollectedString);
-//		}
-//		// overall
-//		totalAvgVolCollected = totalAvgVolCollected/noAreas;
-//		String totalAvgVolCollectedString = "overall average volume collected "+String.format("%.3f",totalAvgVolCollected);
-//		System.out.println(totalAvgVolCollectedString);
-//		ps.println(totalAvgVolCollectedString);
-		
-//		// ============================== overflow percentage ==============================
-//		float totalOverflowPercent = 0;
-//		for (ServiceArea sa : serviceAreas.values()) {
-//			float overflowPercent = sa.getAvgPercentageOverflow();
-//			totalOverflowPercent += overflowPercent;
-//			String overflowPercentString = "area "+sa.getAreaIdx()+": percentage of bins overflowed "+String.format("%.3f", overflowPercent);
-//			System.out.println(overflowPercentString);
-//			ps.println(overflowPercentString);
-//		}
-		// for overall
-//		totalOverflowPercent = totalOverflowPercent/noAreas;
-//		String totalOverflowPercentString = "overall percentage of bins overflowed "+String.format("%.3f", totalOverflowPercent);
-//		System.out.println(totalOverflowPercentString);
-//		ps.println(totalOverflowPercentString);
-
-//		System.out.println("---");
-//		ps.println("---");
 	}
-	
-//	/**
-//	 * Return time in MM:SS format
-//	 * @param secCount		time in second
-//	 * @return
-//	 */
-//	public String timeToString(int timeInSec) { // for summary stats
-//		int secCount = timeInSec;
-//		int minCount = 0;
-//		while (secCount >= 60) {
-//			secCount -= 60;
-//			minCount += 1;
-//		}
-//		String sec = String.format("%02d", secCount);
-//		String min = String.format("%02d", minCount);
-//		String result = min+":"+sec;
-//		return result;
-//	}
 	
 	/** 
 	 * method to convert time into day:hour:min:sec format
@@ -312,11 +216,7 @@ public class Simulator {
 			hrCount -= 24;
 			dayCount += 1;
 		}
-		String sec = String.format("%02d", secCount);
-		String min = String.format("%02d", minCount);
-		String hr = String.format("%02d", hrCount);
-		String day = String.format("%02d", dayCount);
-		String result = day+":"+hr+":"+min+":"+sec;
+		String result = String.format("%02d", dayCount)+":"+String.format("%02d", hrCount)+":"+String.format("%02d", minCount)+":"+String.format("%02d", secCount);
 		return result;
 	}
 	
@@ -324,88 +224,76 @@ public class Simulator {
 		return this.serviceAreas;
 	}
 	
-	public static void turnLoggerOn() {
-		Simulator.LOGGER.setLevel(Level.ALL);
-//		ServiceAreaInfo.LOGGER.setLevel(Level.ALL);
-		ServiceArea.LOGGER.setLevel(Level.ALL);
-//		Random.LOGGER.setLevel(Level.ALL);
-		Parser.LOGGER.setLevel(Level.ALL);
-		NearestNeighbour.LOGGER.setLevel(Level.ALL);
-		LorryEmptiedEvent.LOGGER.setLevel(Level.ALL);
-		LorryDepartureEvent.LOGGER.setLevel(Level.ALL);
-		LorryArrivalEvent.LOGGER.setLevel(Level.ALL);
-		Lorry.LOGGER.setLevel(Level.ALL);
-		FloydWarshall.LOGGER.setLevel(Level.ALL);
-//		Error.LOGGER.setLevel(Level.ALL);
-//		DisposalEvent.LOGGER.setLevel(Level.ALL);
-		BruteForce.LOGGER.setLevel(Level.ALL);
-		BinServiceEvent.LOGGER.setLevel(Level.ALL);
-		BinEmptiedEvent.LOGGER.setLevel(Level.ALL);
-		Bin.LOGGER.setLevel(Level.ALL);
-//		Bag.LOGGER.setLevel(Level.ALL);
-//		AbstractEvent.LOGGER.setLevel(Level.ALL);
-	}
-	
-	public static void turnLoggerOff() {
-		Simulator.LOGGER.setLevel(Level.OFF);
-//		ServiceAreaInfo.LOGGER.setLevel(Level.ALL);
-		ServiceArea.LOGGER.setLevel(Level.OFF);
-//		Random.LOGGER.setLevel(Level.ALL);
-		Parser.LOGGER.setLevel(Level.OFF);
-		NearestNeighbour.LOGGER.setLevel(Level.OFF);
-		LorryEmptiedEvent.LOGGER.setLevel(Level.OFF);
-		LorryDepartureEvent.LOGGER.setLevel(Level.OFF);
-		LorryArrivalEvent.LOGGER.setLevel(Level.OFF);
-		Lorry.LOGGER.setLevel(Level.OFF);
-		FloydWarshall.LOGGER.setLevel(Level.OFF);
-//		Error.LOGGER.setLevel(Level.ALL);
-//		DisposalEvent.LOGGER.setLevel(Level.ALL);
-		BruteForce.LOGGER.setLevel(Level.OFF);
-		BinServiceEvent.LOGGER.setLevel(Level.OFF);
-		BinEmptiedEvent.LOGGER.setLevel(Level.OFF);
-		Bin.LOGGER.setLevel(Level.OFF);
-//		Bag.LOGGER.setLevel(Level.ALL);
-//		AbstractEvent.LOGGER.setLevel(Level.ALL);
+	/** 
+	 * Enable or disable Logger printing to console
+	 * 
+	 * @param int		turn off if i == 0, on otherwise
+	 */
+	public static void switchLogger(int i) {
+		if (i==0) {
+			Simulator.LOGGER.setLevel(Level.OFF);
+//			ServiceAreaInfo.LOGGER.setLevel(Level.ALL);
+			ServiceArea.LOGGER.setLevel(Level.OFF);
+//			Random.LOGGER.setLevel(Level.ALL);
+			Parser.LOGGER.setLevel(Level.OFF);
+			NearestNeighbour.LOGGER.setLevel(Level.OFF);
+			LorryEmptiedEvent.LOGGER.setLevel(Level.OFF);
+			LorryDepartureEvent.LOGGER.setLevel(Level.OFF);
+			LorryArrivalEvent.LOGGER.setLevel(Level.OFF);
+			Lorry.LOGGER.setLevel(Level.OFF);
+			FloydWarshall.LOGGER.setLevel(Level.OFF);
+//			Error.LOGGER.setLevel(Level.ALL);
+//			DisposalEvent.LOGGER.setLevel(Level.ALL);
+			BruteForce.LOGGER.setLevel(Level.OFF);
+			BinServiceEvent.LOGGER.setLevel(Level.OFF);
+			BinEmptiedEvent.LOGGER.setLevel(Level.OFF);
+			Bin.LOGGER.setLevel(Level.OFF);
+//			Bag.LOGGER.setLevel(Level.ALL);
+//			AbstractEvent.LOGGER.setLevel(Level.ALL);
+		} else {
+			Simulator.LOGGER.setLevel(Level.ALL);
+//			ServiceAreaInfo.LOGGER.setLevel(Level.ALL);
+			ServiceArea.LOGGER.setLevel(Level.ALL);
+//			Random.LOGGER.setLevel(Level.ALL);
+			Parser.LOGGER.setLevel(Level.ALL);
+			NearestNeighbour.LOGGER.setLevel(Level.ALL);
+			LorryEmptiedEvent.LOGGER.setLevel(Level.ALL);
+			LorryDepartureEvent.LOGGER.setLevel(Level.ALL);
+			LorryArrivalEvent.LOGGER.setLevel(Level.ALL);
+			Lorry.LOGGER.setLevel(Level.ALL);
+			FloydWarshall.LOGGER.setLevel(Level.ALL);
+//			Error.LOGGER.setLevel(Level.ALL);
+//			DisposalEvent.LOGGER.setLevel(Level.ALL);
+			BruteForce.LOGGER.setLevel(Level.ALL);
+			BinServiceEvent.LOGGER.setLevel(Level.ALL);
+			BinEmptiedEvent.LOGGER.setLevel(Level.ALL);
+			Bin.LOGGER.setLevel(Level.ALL);
+//			Bag.LOGGER.setLevel(Level.ALL);
+//			AbstractEvent.LOGGER.setLevel(Level.ALL);
+		}
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
 				
 		String filepath = args[0];
-		if (args.length > 1) {
-			if (args[1].equals("yes")) { // flag for printing logger. default is false.
-				turnLoggerOn();
-			} else {
-				turnLoggerOff();
-			}
-		} else {
-			turnLoggerOff();
+		
+		switchLogger(0); // Logger default is off
+		if ((args.length > 1) && args[1].equals("yes"))	{
+			switchLogger(1);
 		}
 		
-		
 		Parser parser = new Parser();
-		
 		parser.runParser(filepath);
 //		parser.printAllInputs();
 		boolean isExperiment = parser.isExperiment();
-
 		
-//		File file = new File("../output_files/output.txt");
-//		FileOutputStream fos = new FileOutputStream(file);
-//		PrintStream ps = new PrintStream(fos);
-//		System.out.println("This goes to out.txt");
-//		System.setOut(console);
-//		System.out.println("This also goes to the console");
-		
-//		PrintStream console = System.out;
 		File file = new File("./output_files/output.txt");
 		FileOutputStream fos = new FileOutputStream(file);
 		PrintStream ps = new PrintStream(fos);
-//		System.setOut(ps);
+//		System.setOut(ps); // redirect to output.txt file
 		
 		// ================================== NOT EXPERIMENT ==================================
-		if (!isExperiment) {
-			// Random ddr and dds attributes already set in parser
-			// service area ready for running
+		if (!isExperiment) {	// Random ddr and dds attributes already set in parser
 			Simulator citySimulator = new Simulator(parser);
 
 			citySimulator.start();
@@ -413,67 +301,87 @@ public class Simulator {
 		}
 		
 		
-		
-		// =================================== EXPERIMENT =================================
+		// =================================== EXPERIMENT ======================================
 		if (isExperiment) {
 			ArrayList<Float> disposalDistrRateExp = parser.getDisposalDistrRateExp();
 			ArrayList<Short> disposalDistrShapeExp = parser.getDisposalDistrShapeExp();
 			ArrayList<Float> serviceFreqExp = parser.getServiceFreqExp();
-			boolean isDdrExp = true;
-			boolean isDdsExp = true; 
-			boolean isSfExp = true;
-			if (disposalDistrRateExp.isEmpty()) isDdrExp = false;
-			if (disposalDistrShapeExp.isEmpty()) isDdsExp = false;
-			if (serviceFreqExp.isEmpty()) isSfExp = false;
+			boolean isDdrExp = !(disposalDistrRateExp.isEmpty());
+			boolean isDdsExp = !(disposalDistrShapeExp.isEmpty()); 
+			boolean isSfExp = !(serviceFreqExp.isEmpty());
 			
 			int expNo = 1;
-			// NOTE: parser already taken care of ddr and dds if any one of them is not experiment.
-			if (isDdrExp) { // ddr is an experiment
+			
+			if (isDdrExp && isDdsExp && isSfExp) {
 				for (float ddr : disposalDistrRateExp) {
 					Random.setDisposalDistrRate(ddr);
-					if (isDdsExp) {
-						for (short dds : disposalDistrShapeExp) {
-							Random.setDisposalDistrShape(dds);
-							if (isSfExp) {
-								for (float sf : serviceFreqExp) {
-									Simulator citySimulatorExp = new Simulator(parser);
-									for (ServiceArea sa : citySimulatorExp.serviceAreas.values()) {
-										sa.changeServiceFreq(sf);
-									}
-									citySimulatorExp.start();
-									String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" disposalDistrShape "+dds+" serviceFreq "+sf;
-									System.out.println(expString);
-									ps.println(expString);
-									expNo++;
-									citySimulatorExp.statsAnalysis(ps);
-								}
-							} else {
-								Simulator citySimulatorExp = new Simulator(parser);
-								citySimulatorExp.start();
-								String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" disposalDistrShape "+dds;
-								System.out.println(expString);
-								ps.println(expString);
-								expNo++;
-								citySimulatorExp.statsAnalysis(ps);
-							}
-						}
-					} else if (isSfExp) {
+					for (short dds : disposalDistrShapeExp) {
+						Random.setDisposalDistrShape(dds);
 						for (float sf : serviceFreqExp) {
 							Simulator citySimulatorExp = new Simulator(parser);
 							for (ServiceArea sa : citySimulatorExp.serviceAreas.values()) {
 								sa.changeServiceFreq(sf);
 							}
 							citySimulatorExp.start();
-							String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" serviceFreq "+sf;
+							String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" disposalDistrShape "+dds+" serviceFreq "+sf;
 							System.out.println(expString);
 							ps.println(expString);
 							expNo++;
 							citySimulatorExp.statsAnalysis(ps);
 						}
-					} else {
+					}
+				}
+			} else if (isDdrExp && isDdsExp) {
+				for (float ddr : disposalDistrRateExp) {
+					Random.setDisposalDistrRate(ddr);
+					for (short dds : disposalDistrShapeExp) {
+						Random.setDisposalDistrShape(dds);
 						Simulator citySimulatorExp = new Simulator(parser);
 						citySimulatorExp.start();
-						String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr;
+						String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" disposalDistrShape "+dds;
+						System.out.println(expString);
+						ps.println(expString);
+						expNo++;
+						citySimulatorExp.statsAnalysis(ps);
+					}
+				}
+			} else if (isDdrExp && isSfExp) {
+				for (float ddr : disposalDistrRateExp) {
+					Random.setDisposalDistrRate(ddr);
+					for (float sf : serviceFreqExp) {
+						Simulator citySimulatorExp = new Simulator(parser);
+						for (ServiceArea sa : citySimulatorExp.serviceAreas.values()) {
+							sa.changeServiceFreq(sf);
+						}
+						citySimulatorExp.start();
+						String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr+" serviceFreq "+sf;
+						System.out.println(expString);
+						ps.println(expString);
+						expNo++;
+						citySimulatorExp.statsAnalysis(ps);
+					}
+				}
+			} else if (isDdrExp) {
+				for (float ddr : disposalDistrRateExp) {
+					Random.setDisposalDistrRate(ddr);
+					Simulator citySimulatorExp = new Simulator(parser);
+					citySimulatorExp.start();
+					String expString = "Experiment #"+expNo+": disposalDistrRate "+ddr;
+					System.out.println(expString);
+					ps.println(expString);
+					expNo++;
+					citySimulatorExp.statsAnalysis(ps);
+				}
+			} else if (isDdsExp && isSfExp) {
+				for (short dds : disposalDistrShapeExp) {
+					Random.setDisposalDistrShape(dds);
+					for (float sf : serviceFreqExp) {
+						Simulator citySimulatorExp = new Simulator(parser);
+						for (ServiceArea sa : citySimulatorExp.serviceAreas.values()) {
+							sa.changeServiceFreq(sf);
+						}
+						citySimulatorExp.start();
+						String expString = "Experiment #"+expNo+": disposalDistrShape "+dds+" serviceFreq "+sf;
 						System.out.println(expString);
 						ps.println(expString);
 						expNo++;
@@ -483,28 +391,13 @@ public class Simulator {
 			} else if (isDdsExp) {
 				for (short dds : disposalDistrShapeExp) {
 					Random.setDisposalDistrShape(dds);
-					if (isSfExp) {
-						for (float sf : serviceFreqExp) {
-							Simulator citySimulatorExp = new Simulator(parser);
-							for (ServiceArea sa : citySimulatorExp.serviceAreas.values()) {
-								sa.changeServiceFreq(sf);
-							}
-							citySimulatorExp.start();
-							String expString = "Experiment #"+expNo+": disposalDistrShape "+dds+" serviceFreq "+sf;
-							System.out.println(expString);
-							ps.println(expString);
-							expNo++;
-							citySimulatorExp.statsAnalysis(ps);
-						}
-					} else {
-						Simulator citySimulatorExp = new Simulator(parser);
-						citySimulatorExp.start();
-						String expString = "Experiment #"+expNo+": disposalDistrShape "+dds;
-						System.out.println(expString);
-						ps.println(expString);
-						expNo++;
-						citySimulatorExp.statsAnalysis(ps);
-					}
+					Simulator citySimulatorExp = new Simulator(parser);
+					citySimulatorExp.start();
+					String expString = "Experiment #"+expNo+": disposalDistrShape "+dds;
+					System.out.println(expString);
+					ps.println(expString);
+					expNo++;
+					citySimulatorExp.statsAnalysis(ps);
 				}
 			} else if (isSfExp) {
 				for (float sf : serviceFreqExp) {
@@ -519,9 +412,15 @@ public class Simulator {
 					expNo++;
 					citySimulatorExp.statsAnalysis(ps);
 				}
+
 			} else {
 				LOGGER.info("This is an experiment but no value. should never reach here.");
 			}
 		}
 	}
 }
+
+			
+			
+			
+			

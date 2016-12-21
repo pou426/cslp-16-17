@@ -20,7 +20,16 @@ public class Lorry {
 		this.currentTrashWeight = 0;
 		this.sa = sa;
 		this.location = 0; // lorry stations at the depot in the initial state
-//		Lorry.LOGGER.setLevel(Level.OFF);
+	}
+	
+	private void outputString(Bin bin, String timeStr) {
+		String binStatusString = timeStr+" -> load of bin "+bin.getAreaIdx()+"."+bin.getBinIdx()+" became "+String.format("%.3f",bin.currentWeight())+" kg and contents volume "+String.format("%.3f", bin.currentVol())+" m^3";
+		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binStatusString);// output change in bin content event
+		else	LOGGER.info(binStatusString);
+		
+		String binEmptiedString = timeStr+" -> load of lorry "+sa.getAreaIdx()+" became "+String.format("%.3f",currentTrashWeight)+" kg and contents volume "+String.format("%.3f", currentTrashVolume)+" m^3";
+		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binEmptiedString);
+		else 	LOGGER.info(binEmptiedString);
 	}
 	
 	/**
@@ -35,14 +44,7 @@ public class Lorry {
 		this.currentTrashWeight += bin.getWasteWeight();
 		bin.resetAll();
 
-		String binStatusString = e.timeToString() + " -> load of bin "+bin.getAreaIdx()+"."+bin.getBinIdx()+" became "+String.format("%.3f",bin.currentWeight())+" kg and contents volume "+String.format("%.3f", bin.currentVol())+" m^3";
-		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binStatusString);// output change in bin content event
-		else	LOGGER.info(binStatusString);
-		
-		String binEmptiedString = e.timeToString()+" -> load of lorry "+sa.getAreaIdx()+" became "+String.format("%.3f",currentTrashWeight)+" kg and contents volume "+String.format("%.3f", currentTrashVolume)+" m^3";
-		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binEmptiedString);
-		else 	LOGGER.info(binEmptiedString);
-		
+		outputString(bin, e.timeToString());
 	}
 	
 	/**
@@ -54,6 +56,7 @@ public class Lorry {
 		if (location != 0) {
 			LOGGER.severe("Should not reach this state.");
 		}
+		
 		this.currentTrashVolume = 0;
 		this.currentTrashWeight = 0;
 		
@@ -70,10 +73,6 @@ public class Lorry {
 		else 	LOGGER.info(lorryArrivalString);
 	}
 	
-	/**
-	 * Output string for lorry departure
-	 * @param e
-	 */
 	public void departLorry(LorryDepartureEvent e) {
 		String lorryDepartureString = e.timeToString()+" -> lorry "+sa.getAreaIdx()+" left location "+sa.getAreaIdx()+"."+location;
 		if (!AbstractEvent.getIsExperiment()) System.out.println(lorryDepartureString);				

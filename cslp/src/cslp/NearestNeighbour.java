@@ -1,8 +1,6 @@
 package cslp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -14,100 +12,70 @@ public class NearestNeighbour {
 	
 	public static final Logger LOGGER = Logger.getLogger(NearestNeighbour.class.getName());
 
-	private int minDuration;
+	private int minDuration; // attribute saved for convenience, such as comparing shortest path algorithms
+//	private ArrayList<Integer> serviceQueue = new ArrayList<Integer>();
 	
 	public int getMinDuration() {
 		return this.minDuration;
 	}
+//	public ArrayList<Integer> getShortestPath() {
+//		return this.serviceQueue;
+//	}
 	
 	/**
-	 * This method returns a route from the routeLayout matrix with 0's at beginning and end
+	 * Computes a graph traversal path with a compute matrix 'routeLayout', which is a matrix with
+	 * selected bins. requiredVertices indicates the bin indices the routeLayout represents.
 	 * 
-	 * @param routeLayout	a sub matrix of the original roadsLayout matrix, containing only bins that require servicing
-	 * @return int[]		an array of servicing route in order
+	 * @param routeLayout			A shortest path matrix
+	 * @param requiredVertices		Contains 0 (depot) and bin locations
+	 * @return ArrayList<Integer> 	A service queue
 	 */
-	public int[] getRoute(int[][] routeLayout) {
-		int routeLen = routeLayout.length+1;
-		int[] route = new int[routeLen];
-		int len = routeLayout.length;
-		boolean[] visited = new boolean[len];
+	public ArrayList<Integer> getServiceQueue(int[][] routeLayout, int[] requiredVertices) {
+		boolean[] visited = new boolean[routeLayout.length-1];
 		for (boolean b : visited) {
 			b = false;
 		}
-		visited[0] = true;
-		
 		int totalDuration = 0;
+		boolean found = false;
+		int currLocation = 0;
 		
-		boolean keepGoing = true;
+		ArrayList<Integer> serviceQueue = new ArrayList<Integer>();
 		
-		int currLocation = 0; // always start at depot
-		int idx = 0;
+		int min = Integer.MAX_VALUE;
+		int nn = -1; // neighbour
 
-		route[idx] = currLocation;
-		idx++;
-		
-		int minDist = Integer.MAX_VALUE;
-		int nn = -1; // nearest neighbour
-		
-		while (keepGoing) {
-			for (int i = 0; i < len; i++) {
-				if ((i!=currLocation) && (i!=0) && !visited[i]) {
-					if (routeLayout[currLocation][i] < minDist) {
-						minDist = routeLayout[currLocation][i];
-						nn = i;
-					}
+		String routeString = "Route: 0 -> ";
+		String serviceQueueString = "serviceQueue: ";
+
+		while (!found) {
+			for (int i = 1; i < routeLayout.length; i++) {
+				if ((i != currLocation) && (!visited[i-1]) && (routeLayout[currLocation][i] < min)) {
+					min = routeLayout[currLocation][i];
+					nn = i;
 				}
 			}
-			if (nn == -1) { 
+			if (nn == -1) {
 				nn = 0;
-				route[idx] = nn;
-				keepGoing = false;
+				found = true;
 				totalDuration += routeLayout[currLocation][0];
+				routeString+="END";
+				serviceQueueString+="END";
 			} else {
-				route[idx] = nn;
+				int binIdx = requiredVertices[nn];
+				serviceQueue.add(binIdx);
 				currLocation = nn;
-				visited[nn] = true;
-				totalDuration += minDist;
+				visited[nn-1] = true;
+				totalDuration += min;
+				routeString += Integer.toString(nn)+" -> ";
+				serviceQueueString += Integer.toString(binIdx)+" -> ";
 			}
-			minDist = Integer.MAX_VALUE;
+			min = Integer.MAX_VALUE;
 			nn = -1;
-			idx++;
 		}
-		
-		String routeString = "Route: ";
-		for (int r : route) {
-			routeString+=Integer.toString(r)+" -> ";
-		}
-		routeString+="END";
 		LOGGER.info(routeString+" \t Total duration = "+totalDuration);
+		LOGGER.info(serviceQueueString);
 		
 		this.minDuration = totalDuration;
-		
-		return route; // index in the subgraph form
-	}
-	
-	/**
-	 * Creates an Arraylist of service queue in terms of actual binIdx from routeLayout 
-	 * and the array of binIdx
-	 * 
-	 * @param routeLayout				sub graph of roadsLayout
-	 * @param requiredVertices			array of required vertices with depot and bin locations as elements
-	 * @return	ArrayList<Integer> 		service queue with route for graph traversal
-	 */
-	public ArrayList<Integer> getServiceQueue(int[][] routeLayout, int[] requiredVertices) {
-		int[] route = getRoute(routeLayout);
-		
-		ArrayList<Integer> serviceQueue = new ArrayList<>();
-		String serviceQueueString = "serviceQueue: ";
-		for (int i = 1; i < route.length-1; i++) {
-			int subGraphLocation = route[i];
-			int location = requiredVertices[subGraphLocation];
-			serviceQueue.add(location);
-			serviceQueueString += Integer.toString(location)+" -> ";
-		}
-		serviceQueueString+="END";
-		LOGGER.info(serviceQueueString);
 		return serviceQueue;
 	}
-	
 }

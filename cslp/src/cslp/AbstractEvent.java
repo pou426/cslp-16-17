@@ -34,11 +34,7 @@ public abstract class AbstractEvent implements Comparable {
 			hrCount -= 24;
 			dayCount += 1;
 		}
-		String sec = String.format("%02d", secCount);
-		String min = String.format("%02d", minCount);
-		String hr = String.format("%02d", hrCount);
-		String day = String.format("%02d", dayCount);
-		String result = day+":"+hr+":"+min+":"+sec;
+		String result = String.format("%02d", dayCount)+":"+String.format("%02d", hrCount)+":"+String.format("%02d", minCount)+":"+String.format("%02d", secCount);
 		return result;
 	}
 	

@@ -23,7 +23,7 @@ public class Random {
 		return erlangkSec;
 	}
 	
-	/** For checking **/
+	/** Method testing **/
 	public static double meanErlangK() {
 		return 60*60*Random.disposalDistrShape/Random.disposalDistrRate;
 	}

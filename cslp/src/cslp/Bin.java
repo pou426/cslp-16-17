@@ -2,10 +2,6 @@ package cslp;
 
 import java.util.logging.Logger;
 
-/**
- * Bin Class
- *
- */
 public class Bin {
 	
 	public static final Logger LOGGER = Logger.getLogger(Bin.class.getName());
@@ -20,9 +16,9 @@ public class Bin {
 	private float wasteVolume;
 	private float wasteWeight;
 	
-	private boolean isOverflow; // flag for overflow event 
+	private boolean isOverflow; 		// flag for overflow event 
 	private boolean isExceedThreshold; // flag for exceed threshold event
-	private boolean isServicing; // if servicing, cannot dispose bags
+	private boolean isServicing; 		// if servicing, user cannot dispose bags
 
 	public Bin(ServiceArea serviceArea, int binIdx) {
 		this.areaIdx = serviceArea.getAreaIdx();
@@ -36,6 +32,15 @@ public class Bin {
 		this.isServicing = false;
 	}
 	
+	private void outputString(float bagWeight, String timeStr) {
+		String disposalString = timeStr + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
+		if (!AbstractEvent.getIsExperiment()) 	System.out.println(disposalString);				// output disposal event
+		else	LOGGER.info(disposalString);
+		
+		String binStatusString = timeStr + " -> load of bin "+areaIdx+"."+binIdx+" became "+String.format("%.3f",wasteWeight)+" kg and contents volume "+String.format("%.3f", wasteVolume)+" m^3";
+		if (!AbstractEvent.getIsExperiment()) 	System.out.println(binStatusString);			// output change in bin content event
+		else	LOGGER.info(binStatusString);
+	}
 	/**
 	 * When a disposal event is executed, the contents and status of the bin are modified accordingly.
 	 * This method outputs the event in a readable format, keeps track of and updates current status of the bin.
@@ -49,35 +54,26 @@ public class Bin {
 			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
 			if (!AbstractEvent.getIsExperiment()) 	System.out.println(disposalString);				// output disposal event
 			else	LOGGER.info(disposalString);
+			return;
 		} 
 		
-		else {
-			this.wasteVolume += Bag.getBagVolume(); // update bin content
-			this.wasteWeight += bagWeight;
-			
-			String disposalString = e.timeToString() + " -> bag weighing "+String.format("%.3f",bagWeight)+" kg disposed of at bin "+areaIdx+"."+binIdx;
-			if (!AbstractEvent.getIsExperiment()) 	System.out.println(disposalString);				// output disposal event
-			else	LOGGER.info(disposalString);
-			
-			String binStatusString = e.timeToString() + " -> load of bin "+areaIdx+"."+binIdx+" became "+String.format("%.3f",wasteWeight)+" kg and contents volume "+String.format("%.3f", wasteVolume)+" m^3";
-			if (!AbstractEvent.getIsExperiment()) 	System.out.println(binStatusString);			// output change in bin content event
-			else	LOGGER.info(binStatusString);
-			
-			if (!isExceedThreshold) {	// only outputs exceed thresholdVal event if this is first occurence between bin service
-				if (currentOccupancy() > thresholdVal) { 		// updates isExceedThreshold variable if necessary
-					isExceedThreshold = true;
-					String exceedThresholdString = e.timeToString() + " -> occupancy threshold of bin "+areaIdx+"."+binIdx+" exceeded";
-					if (!AbstractEvent.getIsExperiment()) 	System.out.println(exceedThresholdString);	// output exceed threshold event
-					else	LOGGER.info(exceedThresholdString);
-				}
-			}
-			
-			if (currentOccupancy() >= 1) { 	// updates isOverflow variable if necessary			
-				isOverflow = true;
-				String overflowString = e.timeToString() + " -> "+ "bin "+areaIdx+"."+binIdx+" overflowed";
-				if (!AbstractEvent.getIsExperiment()) System.out.println(overflowString);			// output bin overflow event
-				else	LOGGER.info(overflowString);
-			}
+		this.wasteVolume += Bag.getBagVolume(); // update bin content
+		this.wasteWeight += bagWeight;
+		
+		outputString(bagWeight, e.timeToString());
+		
+		if (!isExceedThreshold && (currentOccupancy() > thresholdVal)) {
+			isExceedThreshold = true;
+			String exceedThresholdString = e.timeToString() + " -> occupancy threshold of bin "+areaIdx+"."+binIdx+" exceeded";
+			if (!AbstractEvent.getIsExperiment()) 	System.out.println(exceedThresholdString);	// output exceed threshold event
+			else	LOGGER.info(exceedThresholdString);
+		}
+		
+		if (currentOccupancy() >= 1) { 			
+			isOverflow = true;
+			String overflowString = e.timeToString() + " -> "+ "bin "+areaIdx+"."+binIdx+" overflowed";
+			if (!AbstractEvent.getIsExperiment()) System.out.println(overflowString);			// output bin overflow event
+			else	LOGGER.info(overflowString);
 		}
 	}
 	
@@ -127,6 +123,9 @@ public class Bin {
 		return this.wasteVolume;
 	}
 	
+	/**
+	 * Resets bin content and status after being serviced.
+	 */
 	public void resetAll() {
 		this.isOverflow = false;
 		this.isExceedThreshold = false;

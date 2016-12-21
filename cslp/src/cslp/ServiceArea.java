@@ -29,14 +29,6 @@ public class ServiceArea extends ServiceAreaInfo {
 	private ArrayList<Float> volCollected = new ArrayList<Float>();
 	private ArrayList<Float> overflowPercent = new ArrayList<Float>();
 	
-//	public void checking() {
-//		System.out.println("I am in service area class. \noverflow percent size = " + overflowPercent.size());
-//		System.out.println("area = "+getAreaIdx());
-//		for (float o : overflowPercent) {
-//			System.out.println(o);
-//		}
-//	}
-	
 	public int getServiceQueueSize() {
 		return this.serviceQueue.size();
 	}
@@ -59,7 +51,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		FloydWarshall floydWarshall = new FloydWarshall();
 		this.minDistMatrix = floydWarshall.getMinDistMatrix(roadsLayout);
 		
-		String minDistStr = floydWarshall.minDistToString(minDistMatrix);
+		String minDistStr = floydWarshall.matrixToString(minDistMatrix);
 		LOGGER.info("\tareaIdx = "+getAreaIdx()+" \n"+minDistStr);
 	}
 	
@@ -236,7 +228,6 @@ public class ServiceArea extends ServiceAreaInfo {
 				// using NN method
 				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
 			}
-
 			return;
 			
 		} else { // rescheduling event
@@ -257,7 +248,6 @@ public class ServiceArea extends ServiceAreaInfo {
 				// using NN method
 				serviceQueue = new NearestNeighbour().getServiceQueue(routeLayout, requiredVertices);
 			}
-			
 			return;
 		}
 	}
