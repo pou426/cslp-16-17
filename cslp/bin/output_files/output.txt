@@ -1,12 +1,12 @@
 ---
-area 0: average trip duration 00:02:44:22
-overall average trip duration 00:02:44:22
-area 0: average no. trips 3.000
-overall average no. trips 3.000
-area 0: trip efficiency 34.550
-overall trip efficiency 34.550
-area 0: average volume collected 18.537
-overall average volume collected 18.537
+area 0: average trip duration 00:00:00:00
+overall average trip duration 00:00:00:00
+area 0: average no. trips 0.000
+overall average no. trips 0.000
+area 0: trip efficiency 0.000
+overall trip efficiency 0.000
+area 0: average volume collected 0.000
+overall average volume collected 0.000
 area 0: percentage of bins overflowed 0.000
 overall percentage of bins overflowed 0.000
 ---
