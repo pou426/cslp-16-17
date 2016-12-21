@@ -1,9 +1,5 @@
 package cslp;
 
-/**
- * Error class
- * 
- */
 public class Error {
 
 	/**

@@ -51,7 +51,7 @@ public class FloydWarshall {
 		return minDist;
 	}
 
-	/** Method for Logging **/
+	/** Method for LOGGER **/
 	public String matrixToString(int[][] minDistMatrix) {
 		String str = "Minimum Distance Matrix: \n";
 		for (int i = 0; i < minDistMatrix.length; i++) {

@@ -79,7 +79,6 @@ public class BruteForce {
 		String serviceQueueString = "serviceQueue: ";
 		for (int s : shortestPath) {
 			int binIdx = requiredVertices[s];
-			System.out.println(s);
 			serviceQueue.add(binIdx);
 			routeString+=Integer.toString(s)+" -> ";
 			serviceQueueString += Integer.toString(binIdx)+" -> ";

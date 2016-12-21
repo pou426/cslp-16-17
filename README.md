@@ -53,15 +53,28 @@ Code Structure - Generate, Schedule and Execute Waste Disposal Events:
 - The doAllEvents() method from Simulator class polls an event from the events Priority Queue one at a time, increments the time and calls the execute(Simulator simulator) method.
 
 Code Structure - Bin Collection Events:
-- Not implemented yet
+1. 	An initial bin collection event (an BinServiceEvent instance) is inserted into queue for each service area and stores the next bin service event with the time it should be scheduled if no delay. When executed, the simulator decides which bins to be serviced according to their occupancy and plan a route to visit all bins from and back to the depot.
+2. 	The service area's lorry departs from the depot (LorryDepartureEvent) to the next location, and schedule another event to signal the arrival of lorry at that location (LorryArrivalEvent) at the specified time. 
+3. 	When the lorry arrives at the bin, it begins to empty the bin, at this point, disposal events cannot occur at that bin. An BinEmptiedEvent instance is inserted which signals that the bin has been emptied and updates content of the bin and lorry.
+4. If there are bins that still need to be visited, the lorry departs to that location and repeats steps 2 and 3 until there are no bins left, or if the lorry's capacity has been exceeded. 
+5. Lorry only serviced a bin if it has enough capacity. If a lorry arrives at a bin and find out that its remaining capacity is not sufficient, it will go back to the depot through the shortest path, and empties its content. A LorryEmptiedEvent will be executed at a time from current simulation time that is 5 times the bin servicing time. 
+6. Once the lorry is emptied, the simulator shall recompute a path to visit the remaining bins.
+7. If one bin service event takes too long and it finishes at a time longer than the next service event for that service area, the next service event will be carried out right away.
 
-Code Structure - Statistical Analysis: (no implementation yet)
+Code Structure - Statistical Analysis:
+Statistics that will be outputted to the console are:
 - Average Trip Duration
 - Number of Trips per Schedule
 - Trip Efficiency
 - Average Volume Collected
 - Percentage of Overflowed Bins
 - Visualisation
+for each service area and averaged over all service areas. These statistics are only collected after a transient time (warmUpTime)
+
+Code Structure - Mathematics and algorithms:
+- Random: calculates erlang-k distribution
+- Floyd-Warshall: computes shortest path for a given graph
+- Nearest-neighbour and brute-force: carries out route planning
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -116,18 +129,24 @@ Additional features:
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-Test input scripts:
+Input scripts:
 ------------------------------------------------------------------------------
-Testing scripts for part 3 are included in the folder '/input_scripts_part_3/' as well as '/cslp/src/test/'. The former includes input text scripts with different input paramters and area specification, where as the later contains JUnit tests to test various methods in the program.
+Testing scripts:
+
+Testing scripts for part 3 are included in the folder '/input_scripts/' as well as '/cslp/src/test/'. The former includes input text scripts with different input paramters and area specification, where as the later contains JUnit tests to test various methods in the program.
+
+Experimentation scripts:
+Scripts used to perform experiments are included in the '/exp_scripts/' folder.
+
+All input scripts contains comments in the beginning to state what aspect they tests/experiment with.
 
 
-
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
-Test input scripts:
+Output:
 ------------------------------------------------------------------------------
-Output from the console is redirected to ./cslp/bin/output_files/output.txt
+Output of summary statistics from the console is redirected to ./cslp/bin/output_files/output.txt
 
 
 
