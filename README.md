@@ -148,6 +148,7 @@ Output:
 ------------------------------------------------------------------------------
 Output of summary statistics from the console is redirected to ./cslp/bin/output_files/output.txt
 
+Plotted graphs are included in /cslp/bin/graphs/
 
 
 
