@@ -92,7 +92,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		for (int t : tripDurations) {
 			totalTripDurations += t;
 		}
-		return totalTripDurations/totalNoOfTrips;
+		return (((float)totalTripDurations)/totalNoOfTrips);
 	}
 	
 	public float getAvgNoTripsPerSchedule() {
@@ -101,7 +101,7 @@ public class ServiceArea extends ServiceAreaInfo {
 			return 0;
 		}
  		int totalNoOfTrips = getTotalNoOfTrips();
-		return totalNoOfTrips/noOfSchedules;
+ 		return (((float)totalNoOfTrips)/noOfSchedules);
 	}
 	
 	public float getTripEfficiency() {
@@ -113,7 +113,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		for (float f : tripEfficiencies) {
 			totalTripEfficiency += f;
 		}
-		return totalTripEfficiency/totalNoOfTrips;
+		return (((float)totalTripEfficiency)/totalNoOfTrips);
 	}
 	
 	public float getAvgVolCollected() {
@@ -125,7 +125,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		for (float v : volCollected) {
 			totalVolCollected += v;
 		}
-		return totalVolCollected/totalNoOfTrips;
+		return (((float)totalVolCollected)/totalNoOfTrips);
 	}
 	
 	public float getAvgPercentageOverflow() {
@@ -137,7 +137,7 @@ public class ServiceArea extends ServiceAreaInfo {
 		for (float p : overflowPercent) {
 			totalPercentageOverflow += p;
 		}
-		return totalPercentageOverflow/noOfSchedules;
+		return (((float)totalPercentageOverflow)/noOfSchedules);
 	}
 	
 	/**
